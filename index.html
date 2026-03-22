@@ -889,6 +889,26 @@
     color: var(--ink);
   }
 
+  .sidebar-week.past-week .week-title-short { color: var(--sidebar-muted); }
+  .sidebar-week.past-week .week-dates-short { color: #4A3A2E; }
+  .sidebar-week.current-week {
+    background: var(--sidebar-active);
+    border-left-color: #E8A000;
+  }
+  .current-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: #E8A000;
+    color: #1C1410;
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
   /* ── RESPONSIVE ──────────────────────────────────────────  */
   @media (max-width: 800px) {
     .sidebar { transform: translateX(-100%); }
@@ -918,6 +938,13 @@
     <div class="week-info">
       <div class="week-title-short">Course Overview</div>
       <div class="week-dates-short">Syllabus & Assignments</div>
+    </div>
+  </a>
+  <a class="sidebar-week" href="perusall.html">
+    <div class="week-num">📖</div>
+    <div class="week-info">
+      <div class="week-title-short">Perusall Annotation Guide</div>
+      <div class="week-dates-short">Marginalia & annotation tips</div>
     </div>
   </a>
   <a class="sidebar-week" href="submissions.html">
@@ -956,6 +983,7 @@ const WEEKS = [
     num: 1,
     title: "Introduction to Composition Studies & OWI",
     dates: "Aug 18 & 20",
+    startDate: "2026-08-18", endDate: "2026-08-21",
     focus: "Historical Overview + OWI Principles",
     tuesday: {
       date: "Tuesday, August 18",
@@ -1007,7 +1035,8 @@ const WEEKS = [
   {
     num: 2,
     title: "Current-Traditional to Process Pedagogy",
-    dates: "Aug 25 & 27",
+    dates: "Aug 25 & 27",,
+    startDate: "2026-08-25", endDate: "2026-08-28"
     focus: "Product to Process Shift in Composition",
     tuesday: {
       date: "Tuesday, August 25",
@@ -1059,7 +1088,8 @@ const WEEKS = [
   {
     num: 3,
     title: "Cognitivist & Expressivist Theories",
-    dates: "Sep 1 & 3",
+    dates: "Sep 1 & 3",,
+    startDate: "2026-09-01", endDate: "2026-09-04"
     focus: "Internal Processes and Voice in Writing",
     tuesday: {
       date: "Tuesday, September 1",
@@ -1114,7 +1144,8 @@ const WEEKS = [
   {
     num: 4,
     title: "Social Construction & the Social Turn",
-    dates: "Sep 8 & 10",
+    dates: "Sep 8 & 10",,
+    startDate: "2026-09-08", endDate: "2026-09-11"
     focus: "Writing as Socially Situated",
     tuesday: {
       date: "Tuesday, September 8",
@@ -1164,7 +1195,8 @@ const WEEKS = [
   {
     num: 5,
     title: "Critical Pedagogy & Language",
-    dates: "Sep 15 & 17",
+    dates: "Sep 15 & 17",,
+    startDate: "2026-09-15", endDate: "2026-09-18"
     focus: "Power, Identity, and Access",
     tuesday: {
       date: "Tuesday, September 15",
@@ -1214,7 +1246,8 @@ const WEEKS = [
   {
     num: 6,
     title: "Genre Theory & Post-Process Writing",
-    dates: "Sep 22 & 24",
+    dates: "Sep 22 & 24",,
+    startDate: "2026-09-22", endDate: "2026-09-25"
     focus: "Genre as Social Action",
     tuesday: {
       date: "Tuesday, September 22",
@@ -1267,7 +1300,8 @@ const WEEKS = [
   {
     num: 7,
     title: "Writing Assessment & Labor-Based Pedagogy",
-    dates: "Sep 29 & Oct 1",
+    dates: "Sep 29 & Oct 1",,
+    startDate: "2026-09-29", endDate: "2026-10-02"
     focus: "Assessment Equity & Feedback Strategies",
     tuesday: {
       date: "Tuesday, September 29",
@@ -1321,7 +1355,8 @@ const WEEKS = [
   {
     num: 8,
     title: "Linguistic Justice",
-    dates: "Oct 6 & 8",
+    dates: "Oct 6 & 8",,
+    startDate: "2026-10-06", endDate: "2026-10-09"
     focus: "Language Rights and Student Voice",
     tuesday: {
       date: "Tuesday, October 6",
@@ -1371,7 +1406,8 @@ const WEEKS = [
   {
     num: 9,
     title: "Fall Break",
-    dates: "Oct 13 & 15",
+    dates: "Oct 13 & 15",,
+    startDate: "2026-10-13", endDate: "2026-10-16"
     focus: "No Class — Rest & Reflection",
     isBreak: true,
     breakMessage: "No class this week. Take time to rest, reflect on the first half of the semester, and finalize your Writing Assignment Design due Week 10.",
@@ -1382,7 +1418,8 @@ const WEEKS = [
   {
     num: 10,
     title: "Feminist & Queer Rhetorics in Composition",
-    dates: "Oct 20 & 22",
+    dates: "Oct 20 & 22",,
+    startDate: "2026-10-20", endDate: "2026-10-23"
     focus: "Intersectional Pedagogies",
     tuesday: {
       date: "Tuesday, October 20",
@@ -1436,7 +1473,8 @@ const WEEKS = [
   {
     num: 11,
     title: "Writing Across Contexts & Genre Transfer",
-    dates: "Oct 27 & 29",
+    dates: "Oct 27 & 29",,
+    startDate: "2026-10-27", endDate: "2026-10-30"
     focus: "Transfer Theory & Scaffolding",
     tuesday: {
       date: "Tuesday, October 27",
@@ -1484,7 +1522,8 @@ const WEEKS = [
   {
     num: 12,
     title: "Neurodiversity & Universal Design",
-    dates: "Nov 3 & 5",
+    dates: "Nov 3 & 5",,
+    startDate: "2026-11-03", endDate: "2026-11-06"
     focus: "Access, Equity, and Learning Differences",
     tuesday: {
       date: "Tuesday, November 3",
@@ -1533,7 +1572,8 @@ const WEEKS = [
   {
     num: 13,
     title: "Multimodal Pedagogy & Digital Writing",
-    dates: "Nov 10 & 12",
+    dates: "Nov 10 & 12",,
+    startDate: "2026-11-10", endDate: "2026-11-13"
     focus: "Digital Rhetoric & Assignment Design",
     tuesday: {
       date: "Tuesday, November 10",
@@ -1586,7 +1626,8 @@ const WEEKS = [
   {
     num: 14,
     title: "AI & the Future of Composition",
-    dates: "Nov 17 & 19",
+    dates: "Nov 17 & 19",,
+    startDate: "2026-11-17", endDate: "2026-11-20"
     focus: "Ethics, Tools, and Emerging Technologies",
     tuesday: {
       date: "Tuesday, November 17",
@@ -1635,7 +1676,8 @@ const WEEKS = [
   {
     num: 15,
     title: "No Class — Thanksgiving Break",
-    dates: "Nov 24 & 26",
+    dates: "Nov 24 & 26",,
+    startDate: "2026-11-24", endDate: "2026-11-27"
     focus: "Rest & Final Project Preparation",
     isBreak: true,
     breakMessage: "No class this week. Use this time to finalize your Digital Portfolio and Pedagogy Statement, due December 1. Prepare your 10–15 minute final presentation.",
@@ -1646,7 +1688,8 @@ const WEEKS = [
   {
     num: 16,
     title: "Final Presentations",
-    dates: "Dec 1",
+    dates: "Dec 1",,
+    startDate: "2026-12-01", endDate: "2026-12-02"
     focus: "Pedagogy Portfolio Showcase",
     tuesday: {
       date: "Tuesday, December 1",
@@ -1677,10 +1720,28 @@ const WEEKS = [
 // ═══════════════════════════════════════════════════════════
 function buildSidebar() {
   const container = document.getElementById('sidebar-weeks');
+  const today = new Date();
+  today.setHours(0,0,0,0);
+
   WEEKS.forEach(w => {
     const hasAssign = !!w.assignment;
     const el = document.createElement('div');
-    el.className = 'sidebar-week' + (w.isBreak ? ' break-week' : '');
+
+    let weekClass = 'sidebar-week' + (w.isBreak ? ' break-week' : '');
+    let badge = '';
+
+    if (w.startDate && w.endDate) {
+      const start = new Date(w.startDate);
+      const end = new Date(w.endDate);
+      if (today >= start && today < end) {
+        weekClass += ' current-week';
+        badge = '<div class="current-badge">Now</div>';
+      } else if (today >= end) {
+        weekClass += ' past-week';
+      }
+    }
+
+    el.className = weekClass;
     el.setAttribute('data-week', w.num);
     el.onclick = () => showWeek(w.num);
     el.innerHTML = `
@@ -1689,7 +1750,7 @@ function buildSidebar() {
         <div class="week-title-short">${w.title}</div>
         <div class="week-dates-short">${w.dates}</div>
       </div>
-      ${hasAssign ? '<div class="week-assign-dot"></div>' : ''}
+      ${badge || (hasAssign ? '<div class="week-assign-dot"></div>' : '')}
     `;
     container.appendChild(el);
   });
@@ -1721,8 +1782,9 @@ function showOverview() {
         <h1 class="overview-heading">Theory & Research<br>in <em>Composition</em></h1>
         <p class="overview-byline">Professor Kirsti Cole &nbsp;·&nbsp; In-Person Tuesday & Thursday &nbsp;·&nbsp; kkcole2@ncsu.edu</p>
         <div class="week-meta">
-          <div class="meta-pill">📍 Tompkins Hall 226 (Office)</div>
-          <div class="meta-pill">🕐 11:45 AM – 1:00 PM</div>
+          <div class="meta-pill">🏛 00205 Winston Hall</div>
+          <div class="meta-pill">🕐 11:45 AM – 1:00 PM · T/Th</div>
+          <div class="meta-pill">📍 Office: Tompkins Hall 226</div>
           <div class="meta-pill">📅 Aug 18 – Dec 1, 2026</div>
           <div class="meta-pill">📚 Perusall + Moodle</div>
         </div>
@@ -1755,9 +1817,24 @@ function showOverview() {
           <div class="info-card-sub">In-person or Zoom. Book at calendar.app.google/bpaYNUBRrE62aKxMA</div>
         </div>
         <div class="info-card">
-          <div class="info-card-label">Course Format</div>
-          <div class="info-card-value">16 Weeks</div>
-          <div class="info-card-sub">Fall Break: Oct 13–15 · Thanksgiving Break: Nov 24–26</div>
+          <div class="info-card-label">Class Location</div>
+          <div class="info-card-value">00205 Winston Hall</div>
+          <div class="info-card-sub">11:45 AM – 1:00 PM · Tuesday & Thursday</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Discussion Leaders</div>
+          <div class="info-card-value"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdDexqnNT6YrzMFN_JFU2SUrxLs8bIiMungY17WrngWonEkQw/viewform?usp=header" target="_blank" style="color:var(--tue-mid);font-weight:600;">Sign-Up Form →</a></div>
+          <div class="info-card-sub">Complete before or during Week 1</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">ENG 101 Examples</div>
+          <div class="info-card-value"><a href="https://drive.google.com/drive/folders/1-59Y3BS25aTsblc22F0euMibTB1kv49p?usp=sharing" target="_blank" style="color:var(--tue-mid);font-weight:600;">Course Folder →</a></div>
+          <div class="info-card-sub">Sample assignments & course materials</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Student Sample Papers</div>
+          <div class="info-card-value"><a href="https://drive.google.com/drive/folders/1Af_8kSOBO76dcMt5xwsrRhedgqT18T6Q?usp=sharing" target="_blank" style="color:var(--tue-mid);font-weight:600;">Papers Folder →</a></div>
+          <div class="info-card-sub">Used for Feedback Portfolio (Week 7 & 13)</div>
         </div>
       </div>
 
@@ -1782,8 +1859,18 @@ function showOverview() {
       </div>
 
       <div class="overview-section">
-        <h2 class="overview-section-title">Assignments at a Glance</h2>
+        <h2 class="overview-section-title" style="display:flex;align-items:center;justify-content:space-between;">
+          Assignments at a Glance
+          <a href="submissions.html" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--assign-mid);text-decoration:none;font-weight:400;border:1px solid var(--assign-mid);border-radius:16px;padding:4px 13px;letter-spacing:0.05em;">📁 Submissions & Portfolio →</a>
+        </h2>
         <div class="assignments-overview">
+          <div class="assignment-overview-item">
+            <div class="aoi-week" style="background:var(--ink-mid)">Week 1</div>
+            <div>
+              <div class="aoi-title">Discussion Leader Sign-Up</div>
+              <div class="aoi-desc">Sign up for your student-led discussion slot (Weeks 2–14) before or during Week 1. <a href="https://docs.google.com/forms/d/e/1FAIpQLSdDexqnNT6YrzMFN_JFU2SUrxLs8bIiMungY17WrngWonEkQw/viewform?usp=header" target="_blank" style="color:var(--tue-mid);font-weight:600;">Sign up here →</a></div>
+            </div>
+          </div>
           <div class="assignment-overview-item">
             <div class="aoi-week">Week 3</div>
             <div>
@@ -2096,7 +2183,23 @@ function setActive(num) {
 // INIT
 // ═══════════════════════════════════════════════════════════
 buildSidebar();
-showOverview();
+
+// Auto-navigate to current week if semester is active
+const today = new Date();
+today.setHours(0,0,0,0);
+const semesterStart = new Date("2026-08-18");
+const semesterEnd = new Date("2026-12-02");
+if (today >= semesterStart && today <= semesterEnd) {
+  const currentWeek = WEEKS.find(w => {
+    if (!w.startDate) return false;
+    const s = new Date(w.startDate), e = new Date(w.endDate);
+    return today >= s && today < e;
+  });
+  if (currentWeek) { showWeek(currentWeek.num); }
+  else { showOverview(); }
+} else {
+  showOverview();
+}
 </script>
 </body>
 </html>
