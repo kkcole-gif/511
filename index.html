@@ -1,0 +1,2095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENG 511: Theory & Research in Composition — Fall 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F9F5EF;
+    --cream-dark: #F0EAE0;
+    --ink: #1C1410;
+    --ink-mid: #4A3F35;
+    --ink-soft: #8B7B6F;
+    --tue: #3D2B6E;
+    --tue-light: #EDE8F7;
+    --tue-mid: #7B5EA7;
+    --thu: #8B3A1A;
+    --thu-light: #FBF0EA;
+    --thu-mid: #C46B3C;
+    --assign: #1A5C3A;
+    --assign-light: #E8F5EE;
+    --assign-mid: #3D8B5E;
+    --border: #D9D0C4;
+    --sidebar-bg: #1C1410;
+    --sidebar-text: #E8DDD4;
+    --sidebar-muted: #7A6C62;
+    --sidebar-hover: #2E231C;
+    --sidebar-active: #3D2B1A;
+    --sidebar-accent: #C4832F;
+    --preview-bg: #FAFAFA;
+    --shadow: 0 2px 12px rgba(0,0,0,0.07);
+    --shadow-lg: 0 4px 24px rgba(0,0,0,0.11);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--cream);
+    color: var(--ink);
+    display: flex;
+    min-height: 100vh;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ─────────────────────────────────────────── */
+  .sidebar {
+    width: 240px;
+    min-width: 240px;
+    background: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 100;
+  }
+
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-track { background: transparent; }
+  .sidebar::-webkit-scrollbar-thumb { background: #4A3A2E; border-radius: 2px; }
+
+  .sidebar-header {
+    padding: 28px 20px 20px;
+    border-bottom: 1px solid #2E231C;
+  }
+
+  .sidebar-course {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sidebar-accent);
+    margin-bottom: 6px;
+  }
+
+  .sidebar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    line-height: 1.4;
+    color: var(--sidebar-text);
+    font-weight: 600;
+  }
+
+  .sidebar-sub {
+    font-size: 11px;
+    color: var(--sidebar-muted);
+    margin-top: 4px;
+  }
+
+  .sidebar-section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sidebar-muted);
+    padding: 14px 20px 6px;
+  }
+
+  .sidebar-week {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: background 0.15s;
+    border-left: 2px solid transparent;
+    text-decoration: none;
+    color: var(--sidebar-text);
+  }
+
+  .sidebar-week:hover { background: var(--sidebar-hover); }
+
+  .sidebar-week.active {
+    background: var(--sidebar-active);
+    border-left-color: var(--sidebar-accent);
+  }
+
+  .sidebar-week.break-week { opacity: 0.5; }
+
+  .week-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--sidebar-muted);
+    min-width: 22px;
+    padding-top: 2px;
+  }
+
+  .week-info {}
+
+  .week-title-short {
+    font-size: 12px;
+    line-height: 1.35;
+    color: var(--sidebar-text);
+  }
+
+  .week-dates-short {
+    font-size: 10px;
+    color: var(--sidebar-muted);
+    margin-top: 1px;
+  }
+
+  .week-assign-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--sidebar-accent);
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+
+  /* ── MAIN ─────────────────────────────────────────────── */
+  .main {
+    margin-left: 240px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* ── TOP BAR ──────────────────────────────────────────── */
+  .topbar {
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .topbar-breadcrumb {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: 0.06em;
+  }
+
+  .topbar-legend {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--ink-soft);
+  }
+
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 2px;
+  }
+  .legend-dot.tue { background: var(--tue); }
+  .legend-dot.thu { background: var(--thu); }
+  .legend-dot.assign { background: var(--assign); }
+
+  /* ── WEEK CONTENT ─────────────────────────────────────── */
+  .week-content {
+    padding: 48px 40px 60px;
+    max-width: 960px;
+  }
+
+  /* ── WEEK HERO ──────────────────────────────────────────  */
+  .week-hero {
+    margin-bottom: 36px;
+  }
+
+  .week-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+
+  .week-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  .week-subheading {
+    font-size: 15px;
+    color: var(--ink-mid);
+    font-style: italic;
+    margin-bottom: 16px;
+  }
+
+  .week-meta {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    color: var(--ink-mid);
+  }
+
+  .meta-pill.assignment {
+    background: var(--assign-light);
+    border-color: var(--assign-mid);
+    color: var(--assign);
+    font-weight: 600;
+  }
+
+  /* ── BREAK PAGE ─────────────────────────────────────────  */
+  .break-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    text-align: center;
+    padding: 60px 40px;
+  }
+
+  .break-icon {
+    font-size: 56px;
+    margin-bottom: 24px;
+  }
+
+  .break-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+
+  .break-text {
+    font-size: 16px;
+    color: var(--ink-mid);
+    max-width: 440px;
+    line-height: 1.7;
+  }
+
+  /* ── SESSION CARD ────────────────────────────────────────  */
+  .session-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    margin-bottom: 28px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .session-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .session-header.tue-header {
+    background: var(--tue);
+    color: white;
+    border-bottom-color: rgba(255,255,255,0.15);
+  }
+
+  .session-header.thu-header {
+    background: var(--thu);
+    color: white;
+    border-bottom-color: rgba(255,255,255,0.15);
+  }
+
+  .session-day-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 12px;
+    font-weight: 500;
+  }
+
+  .tue-badge { background: rgba(255,255,255,0.18); color: white; }
+  .thu-badge { background: rgba(255,255,255,0.18); color: white; }
+
+  .session-header-info {}
+
+  .session-header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    line-height: 1.3;
+  }
+
+  .session-header-date {
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 2px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .session-body {
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .session-body.single-col {
+    grid-template-columns: 1fr;
+  }
+
+  /* ── SECTION BLOCKS ──────────────────────────────────────  */
+  .block {
+    margin-bottom: 0;
+  }
+
+  .block-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .block-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── READING LIST ────────────────────────────────────────  */
+  .reading-list {
+    list-style: none;
+  }
+
+  .reading-item {
+    display: flex;
+    gap: 10px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--cream-dark);
+    font-size: 13.5px;
+    line-height: 1.45;
+    align-items: flex-start;
+  }
+
+  .reading-item:last-child { border-bottom: none; }
+
+  .reading-bullet {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--ink-soft);
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+
+  .reading-item.optional .reading-bullet { background: var(--ink-soft); opacity: 0.4; }
+  .reading-item.optional { opacity: 0.7; font-style: italic; }
+
+  .reading-author {
+    font-weight: 600;
+    color: var(--ink-mid);
+  }
+
+  .reading-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  /* ── DISCUSSION PROMPTS ──────────────────────────────────  */
+  .prompt-list {
+    list-style: none;
+  }
+
+  .prompt-item {
+    display: flex;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--cream-dark);
+    font-size: 13.5px;
+    line-height: 1.5;
+    align-items: flex-start;
+  }
+
+  .prompt-item:last-child { border-bottom: none; }
+
+  .prompt-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: white;
+    background: var(--tue-mid);
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .thu-num { background: var(--thu-mid); }
+
+  .prompt-label {
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    margin-bottom: 2px;
+  }
+
+  /* ── WORKSHOP ACTIVITIES ─────────────────────────────────  */
+  .activity-block {
+    background: var(--thu-light);
+    border: 1px solid #E8C4A8;
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+  }
+
+  .activity-block:last-child { margin-bottom: 0; }
+
+  .activity-title {
+    font-weight: 600;
+    font-size: 13.5px;
+    color: var(--thu);
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .activity-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    background: var(--thu-mid);
+    color: white;
+    padding: 2px 7px;
+    border-radius: 10px;
+    font-weight: 400;
+  }
+
+  .activity-desc {
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.5;
+  }
+
+  /* ── REFLECTION PROMPT ───────────────────────────────────  */
+  .reflection-box {
+    background: var(--tue-light);
+    border-left: 3px solid var(--tue-mid);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    font-style: italic;
+    color: var(--tue);
+    line-height: 1.55;
+  }
+
+  .reflection-box.thu-reflect {
+    background: var(--thu-light);
+    border-left-color: var(--thu-mid);
+    color: var(--thu);
+  }
+
+  /* ── ASSIGNMENT BOX ──────────────────────────────────────  */
+  .assignment-box {
+    background: var(--assign-light);
+    border: 1.5px solid var(--assign-mid);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 0 24px 24px;
+  }
+
+  .assignment-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .assignment-icon { font-size: 18px; }
+
+  .assignment-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--assign-mid);
+  }
+
+  .assignment-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--assign);
+    line-height: 1.3;
+  }
+
+  .assignment-desc {
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.5;
+    margin-top: 6px;
+  }
+
+  /* ── PREVIEW SECTION ─────────────────────────────────────  */
+  .preview-section {
+    background: var(--cream);
+    border-top: 1px dashed var(--border);
+    padding: 18px 24px 20px;
+  }
+
+  .preview-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .preview-label.tue-preview { color: var(--tue-mid); }
+  .preview-label.thu-preview { color: var(--thu-mid); }
+
+  .preview-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .preview-arrow {
+    font-size: 14px;
+  }
+
+  .preview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .preview-col-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+
+  .preview-reading {
+    font-size: 12.5px;
+    color: var(--ink-mid);
+    line-height: 1.45;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .preview-reading:last-child { border-bottom: none; }
+
+  .preview-reading-author {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .preview-prompt {
+    font-size: 12.5px;
+    color: var(--ink-mid);
+    font-style: italic;
+    line-height: 1.45;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .preview-prompt:last-child { border-bottom: none; }
+
+  .preview-assign-note {
+    margin-top: 10px;
+    background: var(--assign-light);
+    border: 1px solid var(--assign-mid);
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: var(--assign);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .preview-activity {
+    font-size: 12.5px;
+    color: var(--ink-mid);
+    line-height: 1.45;
+    padding: 4px 0;
+  }
+
+  /* ── STARTER QUOTE ───────────────────────────────────────  */
+  .starter-quote {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 13px 16px;
+    font-style: italic;
+    font-size: 13.5px;
+    color: var(--ink-mid);
+    line-height: 1.55;
+  }
+
+  .starter-quote::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--ink-soft);
+    line-height: 0;
+    vertical-align: -8px;
+    margin-right: 4px;
+  }
+
+  /* ── COURSE OVERVIEW PAGE ────────────────────────────────  */
+  .overview-page {
+    padding: 48px 40px 60px;
+    max-width: 960px;
+  }
+
+  .overview-hero {
+    margin-bottom: 40px;
+  }
+
+  .overview-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+
+  .overview-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .overview-heading em {
+    font-style: italic;
+    color: var(--tue);
+  }
+
+  .overview-byline {
+    font-size: 16px;
+    color: var(--ink-mid);
+    margin-bottom: 24px;
+  }
+
+  .overview-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .info-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+  }
+
+  .info-card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+
+  .info-card-value {
+    font-size: 14px;
+    color: var(--ink);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .info-card-sub {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-top: 3px;
+  }
+
+  .overview-section {
+    margin-bottom: 36px;
+  }
+
+  .overview-section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid var(--border);
+  }
+
+  .overview-text {
+    font-size: 14.5px;
+    color: var(--ink-mid);
+    line-height: 1.75;
+    margin-bottom: 12px;
+  }
+
+  .goals-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .goals-list li {
+    display: flex;
+    gap: 10px;
+    font-size: 13.5px;
+    color: var(--ink-mid);
+    align-items: flex-start;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+  }
+
+  .goals-list li::before {
+    content: '→';
+    color: var(--tue-mid);
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .assignments-overview {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .assignment-overview-item {
+    display: flex;
+    gap: 16px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    align-items: flex-start;
+    box-shadow: var(--shadow);
+  }
+
+  .aoi-week {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: white;
+    background: var(--assign);
+    padding: 3px 9px;
+    border-radius: 12px;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+
+  .aoi-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+
+  .aoi-desc {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+
+  /* ── GRADING TABLE ───────────────────────────────────────  */
+  .grade-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    margin-top: 12px;
+  }
+
+  .grade-table th {
+    background: var(--ink);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .grade-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink-mid);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .grade-table tr:last-child td { border-bottom: none; }
+  .grade-table tr:nth-child(even) td { background: var(--cream); }
+
+  .grade-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  /* ── RESPONSIVE ──────────────────────────────────────────  */
+  @media (max-width: 800px) {
+    .sidebar { transform: translateX(-100%); }
+    .main { margin-left: 0; }
+    .session-body { grid-template-columns: 1fr; }
+    .preview-grid { grid-template-columns: 1fr; }
+    .overview-info-grid { grid-template-columns: 1fr 1fr; }
+    .goals-list { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════
+     SIDEBAR
+════════════════════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-course">ENG 511 · Fall 2026</div>
+    <div class="sidebar-title">Theory & Research in Composition</div>
+    <div class="sidebar-sub">Prof. Kirsti Cole · T/Th In-Person</div>
+  </div>
+
+  <div class="sidebar-section-label">Navigation</div>
+  <a class="sidebar-week active" onclick="showOverview()" style="cursor:pointer">
+    <div class="week-num">⌂</div>
+    <div class="week-info">
+      <div class="week-title-short">Course Overview</div>
+      <div class="week-dates-short">Syllabus & Assignments</div>
+    </div>
+  </a>
+
+  <div class="sidebar-section-label">Weekly Schedule</div>
+  <div id="sidebar-weeks"></div>
+</aside>
+
+<!-- ════════════════════════════════════════════════════════
+     MAIN
+════════════════════════════════════════════════════════ -->
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-breadcrumb" id="breadcrumb">Course Overview</div>
+    <div class="topbar-legend">
+      <div class="legend-item"><div class="legend-dot tue"></div> Tuesday Seminar</div>
+      <div class="legend-item"><div class="legend-dot thu"></div> Thursday Workshop</div>
+      <div class="legend-item"><div class="legend-dot assign"></div> Assignment Due</div>
+    </div>
+  </div>
+  <div id="page-content"></div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// COURSE DATA
+// ═══════════════════════════════════════════════════════════
+const WEEKS = [
+  {
+    num: 1,
+    title: "Introduction to Composition Studies & OWI",
+    dates: "Aug 18 & 20",
+    focus: "Historical Overview + OWI Principles",
+    tuesday: {
+      date: "Tuesday, August 18",
+      type: "Instructor-Led Introduction",
+      readings: [
+        { author: "Nystrand et al.", title: "\"Where Did Composition Come From: An Intellectual History\"", year: "1993" },
+        { author: "Slevin", title: "\"Learning the Work of Composition,\" Ch. 1 from Introducing English", year: "2001" },
+        { author: "Hewitt", title: "\"Grounding Principles of OWI\" in Hewitt & DePew", year: "2015" },
+        { author: "TC Intro", title: "", year: "2016" },
+      ],
+      prompts: [
+        { label: "Opening Question", text: "What assumptions about 'good writing' and 'effective teaching' do we bring to this course?" },
+        { label: "Mapping Activity", text: "Collaborative timeline of students' writing instruction experiences — what shaped who you are as a writer?" },
+        { label: "Theoretical Foundation", text: "How do theories emerge from institutional needs and cultural moments?" },
+      ],
+      starter: "What does it mean to have a theory of writing — and how do we know when a theory has become an assumption we no longer question?",
+      reflection: "How does your own experience with writing instruction align (or not) with the histories and values presented here?",
+    },
+    thursday: {
+      date: "Thursday, August 20",
+      type: "OWI Principles Workshop",
+      readings: [
+        { author: "Cicchino & Hicks", title: "Better Practices: Teaching of Writing in Online and Hybrid Spaces, Ch. 1", year: "2024" },
+        { author: "Ball & Loewe", title: "Bad Ideas About Writing, Introduction (Text or Podcast)", year: "" },
+        { author: "CCCC & NCTE", title: "Position Statements on Writing Pedagogy", year: "" },
+      ],
+      activities: [
+        { title: "OWI Principles Mapping", time: "25 min", desc: "Apply OWI principles to course design scenarios. In pairs, map one CCCC/NCTE principle to a pedagogical decision you'd make in an online course." },
+        { title: "Bad Ideas Audit", time: "20 min", desc: "Identify one 'bad idea' you were taught about writing. How does the field's history help explain why that idea circulated? Share with the group." },
+        { title: "Full-Group Debrief", time: "20 min", desc: "How do digital and in-person pedagogies inform each other? What principles survive the migration from face-to-face to online instruction?" },
+      ],
+      reflection: "How do digital and in-person pedagogies inform each other? What principles are portable across contexts?",
+    },
+    preview_thu_for_tue: {
+      readings: ["Cicchino & Hicks, Better Practices Ch. 1 (2024)", "Bad Ideas About Writing, Introduction", "CCCC & NCTE Position Statements"],
+      activities: ["OWI Principles Mapping (pairs activity)", "Bad Ideas Audit (small groups)", "Full-group debrief on digital/in-person pedagogy"],
+      note: null,
+    },
+    preview_next_for_thu: {
+      week: 2,
+      topic: "Current-Traditional to Process Pedagogy",
+      readings: ["Fulkerson, \"Four Philosophies of Composition\" (1979)", "Berlin, \"Contemporary Composition: The Major Pedagogical Theories\" (1982)", "Murray, \"Teaching Writing as a Process, Not Product\" (1972)"],
+      prompts: ["How do Fulkerson and Berlin's competing philosophies play out in contemporary composition?", "What does it mean to teach writing 'as process' versus teaching genre awareness?"],
+      note: null,
+    },
+    assignment: null,
+  },
+
+  {
+    num: 2,
+    title: "Current-Traditional to Process Pedagogy",
+    dates: "Aug 25 & 27",
+    focus: "Product to Process Shift in Composition",
+    tuesday: {
+      date: "Tuesday, August 25",
+      type: "Student-Led Seminar",
+      readings: [
+        { author: "Fulkerson", title: "\"Four Philosophies of Composition\"", year: "1979" },
+        { author: "Berlin", title: "\"Contemporary Composition: The Major Pedagogical Theories\"", year: "1982" },
+        { author: "Murray", title: "\"Teaching Writing as a Process, Not Product\"", year: "1972" },
+      ],
+      prompts: [
+        { label: "Core Question", text: "How do Fulkerson and Berlin's competing philosophies play out in contemporary composition?" },
+        { label: "Theory-Practice Bridge", text: "What does it mean to teach writing 'as process' versus teaching genre awareness? Are these compatible?" },
+        { label: "Institutional Analysis", text: "How do current-traditional values persist in our assessment practices today?" },
+      ],
+      starter: "Murray argues for teaching writing as process, not product. But what if genre IS the process?",
+      reflection: "What assumptions about 'good writing' are challenged or reinforced by these perspectives?",
+    },
+    thursday: {
+      date: "Thursday, August 27",
+      type: "Applied Frameworks Workshop",
+      readings: [
+        { author: "Fulkerson", title: "\"Composition at the Turn of the 21st Century\"", year: "2005" },
+      ],
+      optional: [
+        { author: "Downs & Wardle", title: "OR Rose, \"Narrowing the Mind and Page\"", year: "" },
+      ],
+      activities: [
+        { title: "Philosophy Mapping Activity", time: "25 min", desc: "Map Fulkerson's and Berlin's frameworks to a writing assignment you've seen or taught. Which philosophy does it assume? What does it value?" },
+        { title: "Pair Work: Then vs. Now", time: "20 min", desc: "With a partner, identify one 1970s–80s debate from the readings that you see playing out today — in AI discourse, assessment, or assignment design. Present your finding." },
+        { title: "Genre Theory Preview", time: "20 min", desc: "How does understanding the history of process pedagogy set us up for genre theory? Map the intellectual lineage together." },
+      ],
+      reflection: "Where do you see current-traditional assumptions persisting in courses you've taken or taught?",
+    },
+    preview_thu_for_tue: {
+      readings: ["Fulkerson, \"Composition at the Turn of the 21st Century\" (2005)"],
+      activities: ["Map Berlin/Fulkerson frameworks to real assignments", "Pair work: 1970s debates & today's classrooms", "Genre theory preview discussion"],
+      note: null,
+    },
+    preview_next_for_thu: {
+      week: 3,
+      topic: "Cognitivist & Expressivist Theories",
+      readings: ["Perl, \"Understanding Composing\" (1980)", "Hartwell, \"Grammar, Grammars, and the Teaching of Grammar\" (1985)", "Flower & Hayes, \"A Cognitive Process Theory of Composing\" (1981)"],
+      prompts: ["How do cognitive and expressivist approaches differently understand the 'individual' writer?", "What gets valorized in expressivist pedagogy? What gets obscured?"],
+      note: "📝 Literacy Narrative & Teaching Philosophy Draft due this week (Week 3)",
+    },
+    assignment: null,
+  },
+
+  {
+    num: 3,
+    title: "Cognitivist & Expressivist Theories",
+    dates: "Sep 1 & 3",
+    focus: "Internal Processes and Voice in Writing",
+    tuesday: {
+      date: "Tuesday, September 1",
+      type: "Student-Led Seminar",
+      readings: [
+        { author: "Perl", title: "\"Understanding Composing\"", year: "1980" },
+        { author: "Hartwell", title: "\"Grammar, Grammars, and the Teaching of Grammar\"", year: "1985" },
+        { author: "Flower & Hayes", title: "\"A Cognitive Process Theory of Composing\"", year: "1981" },
+      ],
+      prompts: [
+        { label: "Core Question", text: "How do cognitive and expressivist approaches differently understand the 'individual' writer?" },
+        { label: "Critical Examination", text: "What gets valorized in expressivist pedagogy? What gets obscured?" },
+        { label: "Practical Application", text: "How do Perl's composing processes and Flower & Hayes' cognitive model translate to feedback practices?" },
+      ],
+      starter: "Hartwell argues there are five 'grammars.' Which ones dominate your teaching — and why?",
+      reflection: "How do cognitive or expressive lenses shape the way you give (or receive) feedback?",
+    },
+    thursday: {
+      date: "Thursday, September 3",
+      type: "Literacy Narrative Share-Out & OWI Workshop",
+      readings: [
+        { author: "Rose", title: "\"A Cognitive Analysis of Writer's Block\"", year: "1980" },
+        { author: "Elbow", title: "Excerpt from Writing Without Teachers", year: "" },
+        { author: "Warnock", title: "Foundational Practices in OWI, Part 2.4", year: "" },
+      ],
+      activities: [
+        { title: "Literacy Narrative Share-Out", time: "25 min", desc: "In small groups, share 2–3 minutes from your Literacy Narrative. What patterns or tensions emerge across the group? What experiences do you share? What's different?" },
+        { title: "Cognitive Models & Online Design", time: "20 min", desc: "How do we design for process in digital spaces? Apply Flower & Hayes' cognitive model to an OWI assignment structure." },
+        { title: "Writer's Block Scenarios", time: "20 min", desc: "Using Rose's framework, diagnose writer's block scenarios. What interventions does a cognitivist model suggest? How does an expressivist model respond differently?" },
+      ],
+      reflection: "How does Elbow's vision of writing without teachers connect to or challenge your emerging teaching philosophy?",
+    },
+    preview_thu_for_tue: {
+      readings: ["Rose, \"A Cognitive Analysis of Writer's Block\" (1980)", "Elbow, excerpt from Writing Without Teachers", "Warnock, Foundational Practices in OWI (Part 2.4)"],
+      activities: ["Literacy Narrative share-out in small groups", "Cognitive models applied to OWI design", "Writer's block diagnosis scenarios"],
+      note: "📝 Literacy Narrative & Teaching Philosophy Draft DUE this Thursday",
+    },
+    preview_next_for_thu: {
+      week: 4,
+      topic: "Social Construction & the Social Turn",
+      readings: ["Berlin, \"Rhetoric and Ideology in the Writing Class\" (1988)", "Trimbur, \"Taking the Social Turn\" (1994)", "Pratt, \"Arts of the Contact Zone\" (1991)"],
+      prompts: ["What does it mean to say writing is 'socially constructed'?", "How do Berlin's ideology categories help us read contemporary writing pedagogy?"],
+      note: null,
+    },
+    assignment: {
+      name: "Literacy Narrative & Teaching Philosophy Draft",
+      due: "Due Thursday, September 3",
+      desc: "Multimodal literacy narrative (1000–1500 words OR 5–7 min podcast/video) + initial teaching philosophy statement.",
+    },
+  },
+
+  {
+    num: 4,
+    title: "Social Construction & the Social Turn",
+    dates: "Sep 8 & 10",
+    focus: "Writing as Socially Situated",
+    tuesday: {
+      date: "Tuesday, September 8",
+      type: "Student-Led Seminar",
+      readings: [
+        { author: "Berlin", title: "\"Rhetoric and Ideology in the Writing Class\"", year: "1988" },
+        { author: "Trimbur", title: "\"Taking the Social Turn\"", year: "1994" },
+        { author: "Pratt", title: "\"Arts of the Contact Zone\"", year: "1991" },
+      ],
+      prompts: [
+        { label: "Core Question", text: "What does it mean to say writing is 'socially constructed'? How does this challenge expressivist individualism?" },
+        { label: "Power Analysis", text: "How do Berlin's ideology categories help us read contemporary writing pedagogy?" },
+        { label: "Contact Zone Application", text: "How might Pratt's concept reshape our approach to student 'error'?" },
+      ],
+      starter: "Trimbur argues composition took a 'social turn.' What would it mean to take a justice turn?",
+      reflection: "Where do you locate yourself in relation to the idea that writing is socially constructed?",
+    },
+    thursday: {
+      date: "Thursday, September 10",
+      type: "Collaborative Writing Design Workshop",
+      readings: [
+        { author: "Anson", title: "\"Response and the social construction of error\"", year: "2000" },
+        { author: "Giroux", title: "\"Cultural studies, public pedagogy, and the responsibility of intellectuals\"", year: "2006" },
+      ],
+      activities: [
+        { title: "Designing Group Writing Tasks", time: "25 min", desc: "Design a collaborative writing activity that enacts social construction theory. What structures support genuine co-authorship? What undermines it?" },
+        { title: "Anson on Error", time: "20 min", desc: "Using Anson's framework, respond to a sample student paper through a social lens. What 'errors' are actually social mismatches? How would your feedback change?" },
+        { title: "Contact Zone in Action", time: "20 min", desc: "Identify a moment in a class you've taken or taught that felt like a 'contact zone.' What happened? How could social construction theory have guided the response?" },
+      ],
+      reflection: "What institutional structures support or hinder social approaches to writing in the courses you teach or will teach?",
+    },
+    preview_thu_for_tue: {
+      readings: ["Anson, \"Response and the social construction of error\" (2000)", "Giroux, \"Cultural studies, public pedagogy, and the responsibility of intellectuals\" (2006)"],
+      activities: ["Designing collaborative writing tasks", "Anson on error: responding through a social lens", "Contact zone scenarios"],
+      note: null,
+    },
+    preview_next_for_thu: {
+      week: 5,
+      topic: "Critical Pedagogy & Language",
+      readings: ["Freire, Pedagogy of the Oppressed Ch. 2", "Anzaldúa, \"How to Tame a Wild Tongue\" (1987)", "Wilson Logan, \"Black Sites of Rhetorical Education\" (2005)"],
+      prompts: ["How do Freire's principles translate to writing instruction?", "How do Anzaldúa and Wilson Logan expand critical pedagogy beyond Freire's framework?"],
+      note: null,
+    },
+    assignment: null,
+  },
+
+  {
+    num: 5,
+    title: "Critical Pedagogy & Language",
+    dates: "Sep 15 & 17",
+    focus: "Power, Identity, and Access",
+    tuesday: {
+      date: "Tuesday, September 15",
+      type: "Student-Led Seminar",
+      readings: [
+        { author: "Freire", title: "Pedagogy of the Oppressed, Ch. 2", year: "" },
+        { author: "Anzaldúa", title: "\"How to Tame a Wild Tongue\"", year: "1987" },
+        { author: "Wilson Logan", title: "\"Black Sites of Rhetorical Education\"", year: "2005" },
+      ],
+      prompts: [
+        { label: "Core Question", text: "How do Freire's principles translate to writing instruction? What are the limitations of that translation?" },
+        { label: "Language Politics", text: "How do Anzaldúa and Wilson Logan expand critical pedagogy beyond Freire's framework?" },
+        { label: "Institutional Resistance", text: "What makes critical pedagogy 'dangerous' to traditional academic structures?" },
+      ],
+      starter: "Wilson Logan argues for 'Black sites of rhetorical education.' How does this reframe our understanding of composition's history?",
+      reflection: "What classroom practices enact (or contradict) your beliefs about justice and literacy?",
+    },
+    thursday: {
+      date: "Thursday, September 17",
+      type: "Critical Literacy & OWI Workshop",
+      readings: [
+        { author: "CCCC OWI Principle Statement", title: "(revisited through critical pedagogy lens)", year: "" },
+        { author: "Horning", title: "The Case for Critical Literacy, Introduction", year: "2024" },
+      ],
+      activities: [
+        { title: "OWI Principle Audit", time: "25 min", desc: "Where does critical pedagogy appear — or fail to appear — in OWI design? In pairs, review the CCCC OWI principles and identify which ones enact justice values and which ones reinforce institutional norms." },
+        { title: "Horning Framework Mapping", time: "20 min", desc: "Apply Horning's critical literacy framework to an OWI course scenario. What would critical literacy look like in an asynchronous online writing course?" },
+        { title: "Problem-Posing in Practice", time: "20 min", desc: "What does 'problem-posing education' look like in a writing classroom? Design one problem-posing prompt for a first-year writing class, then workshop it with peers." },
+      ],
+      reflection: "How does critical pedagogy challenge us to redesign not just assignments, but the entire structure of a course?",
+    },
+    preview_thu_for_tue: {
+      readings: ["CCCC OWI Principle Statement (revisited)", "Horning, The Case for Critical Literacy, Intro (2024)"],
+      activities: ["OWI Principle audit through critical pedagogy lens", "Horning's framework applied to OWI scenarios", "Problem-posing prompt design & workshop"],
+      note: null,
+    },
+    preview_next_for_thu: {
+      week: 6,
+      topic: "Genre Theory & Post-Process Writing",
+      readings: ["Miller, \"Genre as Social Action\" (1984)", "McDonald, \"Genres: Shapes of Meaning\" (2008)", "Hyland, \"Genre-Based Pedagogies\" (2005)"],
+      prompts: ["How does genre as 'social action' challenge process pedagogy's individualism?", "If genres are social actions, what actions are our assignments asking students to perform?"],
+      note: "📝 Lesson Plan & Microteaching Presentation due this week (Week 6)",
+    },
+    assignment: null,
+  },
+
+  {
+    num: 6,
+    title: "Genre Theory & Post-Process Writing",
+    dates: "Sep 22 & 24",
+    focus: "Genre as Social Action",
+    tuesday: {
+      date: "Tuesday, September 22",
+      type: "Student-Led Seminar",
+      readings: [
+        { author: "Miller", title: "\"Genre as Social Action\"", year: "1984" },
+        { author: "McDonald", title: "\"Genres: Shapes of Meaning\"", year: "2008" },
+        { author: "Hyland", title: "\"Genre-Based Pedagogies\"", year: "2005" },
+      ],
+      prompts: [
+        { label: "Core Question", text: "Miller's 'genre as social action' challenges process pedagogy's individualism. How so?" },
+        { label: "Pedagogical Implications", text: "How does genre awareness change assignment design in meaningful ways?" },
+        { label: "Post-Process Positioning", text: "What does McDonald mean by 'shapes of meaning'? How does this move beyond process?" },
+      ],
+      starter: "If genres are social actions, what actions are our assignments asking students to perform?",
+      reflection: "How can genre awareness shift how students approach writing in different courses?",
+    },
+    thursday: {
+      date: "Thursday, September 24",
+      type: "Microteaching Day",
+      readings: [
+        { author: "Brooks", title: "\"Reading, Writing, and Teaching Creative Hypertext: A Genre-Based Pedagogy\"", year: "2022" },
+      ],
+      activities: [
+        { title: "Microteaching Presentations", time: "45 min", desc: "Student microteaching presentations (15 minutes each, rotating). Lead your mini-lesson on a core ENG 101 writing skill while peers observe using genre-aware feedback prompts." },
+        { title: "Peer Feedback Workshop", time: "20 min", desc: "Structured peer feedback using genre-based framework: What genre conventions did the lesson teach? What social actions did the activities model? What would you adjust?" },
+        { title: "Lesson Design Debrief", time: "10 min", desc: "What did you notice about lesson design choices across the presentations? How did genre theory show up (or not) in different approaches?" },
+      ],
+      reflection: "What did presenting your lesson teach you about your own assumptions regarding 'good' writing instruction?",
+    },
+    preview_thu_for_tue: {
+      readings: ["Brooks, \"Reading, Writing, and Teaching Creative Hypertext: A Genre-Based Pedagogy\" (2022)"],
+      activities: ["Microteaching presentations (15 min each)", "Genre-aware peer feedback", "Lesson design debrief"],
+      note: "📝 Lesson Plan & Microteaching Presentation DUE Thursday, September 24",
+    },
+    preview_next_for_thu: {
+      week: 7,
+      topic: "Writing Assessment & Labor-Based Pedagogy",
+      readings: ["Sommers, \"Responding to Student Writing\" (1982)", "Inoue, \"Problematizing Grading and the White Habitus\" (2019)", "Smith, \"The Genre of the End Comment\" (1997)"],
+      prompts: ["How do Sommers' 1982 insights connect to Inoue's 2019 critique?", "What does 'white habitus' mean in assessment contexts?"],
+      note: "📝 Feedback & Assessment Portfolio Part 1 due this week (Week 7)",
+    },
+    assignment: {
+      name: "Lesson Plan & Microteaching Presentation",
+      due: "Due Thursday, September 24",
+      desc: "15-minute lesson plan on a core ENG 101 writing skill + live in-class microteaching presentation.",
+    },
+  },
+
+  {
+    num: 7,
+    title: "Writing Assessment & Labor-Based Pedagogy",
+    dates: "Sep 29 & Oct 1",
+    focus: "Assessment Equity & Feedback Strategies",
+    tuesday: {
+      date: "Tuesday, September 29",
+      type: "Student-Led Seminar",
+      readings: [
+        { author: "Sommers", title: "\"Responding to Student Writing\"", year: "1982" },
+        { author: "Inoue", title: "\"Problematizing Grading and the White Habitus\"", year: "2019" },
+        { author: "Smith", title: "\"The Genre of the End Comment\"", year: "1997" },
+      ],
+      prompts: [
+        { label: "Core Question", text: "How do Sommers' 1982 insights about response connect to Inoue's 2019 critique of grading?" },
+        { label: "Power Analysis", text: "What does 'white habitus' mean in assessment contexts? How does it operate invisibly?" },
+        { label: "Practical Revolution", text: "How do labor-based grading approaches challenge traditional academic hierarchy?" },
+      ],
+      starter: "Smith analyzes 'the genre of the end comment.' What genre conventions are we teaching through our feedback?",
+      reflection: "What makes feedback 'equitable'? How do we know what's working?",
+    },
+    thursday: {
+      date: "Thursday, October 1",
+      type: "Feedback Frameworks Workshop",
+      readings: [
+        { author: "Inman & Powell", title: "\"In the Absence of Grades: Dissonance and Desire in Course-Contract Classrooms\"", year: "2018" },
+        { author: "Grigoryan", title: "\"Feedback 2.0\"", year: "2017" },
+      ],
+      activities: [
+        { title: "Feedback Approaches Lab", time: "30 min", desc: "Practice giving feedback on sample student papers using three frameworks: summative, formative, and labor-based. In small groups, compare the feedback you generated. What changes? What stays the same?" },
+        { title: "Contract Classroom Design", time: "20 min", desc: "Using Inman & Powell, sketch what a course contract might look like for a first-year writing course you'd design. What labor is specified? What is left open?" },
+        { title: "Digital Feedback Exploration", time: "15 min", desc: "Using Grigoryan's framework, identify two digital feedback strategies (audio, screencast, annotation tools) you'd want to try. What affordances do they offer that written comments can't?" },
+      ],
+      reflection: "What feedback practice from today do you most want to carry into your own teaching?",
+    },
+    preview_thu_for_tue: {
+      readings: ["Inman & Powell, \"In the Absence of Grades\" (2018)", "Grigoryan, \"Feedback 2.0\" (2017)"],
+      activities: ["Feedback approaches lab (summative/formative/labor-based)", "Course contract design activity", "Digital feedback strategies exploration"],
+      note: "📝 Feedback & Assessment Portfolio Part 1 DUE Thursday, October 1",
+    },
+    preview_next_for_thu: {
+      week: 8,
+      topic: "Linguistic Justice",
+      readings: ["Shen, \"Identity as a Key to Learning English Composition\" (1989)", "Royster, \"When the First Voice You Hear Is Not Your Own\" (1996)", "Young, \"Your Average N****\" (2004)"],
+      prompts: ["How do Shen, Royster, and Young challenge composition's relationship to linguistic difference?", "What would it mean to center rather than accommodate linguistic diversity?"],
+      note: null,
+    },
+    assignment: {
+      name: "Feedback & Assessment Portfolio — Part 1",
+      due: "Due Thursday, October 1",
+      desc: "Explore feedback approaches; provide constructive feedback on sample ENG 101 student papers. Annotated samples + written reflection (1000–1500 words).",
+    },
+  },
+
+  {
+    num: 8,
+    title: "Linguistic Justice",
+    dates: "Oct 6 & 8",
+    focus: "Language Rights and Student Voice",
+    tuesday: {
+      date: "Tuesday, October 6",
+      type: "Student-Led Seminar",
+      readings: [
+        { author: "Shen", title: "\"Identity as a Key to Learning English Composition\"", year: "1989" },
+        { author: "Royster", title: "\"When the First Voice You Hear Is Not Your Own\"", year: "1996" },
+        { author: "Young", title: "\"Your Average N****\"", year: "2004" },
+      ],
+      prompts: [
+        { label: "Core Question", text: "How do Shen, Royster, and Young's perspectives challenge composition's relationship to linguistic difference?" },
+        { label: "Historical Continuity", text: "How does Young's essay connect to current debates about linguistic justice?" },
+        { label: "Pedagogical Transformation", text: "What would it mean to center rather than accommodate linguistic diversity?" },
+      ],
+      starter: "Royster asks us to consider 'when the first voice you hear is not your own.' How does this apply to our feedback practices?",
+      reflection: "How does your classroom encourage or constrain language difference?",
+    },
+    thursday: {
+      date: "Thursday, October 8",
+      type: "Multilingual Writers & OWI Workshop",
+      readings: [
+        { author: "Perryman-Clark", title: "\"African American Language and SRTOL\"", year: "2013" },
+        { author: "Baker-Bell et al.", title: "\"This Ain't Another Statement: This is a DEMAND for Black Linguistic Justice\"", year: "2020" },
+      ],
+      activities: [
+        { title: "OWI Design Audit", time: "25 min", desc: "Review an existing online writing task for linguistic accessibility. Who does it center? Whose languages and rhetorical traditions are visible? Revise one element to better center linguistic diversity." },
+        { title: "SRTOL to Syllabus Language", time: "20 min", desc: "How do SRTOL principles translate to syllabus and assignment language? Draft three sentences for a course syllabus that enact linguistic justice — not just acknowledge it." },
+        { title: "DEMAND Discussion", time: "20 min", desc: "Baker-Bell et al. issue a demand, not a statement. What's the difference? What would it look like to honor this demand in a first-year writing program?" },
+      ],
+      reflection: "What would a truly linguistically just writing course look like — structurally, not just rhetorically?",
+    },
+    preview_thu_for_tue: {
+      readings: ["Perryman-Clark, \"African American Language and SRTOL\" (2013)", "Baker-Bell et al., \"This Ain't Another Statement: This is a DEMAND\" (2020)"],
+      activities: ["OWI design audit for linguistic accessibility", "SRTOL principles → syllabus language drafting", "DEMAND discussion: statement vs. action"],
+      note: null,
+    },
+    preview_next_for_thu: {
+      week: 9,
+      topic: "Fall Break — No Class",
+      readings: [],
+      prompts: ["Use this time to rest and finalize your Writing Assignment Design (due Week 10)."],
+      note: "📝 Writing Assignment Design with OWI Best Practices due Week 10",
+    },
+    assignment: null,
+  },
+
+  {
+    num: 9,
+    title: "Fall Break",
+    dates: "Oct 13 & 15",
+    focus: "No Class — Rest & Reflection",
+    isBreak: true,
+    breakMessage: "No class this week. Take time to rest, reflect on the first half of the semester, and finalize your Writing Assignment Design due Week 10.",
+    breakIcon: "🍂",
+    assignment: null,
+  },
+
+  {
+    num: 10,
+    title: "Feminist & Queer Rhetorics in Composition",
+    dates: "Oct 20 & 22",
+    focus: "Intersectional Pedagogies",
+    tuesday: {
+      date: "Tuesday, October 20",
+      type: "Student-Led Seminar",
+      readings: [
+        { author: "Flynn", title: "\"Composing as a Woman\"", year: "1988" },
+        { author: "Richie & Boardman", title: "\"Feminism in Composition\"", year: "1999" },
+        { author: "Stenberg", title: "\"Feminist Repurposing\"", year: "2015" },
+      ],
+      prompts: [
+        { label: "Core Question", text: "How do Flynn, Richie & Boardman, and Stenberg differently understand 'feminist pedagogy'?" },
+        { label: "Institutional Critique", text: "How does Stenberg's 'feminist repurposing' challenge traditional academic structures?" },
+        { label: "Intersectional Analysis", text: "How do feminist approaches account for race, class, sexuality, and other identities?" },
+      ],
+      starter: "Flynn asks what it means to 'compose as a woman.' What does it mean to teach as a feminist?",
+      reflection: "What values or practices from feminist or queer rhetorics inform your pedagogical vision?",
+    },
+    thursday: {
+      date: "Thursday, October 22",
+      type: "Assignment Design Peer Workshop",
+      readings: [
+        { author: "Winans", title: "\"Queer Pedagogy\"", year: "2006" },
+        { author: "Alexander & Wallace", title: "\"The Queer Turn in Composition\"", year: "2009" },
+      ],
+      activities: [
+        { title: "Writing Assignment Design Share & Feedback", time: "30 min", desc: "Share your Writing Assignment Design drafts in small groups. Peer feedback structured around feminist/queer frameworks: Whose voices does this assignment center? What bodies and identities does it assume?" },
+        { title: "Inclusion Audit Activity", time: "25 min", desc: "Apply an inclusion audit to an existing assignment using feminist and queer frameworks. What assumptions about student identity, language, and experience are embedded in the language?" },
+        { title: "Embodied Pedagogy Discussion", time: "15 min", desc: "What does 'embodied' pedagogy look like in practice — especially in online environments? How do queer rhetorics (Winans, Alexander & Wallace) expand what's possible in composition instruction?" },
+      ],
+      reflection: "How would you explain 'queer pedagogy' to a skeptical colleague — and why would it matter for a writing course?",
+    },
+    preview_thu_for_tue: {
+      readings: ["Winans, \"Queer Pedagogy\" (2006)", "Alexander & Wallace, \"The Queer Turn in Composition\" (2009)"],
+      activities: ["Writing Assignment Design peer feedback workshop", "Inclusion audit activity", "Embodied pedagogy discussion"],
+      note: "📝 Writing Assignment Design with OWI Best Practices DUE Thursday, October 22",
+    },
+    preview_next_for_thu: {
+      week: 11,
+      topic: "Writing Across Contexts & Genre Transfer",
+      readings: ["Wardle, \"Mutt Genres and the Goal of FYC\" (2009)", "Reiff & Bawarshi, \"Tracing Discursive Resources\" (2011)"],
+      prompts: ["How do Wardle's 'mutt genres' reframe transfer?", "What does transfer-conscious pedagogy look like in practice?"],
+      note: null,
+    },
+    assignment: {
+      name: "Writing Assignment Design with OWI Best Practices",
+      due: "Due Thursday, October 22",
+      desc: "Writing assignment prompt aligned with OWI best practices (1–2 pages) + pedagogical rationale (750–1000 words).",
+    },
+  },
+
+  {
+    num: 11,
+    title: "Writing Across Contexts & Genre Transfer",
+    dates: "Oct 27 & 29",
+    focus: "Transfer Theory & Scaffolding",
+    tuesday: {
+      date: "Tuesday, October 27",
+      type: "Student-Led Seminar",
+      readings: [
+        { author: "Wardle", title: "\"Mutt Genres and the Goal of FYC\"", year: "2009" },
+        { author: "Reiff & Bawarshi", title: "\"Tracing Discursive Resources\"", year: "2011" },
+      ],
+      prompts: [
+        { label: "Core Question", text: "How do Wardle's 'mutt genres' and Reiff & Bawarshi's 'discursive resources' reframe transfer?" },
+        { label: "Pedagogical Implications", text: "What does transfer-conscious pedagogy look like in practice?" },
+        { label: "Genre Flexibility", text: "How do we prepare students for genres we can't predict?" },
+      ],
+      starter: "Wardle argues FYC should focus on 'mutt genres.' What would this mean for traditional academic writing instruction?",
+      reflection: "How can you build curriculum that fosters writing transfer beyond your course?",
+    },
+    thursday: {
+      date: "Thursday, October 29",
+      type: "Transfer & Course Design Workshop",
+      readings: [
+        { author: "In-class activity & discussion", title: "Genre transfer in your course design (reflection prompt)", year: "" },
+      ],
+      activities: [
+        { title: "Transfer Mapping Activity", time: "25 min", desc: "Map transfer principles onto a course you're designing or teaching. What prior knowledge does your course build on? What are students being prepared to do next?" },
+        { title: "Small Group: Transfer Successes & Failures", time: "25 min", desc: "Share a moment from your educational experience where writing knowledge transferred well — and one where it didn't. What made the difference? What would a teacher have needed to do differently?" },
+        { title: "Scaffolding Design Lab", time: "15 min", desc: "Design two scaffolding moves for an assignment that explicitly teach for transfer. Share with the group for feedback." },
+      ],
+      reflection: "What institutional structures support or hinder transfer-conscious teaching in programs you've experienced?",
+    },
+    preview_thu_for_tue: {
+      readings: ["In-class reflection prompt: Genre transfer in your course design"],
+      activities: ["Transfer principles mapping activity", "Small group: transfer successes and failures", "Scaffolding design lab"],
+      note: null,
+    },
+    preview_next_for_thu: {
+      week: 12,
+      topic: "Neurodiversity & Universal Design",
+      readings: ["Dolmage, \"Mapping Composition\" (2007)", "Simpkins, \"Accommodation Transfer\" (2018)", "Tomlinson & Newman, \"Valuing Neurodiversity\" (2017)"],
+      prompts: ["How do Dolmage, Simpkins, and Tomlinson & Newman challenge ableist assumptions?", "What does UDL mean beyond accommodation?"],
+      note: null,
+    },
+    assignment: null,
+  },
+
+  {
+    num: 12,
+    title: "Neurodiversity & Universal Design",
+    dates: "Nov 3 & 5",
+    focus: "Access, Equity, and Learning Differences",
+    tuesday: {
+      date: "Tuesday, November 3",
+      type: "Student-Led Seminar",
+      readings: [
+        { author: "Dolmage", title: "\"Mapping Composition\"", year: "2007" },
+        { author: "Simpkins", title: "\"Accommodation Transfer\"", year: "2018" },
+        { author: "Tomlinson & Newman", title: "\"Valuing Neurodiversity\"", year: "2017" },
+      ],
+      prompts: [
+        { label: "Core Question", text: "How do Dolmage, Simpkins, and Tomlinson & Newman challenge ableist assumptions in composition?" },
+        { label: "Universal Design", text: "What does UDL mean beyond accommodation? How does it reshape pedagogy fundamentally?" },
+        { label: "Institutional Critique", text: "How do 'accommodation' models reinforce ableist norms rather than dismantle them?" },
+      ],
+      starter: "Dolmage argues for 'mapping composition.' How does this metaphor change our understanding of student difference?",
+      reflection: "How does UDL reframe your view of effective writing instruction?",
+    },
+    thursday: {
+      date: "Thursday, November 5",
+      type: "Accessibility & OWI Design Workshop",
+      readings: [
+        { author: "Oswal", title: "\"Physical and Learning Disabilities in OWI\"", year: "2015" },
+      ],
+      activities: [
+        { title: "Accessibility Audit", time: "30 min", desc: "Evaluate an existing assignment or syllabus through a UDL lens. Identify three elements that assume a particular type of learner and redesign them with UDL principles. Share revisions with a partner." },
+        { title: "OWI & Neurodiversity Discussion", time: "25 min", desc: "What specific affordances does online or hybrid instruction offer for neurodiverse learners? What barriers does it create? Use Oswal's framework to analyze a specific OWI design scenario." },
+        { title: "Design Revision Gallery", time: "15 min", desc: "Share one UDL-informed revision from the audit. What was the original assumption? What principle guided the revision? How does this connect to your teaching philosophy?" },
+      ],
+      reflection: "What would truly inclusive writing instruction look like — not as an accommodation, but as a design principle?",
+    },
+    preview_thu_for_tue: {
+      readings: ["Oswal, \"Physical and Learning Disabilities in OWI\" (2015)"],
+      activities: ["Accessibility audit of assignments/syllabi through UDL lens", "OWI & neurodiversity affordances/barriers analysis", "UDL revision gallery walk"],
+      note: null,
+    },
+    preview_next_for_thu: {
+      week: 13,
+      topic: "Multimodal Pedagogy & Digital Writing",
+      readings: ["Hocks, \"Understanding Visual Rhetoric\" (2003)", "Shipka, \"A Multimodal Task-Based Framework\" (2005)"],
+      prompts: ["How do Hocks, Shipka, Palmeri, and Banks differently understand 'multimodality'?", "How does Banks' queer/trans digital rhetoric expand multimodal possibilities?"],
+      note: "📝 Feedback & Assessment Portfolio Part 2 due this week (Week 13)",
+    },
+    assignment: null,
+  },
+
+  {
+    num: 13,
+    title: "Multimodal Pedagogy & Digital Writing",
+    dates: "Nov 10 & 12",
+    focus: "Digital Rhetoric & Assignment Design",
+    tuesday: {
+      date: "Tuesday, November 10",
+      type: "Student-Led Seminar",
+      readings: [
+        { author: "Hocks", title: "\"Understanding Visual Rhetoric\"", year: "2003" },
+        { author: "Shipka", title: "\"A Multimodal Task-Based Framework\"", year: "2005" },
+      ],
+      prompts: [
+        { label: "Core Question", text: "How do Hocks, Shipka, Palmeri, and Banks differently understand 'multimodality'?" },
+        { label: "Beyond Technology", text: "How does Palmeri's historical approach complicate digital rhetoric narratives?" },
+        { label: "Justice Implications", text: "How does Banks' queer/trans digital rhetoric expand multimodal possibilities?" },
+      ],
+      starter: "Shipka argues for 'task-based frameworks.' How does this change assignment design in practice?",
+      reflection: "How can assignments invite students to compose in new modalities — and why should they?",
+    },
+    thursday: {
+      date: "Thursday, November 12",
+      type: "Digital Composition Workshop",
+      readings: [
+        { author: "Palmeri", title: "\"Multimodality Before and Beyond the Computer\"", year: "2018" },
+        { author: "Banks", title: "\"Beyond Modality\"", year: "2018" },
+      ],
+      activities: [
+        { title: "Multimodal Composing Demo", time: "25 min", desc: "Explore one digital composing tool together as a class (options: Canva, Adobe Express, Padlet, VoiceThread, or a tool you choose). What affordances does it offer? What does it make possible — or impossible?" },
+        { title: "Equitable Assessment of Multimodal Work", time: "25 min", desc: "How do we assess multimodal work equitably? Design a brief rubric for a multimodal assignment that honors both craft and accessibility. Share and compare with peers." },
+        { title: "Assignment Revision Lab", time: "15 min", desc: "Take a traditional written assignment and redesign it with one multimodal component. What changes? What new forms of knowledge does it open up?" },
+      ],
+      reflection: "What happens when traditional assessment practices meet multimodal composition — and whose knowledge is valued?",
+    },
+    preview_thu_for_tue: {
+      readings: ["Palmeri, \"Multimodality Before and Beyond the Computer\" (2018)", "Banks, \"Beyond Modality\" (2018)"],
+      activities: ["Digital composing tool demo & exploration", "Equitable rubric design for multimodal work", "Traditional assignment → multimodal redesign lab"],
+      note: "📝 Feedback & Assessment Portfolio Part 2 DUE Thursday, November 12",
+    },
+    preview_next_for_thu: {
+      week: 14,
+      topic: "AI & the Future of Composition",
+      readings: ["MLA-CCCC Working Paper 1: Overview + Statement of Principles", "Sano-Franchini, McIntyre, Fernandes: Refusing GenAI Quickstart Guide"],
+      prompts: ["How do the MLA-CCCC working papers position AI in relation to composition theory?", "What does it mean to 'refuse' GenAI? When might refusal be pedagogically necessary?"],
+      note: null,
+    },
+    assignment: {
+      name: "Feedback & Assessment Portfolio — Part 2",
+      due: "Due Thursday, November 12",
+      desc: "Reflect on assessment challenges; revise a grading rubric using anti-racist and inclusive strategies. Revised rubric + written reflection (1000–1500 words).",
+    },
+  },
+
+  {
+    num: 14,
+    title: "AI & the Future of Composition",
+    dates: "Nov 17 & 19",
+    focus: "Ethics, Tools, and Emerging Technologies",
+    tuesday: {
+      date: "Tuesday, November 17",
+      type: "Student-Led Seminar",
+      readings: [
+        { author: "MLA-CCCC Working Group", title: "Working Paper 1: Overview + Statement of Principles", year: "" },
+        { author: "Sano-Franchini, McIntyre, Fernandes", title: "Refusing GenAI Quickstart Guide", year: "" },
+      ],
+      prompts: [
+        { label: "Core Question", text: "How do the MLA-CCCC working papers position AI in relation to composition theory and practice?" },
+        { label: "Resistance Analysis", text: "What does it mean to 'refuse' GenAI? When might refusal be pedagogically necessary?" },
+        { label: "Theoretical Continuity", text: "How do current AI debates connect to historical composition controversies?" },
+      ],
+      starter: "The working papers emphasize 'human rhetorical agency.' How do we define and cultivate this in an AI-saturated environment?",
+      reflection: "What should the role of AI be in the writing classroom — and who decides?",
+    },
+    thursday: {
+      date: "Thursday, November 19",
+      type: "AI Policy Design Workshop",
+      readings: [
+        { author: "MLA-CCCC Working Group", title: "Working Paper 2: Policy Guidance", year: "" },
+        { author: "McIntyre et al.", title: "Practicing GenAI Refusal", year: "" },
+      ],
+      activities: [
+        { title: "Collaborative AI Policy Drafting", time: "30 min", desc: "In small groups, collaboratively draft a course AI policy informed by course frameworks. What values does your policy enact? What does it protect? Share drafts and compare approaches across groups." },
+        { title: "Theoretical Lens Scenario", time: "25 min", desc: "How would Freire, Inoue, and Baker-Bell each approach GenAI in the writing classroom? Write a brief position statement from one theorist's perspective, then share with the class." },
+        { title: "Labor & Justice Implications", time: "15 min", desc: "What are the labor and justice implications of AI in writing instruction? Who benefits? Who is harmed? How do different theoretical lenses from the semester illuminate these questions?" },
+      ],
+      reflection: "How do the theoretical frameworks from this semester help you navigate AI in ways that are pedagogically principled — not just pragmatic?",
+    },
+    preview_thu_for_tue: {
+      readings: ["MLA-CCCC Working Paper 2: Policy Guidance", "McIntyre et al.: Practicing GenAI Refusal"],
+      activities: ["Collaborative AI policy drafting workshop", "Theoretical lens scenario (Freire/Inoue/Baker-Bell on GenAI)", "Labor & justice implications discussion"],
+      note: null,
+    },
+    preview_next_for_thu: {
+      week: 15,
+      topic: "Thanksgiving Break — No Class",
+      readings: [],
+      prompts: ["Use this time to finalize your Digital Portfolio and Pedagogy Statement, due December 1."],
+      note: "📝 Final Project (Digital Portfolio & Pedagogy Statement) due December 1",
+    },
+    assignment: null,
+  },
+
+  {
+    num: 15,
+    title: "No Class — Thanksgiving Break",
+    dates: "Nov 24 & 26",
+    focus: "Rest & Final Project Preparation",
+    isBreak: true,
+    breakMessage: "No class this week. Use this time to finalize your Digital Portfolio and Pedagogy Statement, due December 1. Prepare your 10–15 minute final presentation.",
+    breakIcon: "🦃",
+    assignment: null,
+  },
+
+  {
+    num: 16,
+    title: "Final Presentations",
+    dates: "Dec 1",
+    focus: "Pedagogy Portfolio Showcase",
+    tuesday: {
+      date: "Tuesday, December 1",
+      type: "Final Portfolio Presentations",
+      readings: [],
+      prompts: [
+        { label: "Synthesis Question", text: "How has your understanding of theory-practice relationships evolved across the semester?" },
+        { label: "Professional Development", text: "What theoretical commitments will guide your future teaching?" },
+        { label: "Collective Knowledge", text: "What resources have we created together that will serve the field?" },
+      ],
+      starter: "What's the single most important thing you're taking from this course into your teaching?",
+      reflection: "What are the major shifts in your teaching philosophy, and how will you carry them forward?",
+      isPresentation: true,
+    },
+    thursday: null,
+    preview_thu_for_tue: null,
+    preview_next_for_thu: null,
+    assignment: {
+      name: "Composition Pedagogy Statement & Digital Portfolio",
+      due: "Due December 1",
+      desc: "Revised teaching philosophy, sample lesson plan, writing assignment & rubric, feedback & assessment reflection, annotated bibliography. Website or PDF format.",
+    },
+  },
+];
+
+// ═══════════════════════════════════════════════════════════
+// BUILD SIDEBAR
+// ═══════════════════════════════════════════════════════════
+function buildSidebar() {
+  const container = document.getElementById('sidebar-weeks');
+  WEEKS.forEach(w => {
+    const hasAssign = !!w.assignment;
+    const el = document.createElement('div');
+    el.className = 'sidebar-week' + (w.isBreak ? ' break-week' : '');
+    el.setAttribute('data-week', w.num);
+    el.onclick = () => showWeek(w.num);
+    el.innerHTML = `
+      <div class="week-num">W${w.num}</div>
+      <div class="week-info">
+        <div class="week-title-short">${w.title}</div>
+        <div class="week-dates-short">${w.dates}</div>
+      </div>
+      ${hasAssign ? '<div class="week-assign-dot"></div>' : ''}
+    `;
+    container.appendChild(el);
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+// READING ITEM HTML
+// ═══════════════════════════════════════════════════════════
+function readingHTML(r, type='normal') {
+  return `<li class="reading-item ${type}">
+    <div class="reading-bullet"></div>
+    <div>
+      <span class="reading-author">${r.author}</span>${r.title ? ', ' + r.title : ''}
+      ${r.year ? ` <span class="reading-year">(${r.year})</span>` : ''}
+    </div>
+  </li>`;
+}
+
+// ═══════════════════════════════════════════════════════════
+// OVERVIEW PAGE
+// ═══════════════════════════════════════════════════════════
+function showOverview() {
+  setActive(null);
+  document.getElementById('breadcrumb').textContent = 'Course Overview';
+  document.getElementById('page-content').innerHTML = `
+    <div class="overview-page">
+      <div class="overview-hero">
+        <div class="overview-tag">NC State University · Department of English · Fall 2026</div>
+        <h1 class="overview-heading">Theory & Research<br>in <em>Composition</em></h1>
+        <p class="overview-byline">Professor Kirsti Cole &nbsp;·&nbsp; In-Person Tuesday & Thursday &nbsp;·&nbsp; kkcole2@ncsu.edu</p>
+        <div class="week-meta">
+          <div class="meta-pill">📍 Tompkins Hall 226 (Office)</div>
+          <div class="meta-pill">🕐 11:45 AM – 1:00 PM</div>
+          <div class="meta-pill">📅 Aug 18 – Dec 1, 2026</div>
+          <div class="meta-pill">📚 Perusall + Moodle</div>
+        </div>
+      </div>
+
+      <div class="overview-info-grid">
+        <div class="info-card">
+          <div class="info-card-label">Tuesday Sessions</div>
+          <div class="info-card-value">In-Person Seminar</div>
+          <div class="info-card-sub">Theoretical & historical readings, student-led discussion (after Week 1)</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Thursday Sessions</div>
+          <div class="info-card-value">In-Person Workshop</div>
+          <div class="info-card-sub">Applied pedagogy, OWI practices, peer activities, microteaching</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Perusall</div>
+          <div class="info-card-value">Pre-Class Annotations</div>
+          <div class="info-card-sub">Due before each session. 3–6 quotes, summary, 2–3 questions, personal reflection</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Grading</div>
+          <div class="info-card-value">Labor-Based Assessment</div>
+          <div class="info-card-sub">Engagement, effort, and labor — not traditional letter grades on individual assignments</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Office Hours</div>
+          <div class="info-card-value">By Appointment</div>
+          <div class="info-card-sub">In-person or Zoom. Book at calendar.app.google/bpaYNUBRrE62aKxMA</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Course Format</div>
+          <div class="info-card-value">16 Weeks</div>
+          <div class="info-card-sub">Fall Break: Oct 13–15 · Thanksgiving Break: Nov 24–26</div>
+        </div>
+      </div>
+
+      <div class="overview-section">
+        <h2 class="overview-section-title">Course Overview</h2>
+        <p class="overview-text">Theory and Research in Composition introduces landmark works and various (sometimes competing) theories of composition that shape scholarly and pedagogical practices in rhetoric, composition, and writing studies (RCWS). We'll examine the historical, cultural, and political contexts in which particular practices and theories have emerged and been valued — and ask what those contexts reveal about what we take for granted.</p>
+        <p class="overview-text">We will explore how theoretical assumptions lead scholars and teachers to adopt particular practices, reject others, and appear to be blind to still others. The course is themed around major contemporary pedagogical theories: increasing genre awareness and multimodality, exploring language variation and multiliteracies, developing information literacy, reflecting on writing processes and labor, and collaborating to create and revise texts.</p>
+      </div>
+
+      <div class="overview-section">
+        <h2 class="overview-section-title">Course Goals</h2>
+        <ul class="goals-list">
+          <li>Develop a breadth of knowledge about pedagogy in rhetoric and composition</li>
+          <li>Become critical readers of pedagogy and theory in the field</li>
+          <li>Familiarize yourself with primary pedagogical and theoretical lenses</li>
+          <li>Gain experience in course development and planning</li>
+          <li>Conceptualize an applied teaching philosophy</li>
+          <li>Contribute to your professionalization in RCWS</li>
+          <li>Understand how composition theories impact course creation and instruction</li>
+          <li>Develop equity-centered assessment and feedback practices</li>
+        </ul>
+      </div>
+
+      <div class="overview-section">
+        <h2 class="overview-section-title">Assignments at a Glance</h2>
+        <div class="assignments-overview">
+          <div class="assignment-overview-item">
+            <div class="aoi-week">Week 3</div>
+            <div>
+              <div class="aoi-title">Literacy Narrative & Teaching Philosophy Draft</div>
+              <div class="aoi-desc">Multimodal literacy narrative (1000–1500 words or 5–7 min podcast/video) + initial teaching philosophy statement. Explores your writing history, key influences, and developing beliefs about writing instruction.</div>
+            </div>
+          </div>
+          <div class="assignment-overview-item">
+            <div class="aoi-week">Week 6</div>
+            <div>
+              <div class="aoi-title">Lesson Plan & Microteaching Presentation</div>
+              <div class="aoi-desc">15-minute lesson plan on a core ENG 101 writing skill + live in-class presentation. Includes lesson plan document with objectives, activities, and assessment strategies.</div>
+            </div>
+          </div>
+          <div class="assignment-overview-item">
+            <div class="aoi-week">Week 7</div>
+            <div>
+              <div class="aoi-title">Feedback & Assessment Portfolio — Part 1</div>
+              <div class="aoi-desc">Explore different feedback approaches (summative, formative, audio/video, labor-based). Provide feedback on sample ENG 101 student papers. Annotated samples + reflection (1000–1500 words).</div>
+            </div>
+          </div>
+          <div class="assignment-overview-item">
+            <div class="aoi-week">Week 10</div>
+            <div>
+              <div class="aoi-title">Writing Assignment Design with OWI Best Practices</div>
+              <div class="aoi-desc">Writing assignment prompt aligned with OWI best practices (1–2 pages) + rationale explaining alignment with composition pedagogy and OWI principles (750–1000 words).</div>
+            </div>
+          </div>
+          <div class="assignment-overview-item">
+            <div class="aoi-week">Week 13</div>
+            <div>
+              <div class="aoi-title">Feedback & Assessment Portfolio — Part 2</div>
+              <div class="aoi-desc">Reflect on assessment challenges; revise a grading rubric using anti-racist and inclusive strategies. Revised rubric + written reflection with research-based justification (1000–1500 words).</div>
+            </div>
+          </div>
+          <div class="assignment-overview-item">
+            <div class="aoi-week">Week 16</div>
+            <div>
+              <div class="aoi-title">Composition Pedagogy Statement & Digital Portfolio</div>
+              <div class="aoi-desc">Synthesizes the semester: revised teaching philosophy, lesson plan, writing assignment & rubric, feedback reflection, annotated bibliography. Website (Google Sites, WordPress) or PDF. 10–15 min presentation.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="overview-section">
+        <h2 class="overview-section-title">Labor-Based Grading</h2>
+        <p class="overview-text">Grading in this course prioritizes learning over letter grades. Your final grade is based on your engagement, effort, and labor — not traditional evaluation of individual pieces. You will receive feedback from me and your peers throughout the semester.</p>
+        <table class="grade-table">
+          <thead>
+            <tr><th>Grade</th><th>Expected Labor</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="grade-badge">A</span></td>
+              <td>Full participation in all discussions, weekly readings, peer responses, and conferences. Complete all assignments with engaged critical synthesis, collaborative discussion, and deep reflection.</td>
+            </tr>
+            <tr>
+              <td><span class="grade-badge">B</span></td>
+              <td>Participate in at least 85% of discussions, responses, and assignments.</td>
+            </tr>
+            <tr>
+              <td><span class="grade-badge">C</span></td>
+              <td>Participate in at least 75% of discussions and assignments.</td>
+            </tr>
+            <tr>
+              <td><span class="grade-badge">D/F</span></td>
+              <td>Rare participation (65% or less) and/or missing assignments.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="overview-section">
+        <h2 class="overview-section-title">Perusall Annotation Guide</h2>
+        <p class="overview-text">Annotations are due before each class session — Tuesday readings before Tuesday, Thursday readings before Thursday. In weeks with major assignments due, select one reading for focused annotation and integrate references to additional readings into your assignment.</p>
+        <p class="overview-text">Your annotations should include: <strong>3–6 compelling or problematic quotes</strong> with page numbers; a <strong>brief summary</strong> of key points in your own words; <strong>2–3 thoughtful questions</strong> about the reading; and a <strong>short reflection</strong> connecting the reading to your interests, teaching, or experience. Reading leads will briefly summarize the reading and prompt at least one discussion thread in Perusall each week.</p>
+      </div>
+    </div>
+  `;
+}
+
+// ═══════════════════════════════════════════════════════════
+// WEEK PAGE
+// ═══════════════════════════════════════════════════════════
+function showWeek(num) {
+  const w = WEEKS.find(x => x.num === num);
+  if (!w) return;
+  setActive(num);
+  document.getElementById('breadcrumb').textContent = `Week ${w.num} · ${w.title}`;
+
+  if (w.isBreak) {
+    document.getElementById('page-content').innerHTML = `
+      <div class="week-content">
+        <div class="week-hero">
+          <div class="week-label">Week ${w.num} · ${w.dates}</div>
+          <h2 class="week-heading">${w.title}</h2>
+          <p class="week-subheading">${w.focus}</p>
+        </div>
+        <div class="break-page">
+          <div class="break-icon">${w.breakIcon}</div>
+          <h3 class="break-heading">${w.title}</h3>
+          <p class="break-text">${w.breakMessage}</p>
+          ${w.num === 9 ? `<div class="preview-assign-note" style="margin-top:24px">📝 Writing Assignment Design with OWI Best Practices due Week 10 (October 22)</div>` : ''}
+          ${w.num === 15 ? `<div class="preview-assign-note" style="margin-top:24px">📝 Final Portfolio & Pedagogy Statement due December 1 (Week 16)</div>` : ''}
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  const tue = w.tuesday;
+  const thu = w.thursday;
+
+  // Build Tuesday card
+  let tueReadingsHTML = tue.readings && tue.readings.length
+    ? `<ul class="reading-list">${tue.readings.map(r => readingHTML(r)).join('')}</ul>`
+    : `<p style="font-size:13px;color:var(--ink-soft);font-style:italic;">No assigned readings — Presentation Day</p>`;
+
+  let tuePromptsHTML = `<ul class="prompt-list">${tue.prompts.map((p, i) => `
+    <li class="prompt-item">
+      <div class="prompt-num">${i+1}</div>
+      <div>
+        <div class="prompt-label">${p.label}</div>
+        <div>${p.text}</div>
+      </div>
+    </li>`).join('')}</ul>`;
+
+  let tueStarterHTML = tue.starter ? `
+    <div class="block" style="grid-column:1/-1">
+      <div class="block-title">Discussion Starter</div>
+      <div class="starter-quote">${tue.starter}</div>
+    </div>` : '';
+
+  let tueReflectionHTML = `
+    <div class="block" style="grid-column:1/-1">
+      <div class="block-title">Weekly Reflection Prompt</div>
+      <div class="reflection-box">${tue.reflection}</div>
+    </div>`;
+
+  // Preview of Thursday (shown at end of Tuesday)
+  let tuePrevHTML = '';
+  if (w.preview_thu_for_tue) {
+    const p = w.preview_thu_for_tue;
+    tuePrevHTML = `
+      <div class="preview-section">
+        <div class="preview-label thu-preview"><span class="preview-arrow">→</span> Preview: Thursday Workshop</div>
+        <div class="preview-grid">
+          <div>
+            <div class="preview-col-label">Thursday Readings</div>
+            ${p.readings.map(r => `<div class="preview-reading">${r}</div>`).join('')}
+          </div>
+          <div>
+            <div class="preview-col-label">Workshop Activities</div>
+            ${p.activities.map(a => `<div class="preview-activity">▸ ${a}</div>`).join('')}
+          </div>
+        </div>
+        ${p.note ? `<div class="preview-assign-note">📝 ${p.note.replace('📝 ','')}</div>` : ''}
+      </div>`;
+  }
+
+  // Build Thursday card
+  let thuHTML = '';
+  if (thu) {
+    let thuReadingsHTML = thu.readings && thu.readings.length
+      ? `<ul class="reading-list">${thu.readings.map(r => readingHTML(r)).join('')}</ul>`
+      : '';
+
+    let thuActivitiesHTML = thu.activities && thu.activities.length
+      ? thu.activities.map(a => `
+        <div class="activity-block">
+          <div class="activity-title">${a.title} <span class="activity-time">${a.time}</span></div>
+          <div class="activity-desc">${a.desc}</div>
+        </div>`).join('')
+      : '';
+
+    let thuReflectionHTML = `
+      <div class="block" style="grid-column:1/-1">
+        <div class="block-title">Exit Reflection</div>
+        <div class="reflection-box thu-reflect">${thu.reflection}</div>
+      </div>`;
+
+    // Preview of next Tuesday (shown at end of Thursday)
+    let thuPrevHTML = '';
+    if (w.preview_next_for_thu) {
+      const p = w.preview_next_for_thu;
+      const hasReadings = p.readings && p.readings.length > 0;
+      thuPrevHTML = `
+        <div class="preview-section">
+          <div class="preview-label tue-preview"><span class="preview-arrow">→</span> Preview: ${p.week ? `Week ${p.week} —` : ''} ${p.topic}</div>
+          <div class="preview-grid">
+            <div>
+              <div class="preview-col-label">Tuesday Readings</div>
+              ${hasReadings ? p.readings.map(r => `<div class="preview-reading">${r}</div>`).join('') : '<div class="preview-reading" style="font-style:italic;color:var(--ink-soft)">No class this week</div>'}
+            </div>
+            <div>
+              <div class="preview-col-label">Discussion Focus</div>
+              ${p.prompts.map(q => `<div class="preview-prompt">▸ ${q}</div>`).join('')}
+            </div>
+          </div>
+          ${p.note ? `<div class="preview-assign-note">${p.note}</div>` : ''}
+        </div>`;
+    }
+
+    thuHTML = `
+      <div class="session-card">
+        <div class="session-header thu-header">
+          <div>
+            <div class="session-day-badge thu-badge">Thursday Workshop</div>
+          </div>
+          <div class="session-header-info">
+            <div class="session-header-title">${thu.type}</div>
+            <div class="session-header-date">${thu.date} · 11:45 AM – 1:00 PM</div>
+          </div>
+        </div>
+        <div class="session-body">
+          ${thu.readings && thu.readings.length ? `
+          <div class="block">
+            <div class="block-title">Readings</div>
+            ${thuReadingsHTML}
+          </div>` : ''}
+          <div class="block ${!(thu.readings && thu.readings.length) ? '' : ''}">
+            <div class="block-title">Workshop Activities</div>
+            ${thuActivitiesHTML}
+          </div>
+          ${thuReflectionHTML}
+        </div>
+        ${thuPrevHTML}
+      </div>`;
+  }
+
+  // Final assignment block
+  let assignHTML = '';
+  if (w.assignment) {
+    assignHTML = `
+      <div class="assignment-box">
+        <div class="assignment-header">
+          <div class="assignment-icon">📝</div>
+          <div>
+            <div class="assignment-label">Assignment Due This Week</div>
+            <div class="assignment-name">${w.assignment.name}</div>
+          </div>
+        </div>
+        <div class="assignment-desc">${w.assignment.due} — ${w.assignment.desc}</div>
+      </div>`;
+  }
+
+  // Special case: Week 16 (only Tuesday, presentation day)
+  let sessionLayout = `
+    <div class="session-body">
+      <div class="block">
+        <div class="block-title">Readings</div>
+        ${tueReadingsHTML}
+      </div>
+      <div class="block">
+        <div class="block-title">Discussion Prompts</div>
+        ${tuePromptsHTML}
+      </div>
+      ${tueStarterHTML}
+      ${tueReflectionHTML}
+    </div>
+    ${tuePrevHTML}`;
+
+  document.getElementById('page-content').innerHTML = `
+    <div class="week-content">
+      <div class="week-hero">
+        <div class="week-label">Week ${w.num} · ${w.dates}</div>
+        <h2 class="week-heading">${w.title}</h2>
+        <p class="week-subheading">${w.focus}</p>
+        <div class="week-meta">
+          ${w.assignment ? `<div class="meta-pill assignment">📝 ${w.assignment.name}</div>` : ''}
+          <div class="meta-pill">📅 ${w.dates}</div>
+        </div>
+      </div>
+
+      ${w.assignment ? assignHTML : ''}
+
+      <div class="session-card">
+        <div class="session-header tue-header">
+          <div>
+            <div class="session-day-badge tue-badge">Tuesday Seminar</div>
+          </div>
+          <div class="session-header-info">
+            <div class="session-header-title">${tue.type}</div>
+            <div class="session-header-date">${tue.date} · 11:45 AM – 1:00 PM</div>
+          </div>
+        </div>
+        ${sessionLayout}
+      </div>
+
+      ${thuHTML}
+    </div>
+  `;
+}
+
+// ═══════════════════════════════════════════════════════════
+// ACTIVE STATE
+// ═══════════════════════════════════════════════════════════
+function setActive(num) {
+  document.querySelectorAll('.sidebar-week').forEach(el => el.classList.remove('active'));
+  if (num === null) {
+    document.querySelector('.sidebar-week[onclick="showOverview()"]')?.classList.add('active');
+  } else {
+    const el = document.querySelector(`.sidebar-week[data-week="${num}"]`);
+    if (el) el.classList.add('active');
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════
+buildSidebar();
+showOverview();
+</script>
+</body>
+</html>
