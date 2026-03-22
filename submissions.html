@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Submissions — ENG 511 Fall 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F9F5EF;
+    --cream-dark: #F0EAE0;
+    --ink: #1C1410;
+    --ink-mid: #4A3F35;
+    --ink-soft: #8B7B6F;
+    --tue: #3D2B6E;
+    --tue-light: #EDE8F7;
+    --tue-mid: #7B5EA7;
+    --thu: #8B3A1A;
+    --thu-mid: #C46B3C;
+    --assign: #1A5C3A;
+    --assign-light: #E8F5EE;
+    --assign-mid: #3D8B5E;
+    --border: #D9D0C4;
+    --sidebar-bg: #1C1410;
+    --sidebar-text: #E8DDD4;
+    --sidebar-muted: #7A6C62;
+    --sidebar-hover: #2E231C;
+    --sidebar-active: #3D2B1A;
+    --sidebar-accent: #C4832F;
+    --shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--cream);
+    color: var(--ink);
+    display: flex;
+    min-height: 100vh;
+    line-height: 1.7;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    width: 240px; min-width: 240px;
+    background: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    display: flex; flex-direction: column;
+    position: fixed; top: 0; left: 0;
+    height: 100vh; overflow-y: auto; z-index: 100;
+  }
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-thumb { background: #4A3A2E; border-radius: 2px; }
+  .sidebar-header { padding: 28px 20px 20px; border-bottom: 1px solid #2E231C; }
+  .sidebar-course { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sidebar-accent); margin-bottom: 6px; }
+  .sidebar-title { font-family: 'Playfair Display', serif; font-size: 15px; line-height: 1.4; color: var(--sidebar-text); font-weight: 600; }
+  .sidebar-sub { font-size: 11px; color: var(--sidebar-muted); margin-top: 4px; }
+  .sidebar-section-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sidebar-muted); padding: 14px 20px 6px; }
+  .sidebar-link { display: flex; align-items: center; gap: 10px; padding: 9px 20px; cursor: pointer; transition: background 0.15s; border-left: 2px solid transparent; text-decoration: none; color: var(--sidebar-text); font-size: 13px; }
+  .sidebar-link:hover { background: var(--sidebar-hover); }
+  .sidebar-link.active { background: var(--sidebar-active); border-left-color: var(--sidebar-accent); }
+  .sidebar-link-icon { font-size: 14px; min-width: 18px; text-align: center; }
+
+  /* MAIN */
+  .main { margin-left: 240px; flex: 1; display: flex; flex-direction: column; min-height: 100vh; }
+  .topbar { background: var(--cream); border-bottom: 1px solid var(--border); padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
+  .topbar-breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ink-soft); letter-spacing: 0.06em; }
+  .topbar-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--tue-mid); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: opacity 0.15s; }
+  .topbar-back:hover { opacity: 0.7; }
+
+  /* PAGE */
+  .page { padding: 48px 40px 80px; max-width: 900px; }
+  .page-tag { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px; }
+  .page-heading { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 12px; }
+  .page-heading em { font-style: italic; color: var(--assign); }
+  .page-intro { font-size: 15px; color: var(--ink-mid); max-width: 680px; line-height: 1.75; margin-bottom: 40px; }
+
+  /* SETUP BANNER */
+  .setup-banner { background: var(--tue); border-radius: 10px; padding: 30px 34px; color: white; margin-bottom: 20px; position: relative; overflow: hidden; }
+  .setup-banner::before { content: ''; position: absolute; top: -40px; right: -40px; width: 220px; height: 220px; border-radius: 50%; background: rgba(255,255,255,0.04); pointer-events: none; }
+  .setup-banner-label { font-family: 'DM Mono', monospace; font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 8px; }
+  .setup-banner-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; margin-bottom: 20px; color: white; line-height: 1.3; }
+  .setup-steps { display: flex; flex-direction: column; gap: 12px; position: relative; z-index: 1; }
+  .setup-step { display: flex; gap: 14px; align-items: flex-start; }
+  .step-num { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; color: var(--tue); background: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .step-text { font-size: 14px; color: rgba(255,255,255,0.92); line-height: 1.55; }
+  .step-text strong { color: white; font-weight: 600; }
+  .step-text code { background: rgba(255,255,255,0.14); border-radius: 4px; padding: 1px 8px; font-family: 'DM Mono', monospace; font-size: 12.5px; letter-spacing: 0.03em; color: #FFE4B5; }
+  .folder-cta { display: flex; align-items: center; gap: 14px; margin-top: 22px; flex-wrap: wrap; position: relative; z-index: 1; }
+  .folder-btn { display: inline-flex; align-items: center; gap: 9px; background: white; color: var(--tue); border: none; border-radius: 28px; padding: 11px 22px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; cursor: pointer; text-decoration: none; letter-spacing: 0.04em; transition: box-shadow 0.15s, transform 0.1s; box-shadow: 0 2px 10px rgba(0,0,0,0.18); }
+  .folder-btn:hover { box-shadow: 0 5px 18px rgba(0,0,0,0.24); transform: translateY(-1px); }
+  .folder-btn-icon { font-size: 16px; }
+  .folder-note { font-size: 12px; color: rgba(255,255,255,0.55); font-style: italic; }
+
+  /* NAMING BOX */
+  .naming-box { background: var(--ink); border-radius: 8px; padding: 22px 26px; margin-bottom: 40px; display: flex; align-items: flex-start; gap: 18px; }
+  .naming-icon { font-size: 28px; flex-shrink: 0; padding-top: 2px; }
+  .naming-label { font-family: 'DM Mono', monospace; font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.45); margin-bottom: 6px; }
+  .naming-example { font-family: 'DM Mono', monospace; font-size: 17px; color: var(--sidebar-accent); letter-spacing: 0.04em; margin-bottom: 8px; }
+  .naming-desc { font-size: 13.5px; color: rgba(255,255,255,0.65); line-height: 1.55; }
+  .naming-desc strong { color: rgba(255,255,255,0.9); }
+
+  /* SECTION */
+  .section-block { margin-bottom: 44px; }
+  .section-heading { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; color: var(--ink); padding-bottom: 12px; border-bottom: 1.5px solid var(--border); margin-bottom: 8px; scroll-margin-top: 80px; }
+  .section-desc { font-size: 14px; color: var(--ink-soft); font-style: italic; margin-bottom: 20px; }
+
+  /* TAB FLOW */
+  .tab-flow { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; background: white; border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; box-shadow: var(--shadow); }
+  .tab-chip { display: inline-flex; align-items: center; gap: 6px; background: var(--assign-light); border: 1.5px solid var(--assign-mid); border-radius: 6px; padding: 5px 13px; font-family: 'DM Mono', monospace; font-size: 10.5px; color: var(--assign); white-space: nowrap; }
+  .tab-chip .chip-num { font-size: 9px; background: var(--assign-mid); color: white; width: 15px; height: 15px; border-radius: 3px; display: flex; align-items: center; justify-content: center; font-weight: 500; flex-shrink: 0; }
+  .tab-arrow { color: var(--ink-soft); font-size: 16px; }
+
+  /* REMINDER BOX */
+  .reminder-box { background: var(--tue-light); border: 1.5px solid var(--tue-mid); border-radius: 8px; padding: 18px 22px; margin-bottom: 36px; display: flex; gap: 16px; align-items: flex-start; }
+  .reminder-icon { font-size: 26px; flex-shrink: 0; }
+  .reminder-title { font-weight: 600; font-size: 14.5px; color: var(--tue); margin-bottom: 5px; }
+  .reminder-text { font-size: 13px; color: var(--ink-mid); line-height: 1.6; }
+  .reminder-text a { color: var(--tue-mid); text-decoration: underline; text-underline-offset: 2px; font-weight: 600; }
+
+  /* ASSIGNMENT CARDS */
+  .assignment-card { background: white; border: 1px solid var(--border); border-radius: 10px; box-shadow: var(--shadow); margin-bottom: 22px; overflow: hidden; }
+  .card-header { display: flex; align-items: stretch; }
+  .card-week-bar { width: 72px; min-width: 72px; background: var(--assign); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px 10px; gap: 1px; }
+  .card-week-bar.final { background: var(--tue); }
+  .card-week-label { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+  .card-week-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: white; line-height: 1; }
+  .card-main { flex: 1; padding: 18px 24px 16px; border-bottom: 1px solid var(--cream-dark); }
+  .card-tab-tag { display: inline-flex; align-items: center; gap: 6px; background: var(--assign-light); border: 1px solid var(--assign-mid); border-radius: 10px; padding: 2px 10px; font-family: 'DM Mono', monospace; font-size: 9.5px; color: var(--assign); margin-bottom: 7px; letter-spacing: 0.08em; }
+  .card-tab-tag.final { background: var(--tue-light); border-color: var(--tue-mid); color: var(--tue); }
+  .card-title { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 600; color: var(--ink); margin-bottom: 4px; line-height: 1.3; }
+  .card-due { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--thu-mid); font-weight: 500; margin-bottom: 10px; }
+  .card-desc { font-size: 13.5px; color: var(--ink-mid); line-height: 1.65; margin-bottom: 14px; }
+  .components { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .component-item { display: flex; align-items: flex-start; gap: 8px; font-size: 12.5px; color: var(--ink-mid); background: var(--cream); border-radius: 6px; padding: 7px 11px; line-height: 1.4; }
+  .component-check { color: var(--assign-mid); font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+  .card-footer { padding: 11px 24px; background: var(--cream); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .footer-note { font-size: 12px; color: var(--ink-soft); font-style: italic; display: flex; align-items: center; gap: 5px; }
+  .submit-tag { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--assign); background: var(--assign-light); border: 1px solid var(--assign-mid); border-radius: 16px; padding: 4px 14px; white-space: nowrap; }
+
+  /* POLICIES */
+  .policy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
+  .policy-card { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 18px 20px; box-shadow: var(--shadow); }
+  .policy-icon { font-size: 22px; margin-bottom: 9px; }
+  .policy-title { font-weight: 600; font-size: 14px; color: var(--ink); margin-bottom: 6px; }
+  .policy-text { font-size: 13px; color: var(--ink-mid); line-height: 1.6; }
+  .policy-text strong { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-course">ENG 511 · Fall 2026</div>
+    <div class="sidebar-title">Theory & Research in Composition</div>
+    <div class="sidebar-sub">Prof. Kirsti Cole</div>
+  </div>
+  <div class="sidebar-section-label">Pages</div>
+  <a class="sidebar-link" href="index.html">
+    <span class="sidebar-link-icon">⌂</span> Course Website
+  </a>
+  <a class="sidebar-link active" href="submissions.html">
+    <span class="sidebar-link-icon">📁</span> Submissions & Portfolio
+  </a>
+  <div class="sidebar-section-label">Jump To</div>
+  <a class="sidebar-link" href="#setup">
+    <span class="sidebar-link-icon">①</span> Portfolio Setup
+  </a>
+  <a class="sidebar-link" href="#tabs">
+    <span class="sidebar-link-icon">②</span> Tab Structure
+  </a>
+  <a class="sidebar-link" href="#assignments">
+    <span class="sidebar-link-icon">③</span> All Assignments
+  </a>
+  <a class="sidebar-link" href="#policies">
+    <span class="sidebar-link-icon">④</span> Policies
+  </a>
+  <div class="sidebar-section-label">Quick Links</div>
+  <a class="sidebar-link" href="https://drive.google.com/drive/folders/1Uig3JajMidSxqVGx6VeY5AYwYoIu1FXu?usp=sharing" target="_blank">
+    <span class="sidebar-link-icon">📂</span> Class Folder
+  </a>
+  <a class="sidebar-link" href="https://app.perusall.com" target="_blank">
+    <span class="sidebar-link-icon">📖</span> Perusall
+  </a>
+  <a class="sidebar-link" href="https://moodle.wolfware.ncsu.edu" target="_blank">
+    <span class="sidebar-link-icon">🐺</span> Moodle
+  </a>
+  <a class="sidebar-link" href="https://calendar.app.google/bpaYNUBRrE62aKxMA" target="_blank">
+    <span class="sidebar-link-icon">📅</span> Office Hours
+  </a>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-breadcrumb">ENG 511 · Fall 2026 → Submissions & Portfolio</div>
+    <a class="topbar-back" href="index.html">← Back to Course Website</a>
+  </div>
+
+  <div class="page">
+
+    <div class="page-tag">ENG 511 · Fall 2026 · Prof. Kirsti Cole</div>
+    <h1 class="page-heading">Submissions &amp; <em>Portfolio</em></h1>
+    <p class="page-intro">All assignments live in one place: your personal Google Doc in our shared class folder. You'll build your portfolio tab by tab across the semester — so by Week 16, your final project is an evolution of the work you've already done, not a last-minute scramble.</p>
+
+    <!-- SETUP -->
+    <div class="section-block" id="setup">
+      <div class="setup-banner">
+        <div class="setup-banner-label">One-Time Setup · Do This Before Week 3</div>
+        <div class="setup-banner-title">Setting Up Your Portfolio Document</div>
+        <div class="setup-steps">
+          <div class="setup-step">
+            <div class="step-num">1</div>
+            <div class="step-text">Click <strong>Open Class Folder</strong> below. Sign in with your NCSU Google account — email Prof. Cole at <strong>kkcole2@ncsu.edu</strong> if you don't have edit access.</div>
+          </div>
+          <div class="setup-step">
+            <div class="step-num">2</div>
+            <div class="step-text">Inside the folder, create a new Google Doc. Name it exactly: <code>Lastname_ENG511_Portfolio_2026</code></div>
+          </div>
+          <div class="setup-step">
+            <div class="step-num">3</div>
+            <div class="step-text">Add <strong>6 tabs</strong> to your document using <strong>Insert → Add tab</strong>. Label them exactly as shown in the Tab Structure section below — Prof. Cole will navigate to these tabs when leaving feedback.</div>
+          </div>
+          <div class="setup-step">
+            <div class="step-num">4</div>
+            <div class="step-text">Your doc is set up — you don't need to write anything yet. You'll add content to each tab as assignments come due across the semester.</div>
+          </div>
+        </div>
+        <div class="folder-cta">
+          <a class="folder-btn" href="https://drive.google.com/drive/folders/1Uig3JajMidSxqVGx6VeY5AYwYoIu1FXu?usp=sharing" target="_blank">
+            <span class="folder-btn-icon">📂</span> Open Class Folder
+          </a>
+          <div class="folder-note">Sign in with your NCSU Google account</div>
+        </div>
+      </div>
+
+      <div class="naming-box">
+        <div class="naming-icon">🏷</div>
+        <div>
+          <div class="naming-label">Document Naming Convention</div>
+          <div class="naming-example">Lastname_ENG511_Portfolio_2026</div>
+          <div class="naming-desc">Use your <strong>last name only</strong>, underscores between each part, no spaces. Example: <strong>Cole_ENG511_Portfolio_2026</strong>. Consistent naming keeps the folder organized and makes it easy for Prof. Cole to find your work quickly throughout the semester.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB STRUCTURE -->
+    <div class="section-block" id="tabs">
+      <h2 class="section-heading">Your Six Portfolio Tabs</h2>
+      <p class="section-desc">Set these up on Day 1. You'll return to each tab as the semester progresses — and revise all of them for the final portfolio in Week 16.</p>
+
+      <div class="tab-flow">
+        <div class="tab-chip"><span class="chip-num">1</span> Literacy Narrative</div>
+        <div class="tab-arrow">›</div>
+        <div class="tab-chip"><span class="chip-num">2</span> Teaching Philosophy</div>
+        <div class="tab-arrow">›</div>
+        <div class="tab-chip"><span class="chip-num">3</span> Lesson Plan</div>
+        <div class="tab-arrow">›</div>
+        <div class="tab-chip"><span class="chip-num">4</span> Writing Assignment Design</div>
+        <div class="tab-arrow">›</div>
+        <div class="tab-chip"><span class="chip-num">5</span> Feedback &amp; Assessment</div>
+        <div class="tab-arrow">›</div>
+        <div class="tab-chip"><span class="chip-num">6</span> Annotated Bibliography</div>
+      </div>
+
+      <div class="reminder-box">
+        <div class="reminder-icon">💡</div>
+        <div>
+          <div class="reminder-title">Why one doc with tabs?</div>
+          <div class="reminder-text">Your teaching philosophy from Week 3 should be in conversation with your feedback reflection from Week 13. With tabs, Prof. Cole can see how your thinking has developed across the semester — and so can you. The final portfolio isn't a new project; it's a revision of everything you've built here. This also means Prof. Cole has <strong>one link per student</strong> rather than hunting across multiple assignment folders. Keep both parts of any two-part assignment (like the Feedback Portfolio) in the same tab — just add Part 2 below Part 1 with a clear header.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ASSIGNMENTS -->
+    <div class="section-block" id="assignments">
+      <h2 class="section-heading">All Assignments</h2>
+      <p class="section-desc">Each assignment goes into the corresponding tab in your Portfolio Doc. Nothing is submitted separately unless noted below.</p>
+
+      <!-- Week 3 -->
+      <div class="assignment-card">
+        <div class="card-header">
+          <div class="card-week-bar">
+            <div class="card-week-label">Week</div>
+            <div class="card-week-num">3</div>
+          </div>
+          <div class="card-main">
+            <div class="card-tab-tag">📌 Tab 1: Literacy Narrative &nbsp;+&nbsp; Tab 2: Teaching Philosophy</div>
+            <div class="card-title">Literacy Narrative &amp; Teaching Philosophy Draft</div>
+            <div class="card-due">Due Thursday, September 3 · Before class</div>
+            <div class="card-desc">Reflect on your experiences as a writer and educator. Your literacy narrative explores your writing history, key influences, and the experiences that shaped how you understand writing. Your teaching philosophy draft should represent where you are right now — it will evolve across the semester, so write candidly rather than trying to have all the answers.</div>
+            <ul class="components">
+              <li class="component-item"><span class="component-check">✦</span> Literacy narrative (1000–1500 words, or 5–7 min podcast/video)</li>
+              <li class="component-item"><span class="component-check">✦</span> Initial teaching philosophy statement (500–750 words)</li>
+              <li class="component-item"><span class="component-check">✦</span> Reflection connecting 2–3 readings from Weeks 1–3</li>
+              <li class="component-item"><span class="component-check">✦</span> Format note if submitting audio or video</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="footer-note">💬 You'll share excerpts in Thursday's class share-out.</div>
+          <div class="submit-tag">📂 Portfolio Doc → Tabs 1 & 2</div>
+        </div>
+      </div>
+
+      <!-- Week 6 -->
+      <div class="assignment-card">
+        <div class="card-header">
+          <div class="card-week-bar">
+            <div class="card-week-label">Week</div>
+            <div class="card-week-num">6</div>
+          </div>
+          <div class="card-main">
+            <div class="card-tab-tag">📌 Tab 3: Lesson Plan</div>
+            <div class="card-title">Lesson Plan &amp; Microteaching Presentation</div>
+            <div class="card-due">Due Thursday, September 24 · Presented live in class</div>
+            <div class="card-desc">Design a 15-minute lesson on a core ENG 101 writing skill — something you would actually teach in a first-year writing course. Your plan should be detailed enough that a colleague could pick it up and run it. You'll then teach a condensed version live in class, with structured peer feedback to follow using genre-aware frameworks from the week's readings.</div>
+            <ul class="components">
+              <li class="component-item"><span class="component-check">✦</span> Lesson plan document (objectives, activities, timing, materials)</li>
+              <li class="component-item"><span class="component-check">✦</span> 15-minute in-class microteaching presentation</li>
+              <li class="component-item"><span class="component-check">✦</span> Pedagogical rationale (300–500 words): why this skill, why this approach</li>
+              <li class="component-item"><span class="component-check">✦</span> Post-teaching reflection (added after class)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="footer-note">🗓 Sign up for your presentation slot by Week 5.</div>
+          <div class="submit-tag">📂 Portfolio Doc → Tab 3</div>
+        </div>
+      </div>
+
+      <!-- Week 7 -->
+      <div class="assignment-card">
+        <div class="card-header">
+          <div class="card-week-bar">
+            <div class="card-week-label">Week</div>
+            <div class="card-week-num">7</div>
+          </div>
+          <div class="card-main">
+            <div class="card-tab-tag">📌 Tab 5: Feedback & Assessment — Part 1</div>
+            <div class="card-title">Feedback &amp; Assessment Portfolio — Part 1</div>
+            <div class="card-due">Due Thursday, October 1 · Before class</div>
+            <div class="card-desc">Explore different approaches to giving feedback — summative, formative, audio/video, and labor-based — and practice with sample ENG 101 student papers. Develop a repertoire of feedback strategies grounded in the course's theoretical frameworks. Part 2 in Week 13 will extend and revise this work, so keep both visible in Tab 5.</div>
+            <ul class="components">
+              <li class="component-item"><span class="component-check">✦</span> Annotated feedback samples (2–3 student papers with your marginal comments)</li>
+              <li class="component-item"><span class="component-check">✦</span> Written reflection (1000–1500 words)</li>
+              <li class="component-item"><span class="component-check">✦</span> Engagement with Sommers, Inoue, and at least one other course reading</li>
+              <li class="component-item"><span class="component-check">✦</span> Note on what you'd revise with more time or context</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="footer-note">🔄 You'll extend and revise this in Week 13 for Part 2.</div>
+          <div class="submit-tag">📂 Portfolio Doc → Tab 5</div>
+        </div>
+      </div>
+
+      <!-- Week 10 -->
+      <div class="assignment-card">
+        <div class="card-header">
+          <div class="card-week-bar">
+            <div class="card-week-label">Week</div>
+            <div class="card-week-num">10</div>
+          </div>
+          <div class="card-main">
+            <div class="card-tab-tag">📌 Tab 4: Writing Assignment Design</div>
+            <div class="card-title">Writing Assignment Design with OWI Best Practices</div>
+            <div class="card-due">Due Thursday, October 22 · Before class</div>
+            <div class="card-desc">Design a writing assignment for a first-year or upper-division writing course you could realistically teach. The assignment should be meaningfully aligned with OWI principles and our theoretical frameworks — not as add-ons, but as design logic. Bring a draft to Thursday's class for peer feedback before finalizing.</div>
+            <ul class="components">
+              <li class="component-item"><span class="component-check">✦</span> Student-facing assignment prompt (1–2 pages)</li>
+              <li class="component-item"><span class="component-check">✦</span> Pedagogical rationale (750–1000 words)</li>
+              <li class="component-item"><span class="component-check">✦</span> OWI alignment notes: which principles, and how</li>
+              <li class="component-item"><span class="component-check">✦</span> Scaffolding or sequencing materials (if applicable)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="footer-note">🤝 Bring a draft to Thu Oct 22 for peer feedback before finalizing.</div>
+          <div class="submit-tag">📂 Portfolio Doc → Tab 4</div>
+        </div>
+      </div>
+
+      <!-- Week 13 -->
+      <div class="assignment-card">
+        <div class="card-header">
+          <div class="card-week-bar">
+            <div class="card-week-label">Week</div>
+            <div class="card-week-num">13</div>
+          </div>
+          <div class="card-main">
+            <div class="card-tab-tag">📌 Tab 5: Feedback & Assessment — Part 2</div>
+            <div class="card-title">Feedback &amp; Assessment Portfolio — Part 2</div>
+            <div class="card-due">Due Thursday, November 12 · Before class</div>
+            <div class="card-desc">Return to Tab 5 and extend your Part 1 work. Revise a grading rubric using anti-racist and inclusive strategies drawn from Inoue, Baker-Bell, and the course's UDL and linguistic justice frameworks. Your reflection should show how your assessment thinking has developed across the second half of the semester. Add Part 2 below Part 1 with a clear header — keep both visible.</div>
+            <ul class="components">
+              <li class="component-item"><span class="component-check">✦</span> Revised grading rubric (with tracked changes or annotation notes)</li>
+              <li class="component-item"><span class="component-check">✦</span> Written reflection (1000–1500 words)</li>
+              <li class="component-item"><span class="component-check">✦</span> Explicit engagement with anti-racist and UDL frameworks</li>
+              <li class="component-item"><span class="component-check">✦</span> Brief note on how your thinking shifted from Part 1</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="footer-note">📎 Add below your Part 1 work in Tab 5 with a clear "Part 2" header.</div>
+          <div class="submit-tag">📂 Portfolio Doc → Tab 5 (below Part 1)</div>
+        </div>
+      </div>
+
+      <!-- Week 16 -->
+      <div class="assignment-card">
+        <div class="card-header">
+          <div class="card-week-bar final">
+            <div class="card-week-label">Week</div>
+            <div class="card-week-num">16</div>
+          </div>
+          <div class="card-main">
+            <div class="card-tab-tag final">📌 All Tabs — Full Portfolio + In-Class Presentation</div>
+            <div class="card-title">Composition Pedagogy Statement &amp; Digital Portfolio</div>
+            <div class="card-due">Due Tuesday, December 1 · Presented live in class</div>
+            <div class="card-desc">This is the culmination of the semester — not a new project, but a careful revision and synthesis of everything you've built. Revisit every tab with fresh eyes and write a polished Composition Pedagogy Statement that draws on your theoretical development across the course. Your portfolio doc is your final project. Polish each tab, not just the new ones. Then present a 10–15 minute overview to the class.</div>
+            <ul class="components">
+              <li class="component-item"><span class="component-check">✦</span> Revised teaching philosophy / pedagogy statement (Tab 2)</li>
+              <li class="component-item"><span class="component-check">✦</span> Revised lesson plan (Tab 3)</li>
+              <li class="component-item"><span class="component-check">✦</span> Revised writing assignment &amp; rubric (Tabs 4 & 5)</li>
+              <li class="component-item"><span class="component-check">✦</span> Feedback &amp; assessment reflection — Parts 1 & 2 (Tab 5)</li>
+              <li class="component-item"><span class="component-check">✦</span> Annotated bibliography — 10–15 course sources (Tab 6)</li>
+              <li class="component-item"><span class="component-check">✦</span> 10–15 minute in-class presentation</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="footer-note">✨ Your Portfolio Doc is your final project — all tabs revised and polished.</div>
+          <div class="submit-tag">📂 Full Portfolio Doc · All tabs + presentation</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PERUSALL -->
+    <div class="reminder-box">
+      <div class="reminder-icon">📖</div>
+      <div>
+        <div class="reminder-title">Perusall Annotations — Ongoing Weekly Labor</div>
+        <div class="reminder-text">Perusall annotations are due <strong>before each class session</strong> — Tuesday readings before Tuesday, Thursday readings before Thursday. They aren't submitted here; they live in Perusall and count as core participation labor. Each annotation should include 3–6 quoted passages with page numbers, a brief summary in your own words, 2–3 questions, and a short personal reflection. Access Perusall at <a href="https://app.perusall.com" target="_blank">app.perusall.com</a> or through the Moodle course page.</div>
+      </div>
+    </div>
+
+    <!-- POLICIES -->
+    <div class="section-block" id="policies">
+      <h2 class="section-heading">Submission Policies</h2>
+      <p class="section-desc">This course uses a labor-based framework — these policies reflect that commitment.</p>
+      <div class="policy-grid">
+        <div class="policy-card">
+          <div class="policy-icon">🔄</div>
+          <div class="policy-title">Late & Flexible Submissions</div>
+          <div class="policy-text">If you need more time, reach out to Prof. Cole <em>before</em> the deadline — not after. Extensions are available without penalty when communicated in advance. Habitual lateness without communication will affect your labor assessment at the end of the semester.</div>
+        </div>
+        <div class="policy-card">
+          <div class="policy-icon">🤝</div>
+          <div class="policy-title">Collaboration</div>
+          <div class="policy-text">You're encouraged to think through ideas with classmates. All writing you submit should be your own work. If you're unsure whether a collaboration is appropriate, reach out to Prof. Cole first — always a welcomed conversation.</div>
+        </div>
+        <div class="policy-card">
+          <div class="policy-icon">🤖</div>
+          <div class="policy-title">AI Tools</div>
+          <div class="policy-text">We'll study AI in Week 14 and develop frameworks together. For now: be transparent about any AI tool use and be prepared to discuss your process. AI that substitutes for your genuine intellectual development undermines the goals of this course.</div>
+        </div>
+        <div class="policy-card">
+          <div class="policy-icon">♿</div>
+          <div class="policy-title">Access & Accommodation</div>
+          <div class="policy-text">Please share your DRS accommodations letter with Prof. Cole in Week 1. If access barriers emerge mid-semester, reach out immediately. This course is designed with UDL principles — your learning needs are a design consideration, not an exception.</div>
+        </div>
+        <div class="policy-card">
+          <div class="policy-icon">🔐</div>
+          <div class="policy-title">Sharing & Privacy</div>
+          <div class="policy-text">Your Portfolio Doc is shared only with Prof. Cole. If you'd like to share excerpts with classmates for peer feedback, that's always your choice. No one else in the class has access to your document without your explicit permission.</div>
+        </div>
+        <div class="policy-card">
+          <div class="policy-icon">📬</div>
+          <div class="policy-title">Questions & Feedback</div>
+          <div class="policy-text">Email Prof. Cole at <strong>kkcole2@ncsu.edu</strong> or book office hours at the link in the sidebar. For assignment questions, reach out at least 48 hours before the due date so there's time to respond meaningfully before you submit.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
