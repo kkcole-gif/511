@@ -817,7 +817,7 @@ const WEEKS = [
       readings:[
         {author:"MLA-CCCC Working Group",title:"Working Paper 2: Policy Guidance",year:""},
         {author:"McIntyre et al.",title:"Practicing GenAI Refusal",year:""},
-        {author:"Ranade & Eyman, eds.",title:"Composing with AI, selected chapters (Computers and Composition Digital Press, open access)",year:"2025",isNew:true},
+        {author:"Ranade & Eyman, eds.",title:"Composing with AI, selected chapters (Computers and Composition Digital Press, open access)",year:"2025",url:"https://ccdigitalpress.org/composing-with-ai",isNew:true},
       ],
       activities:[
         {title:"Collaborative AI Policy Drafting",time:"30 min",desc:"In small groups, collaboratively draft a course AI policy informed by course frameworks. What values does your policy enact? What does it protect?"},
@@ -946,10 +946,11 @@ function closeSidebar(){
 // ─── READING HTML ────────────────────────────────────────────────────────────
 function readingHTML(r,type='normal'){
   const newBadge=r.isNew?'<span class="reading-new-badge" aria-label="New reading">New</span>':'';
+  const titlePart=r.title?(r.url?`, <a href="${r.url}" target="_blank" rel="noopener" style="color:var(--tue-mid);text-decoration:underline;text-underline-offset:2px">${r.title}</a>`:`, ${r.title}`):'';
   return `<li class="reading-item ${type}">
     <div class="reading-bullet" aria-hidden="true"></div>
     <div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:6px;flex:1">
-      <div><span class="reading-author">${r.author}</span>${r.title?', '+r.title:''} ${r.year?'<span class="reading-year">('+r.year+')</span>':''}</div>
+      <div><span class="reading-author">${r.author}</span>${titlePart} ${r.year?'<span class="reading-year">('+r.year+')</span>':''}</div>
       ${newBadge}
     </div>
   </li>`;
