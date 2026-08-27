@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENG 511 &middot; August 27</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+:root {
+  --bg: #F5F4F1;
+  --surface: #FFFFFF;
+  --text-1: #1A1918;
+  --text-2: #5A5856;
+  --text-3: #9A9896;
+  --accent: #2A4485;
+  --accent-hover: #1C3270;
+  --accent-text: #FFFFFF;
+  --accent-muted: #ECF0FD;
+  --accent-muted-border: #C8D4F5;
+  --border: #E3E1DB;
+  --time-bg: #EDEAF8;
+  --time-color: #5E4F9A;
+  --active-bg: #F0F5FF;
+  --active-border: #2A4485;
+  --preview-bg: #F2F3F8;
+  --preview-border: #D0D5E8;
+  --assign-bg: #FEF9F0;
+  --assign-border: #E0A84A;
+  --assign-text: #7A4E00;
+  --assign-text-2: #9A6610;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111013;
+    --surface: #1C1A20;
+    --text-1: #EDECEA;
+    --text-2: #908E9C;
+    --text-3: #60606A;
+    --accent: #7A9FE8;
+    --accent-hover: #9AB5EE;
+    --accent-text: #0A1838;
+    --accent-muted: #182040;
+    --accent-muted-border: #2A3A68;
+    --border: #2A2830;
+    --time-bg: #221C38;
+    --time-color: #B8AACE;
+    --active-bg: #1A2245;
+    --active-border: #7A9FE8;
+    --preview-bg: #17161C;
+    --preview-border: #2A283A;
+    --assign-bg: #1C1500;
+    --assign-border: #7A5800;
+    --assign-text: #E8B860;
+    --assign-text-2: #C49030;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #111013;
+  --surface: #1C1A20;
+  --text-1: #EDECEA;
+  --text-2: #908E9C;
+  --text-3: #60606A;
+  --accent: #7A9FE8;
+  --accent-hover: #9AB5EE;
+  --accent-text: #0A1838;
+  --accent-muted: #182040;
+  --accent-muted-border: #2A3A68;
+  --border: #2A2830;
+  --time-bg: #221C38;
+  --time-color: #B8AACE;
+  --active-bg: #1A2245;
+  --active-border: #7A9FE8;
+  --preview-bg: #17161C;
+  --preview-border: #2A283A;
+  --assign-bg: #1C1500;
+  --assign-border: #7A5800;
+  --assign-text: #E8B860;
+  --assign-text-2: #C49030;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-1);
+  font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  line-height: 1.65;
+  padding-bottom: 72px;
+}
+
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Header ──────────────────────────────────────────── */
+
+.page-header {
+  padding: 52px 0 36px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 36px;
+}
+
+.course-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.course-num {
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.mid-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--text-3);
+  flex-shrink: 0;
+}
+
+.course-name {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.session-label {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 8px;
+}
+
+.session-title {
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  color: var(--text-1);
+  margin-bottom: 12px;
+}
+
+.session-meta {
+  font-size: 0.875rem;
+  color: var(--text-2);
+}
+
+/* ── Section label ───────────────────────────────────── */
+
+.sec-label {
+  font-size: 0.63rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 10px;
+}
+
+/* ── Reading ─────────────────────────────────────────── */
+
+.reading-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  padding: 14px 18px;
+  margin-bottom: 42px;
+}
+
+.reading-title {
+  font-family: 'Spectral', Georgia, serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--text-1);
+  line-height: 1.4;
+}
+
+.reading-author {
+  font-size: 0.78rem;
+  color: var(--text-2);
+  margin-top: 3px;
+}
+
+/* ── Discussion threads ──────────────────────────────── */
+
+.threads-section {
+  margin-bottom: 42px;
+}
+
+.thread-quote {
+  border-left: 2px solid var(--accent-muted-border);
+  padding: 10px 16px;
+  margin-bottom: 8px;
+}
+
+.thread-quote p {
+  font-family: 'Spectral', Georgia, serif;
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+/* ── Activity cards ──────────────────────────────────── */
+
+.agenda-section {
+  margin-bottom: 48px;
+}
+
+.activity-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 20px 22px;
+  margin-bottom: 10px;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.activity-card.active {
+  background: var(--active-bg);
+  border-color: var(--active-border);
+  border-left-width: 3px;
+}
+
+.act-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.act-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.act-title {
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-1);
+}
+
+.activity-card.active .act-title {
+  color: var(--accent);
+}
+
+.now-badge {
+  display: none;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: var(--accent-text);
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.activity-card.active .now-badge {
+  display: inline-block;
+}
+
+.time-badge {
+  flex-shrink: 0;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 0.65rem;
+  font-weight: 500;
+  background: var(--time-bg);
+  color: var(--time-color);
+  padding: 3px 9px;
+  border-radius: 3px;
+  white-space: nowrap;
+  margin-top: 3px;
+}
+
+.act-body {
+  font-size: 0.9rem;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+/* ── Drive note ──────────────────────────────────────── */
+
+.drive-note {
+  font-size: 0.84rem;
+  color: var(--text-2);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin-top: 12px;
+  line-height: 1.55;
+}
+
+.drive-note-label {
+  font-weight: 500;
+  color: var(--text-1);
+  display: block;
+  margin-bottom: 3px;
+  font-size: 0.78rem;
+  letter-spacing: 0.01em;
+}
+
+.drive-note a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ── Excalidraw callout ───────────────────────────────── */
+
+.excalidraw-box {
+  background: var(--accent-muted);
+  border: 1px solid var(--accent-muted-border);
+  border-radius: 5px;
+  padding: 16px 18px;
+  margin-top: 14px;
+}
+
+.ex-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.ex-label {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.ex-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--accent);
+  color: var(--accent-text);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.14s ease;
+}
+
+.ex-btn:hover {
+  background: var(--accent-hover);
+}
+
+.ex-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.ex-qr-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 12px 0;
+  padding: 10px 0;
+  border-top: 1px solid var(--accent-muted-border);
+  border-bottom: 1px solid var(--accent-muted-border);
+}
+
+.ex-qr {
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  display: block;
+}
+
+.ex-qr-label {
+  font-size: 0.78rem;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+.ex-steps {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 14px;
+}
+
+.ex-steps li {
+  display: flex;
+  gap: 10px;
+  font-size: 0.84rem;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+.step-n {
+  flex-shrink: 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--accent);
+  width: 16px;
+  padding-top: 1px;
+}
+
+.ex-steps a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Philosophy reference grid */
+.phil-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  border-top: 1px solid var(--accent-muted-border);
+  padding-top: 12px;
+}
+
+.phil-cell {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 7px 10px;
+}
+
+.phil-name {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--text-1);
+  margin-bottom: 1px;
+}
+
+.phil-desc {
+  font-size: 0.76rem;
+  color: var(--text-2);
+  line-height: 1.35;
+}
+
+/* ── Week 3 preview ──────────────────────────────────── */
+
+.preview-card {
+  background: var(--preview-bg);
+  border: 1px solid var(--preview-border);
+  border-radius: 6px;
+  padding: 24px 22px;
+  margin-bottom: 12px;
+}
+
+.preview-eyebrow {
+  font-size: 0.63rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 6px;
+}
+
+.preview-title {
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-1);
+  margin-bottom: 18px;
+}
+
+.preview-readings {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 16px;
+}
+
+.preview-readings li {
+  font-size: 0.875rem;
+  color: var(--text-2);
+  padding-left: 14px;
+  position: relative;
+  line-height: 1.45;
+}
+
+.preview-readings li::before {
+  content: '';
+  position: absolute;
+  left: 1px;
+  top: 0.58em;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--text-3);
+}
+
+.preview-readings em {
+  font-family: 'Spectral', Georgia, serif;
+  font-style: italic;
+}
+
+.preview-qs {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.preview-qs li {
+  font-size: 0.875rem;
+  color: var(--text-2);
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.preview-qs li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--text-3);
+  font-size: 0.65rem;
+  top: 0.38em;
+}
+
+/* ── Assignment card ─────────────────────────────────── */
+
+.assign-card {
+  background: var(--assign-bg);
+  border: 1px solid var(--assign-border);
+  border-radius: 6px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+}
+
+.assign-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  line-height: 1.4;
+}
+
+.assign-name {
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 0.975rem;
+  font-weight: 600;
+  color: var(--assign-text);
+  line-height: 1.3;
+  margin-bottom: 3px;
+}
+
+.assign-due {
+  font-size: 0.8rem;
+  color: var(--assign-text-2);
+}
+
+/* ── Responsive ──────────────────────────────────────── */
+
+@media (max-width: 580px) {
+  .session-title { font-size: 1.6rem; }
+  .act-header { flex-direction: column-reverse; align-items: flex-start; gap: 5px; }
+  .phil-grid { grid-template-columns: 1fr; }
+  .ex-header { flex-direction: column; align-items: flex-start; }
+  .page-header { padding-top: 36px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .activity-card { transition: none; }
+  .ex-btn { transition: none; }
+}
+</style>
+
+<div class="container">
+
+  <!-- Header -->
+  <header class="page-header">
+    <div class="course-row">
+      <span class="course-num">ENG 511</span>
+      <span class="mid-dot"></span>
+      <span class="course-name">Composition Theory</span>
+    </div>
+    <p class="session-label">Applied Frameworks Workshop</p>
+    <h1 class="session-title">Philosophy, Pedagogy, and Practice</h1>
+    <p class="session-meta">Thursday, August 27, 2026 &middot; 11:45 AM &ndash; 1:00 PM</p>
+  </header>
+
+  <!-- Reading -->
+  <p class="sec-label">Today's Reading</p>
+  <div class="reading-card">
+    <div class="reading-title">"Composition at the Turn of the 21st Century"</div>
+    <div class="reading-author">Richard Fulkerson &mdash; 2005</div>
+  </div>
+
+  <!-- Discussion Threads -->
+  <div class="threads-section">
+    <p class="sec-label" style="margin-bottom: 14px;">From the Reading Discussion</p>
+
+    <div class="thread-quote">
+      <p>"Choosing a pedagogy means choosing what writing is for. Two instructors running identical activities — peer review, discussion, collaborative drafting — could be working toward completely different versions of a successful writer."</p>
+    </div>
+
+    <div class="thread-quote">
+      <p>"The field has diverged before. It seems like a natural part of any academic discipline. If Fulkerson revisited this study today, the finding would likely be: it has diverged again."</p>
+    </div>
+
+    <div class="thread-quote">
+      <p>"An exclusive genre approach risks sliding into formalism — writing as product rather than process — without intending to."</p>
+    </div>
+
+    <div class="thread-quote">
+      <p>"Complete ideological neutrality in the classroom seems impossible. The more honest question may be how much space students get to challenge the teacher's values, not whether those values are present."</p>
+    </div>
+  </div>
+
+  <!-- Agenda -->
+  <div class="agenda-section">
+    <p class="sec-label" style="margin-bottom: 14px;">Session Agenda</p>
+
+    <div class="activity-card" id="act-1">
+      <div class="act-header">
+        <div class="act-title-row">
+          <span class="act-title">Philosophy Mapping Activity</span>
+          <span class="now-badge">Now</span>
+        </div>
+        <span class="time-badge">11:45&ndash;12:15</span>
+      </div>
+      <div class="act-body">
+        <p>On the shared Excalidraw board, place one writing assignment you have seen or taught &mdash; any level, any institution. Map it onto one of Fulkerson's four philosophies or Berlin's categories. Add a one-line rationale. Debrief: Which philosophies appear most? Which are absent, and why?</p>
+
+        <div class="drive-note">
+          <span class="drive-note-label">Need an assignment to work with?</span>
+          Browse the <a href="https://drive.google.com/drive/folders/1-59Y3BS25aTsblc22F0euMibTB1kv49p?usp=drive_link" target="_blank" rel="noopener noreferrer">shared course drive &#8599;</a> &mdash; dig around freely, or go straight to <strong>ENG 101 Material Share</strong> and open <strong>Assignment Sheets &amp; Rubrics</strong> or <strong>Lesson Plans/Activities</strong>.
+        </div>
+
+        <div class="excalidraw-box">
+          <div class="ex-header">
+            <span class="ex-label">Shared Drawing Board</span>
+            <a href="https://excalidraw.com/#room=fbc8e12dcd66df096bdf,BW2lgNBwvPUsHpRtFBqIjw" target="_blank" rel="noopener noreferrer" class="ex-btn">Open Excalidraw &#8599;</a>
+          </div>
+          <div class="ex-qr-row">
+            <img src="data:image/png;base64,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" alt="QR code for shared Excalidraw board" class="ex-qr">
+            <p class="ex-qr-label">Scan to join on your phone,<br>or use the button above</p>
+          </div>
+          <ol class="ex-steps">
+            <li><span class="step-n">1.</span><span>Scan the QR code or click the button to open the shared board directly. No account required.</span></li>
+            <li><span class="step-n">2.</span><span>Use the text tool <strong>(T)</strong> and shape tools to place your assignment on the board.</span></li>
+            <li><span class="step-n">3.</span><span>Label it with the philosophy it reflects and a one-line rationale. Explore what others have placed.</span></li>
+          </ol>
+          <div class="phil-grid">
+            <div class="phil-cell">
+              <div class="phil-name">Formalist</div>
+              <div class="phil-desc">Values form, correctness, textual features</div>
+            </div>
+            <div class="phil-cell">
+              <div class="phil-name">Expressivist</div>
+              <div class="phil-desc">Values voice, authenticity, self-discovery</div>
+            </div>
+            <div class="phil-cell">
+              <div class="phil-name">Mimetic</div>
+              <div class="phil-desc">Values accurate representation of reality</div>
+            </div>
+            <div class="phil-cell">
+              <div class="phil-name">Rhetorical</div>
+              <div class="phil-desc">Values audience, purpose, situation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="activity-card" id="act-2">
+      <div class="act-header">
+        <div class="act-title-row">
+          <span class="act-title">Pair Work: Then vs. Now</span>
+          <span class="now-badge">Now</span>
+        </div>
+        <span class="time-badge">12:15&ndash;12:35</span>
+      </div>
+      <div class="act-body">
+        With a partner, identify one debate from the 1970s&ndash;80s readings that persists in current practice &mdash; in AI discourse, assessment design, or assignment conventions. Prepare a sixty-second report-out. Each pair shares; your instructor will note emerging patterns on the board.
+      </div>
+    </div>
+
+    <div class="activity-card" id="act-3">
+      <div class="act-header">
+        <div class="act-title-row">
+          <span class="act-title">Genre Theory Preview</span>
+          <span class="now-badge">Now</span>
+        </div>
+        <span class="time-badge">12:35&ndash;12:55</span>
+      </div>
+      <div class="act-body">
+        As a group, map the intellectual lineage from process pedagogy to genre theory on the shared board. Key pressure question: What problem does genre theory solve that process pedagogy created or left unresolved?
+      </div>
+    </div>
+
+    <div class="activity-card" id="act-4">
+      <div class="act-header">
+        <div class="act-title-row">
+          <span class="act-title">Exit Reflection</span>
+          <span class="now-badge">Now</span>
+        </div>
+        <span class="time-badge">12:55&ndash;1:00</span>
+      </div>
+      <div class="act-body">
+        Write one sentence &mdash; not shared aloud, to carry into the week: <em>Where do you see current-traditional assumptions persisting in courses you have taken or taught?</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- Week 3 Preview -->
+  <div class="preview-card">
+    <p class="preview-eyebrow">Coming Up &middot; Week 3</p>
+    <h2 class="preview-title">Cognitivist &amp; Expressivist Theories</h2>
+
+    <p class="sec-label" style="margin-bottom: 8px;">Tuesday Readings</p>
+    <ul class="preview-readings">
+      <li>Perl, <em>"Understanding Composing"</em> (1980)</li>
+      <li>Flower &amp; Hayes, <em>"A Cognitive Process Theory of Composing"</em> (1981)</li>
+      <li>Hartwell, <em>"Grammar, Grammars, and the Teaching of Grammar"</em> (1985)</li>
+    </ul>
+
+    <p class="sec-label" style="margin-bottom: 8px;">Discussion Focus</p>
+    <ul class="preview-qs">
+      <li>How do cognitive and expressivist approaches differently understand the individual writer?</li>
+      <li>What does expressivist pedagogy valorize? What does it obscure?</li>
+    </ul>
+  </div>
+
+  <!-- Assignment -->
+  <div class="assign-card">
+    <div class="assign-icon">&#128221;</div>
+    <div>
+      <div class="assign-name">Literacy Narrative &amp; Teaching Philosophy Draft</div>
+      <div class="assign-due">Due Sunday, September 6 &middot; Week 3</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var activities = [
+    { id: 'act-1', s: 11 * 60 + 45, e: 12 * 60 + 15 },
+    { id: 'act-2', s: 12 * 60 + 15, e: 12 * 60 + 35 },
+    { id: 'act-3', s: 12 * 60 + 35, e: 12 * 60 + 55 },
+    { id: 'act-4', s: 12 * 60 + 55, e: 13 * 60 + 0 }
+  ];
+
+  function update() {
+    var now = new Date();
+    var cur = now.getHours() * 60 + now.getMinutes();
+    activities.forEach(function (a) {
+      var el = document.getElementById(a.id);
+      if (!el) return;
+      el.classList.toggle('active', cur >= a.s && cur < a.e);
+    });
+  }
+
+  update();
+  setInterval(update, 30000);
+}());
+</script>
+</body>
+</html>
