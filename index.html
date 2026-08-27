@@ -32,8 +32,11 @@
     --shadow: 0 2px 12px rgba(0,0,0,0.07);
     --shadow-lg: 0 4px 24px rgba(0,0,0,0.11);
   }
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
   html { font-size: 16px; }
+
   body {
     font-family: 'Source Serif 4', Georgia, serif;
     background: var(--cream);
@@ -42,6 +45,7 @@
     min-height: 100vh;
     line-height: 1.7;
   }
+
   /* ── SIDEBAR ─────────────────────────────────────────── */
   .sidebar {
     width: 240px;
@@ -56,13 +60,16 @@
     overflow-y: auto;
     z-index: 100;
   }
+
   .sidebar::-webkit-scrollbar { width: 4px; }
   .sidebar::-webkit-scrollbar-track { background: transparent; }
   .sidebar::-webkit-scrollbar-thumb { background: #4A3A2E; border-radius: 2px; }
+
   .sidebar-header {
     padding: 28px 20px 20px;
     border-bottom: 1px solid #2E231C;
   }
+
   .sidebar-course {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
@@ -71,6 +78,7 @@
     color: var(--sidebar-accent);
     margin-bottom: 6px;
   }
+
   .sidebar-title {
     font-family: 'Playfair Display', serif;
     font-size: 15px;
@@ -78,11 +86,13 @@
     color: var(--sidebar-text);
     font-weight: 600;
   }
+
   .sidebar-sub {
     font-size: 11px;
     color: var(--sidebar-muted);
     margin-top: 4px;
   }
+
   .sidebar-section-label {
     font-family: 'DM Mono', monospace;
     font-size: 9px;
@@ -91,6 +101,7 @@
     color: var(--sidebar-muted);
     padding: 14px 20px 6px;
   }
+
   .sidebar-week {
     display: flex;
     align-items: flex-start;
@@ -102,12 +113,16 @@
     text-decoration: none;
     color: var(--sidebar-text);
   }
+
   .sidebar-week:hover { background: var(--sidebar-hover); }
+
   .sidebar-week.active {
     background: var(--sidebar-active);
     border-left-color: var(--sidebar-accent);
   }
+
   .sidebar-week.break-week { opacity: 0.5; }
+
   .week-num {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
@@ -115,17 +130,21 @@
     min-width: 22px;
     padding-top: 2px;
   }
+
   .week-info {}
+
   .week-title-short {
     font-size: 12px;
     line-height: 1.35;
     color: var(--sidebar-text);
   }
+
   .week-dates-short {
     font-size: 10px;
     color: var(--sidebar-muted);
     margin-top: 1px;
   }
+
   .week-assign-dot {
     width: 6px; height: 6px;
     border-radius: 50%;
@@ -133,6 +152,7 @@
     margin-top: 5px;
     flex-shrink: 0;
   }
+
   /* ── MAIN ─────────────────────────────────────────────── */
   .main {
     margin-left: 240px;
@@ -141,6 +161,7 @@
     flex-direction: column;
     min-height: 100vh;
   }
+
   /* ── TOP BAR ──────────────────────────────────────────── */
   .topbar {
     background: var(--cream);
@@ -153,17 +174,20 @@
     top: 0;
     z-index: 50;
   }
+
   .topbar-breadcrumb {
     font-family: 'DM Mono', monospace;
     font-size: 11px;
     color: var(--ink-soft);
     letter-spacing: 0.06em;
   }
+
   .topbar-legend {
     display: flex;
     gap: 20px;
     align-items: center;
   }
+
   .legend-item {
     display: flex;
     align-items: center;
@@ -171,6 +195,7 @@
     font-size: 11px;
     color: var(--ink-soft);
   }
+
   .legend-dot {
     width: 10px; height: 10px;
     border-radius: 2px;
@@ -178,15 +203,18 @@
   .legend-dot.tue { background: var(--tue); }
   .legend-dot.thu { background: var(--thu); }
   .legend-dot.assign { background: var(--assign); }
+
   /* ── WEEK CONTENT ─────────────────────────────────────── */
   .week-content {
     padding: 48px 40px 60px;
     max-width: 960px;
   }
+
   /* ── WEEK HERO ──────────────────────────────────────────  */
   .week-hero {
     margin-bottom: 36px;
   }
+
   .week-label {
     font-family: 'DM Mono', monospace;
     font-size: 11px;
@@ -195,6 +223,7 @@
     color: var(--ink-soft);
     margin-bottom: 8px;
   }
+
   .week-heading {
     font-family: 'Playfair Display', serif;
     font-size: 36px;
@@ -203,18 +232,21 @@
     color: var(--ink);
     margin-bottom: 10px;
   }
+
   .week-subheading {
     font-size: 15px;
     color: var(--ink-mid);
     font-style: italic;
     margin-bottom: 16px;
   }
+
   .week-meta {
     display: flex;
     gap: 20px;
     align-items: center;
     flex-wrap: wrap;
   }
+
   .meta-pill {
     display: inline-flex;
     align-items: center;
@@ -226,12 +258,14 @@
     font-size: 12px;
     color: var(--ink-mid);
   }
+
   .meta-pill.assignment {
     background: var(--assign-light);
     border-color: var(--assign-mid);
     color: var(--assign);
     font-weight: 600;
   }
+
   /* ── BREAK PAGE ─────────────────────────────────────────  */
   .break-page {
     display: flex;
@@ -242,10 +276,12 @@
     text-align: center;
     padding: 60px 40px;
   }
+
   .break-icon {
     font-size: 56px;
     margin-bottom: 24px;
   }
+
   .break-heading {
     font-family: 'Playfair Display', serif;
     font-size: 32px;
@@ -253,12 +289,14 @@
     margin-bottom: 12px;
     color: var(--ink);
   }
+
   .break-text {
     font-size: 16px;
     color: var(--ink-mid);
     max-width: 440px;
     line-height: 1.7;
   }
+
   /* ── SESSION CARD ────────────────────────────────────────  */
   .session-card {
     background: white;
@@ -268,6 +306,7 @@
     overflow: hidden;
     border: 1px solid var(--border);
   }
+
   .session-header {
     display: flex;
     align-items: center;
@@ -275,16 +314,19 @@
     padding: 18px 24px;
     border-bottom: 1px solid var(--border);
   }
+
   .session-header.tue-header {
     background: var(--tue);
     color: white;
     border-bottom-color: rgba(255,255,255,0.15);
   }
+
   .session-header.thu-header {
     background: var(--thu);
     color: white;
     border-bottom-color: rgba(255,255,255,0.15);
   }
+
   .session-day-badge {
     font-family: 'DM Mono', monospace;
     font-size: 9px;
@@ -294,9 +336,12 @@
     border-radius: 12px;
     font-weight: 500;
   }
+
   .tue-badge { background: rgba(255,255,255,0.18); color: white; }
   .thu-badge { background: rgba(255,255,255,0.18); color: white; }
+
   .session-header-info {}
+
   .session-header-title {
     font-family: 'Playfair Display', serif;
     font-size: 18px;
@@ -304,25 +349,30 @@
     color: white;
     line-height: 1.3;
   }
+
   .session-header-date {
     font-size: 12px;
     color: rgba(255,255,255,0.7);
     margin-top: 2px;
     font-family: 'DM Mono', monospace;
   }
+
   .session-body {
     padding: 24px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
   }
+
   .session-body.single-col {
     grid-template-columns: 1fr;
   }
+
   /* ── SECTION BLOCKS ──────────────────────────────────────  */
   .block {
     margin-bottom: 0;
   }
+
   .block-title {
     font-family: 'DM Mono', monospace;
     font-size: 9.5px;
@@ -334,16 +384,19 @@
     align-items: center;
     gap: 6px;
   }
+
   .block-title::after {
     content: '';
     flex: 1;
     height: 1px;
     background: var(--border);
   }
+
   /* ── READING LIST ────────────────────────────────────────  */
   .reading-list {
     list-style: none;
   }
+
   .reading-item {
     display: flex;
     gap: 10px;
@@ -353,7 +406,9 @@
     line-height: 1.45;
     align-items: flex-start;
   }
+
   .reading-item:last-child { border-bottom: none; }
+
   .reading-bullet {
     width: 5px; height: 5px;
     border-radius: 50%;
@@ -361,22 +416,27 @@
     margin-top: 7px;
     flex-shrink: 0;
   }
+
   .reading-item.optional .reading-bullet { background: var(--ink-soft); opacity: 0.4; }
   .reading-item.optional { opacity: 0.7; font-style: italic; }
+
   .reading-author {
     font-weight: 600;
     color: var(--ink-mid);
   }
+
   .reading-year {
     font-family: 'DM Mono', monospace;
     font-size: 11px;
     color: var(--ink-soft);
     white-space: nowrap;
   }
+
   /* ── DISCUSSION PROMPTS ──────────────────────────────────  */
   .prompt-list {
     list-style: none;
   }
+
   .prompt-item {
     display: flex;
     gap: 10px;
@@ -386,7 +446,9 @@
     line-height: 1.5;
     align-items: flex-start;
   }
+
   .prompt-item:last-child { border-bottom: none; }
+
   .prompt-num {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
@@ -401,7 +463,9 @@
     flex-shrink: 0;
     margin-top: 1px;
   }
+
   .thu-num { background: var(--thu-mid); }
+
   .prompt-label {
     font-size: 10px;
     font-family: 'DM Mono', monospace;
@@ -410,6 +474,7 @@
     color: var(--ink-soft);
     margin-bottom: 2px;
   }
+
   /* ── WORKSHOP ACTIVITIES ─────────────────────────────────  */
   .activity-block {
     background: var(--thu-light);
@@ -418,7 +483,9 @@
     padding: 14px 16px;
     margin-bottom: 10px;
   }
+
   .activity-block:last-child { margin-bottom: 0; }
+
   .activity-title {
     font-weight: 600;
     font-size: 13.5px;
@@ -428,6 +495,7 @@
     align-items: center;
     gap: 8px;
   }
+
   .activity-time {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
@@ -437,11 +505,13 @@
     border-radius: 10px;
     font-weight: 400;
   }
+
   .activity-desc {
     font-size: 13px;
     color: var(--ink-mid);
     line-height: 1.5;
   }
+
   /* ── REFLECTION PROMPT ───────────────────────────────────  */
   .reflection-box {
     background: var(--tue-light);
@@ -453,11 +523,13 @@
     color: var(--tue);
     line-height: 1.55;
   }
+
   .reflection-box.thu-reflect {
     background: var(--thu-light);
     border-left-color: var(--thu-mid);
     color: var(--thu);
   }
+
   /* ── ASSIGNMENT BOX ──────────────────────────────────────  */
   .assignment-box {
     background: var(--assign-light);
@@ -466,13 +538,16 @@
     padding: 16px 18px;
     margin: 0 24px 24px;
   }
+
   .assignment-header {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 8px;
   }
+
   .assignment-icon { font-size: 18px; }
+
   .assignment-label {
     font-family: 'DM Mono', monospace;
     font-size: 9px;
@@ -480,6 +555,7 @@
     letter-spacing: 0.12em;
     color: var(--assign-mid);
   }
+
   .assignment-name {
     font-family: 'Playfair Display', serif;
     font-size: 16px;
@@ -487,18 +563,21 @@
     color: var(--assign);
     line-height: 1.3;
   }
+
   .assignment-desc {
     font-size: 13px;
     color: var(--ink-mid);
     line-height: 1.5;
     margin-top: 6px;
   }
+
   /* ── PREVIEW SECTION ─────────────────────────────────────  */
   .preview-section {
     background: var(--cream);
     border-top: 1px dashed var(--border);
     padding: 18px 24px 20px;
   }
+
   .preview-label {
     font-family: 'DM Mono', monospace;
     font-size: 9.5px;
@@ -509,22 +588,27 @@
     gap: 8px;
     margin-bottom: 14px;
   }
+
   .preview-label.tue-preview { color: var(--tue-mid); }
   .preview-label.thu-preview { color: var(--thu-mid); }
+
   .preview-label::after {
     content: '';
     flex: 1;
     height: 1px;
     background: var(--border);
   }
+
   .preview-arrow {
     font-size: 14px;
   }
+
   .preview-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 14px;
   }
+
   .preview-col-label {
     font-family: 'DM Mono', monospace;
     font-size: 9px;
@@ -533,6 +617,7 @@
     color: var(--ink-soft);
     margin-bottom: 6px;
   }
+
   .preview-reading {
     font-size: 12.5px;
     color: var(--ink-mid);
@@ -540,11 +625,14 @@
     padding: 4px 0;
     border-bottom: 1px solid var(--border);
   }
+
   .preview-reading:last-child { border-bottom: none; }
+
   .preview-reading-author {
     font-weight: 600;
     color: var(--ink);
   }
+
   .preview-prompt {
     font-size: 12.5px;
     color: var(--ink-mid);
@@ -553,7 +641,9 @@
     padding: 4px 0;
     border-bottom: 1px solid var(--border);
   }
+
   .preview-prompt:last-child { border-bottom: none; }
+
   .preview-assign-note {
     margin-top: 10px;
     background: var(--assign-light);
@@ -566,12 +656,14 @@
     align-items: center;
     gap: 7px;
   }
+
   .preview-activity {
     font-size: 12.5px;
     color: var(--ink-mid);
     line-height: 1.45;
     padding: 4px 0;
   }
+
   /* ── STARTER QUOTE ───────────────────────────────────────  */
   .starter-quote {
     background: white;
@@ -583,6 +675,7 @@
     color: var(--ink-mid);
     line-height: 1.55;
   }
+
   .starter-quote::before {
     content: '"';
     font-family: 'Playfair Display', serif;
@@ -592,14 +685,17 @@
     vertical-align: -8px;
     margin-right: 4px;
   }
+
   /* ── COURSE OVERVIEW PAGE ────────────────────────────────  */
   .overview-page {
     padding: 48px 40px 60px;
     max-width: 960px;
   }
+
   .overview-hero {
     margin-bottom: 40px;
   }
+
   .overview-tag {
     font-family: 'DM Mono', monospace;
     font-size: 11px;
@@ -608,6 +704,7 @@
     color: var(--ink-soft);
     margin-bottom: 10px;
   }
+
   .overview-heading {
     font-family: 'Playfair Display', serif;
     font-size: 44px;
@@ -616,21 +713,25 @@
     color: var(--ink);
     margin-bottom: 12px;
   }
+
   .overview-heading em {
     font-style: italic;
     color: var(--tue);
   }
+
   .overview-byline {
     font-size: 16px;
     color: var(--ink-mid);
     margin-bottom: 24px;
   }
+
   .overview-info-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     margin-bottom: 40px;
   }
+
   .info-card {
     background: white;
     border: 1px solid var(--border);
@@ -638,6 +739,7 @@
     padding: 18px 20px;
     box-shadow: var(--shadow);
   }
+
   .info-card-label {
     font-family: 'DM Mono', monospace;
     font-size: 9px;
@@ -646,20 +748,24 @@
     color: var(--ink-soft);
     margin-bottom: 6px;
   }
+
   .info-card-value {
     font-size: 14px;
     color: var(--ink);
     font-weight: 600;
     line-height: 1.4;
   }
+
   .info-card-sub {
     font-size: 12px;
     color: var(--ink-soft);
     margin-top: 3px;
   }
+
   .overview-section {
     margin-bottom: 36px;
   }
+
   .overview-section-title {
     font-family: 'Playfair Display', serif;
     font-size: 22px;
@@ -669,18 +775,21 @@
     padding-bottom: 10px;
     border-bottom: 1.5px solid var(--border);
   }
+
   .overview-text {
     font-size: 14.5px;
     color: var(--ink-mid);
     line-height: 1.75;
     margin-bottom: 12px;
   }
+
   .goals-list {
     list-style: none;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px;
   }
+
   .goals-list li {
     display: flex;
     gap: 10px;
@@ -692,6 +801,7 @@
     border-radius: 6px;
     padding: 10px 14px;
   }
+
   .goals-list li::before {
     content: '→';
     color: var(--tue-mid);
@@ -699,11 +809,13 @@
     flex-shrink: 0;
     margin-top: 1px;
   }
+
   .assignments-overview {
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
+
   .assignment-overview-item {
     display: flex;
     gap: 16px;
@@ -714,6 +826,7 @@
     align-items: flex-start;
     box-shadow: var(--shadow);
   }
+
   .aoi-week {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
@@ -724,17 +837,20 @@
     white-space: nowrap;
     margin-top: 2px;
   }
+
   .aoi-title {
     font-weight: 600;
     font-size: 14px;
     color: var(--ink);
     margin-bottom: 3px;
   }
+
   .aoi-desc {
     font-size: 12.5px;
     color: var(--ink-soft);
     line-height: 1.45;
   }
+
   /* ── GRADING TABLE ───────────────────────────────────────  */
   .grade-table {
     width: 100%;
@@ -742,6 +858,7 @@
     font-size: 13.5px;
     margin-top: 12px;
   }
+
   .grade-table th {
     background: var(--ink);
     color: white;
@@ -753,6 +870,7 @@
     text-transform: uppercase;
     font-weight: 400;
   }
+
   .grade-table td {
     padding: 10px 14px;
     border-bottom: 1px solid var(--border);
@@ -760,14 +878,17 @@
     vertical-align: top;
     line-height: 1.5;
   }
+
   .grade-table tr:last-child td { border-bottom: none; }
   .grade-table tr:nth-child(even) td { background: var(--cream); }
+
   .grade-badge {
     font-family: 'DM Mono', monospace;
     font-size: 16px;
     font-weight: 500;
     color: var(--ink);
   }
+
   .sidebar-week.past-week .week-title-short { color: var(--sidebar-muted); }
   .sidebar-week.past-week .week-dates-short { color: #4A3A2E; }
   .sidebar-week.current-week {
@@ -787,6 +908,7 @@
     flex-shrink: 0;
     margin-top: 4px;
   }
+
   /* ── RESPONSIVE ──────────────────────────────────────────  */
   @media (max-width: 800px) {
     .sidebar { transform: translateX(-100%); }
@@ -799,6 +921,7 @@
 </style>
 </head>
 <body>
+
 <!-- ════════════════════════════════════════════════════════
      SIDEBAR
 ════════════════════════════════════════════════════════ -->
@@ -808,6 +931,7 @@
     <div class="sidebar-title">Theory & Research in Composition</div>
     <div class="sidebar-sub">Prof. Kirsti Cole · T/Th In-Person</div>
   </div>
+
   <div class="sidebar-section-label">Navigation</div>
   <a class="sidebar-week active" onclick="showOverview()" style="cursor:pointer">
     <div class="week-num">⌂</div>
@@ -830,9 +954,18 @@
       <div class="week-dates-short">Google Drive · All Assignments</div>
     </div>
   </a>
+  <a class="sidebar-week" href="writing_framework.html" target="_blank" rel="noopener noreferrer">
+    <div class="week-num" style="font-size:13px;">◆</div>
+    <div class="week-info">
+      <div class="week-title-short">Instructor's Framework</div>
+      <div class="week-dates-short">Activity · Pedagogy · Method</div>
+    </div>
+  </a>
+
   <div class="sidebar-section-label">Weekly Schedule</div>
   <div id="sidebar-weeks"></div>
 </aside>
+
 <!-- ════════════════════════════════════════════════════════
      MAIN
 ════════════════════════════════════════════════════════ -->
@@ -847,6 +980,7 @@
   </div>
   <div id="page-content"></div>
 </div>
+
 <script>
 // ═══════════════════════════════════════════════════════════
 // COURSE DATA
@@ -904,6 +1038,7 @@ const WEEKS = [
     },
     assignment: null,
   },
+
   {
     num: 2,
     title: "Current-Traditional to Process Pedagogy",
@@ -952,10 +1087,11 @@ const WEEKS = [
       topic: "Cognitivist & Expressivist Theories",
       readings: ["Perl, \"Understanding Composing\" (1980)", "Hartwell, \"Grammar, Grammars, and the Teaching of Grammar\" (1985)", "Flower & Hayes, \"A Cognitive Process Theory of Composing\" (1981)"],
       prompts: ["How do cognitive and expressivist approaches differently understand the 'individual' writer?", "What gets valorized in expressivist pedagogy? What gets obscured?"],
-      note: "📝 Literacy Narrative & Teaching Philosophy Draft due Sunday, September 6 (Week 3)",
+      note: "📝 Literacy Narrative & Teaching Philosophy Draft due this week (Week 3)",
     },
     assignment: null,
   },
+
   {
     num: 3,
     title: "Cognitivist & Expressivist Theories",
@@ -996,7 +1132,7 @@ const WEEKS = [
     preview_thu_for_tue: {
       readings: ["Rose, \"A Cognitive Analysis of Writer's Block\" (1980)", "Elbow, excerpt from Writing Without Teachers", "Warnock, Foundational Practices in OWI (Part 2.4)"],
       activities: ["Literacy Narrative share-out in small groups", "Cognitive models applied to OWI design", "Writer's block diagnosis scenarios"],
-      note: "📝 Literacy Narrative & Teaching Philosophy Draft DUE Sunday, September 6, midnight",
+      note: "📝 Literacy Narrative & Teaching Philosophy Draft DUE this Thursday",
     },
     preview_next_for_thu: {
       week: 4,
@@ -1007,10 +1143,11 @@ const WEEKS = [
     },
     assignment: {
       name: "Literacy Narrative & Teaching Philosophy Draft",
-      due: "Due Sunday, September 6, midnight",
+      due: "Due Thursday, September 3",
       desc: "Multimodal literacy narrative (1000–1500 words OR 5–7 min podcast/video) + initial teaching philosophy statement.",
     },
   },
+
   {
     num: 4,
     title: "Social Construction & the Social Turn",
@@ -1029,6 +1166,7 @@ const WEEKS = [
         { label: "Core Question", text: "What does it mean to say writing is 'socially constructed'? How does this challenge expressivist individualism?" },
         { label: "Power Analysis", text: "How do Berlin's ideology categories help us read contemporary writing pedagogy?" },
         { label: "Contact Zone Application", text: "How might Pratt's concept reshape our approach to student 'error'?" },
+        { label: "Register Analysis", text: "Berlin's 'Rhetoric and Ideology' makes claims at all three registers simultaneously — about writing as an activity, as a pedagogy, and as a site of ideological method. Where does arguing across all three registers strengthen his position? Where does it overreach?" },
       ],
       starter: "Trimbur argues composition took a 'social turn.' What would it mean to take a justice turn?",
       reflection: "Where do you locate yourself in relation to the idea that writing is socially constructed?",
@@ -1061,6 +1199,7 @@ const WEEKS = [
     },
     assignment: null,
   },
+
   {
     num: 5,
     title: "Critical Pedagogy & Language",
@@ -1107,10 +1246,11 @@ const WEEKS = [
       topic: "Genre Theory & Post-Process Writing",
       readings: ["Miller, \"Genre as Social Action\" (1984)", "McDonald, \"Genres: Shapes of Meaning\" (2008)", "Hyland, \"Genre-Based Pedagogies\" (2005)"],
       prompts: ["How does genre as 'social action' challenge process pedagogy's individualism?", "If genres are social actions, what actions are our assignments asking students to perform?"],
-      note: "📝 Lesson Plan & Microteaching Presentation due Sunday, September 27 (Week 6)",
+      note: "📝 Lesson Plan & Microteaching Presentation due this week (Week 6)",
     },
     assignment: null,
   },
+
   {
     num: 6,
     title: "Genre Theory & Post-Process Writing",
@@ -1149,21 +1289,22 @@ const WEEKS = [
     preview_thu_for_tue: {
       readings: ["Brooks, \"Reading, Writing, and Teaching Creative Hypertext: A Genre-Based Pedagogy\" (2022)"],
       activities: ["Microteaching presentations (15 min each)", "Genre-aware peer feedback", "Lesson design debrief"],
-      note: "📝 Lesson Plan & Microteaching Presentation DUE Sunday, September 27, midnight",
+      note: "📝 Lesson Plan & Microteaching Presentation DUE Thursday, September 24",
     },
     preview_next_for_thu: {
       week: 7,
       topic: "Writing Assessment & Labor-Based Pedagogy",
       readings: ["Sommers, \"Responding to Student Writing\" (1982)", "Inoue, \"Problematizing Grading and the White Habitus\" (2019)", "Smith, \"The Genre of the End Comment\" (1997)"],
       prompts: ["How do Sommers' 1982 insights connect to Inoue's 2019 critique?", "What does 'white habitus' mean in assessment contexts?"],
-      note: "📝 Feedback & Assessment Portfolio Part 1 due Sunday, October 4 (Week 7)",
+      note: "📝 Feedback & Assessment Portfolio Part 1 due this week (Week 7)",
     },
     assignment: {
       name: "Lesson Plan & Microteaching Presentation",
-      due: "Due Sunday, September 27, midnight",
+      due: "Due Thursday, September 24",
       desc: "15-minute lesson plan on a core ENG 101 writing skill + live in-class microteaching presentation.",
     },
   },
+
   {
     num: 7,
     title: "Writing Assessment & Labor-Based Pedagogy",
@@ -1182,6 +1323,7 @@ const WEEKS = [
         { label: "Core Question", text: "How do Sommers' 1982 insights about response connect to Inoue's 2019 critique of grading?" },
         { label: "Power Analysis", text: "What does 'white habitus' mean in assessment contexts? How does it operate invisibly?" },
         { label: "Practical Revolution", text: "How do labor-based grading approaches challenge traditional academic hierarchy?" },
+        { label: "Method Register", text: "Smith reads the end comment as a genre — a form of writing with its own conventions. Inoue argues that labor is more meaningful evidence of development than textual evaluation. Both are claims in the method register: about what counts as data on student writing. What does that reframe about what assessment actually does?" },
       ],
       starter: "Smith analyzes 'the genre of the end comment.' What genre conventions are we teaching through our feedback?",
       reflection: "What makes feedback 'equitable'? How do we know what's working?",
@@ -1203,7 +1345,7 @@ const WEEKS = [
     preview_thu_for_tue: {
       readings: ["Inman & Powell, \"In the Absence of Grades\" (2018)", "Grigoryan, \"Feedback 2.0\" (2017)"],
       activities: ["Feedback approaches lab (summative/formative/labor-based)", "Course contract design activity", "Digital feedback strategies exploration"],
-      note: "📝 Feedback & Assessment Portfolio Part 1 DUE Sunday, October 4, midnight",
+      note: "📝 Feedback & Assessment Portfolio Part 1 DUE Thursday, October 1",
     },
     preview_next_for_thu: {
       week: 8,
@@ -1214,10 +1356,11 @@ const WEEKS = [
     },
     assignment: {
       name: "Feedback & Assessment Portfolio — Part 1",
-      due: "Due Sunday, October 4, midnight",
+      due: "Due Thursday, October 1",
       desc: "Explore feedback approaches; provide constructive feedback on sample ENG 101 student papers. Annotated samples + written reflection (1000–1500 words).",
     },
   },
+
   {
     num: 8,
     title: "Linguistic Justice",
@@ -1263,11 +1406,12 @@ const WEEKS = [
       week: 9,
       topic: "Fall Break — No Class",
       readings: [],
-      prompts: ["Use this time to rest and finalize your Writing Assignment Design (due Sunday, October 25)."],
-      note: "📝 Writing Assignment Design with OWI Best Practices due Sunday, October 25 (Week 10)",
+      prompts: ["Use this time to rest and finalize your Writing Assignment Design (due Week 10)."],
+      note: "📝 Writing Assignment Design with OWI Best Practices due Week 10",
     },
     assignment: null,
   },
+
   {
     num: 9,
     title: "Fall Break",
@@ -1275,10 +1419,11 @@ const WEEKS = [
     startDate: "2026-10-13", endDate: "2026-10-16",
     focus: "No Class — Rest & Reflection",
     isBreak: true,
-    breakMessage: "No class this week. Take time to rest, reflect on the first half of the semester, and finalize your Writing Assignment Design due Sunday, October 25 at midnight.",
+    breakMessage: "No class this week. Take time to rest, reflect on the first half of the semester, and finalize your Writing Assignment Design due Week 10.",
     breakIcon: "🍂",
     assignment: null,
   },
+
   {
     num: 10,
     title: "Feminist & Queer Rhetorics in Composition",
@@ -1318,7 +1463,7 @@ const WEEKS = [
     preview_thu_for_tue: {
       readings: ["Winans, \"Queer Pedagogy\" (2006)", "Alexander & Wallace, \"The Queer Turn in Composition\" (2009)"],
       activities: ["Writing Assignment Design peer feedback workshop", "Inclusion audit activity", "Embodied pedagogy discussion"],
-      note: "📝 Writing Assignment Design with OWI Best Practices DUE Sunday, October 25, midnight",
+      note: "📝 Writing Assignment Design with OWI Best Practices DUE Thursday, October 22",
     },
     preview_next_for_thu: {
       week: 11,
@@ -1329,10 +1474,11 @@ const WEEKS = [
     },
     assignment: {
       name: "Writing Assignment Design with OWI Best Practices",
-      due: "Due Sunday, October 25, midnight",
+      due: "Due Thursday, October 22",
       desc: "Writing assignment prompt aligned with OWI best practices (1–2 pages) + pedagogical rationale (750–1000 words).",
     },
   },
+
   {
     num: 11,
     title: "Writing Across Contexts & Genre Transfer",
@@ -1350,6 +1496,7 @@ const WEEKS = [
         { label: "Core Question", text: "How do Wardle's 'mutt genres' and Reiff & Bawarshi's 'discursive resources' reframe transfer?" },
         { label: "Pedagogical Implications", text: "What does transfer-conscious pedagogy look like in practice?" },
         { label: "Genre Flexibility", text: "How do we prepare students for genres we can't predict?" },
+        { label: "Method Register", text: "Transfer research is fundamentally a question in the method register: what counts as evidence that writing knowledge has actually moved across contexts? What research methods does each transfer theory presuppose — and what kinds of evidence does each make invisible?" },
       ],
       starter: "Wardle argues FYC should focus on 'mutt genres.' What would this mean for traditional academic writing instruction?",
       reflection: "How can you build curriculum that fosters writing transfer beyond your course?",
@@ -1381,6 +1528,7 @@ const WEEKS = [
     },
     assignment: null,
   },
+
   {
     num: 12,
     title: "Neurodiversity & Universal Design",
@@ -1426,10 +1574,11 @@ const WEEKS = [
       topic: "Multimodal Pedagogy & Digital Writing",
       readings: ["Hocks, \"Understanding Visual Rhetoric\" (2003)", "Shipka, \"A Multimodal Task-Based Framework\" (2005)"],
       prompts: ["How do Hocks, Shipka, Palmeri, and Banks differently understand 'multimodality'?", "How does Banks' queer/trans digital rhetoric expand multimodal possibilities?"],
-      note: "📝 Feedback & Assessment Portfolio Part 2 due Sunday, November 15 (Week 13)",
+      note: "📝 Feedback & Assessment Portfolio Part 2 due this week (Week 13)",
     },
     assignment: null,
   },
+
   {
     num: 13,
     title: "Multimodal Pedagogy & Digital Writing",
@@ -1468,7 +1617,7 @@ const WEEKS = [
     preview_thu_for_tue: {
       readings: ["Palmeri, \"Multimodality Before and Beyond the Computer\" (2018)", "Banks, \"Beyond Modality\" (2018)"],
       activities: ["Digital composing tool demo & exploration", "Equitable rubric design for multimodal work", "Traditional assignment → multimodal redesign lab"],
-      note: "📝 Feedback & Assessment Portfolio Part 2 DUE Sunday, November 15, midnight",
+      note: "📝 Feedback & Assessment Portfolio Part 2 DUE Thursday, November 12",
     },
     preview_next_for_thu: {
       week: 14,
@@ -1479,10 +1628,11 @@ const WEEKS = [
     },
     assignment: {
       name: "Feedback & Assessment Portfolio — Part 2",
-      due: "Due Sunday, November 15, midnight",
+      due: "Due Thursday, November 12",
       desc: "Reflect on assessment challenges; revise a grading rubric using anti-racist and inclusive strategies. Revised rubric + written reflection (1000–1500 words).",
     },
   },
+
   {
     num: 14,
     title: "AI & the Future of Composition",
@@ -1500,6 +1650,7 @@ const WEEKS = [
         { label: "Core Question", text: "How do the MLA-CCCC working papers position AI in relation to composition theory and practice?" },
         { label: "Resistance Analysis", text: "What does it mean to 'refuse' GenAI? When might refusal be pedagogically necessary?" },
         { label: "Theoretical Continuity", text: "How do current AI debates connect to historical composition controversies?" },
+        { label: "Semester Synthesis", text: "Run the AI question through all three registers: What does AI mean for writing as an activity? What does it demand of pedagogy? And what does it do to the methods by which we produce knowledge about writing? Which register is the field's current response operating in — and what is it leaving out?" },
       ],
       starter: "The working papers emphasize 'human rhetorical agency.' How do we define and cultivate this in an AI-saturated environment?",
       reflection: "What should the role of AI be in the writing classroom — and who decides?",
@@ -1527,11 +1678,12 @@ const WEEKS = [
       week: 15,
       topic: "Thanksgiving Break — No Class",
       readings: [],
-      prompts: ["Use this time to finalize your Digital Portfolio and Pedagogy Statement, due Sunday, December 6 at midnight."],
-      note: "📝 Final Project (Digital Portfolio & Pedagogy Statement) due Sunday, December 6",
+      prompts: ["Use this time to finalize your Digital Portfolio and Pedagogy Statement, due December 1."],
+      note: "📝 Final Project (Digital Portfolio & Pedagogy Statement) due December 1",
     },
     assignment: null,
   },
+
   {
     num: 15,
     title: "No Class — Thanksgiving Break",
@@ -1539,10 +1691,11 @@ const WEEKS = [
     startDate: "2026-11-24", endDate: "2026-11-27",
     focus: "Rest & Final Project Preparation",
     isBreak: true,
-    breakMessage: "No class this week. Use this time to finalize your Digital Portfolio and Pedagogy Statement, due Sunday, December 6 at midnight. Prepare your 10–15 minute final presentation.",
+    breakMessage: "No class this week. Use this time to finalize your Digital Portfolio and Pedagogy Statement, due December 1. Prepare your 10–15 minute final presentation.",
     breakIcon: "🦃",
     assignment: null,
   },
+
   {
     num: 16,
     title: "Final Presentations",
@@ -1567,11 +1720,12 @@ const WEEKS = [
     preview_next_for_thu: null,
     assignment: {
       name: "Composition Pedagogy Statement & Digital Portfolio",
-      due: "Due Sunday, December 6, midnight",
-      desc: "Revised teaching philosophy, sample lesson plan, writing assignment & rubric, feedback & assessment reflection, annotated bibliography. Website or PDF format. Presentations in class December 1.",
+      due: "Due December 1",
+      desc: "Revised teaching philosophy, sample lesson plan, writing assignment & rubric, feedback & assessment reflection, annotated bibliography. Website or PDF format.",
     },
   },
 ];
+
 // ═══════════════════════════════════════════════════════════
 // BUILD SIDEBAR
 // ═══════════════════════════════════════════════════════════
@@ -1579,11 +1733,14 @@ function buildSidebar() {
   const container = document.getElementById('sidebar-weeks');
   const today = new Date();
   today.setHours(0,0,0,0);
+
   WEEKS.forEach(w => {
     const hasAssign = !!w.assignment;
     const el = document.createElement('div');
+
     let weekClass = 'sidebar-week' + (w.isBreak ? ' break-week' : '');
     let badge = '';
+
     if (w.startDate && w.endDate) {
       const start = new Date(w.startDate);
       const end = new Date(w.endDate);
@@ -1594,6 +1751,7 @@ function buildSidebar() {
         weekClass += ' past-week';
       }
     }
+
     el.className = weekClass;
     el.setAttribute('data-week', w.num);
     el.onclick = () => showWeek(w.num);
@@ -1608,6 +1766,7 @@ function buildSidebar() {
     container.appendChild(el);
   });
 }
+
 // ═══════════════════════════════════════════════════════════
 // READING ITEM HTML
 // ═══════════════════════════════════════════════════════════
@@ -1620,6 +1779,7 @@ function readingHTML(r, type='normal') {
     </div>
   </li>`;
 }
+
 // ═══════════════════════════════════════════════════════════
 // OVERVIEW PAGE
 // ═══════════════════════════════════════════════════════════
@@ -1641,6 +1801,7 @@ function showOverview() {
           <a href="https://moodle-courses2527.wolfware.ncsu.edu/course/view.php?id=12455" target="_blank" rel="noopener" class="meta-pill" style="text-decoration:none;color:inherit">🐺 Moodle</a>
         </div>
       </div>
+
       <div class="overview-info-grid">
         <div class="info-card">
           <div class="info-card-label">Tuesday Sessions</div>
@@ -1687,12 +1848,19 @@ function showOverview() {
           <div class="info-card-value"><a href="https://drive.google.com/drive/folders/1Af_8kSOBO76dcMt5xwsrRhedgqT18T6Q?usp=sharing" target="_blank" style="color:var(--tue-mid);font-weight:600;">Papers Folder →</a></div>
           <div class="info-card-sub">Used for Feedback Portfolio (Week 7 & 13)</div>
         </div>
+        <div class="info-card" style="border-color:var(--tue-mid);background:var(--tue-light);">
+          <div class="info-card-label" style="color:var(--tue-mid);">Instructor's Framework</div>
+          <div class="info-card-value"><a href="writing_framework.html" target="_blank" style="color:var(--tue);font-weight:600;">Writing as Activity, Pedagogy &amp; Method →</a></div>
+          <div class="info-card-sub">The theoretical lens underlying this course's structure</div>
+        </div>
       </div>
+
       <div class="overview-section">
         <h2 class="overview-section-title">Course Overview</h2>
         <p class="overview-text">Theory and Research in Composition introduces landmark works and various (sometimes competing) theories of composition that shape scholarly and pedagogical practices in rhetoric, composition, and writing studies (RCWS). We'll examine the historical, cultural, and political contexts in which particular practices and theories have emerged and been valued — and ask what those contexts reveal about what we take for granted.</p>
         <p class="overview-text">We will explore how theoretical assumptions lead scholars and teachers to adopt particular practices, reject others, and appear to be blind to still others. The course is themed around major contemporary pedagogical theories: increasing genre awareness and multimodality, exploring language variation and multiliteracies, developing information literacy, reflecting on writing processes and labor, and collaborating to create and revise texts.</p>
       </div>
+
       <div class="overview-section">
         <h2 class="overview-section-title">Course Goals</h2>
         <ul class="goals-list">
@@ -1706,6 +1874,7 @@ function showOverview() {
           <li>Develop equity-centered assessment and feedback practices</li>
         </ul>
       </div>
+
       <div class="overview-section">
         <h2 class="overview-section-title" style="display:flex;align-items:center;justify-content:space-between;">
           Assignments at a Glance
@@ -1723,46 +1892,47 @@ function showOverview() {
             <div class="aoi-week">Week 3</div>
             <div>
               <div class="aoi-title">Literacy Narrative & Teaching Philosophy Draft</div>
-              <div class="aoi-desc">Due Sunday, September 6, midnight. Multimodal literacy narrative (1000–1500 words or 5–7 min podcast/video) + initial teaching philosophy statement. Explores your writing history, key influences, and developing beliefs about writing instruction.</div>
+              <div class="aoi-desc">Multimodal literacy narrative (1000–1500 words or 5–7 min podcast/video) + initial teaching philosophy statement. Explores your writing history, key influences, and developing beliefs about writing instruction.</div>
             </div>
           </div>
           <div class="assignment-overview-item">
             <div class="aoi-week">Week 6</div>
             <div>
               <div class="aoi-title">Lesson Plan & Microteaching Presentation</div>
-              <div class="aoi-desc">Due Sunday, September 27, midnight. 15-minute lesson plan on a core ENG 101 writing skill + live in-class presentation. Includes lesson plan document with objectives, activities, and assessment strategies.</div>
+              <div class="aoi-desc">15-minute lesson plan on a core ENG 101 writing skill + live in-class presentation. Includes lesson plan document with objectives, activities, and assessment strategies.</div>
             </div>
           </div>
           <div class="assignment-overview-item">
             <div class="aoi-week">Week 7</div>
             <div>
               <div class="aoi-title">Feedback & Assessment Portfolio — Part 1</div>
-              <div class="aoi-desc">Due Sunday, October 4, midnight. Explore different feedback approaches (summative, formative, audio/video, labor-based). Provide feedback on sample ENG 101 student papers. Annotated samples + reflection (1000–1500 words).</div>
+              <div class="aoi-desc">Explore different feedback approaches (summative, formative, audio/video, labor-based). Provide feedback on sample ENG 101 student papers. Annotated samples + reflection (1000–1500 words).</div>
             </div>
           </div>
           <div class="assignment-overview-item">
             <div class="aoi-week">Week 10</div>
             <div>
               <div class="aoi-title">Writing Assignment Design with OWI Best Practices</div>
-              <div class="aoi-desc">Due Sunday, October 25, midnight. Writing assignment prompt aligned with OWI best practices (1–2 pages) + rationale explaining alignment with composition pedagogy and OWI principles (750–1000 words).</div>
+              <div class="aoi-desc">Writing assignment prompt aligned with OWI best practices (1–2 pages) + rationale explaining alignment with composition pedagogy and OWI principles (750–1000 words).</div>
             </div>
           </div>
           <div class="assignment-overview-item">
             <div class="aoi-week">Week 13</div>
             <div>
               <div class="aoi-title">Feedback & Assessment Portfolio — Part 2</div>
-              <div class="aoi-desc">Due Sunday, November 15, midnight. Reflect on assessment challenges; revise a grading rubric using anti-racist and inclusive strategies. Revised rubric + written reflection with research-based justification (1000–1500 words).</div>
+              <div class="aoi-desc">Reflect on assessment challenges; revise a grading rubric using anti-racist and inclusive strategies. Revised rubric + written reflection with research-based justification (1000–1500 words).</div>
             </div>
           </div>
           <div class="assignment-overview-item">
             <div class="aoi-week">Week 16</div>
             <div>
               <div class="aoi-title">Composition Pedagogy Statement & Digital Portfolio</div>
-              <div class="aoi-desc">Due Sunday, December 6, midnight. Synthesizes the semester: revised teaching philosophy, lesson plan, writing assignment & rubric, feedback reflection, annotated bibliography. Website (Google Sites, WordPress) or PDF. 10–15 min presentation in class December 1.</div>
+              <div class="aoi-desc">Synthesizes the semester: revised teaching philosophy, lesson plan, writing assignment & rubric, feedback reflection, annotated bibliography. Website (Google Sites, WordPress) or PDF. 10–15 min presentation.</div>
             </div>
           </div>
         </div>
       </div>
+
       <div class="overview-section">
         <h2 class="overview-section-title">Labor-Based Grading</h2>
         <p class="overview-text">Grading in this course prioritizes learning over letter grades. Your final grade is based on your engagement, effort, and labor — not traditional evaluation of individual pieces. You will receive feedback from me and your peers throughout the semester.</p>
@@ -1790,6 +1960,7 @@ function showOverview() {
           </tbody>
         </table>
       </div>
+
       <div class="overview-section">
         <h2 class="overview-section-title">Perusall Annotation Guide</h2>
         <p class="overview-text">Annotations are due before each class session — Tuesday readings before Tuesday, Thursday readings before Thursday. In weeks with major assignments due, select one reading for focused annotation and integrate references to additional readings into your assignment.</p>
@@ -1798,6 +1969,7 @@ function showOverview() {
     </div>
   `;
 }
+
 // ═══════════════════════════════════════════════════════════
 // WEEK PAGE
 // ═══════════════════════════════════════════════════════════
@@ -1806,6 +1978,7 @@ function showWeek(num) {
   if (!w) return;
   setActive(num);
   document.getElementById('breadcrumb').textContent = `Week ${w.num} · ${w.title}`;
+
   if (w.isBreak) {
     document.getElementById('page-content').innerHTML = `
       <div class="week-content">
@@ -1818,19 +1991,22 @@ function showWeek(num) {
           <div class="break-icon">${w.breakIcon}</div>
           <h3 class="break-heading">${w.title}</h3>
           <p class="break-text">${w.breakMessage}</p>
-          ${w.num === 9 ? `<div class="preview-assign-note" style="margin-top:24px">📝 Writing Assignment Design with OWI Best Practices due Sunday, October 25 (Week 10)</div>` : ''}
-          ${w.num === 15 ? `<div class="preview-assign-note" style="margin-top:24px">📝 Final Portfolio & Pedagogy Statement due Sunday, December 6 (Week 16)</div>` : ''}
+          ${w.num === 9 ? `<div class="preview-assign-note" style="margin-top:24px">📝 Writing Assignment Design with OWI Best Practices due Week 10 (October 22)</div>` : ''}
+          ${w.num === 15 ? `<div class="preview-assign-note" style="margin-top:24px">📝 Final Portfolio & Pedagogy Statement due December 1 (Week 16)</div>` : ''}
         </div>
       </div>
     `;
     return;
   }
+
   const tue = w.tuesday;
   const thu = w.thursday;
+
   // Build Tuesday card
   let tueReadingsHTML = tue.readings && tue.readings.length
     ? `<ul class="reading-list">${tue.readings.map(r => readingHTML(r)).join('')}</ul>`
     : `<p style="font-size:13px;color:var(--ink-soft);font-style:italic;">No assigned readings — Presentation Day</p>`;
+
   let tuePromptsHTML = `<ul class="prompt-list">${tue.prompts.map((p, i) => `
     <li class="prompt-item">
       <div class="prompt-num">${i+1}</div>
@@ -1839,16 +2015,19 @@ function showWeek(num) {
         <div>${p.text}</div>
       </div>
     </li>`).join('')}</ul>`;
+
   let tueStarterHTML = tue.starter ? `
     <div class="block" style="grid-column:1/-1">
       <div class="block-title">Discussion Starter</div>
       <div class="starter-quote">${tue.starter}</div>
     </div>` : '';
+
   let tueReflectionHTML = `
     <div class="block" style="grid-column:1/-1">
       <div class="block-title">Weekly Reflection Prompt</div>
       <div class="reflection-box">${tue.reflection}</div>
     </div>`;
+
   // Preview of Thursday (shown at end of Tuesday)
   let tuePrevHTML = '';
   if (w.preview_thu_for_tue) {
@@ -1869,12 +2048,14 @@ function showWeek(num) {
         ${p.note ? `<div class="preview-assign-note">📝 ${p.note.replace('📝 ','')}</div>` : ''}
       </div>`;
   }
+
   // Build Thursday card
   let thuHTML = '';
   if (thu) {
     let thuReadingsHTML = thu.readings && thu.readings.length
       ? `<ul class="reading-list">${thu.readings.map(r => readingHTML(r)).join('')}</ul>`
       : '';
+
     let thuActivitiesHTML = thu.activities && thu.activities.length
       ? thu.activities.map(a => `
         <div class="activity-block">
@@ -1882,11 +2063,13 @@ function showWeek(num) {
           <div class="activity-desc">${a.desc}</div>
         </div>`).join('')
       : '';
+
     let thuReflectionHTML = `
       <div class="block" style="grid-column:1/-1">
         <div class="block-title">Exit Reflection</div>
         <div class="reflection-box thu-reflect">${thu.reflection}</div>
       </div>`;
+
     // Preview of next Tuesday (shown at end of Thursday)
     let thuPrevHTML = '';
     if (w.preview_next_for_thu) {
@@ -1908,6 +2091,7 @@ function showWeek(num) {
           ${p.note ? `<div class="preview-assign-note">${p.note}</div>` : ''}
         </div>`;
     }
+
     thuHTML = `
       <div class="session-card">
         <div class="session-header thu-header">
@@ -1917,13 +2101,8 @@ function showWeek(num) {
           <div class="session-header-info">
             <div class="session-header-title">${thu.type}</div>
             <div class="session-header-date">${thu.date} · 11:45 AM – 1:00 PM</div>
-                  </div>
+          </div>
         </div>
-        ${w.num === 2 ? `
-        <div style="background:var(--thu-light);border-bottom:1px solid #E8C4A8;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;">
-          <span style="font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--thu-mid);">Session Guide</span>
-          <a href="aug27_workshop.html" target="_blank" rel="noopener noreferrer" style="font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:var(--thu);text-decoration:none;background:white;border:1px solid #E8C4A8;border-radius:16px;padding:5px 14px;">Open Today's Workshop Page →</a>
-        </div>` : ''}
         <div class="session-body">
           ${thu.readings && thu.readings.length ? `
           <div class="block">
@@ -1939,6 +2118,7 @@ function showWeek(num) {
         ${thuPrevHTML}
       </div>`;
   }
+
   // Final assignment block
   let assignHTML = '';
   if (w.assignment) {
@@ -1954,6 +2134,7 @@ function showWeek(num) {
         <div class="assignment-desc">${w.assignment.due} — ${w.assignment.desc}</div>
       </div>`;
   }
+
   // Special case: Week 16 (only Tuesday, presentation day)
   let sessionLayout = `
     <div class="session-body">
@@ -1969,6 +2150,7 @@ function showWeek(num) {
       ${tueReflectionHTML}
     </div>
     ${tuePrevHTML}`;
+
   document.getElementById('page-content').innerHTML = `
     <div class="week-content">
       <div class="week-hero">
@@ -1980,7 +2162,9 @@ function showWeek(num) {
           <div class="meta-pill">📅 ${w.dates}</div>
         </div>
       </div>
+
       ${w.assignment ? assignHTML : ''}
+
       <div class="session-card">
         <div class="session-header tue-header">
           <div>
@@ -1993,10 +2177,12 @@ function showWeek(num) {
         </div>
         ${sessionLayout}
       </div>
+
       ${thuHTML}
     </div>
   `;
 }
+
 // ═══════════════════════════════════════════════════════════
 // ACTIVE STATE
 // ═══════════════════════════════════════════════════════════
@@ -2009,10 +2195,12 @@ function setActive(num) {
     if (el) el.classList.add('active');
   }
 }
+
 // ═══════════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════════
 buildSidebar();
+
 // Auto-navigate to current week if semester is active
 const today = new Date();
 today.setHours(0,0,0,0);
