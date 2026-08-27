@@ -1404,34 +1404,22 @@ const WEEKS = [
     },
     preview_next_for_thu: {
       week: 9,
-      topic: "Fall Break — No Class",
-      readings: [],
-      prompts: ["Use this time to rest and finalize your Writing Assignment Design (due Week 10)."],
-      note: "📝 Writing Assignment Design with OWI Best Practices due Week 10",
+      topic: "Feminist & Queer Rhetorics in Composition",
+      readings: ["Flynn, \"Composing as a Woman\" (1988)", "Richie & Boardman, \"Feminism in Composition\" (1999)", "Stenberg, \"Feminist Repurposing\" (2015)"],
+      prompts: ["How do Flynn, Richie & Boardman, and Stenberg differently understand 'feminist pedagogy'?", "How do feminist approaches account for race, class, sexuality, and other identities?"],
+      note: "📝 Writing Assignment Design with OWI Best Practices due Week 9 (October 15)",
     },
     assignment: null,
   },
 
   {
     num: 9,
-    title: "Fall Break",
+    title: "Feminist & Queer Rhetorics in Composition",
     dates: "Oct 13 & 15",
     startDate: "2026-10-13", endDate: "2026-10-16",
-    focus: "No Class — Rest & Reflection",
-    isBreak: true,
-    breakMessage: "No class this week. Take time to rest, reflect on the first half of the semester, and finalize your Writing Assignment Design due Week 10.",
-    breakIcon: "🍂",
-    assignment: null,
-  },
-
-  {
-    num: 10,
-    title: "Feminist & Queer Rhetorics in Composition",
-    dates: "Oct 20 & 22",
-    startDate: "2026-10-20", endDate: "2026-10-23",
     focus: "Intersectional Pedagogies",
     tuesday: {
-      date: "Tuesday, October 20",
+      date: "Tuesday, October 13",
       type: "Student-Led Seminar",
       readings: [
         { author: "Flynn", title: "\"Composing as a Woman\"", year: "1988" },
@@ -1447,7 +1435,7 @@ const WEEKS = [
       reflection: "What values or practices from feminist or queer rhetorics inform your pedagogical vision?",
     },
     thursday: {
-      date: "Thursday, October 22",
+      date: "Thursday, October 15",
       type: "Assignment Design Peer Workshop",
       readings: [
         { author: "Winans", title: "\"Queer Pedagogy\"", year: "2006" },
@@ -1463,20 +1451,32 @@ const WEEKS = [
     preview_thu_for_tue: {
       readings: ["Winans, \"Queer Pedagogy\" (2006)", "Alexander & Wallace, \"The Queer Turn in Composition\" (2009)"],
       activities: ["Writing Assignment Design peer feedback workshop", "Inclusion audit activity", "Embodied pedagogy discussion"],
-      note: "📝 Writing Assignment Design with OWI Best Practices DUE Thursday, October 22",
+      note: "📝 Writing Assignment Design with OWI Best Practices DUE Thursday, October 15",
     },
     preview_next_for_thu: {
-      week: 11,
-      topic: "Writing Across Contexts & Genre Transfer",
-      readings: ["Wardle, \"Mutt Genres and the Goal of FYC\" (2009)", "Reiff & Bawarshi, \"Tracing Discursive Resources\" (2011)"],
-      prompts: ["How do Wardle's 'mutt genres' reframe transfer?", "What does transfer-conscious pedagogy look like in practice?"],
+      week: 10,
+      topic: "Fall Break — No Class",
+      readings: [],
+      prompts: ["No class Week 10. Rest and recharge before Week 11: Writing Across Contexts & Genre Transfer."],
       note: null,
     },
     assignment: {
       name: "Writing Assignment Design with OWI Best Practices",
-      due: "Due Thursday, October 22",
+      due: "Due Thursday, October 15",
       desc: "Writing assignment prompt aligned with OWI best practices (1–2 pages) + pedagogical rationale (750–1000 words).",
     },
+  },
+
+  {
+    num: 10,
+    title: "Fall Break",
+    dates: "Oct 20 & 22",
+    startDate: "2026-10-20", endDate: "2026-10-23",
+    focus: "No Class — Rest & Reflection",
+    isBreak: true,
+    breakMessage: "No class this week. Rest and recharge — Week 11 resumes with Writing Across Contexts & Genre Transfer.",
+    breakIcon: "🍂",
+    assignment: null,
   },
 
   {
@@ -1910,7 +1910,7 @@ function showOverview() {
             </div>
           </div>
           <div class="assignment-overview-item">
-            <div class="aoi-week">Week 10</div>
+            <div class="aoi-week">Week 9</div>
             <div>
               <div class="aoi-title">Writing Assignment Design with OWI Best Practices</div>
               <div class="aoi-desc">Writing assignment prompt aligned with OWI best practices (1–2 pages) + rationale explaining alignment with composition pedagogy and OWI principles (750–1000 words).</div>
@@ -1996,7 +1996,6 @@ function showWeek(num) {
           <div class="break-icon">${w.breakIcon}</div>
           <h3 class="break-heading">${w.title}</h3>
           <p class="break-text">${w.breakMessage}</p>
-          ${w.num === 9 ? `<div class="preview-assign-note" style="margin-top:24px">📝 Writing Assignment Design with OWI Best Practices due Week 10 (October 22)</div>` : ''}
           ${w.num === 15 ? `<div class="preview-assign-note" style="margin-top:24px">📝 Final Portfolio & Pedagogy Statement due December 1 (Week 16)</div>` : ''}
         </div>
       </div>
