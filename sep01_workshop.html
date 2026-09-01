@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENG 511 — Sep 1: Jigsaw Seminar</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F4F1;
+    --surface: #FFFFFF;
+    --text-1: #1A1918;
+    --text-2: #4A4540;
+    --text-3: #7A726B;
+    --border: #DEDAD4;
+    --tue: #3D2B6E;
+    --tue-light: #F0EDF8;
+    --tue-mid: #7B5EA7;
+    --time-bg: #EDEAF8;
+    --time-color: #5E4F9A;
+    --perl: #1D4E3A;
+    --perl-light: #EAF4EE;
+    --hartwell: #2A4485;
+    --hartwell-light: #EEF1F9;
+    --fh: #6B2B2B;
+    --fh-light: #FBF0F0;
+    --shadow: 0 1px 8px rgba(0,0,0,0.07);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text-1);
+    line-height: 1.65;
+    font-size: 15px;
+    min-height: 100vh;
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    background: var(--tue);
+    color: white;
+    padding: 32px 48px 28px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .course-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 6px;
+  }
+
+  .page-title {
+    font-family: 'Spectral', serif;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    font-style: italic;
+  }
+
+  .time-display { text-align: right; }
+
+  .time-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 4px;
+  }
+
+  .time-clock {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 500;
+    color: white;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── TIMELINE STRIP ── */
+  .timeline-strip {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    overflow-x: auto;
+  }
+
+  .tl-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 14px 18px 12px;
+    border-right: 1px solid var(--border);
+    min-width: 110px;
+    position: relative;
+    transition: background 0.2s;
+  }
+
+  .tl-item:first-child { border-left: 1px solid var(--border); }
+
+  .tl-item.active { background: var(--time-bg); }
+
+  .tl-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 2px;
+    background: var(--time-color);
+  }
+
+  .tl-time {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--time-color);
+    margin-bottom: 3px;
+  }
+
+  .tl-label {
+    font-size: 11px;
+    color: var(--text-2);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .tl-dur {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: var(--text-3);
+    margin-top: 3px;
+  }
+
+  /* ── CONTENT ── */
+  .content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 36px 48px 60px;
+  }
+
+  .section {
+    margin-bottom: 36px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-time-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    background: var(--time-bg);
+    color: var(--time-color);
+    padding: 3px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+  }
+
+  .section-title {
+    font-family: 'Spectral', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-1);
+    flex: 1;
+  }
+
+  .section-duration {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-3);
+  }
+
+  .section.active .section-header { border-bottom-color: var(--time-color); }
+  .section.active .section-time-badge { background: var(--time-color); color: white; }
+  .section.active .section-title { color: var(--time-color); }
+
+  /* ── INTRO TEXT ── */
+  .intro {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  /* ── EXPERT GROUP CARDS ── */
+  .expert-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 4px;
+  }
+
+  .expert-card {
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .expert-card-header {
+    padding: 12px 16px;
+    font-family: 'Spectral', serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .expert-card-header .author {
+    font-size: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.75;
+    margin-bottom: 4px;
+  }
+
+  .perl .expert-card-header { background: var(--perl-light); color: var(--perl); }
+  .hartwell .expert-card-header { background: var(--hartwell-light); color: var(--hartwell); }
+  .fh .expert-card-header { background: var(--fh-light); color: var(--fh); }
+
+  .expert-card-body {
+    background: var(--surface);
+    padding: 14px 16px;
+  }
+
+  .question-list { list-style: none; }
+
+  .question-item {
+    display: flex;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #F2EFE9;
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.5;
+    align-items: flex-start;
+  }
+
+  .question-item:last-child { border-bottom: none; }
+
+  .q-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: white;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .perl .q-num { background: var(--perl); }
+  .hartwell .q-num { background: var(--hartwell); }
+  .fh .q-num { background: var(--fh); }
+
+  .phase-goal {
+    margin-top: 12px;
+    padding: 9px 12px;
+    background: var(--bg);
+    border-radius: 5px;
+    font-size: 12px;
+    color: var(--text-3);
+    line-height: 1.5;
+  }
+
+  .phase-goal strong { color: var(--text-2); font-weight: 500; }
+
+  /* ── MIXED GROUPS ── */
+  .teach-steps { list-style: none; margin-bottom: 16px; }
+
+  .teach-step {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.5;
+  }
+
+  .teach-step:last-child { border-bottom: none; }
+
+  .step-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: var(--tue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .synthesis-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    margin-bottom: 10px;
+  }
+
+  .synthesis-grid { display: flex; flex-direction: column; gap: 10px; }
+
+  .synthesis-prompt {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.55;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .synth-q {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--tue-mid);
+    font-weight: 500;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── HARVEST ── */
+  .harvest-prompts { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+  .harvest-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 11px 16px;
+    font-size: 13.5px;
+    color: var(--text-2);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .harvest-arrow { color: var(--tue-mid); flex-shrink: 0; margin-top: 2px; }
+
+  /* ── ASSIGNMENT DISCUSSION ── */
+  .project-questions { display: flex; flex-direction: column; gap: 10px; }
+
+  .project-q {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.55;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .project-icon { font-size: 15px; flex-shrink: 0; }
+
+  /* ── LISTENING PROTOCOL ── */
+  .protocol-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .protocol-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+  }
+
+  .protocol-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    margin-bottom: 10px;
+  }
+
+  .protocol-prompts { list-style: none; }
+
+  .protocol-prompt {
+    display: flex;
+    gap: 8px;
+    padding: 6px 0;
+    border-bottom: 1px solid #F2EFE9;
+    font-size: 12.5px;
+    color: var(--text-2);
+    line-height: 1.45;
+    align-items: flex-start;
+  }
+
+  .protocol-prompt:last-child { border-bottom: none; }
+
+  .prom-arrow { color: var(--tue-mid); font-size: 11px; flex-shrink: 0; margin-top: 2px; }
+
+  .exit-task {
+    margin-top: 14px;
+    background: var(--tue-light);
+    border: 1px solid #C8BCE8;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13.5px;
+    color: var(--tue);
+    line-height: 1.6;
+  }
+
+  .exit-task strong { font-weight: 600; }
+
+  /* ── REFLECTION ── */
+  .reflection {
+    background: var(--tue-light);
+    border-left: 3px solid var(--tue-mid);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--tue);
+    line-height: 1.65;
+  }
+
+  .reflection strong {
+    font-style: normal;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 6px;
+    color: var(--tue-mid);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 780px) {
+    .expert-grid { grid-template-columns: 1fr; }
+    .protocol-grid { grid-template-columns: 1fr; }
+    .page-header { flex-direction: column; align-items: flex-start; }
+    .content { padding: 24px 20px 48px; }
+    .timeline-strip { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="page-header-left">
+    <div class="course-tag">ENG 511 · Week 3 · Tuesday, September 1, 2026</div>
+    <div class="page-title">Jigsaw Seminar</div>
+    <div class="page-subtitle">Cognitivist & Expressivist Theories — 11:45 AM – 1:00 PM</div>
+  </div>
+  <div class="time-display">
+    <div class="time-label">Current Time</div>
+    <div class="time-clock" id="clock">--:--</div>
+  </div>
+</div>
+
+<div class="timeline-strip">
+  <div class="tl-item" id="tl-0" data-start="705" data-end="710">
+    <div class="tl-time">11:45</div>
+    <div class="tl-label">Opening</div>
+    <div class="tl-dur">5 min</div>
+  </div>
+  <div class="tl-item" id="tl-1" data-start="710" data-end="722">
+    <div class="tl-time">11:50</div>
+    <div class="tl-label">Expert Groups</div>
+    <div class="tl-dur">12 min</div>
+  </div>
+  <div class="tl-item" id="tl-2" data-start="722" data-end="740">
+    <div class="tl-time">12:02</div>
+    <div class="tl-label">Mixed Groups</div>
+    <div class="tl-dur">18 min</div>
+  </div>
+  <div class="tl-item" id="tl-3" data-start="740" data-end="748">
+    <div class="tl-time">12:20</div>
+    <div class="tl-label">Full-Class Harvest</div>
+    <div class="tl-dur">8 min</div>
+  </div>
+  <div class="tl-item" id="tl-4" data-start="748" data-end="763">
+    <div class="tl-time">12:28</div>
+    <div class="tl-label">Project Discussion</div>
+    <div class="tl-dur">15 min</div>
+  </div>
+  <div class="tl-item" id="tl-5" data-start="763" data-end="775">
+    <div class="tl-time">12:43</div>
+    <div class="tl-label">Share-Out Planning</div>
+    <div class="tl-dur">12 min</div>
+  </div>
+  <div class="tl-item" id="tl-6" data-start="775" data-end="780">
+    <div class="tl-time">12:55</div>
+    <div class="tl-label">Reflection</div>
+    <div class="tl-dur">5 min</div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- PHASE 1: EXPERT GROUPS -->
+  <div class="section" id="sec-1">
+    <div class="section-header">
+      <div class="section-time-badge">11:50</div>
+      <div class="section-title">Phase 1: Expert Groups</div>
+      <div class="section-duration">12 min</div>
+    </div>
+    <p class="intro">Divide into your reading groups. Use these 12 minutes to consolidate what you know and prepare to teach it. Leave this phase with: a one-sentence claim, one teaching implication, and one genuine question the text raised for your group.</p>
+
+    <div class="expert-grid">
+
+      <div class="expert-card perl">
+        <div class="expert-card-header">
+          <div class="author">Perl · 1980</div>
+          "Understanding Composing"
+        </div>
+        <div class="expert-card-body">
+          <ul class="question-list">
+            <li class="question-item">
+              <div class="q-num perl">1</div>
+              <div>What does Perl mean by <em>felt sense</em>? How is it different from a thesis or an outline?</div>
+            </li>
+            <li class="question-item">
+              <div class="q-num perl">2</div>
+              <div>Where does her observation of student writers challenge what teachers typically see?</div>
+            </li>
+            <li class="question-item">
+              <div class="q-num perl">3</div>
+              <div>What does a teacher need to stop doing if Perl is right?</div>
+            </li>
+          </ul>
+          <div class="phase-goal"><strong>Leave with:</strong> one claim, one implication for feedback, one open question.</div>
+        </div>
+      </div>
+
+      <div class="expert-card hartwell">
+        <div class="expert-card-header">
+          <div class="author">Hartwell · 1985</div>
+          "Grammar, Grammars, and the Teaching of Grammar"
+        </div>
+        <div class="expert-card-body">
+          <ul class="question-list">
+            <li class="question-item">
+              <div class="q-num hartwell">1</div>
+              <div>Map the five grammars quickly. Which ones operate in the writer's head? Which ones operate in the classroom?</div>
+            </li>
+            <li class="question-item">
+              <div class="q-num hartwell">2</div>
+              <div>Which grammar do most writing teachers deploy in instruction? Which do student writers actually use when they compose?</div>
+            </li>
+            <li class="question-item">
+              <div class="q-num hartwell">3</div>
+              <div>What does Hartwell's argument mean for how we respond to "error"?</div>
+            </li>
+          </ul>
+          <div class="phase-goal"><strong>Leave with:</strong> one claim, one implication for error response, one open question.</div>
+        </div>
+      </div>
+
+      <div class="expert-card fh">
+        <div class="expert-card-header">
+          <div class="author">Flower & Hayes · 1981</div>
+          "A Cognitive Process Theory of Composing"
+        </div>
+        <div class="expert-card-body">
+          <ul class="question-list">
+            <li class="question-item">
+              <div class="q-num fh">1</div>
+              <div>What are the three main components of the cognitive process model? How do they interact?</div>
+            </li>
+            <li class="question-item">
+              <div class="q-num fh">2</div>
+              <div>What does "task environment" mean, and why does it matter that they included it?</div>
+            </li>
+            <li class="question-item">
+              <div class="q-num fh">3</div>
+              <div>How does the model change what we're looking for when we observe a student writer?</div>
+            </li>
+          </ul>
+          <div class="phase-goal"><strong>Leave with:</strong> one claim, one observational implication, one open question.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PHASE 2: MIXED TEACHING GROUPS -->
+  <div class="section" id="sec-2">
+    <div class="section-header">
+      <div class="section-time-badge">12:02</div>
+      <div class="section-title">Phase 2: Mixed Teaching Groups</div>
+      <div class="section-duration">18 min</div>
+    </div>
+    <p class="intro">Regroup into trios — one Perl reader, one Hartwell reader, one Flower & Hayes reader.</p>
+
+    <ul class="teach-steps">
+      <li class="teach-step">
+        <div class="step-badge">Each teacher — ~4 min</div>
+        <div>State your article's central claim in one sentence. Offer one implication for teaching or feedback. Pose your group's open question.</div>
+      </li>
+      <li class="teach-step">
+        <div class="step-badge">Synthesis — 6 min</div>
+        <div>Work through one of the prompts below together, or follow wherever the teaching led you.</div>
+      </li>
+    </ul>
+
+    <div class="synthesis-label">Synthesis prompts</div>
+    <div class="synthesis-grid">
+      <div class="synthesis-prompt">
+        <div class="synth-q">A</div>
+        <div>What do all three texts assume about the writer as an individual? Where do those assumptions come from?</div>
+      </div>
+      <div class="synthesis-prompt">
+        <div class="synth-q">B</div>
+        <div>Perl cares about felt sense. Flower & Hayes care about cognitive load. Hartwell cares about grammatical knowledge that already exists. How do these concerns fit together — or do they?</div>
+      </div>
+      <div class="synthesis-prompt">
+        <div class="synth-q">C</div>
+        <div>Which of these frameworks would be most generative for the way you currently think about writing instruction? Most challenging?</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULL-CLASS HARVEST -->
+  <div class="section" id="sec-3">
+    <div class="section-header">
+      <div class="section-time-badge">12:20</div>
+      <div class="section-title">Full-Class Harvest</div>
+      <div class="section-duration">8 min</div>
+    </div>
+    <ul class="harvest-prompts">
+      <li class="harvest-item">
+        <div class="harvest-arrow">→</div>
+        <div>What surprised you most about one of the articles you didn't read?</div>
+      </li>
+      <li class="harvest-item">
+        <div class="harvest-arrow">→</div>
+        <div>Where did the three texts seem to agree on something important?</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- LITERACY NARRATIVE DISCUSSION -->
+  <div class="section" id="sec-4">
+    <div class="section-header">
+      <div class="section-time-badge">12:28</div>
+      <div class="section-title">Literacy Narrative — Project Discussion</div>
+      <div class="section-duration">15 min</div>
+    </div>
+    <div class="project-questions">
+      <div class="project-q">
+        <div class="project-icon">📝</div>
+        <div>What does "multimodal" mean for your specific literacy history? Does your story have a visual or sonic dimension that a written essay couldn't carry?</div>
+      </div>
+      <div class="project-q">
+        <div class="project-icon">🔍</div>
+        <div>What's the difference between <em>describing</em> your experiences as a writer and <em>analyzing</em> them? Perl, Flower & Hayes, and Hartwell all observe writers from the outside — what would it mean to turn that lens inward?</div>
+      </div>
+      <div class="project-q">
+        <div class="project-icon">✏️</div>
+        <div>The teaching philosophy draft is described as "initial" intentionally. What does it mean to write something you know will change? What do you commit to now versus hold loosely?</div>
+      </div>
+      <div class="project-q">
+        <div class="project-icon">🎙️</div>
+        <div><strong>Format:</strong> Written essay (1000–1500 words), podcast (5–7 min), or video (5–7 min). Due Thursday, September 3.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THURSDAY SHARE-OUT PLANNING -->
+  <div class="section" id="sec-5">
+    <div class="section-header">
+      <div class="section-time-badge">12:43</div>
+      <div class="section-title">Thursday Share-Out Planning</div>
+      <div class="section-duration">12 min</div>
+    </div>
+    <p class="intro">Form your small groups for Thursday's share-out (groups of 3–4). Then spend 5 minutes establishing a listening protocol together.</p>
+
+    <div class="protocol-grid">
+      <div class="protocol-card">
+        <div class="protocol-label">Possible listening prompts</div>
+        <ul class="protocol-prompts">
+          <li class="protocol-prompt">
+            <div class="prom-arrow">▸</div>
+            <div>What moment in this narrative tells me something about how this person understands writing?</div>
+          </li>
+          <li class="protocol-prompt">
+            <div class="prom-arrow">▸</div>
+            <div>What's the tension or question at the center of this narrative?</div>
+          </li>
+          <li class="protocol-prompt">
+            <div class="prom-arrow">▸</div>
+            <div>What do I want to ask after hearing this?</div>
+          </li>
+        </ul>
+      </div>
+      <div class="protocol-card">
+        <div class="protocol-label">Your group's listening protocol</div>
+        <ul class="protocol-prompts">
+          <li class="protocol-prompt">
+            <div class="prom-arrow">1</div>
+            <div style="color:var(--text-3);font-style:italic;">We will listen for…</div>
+          </li>
+          <li class="protocol-prompt">
+            <div class="prom-arrow">2</div>
+            <div style="color:var(--text-3);font-style:italic;">We will listen for…</div>
+          </li>
+          <li class="protocol-prompt">
+            <div class="prom-arrow">3</div>
+            <div style="color:var(--text-3);font-style:italic;">We will listen for…</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exit-task">
+      <strong>Before you leave:</strong> Write privately — What 2–3 minutes of your narrative will you share Thursday, and what one question do you want your group to respond to?
+    </div>
+  </div>
+
+  <!-- CLOSING REFLECTION -->
+  <div class="section" id="sec-6">
+    <div class="section-header">
+      <div class="section-time-badge">12:55</div>
+      <div class="section-title">Weekly Reflection</div>
+      <div class="section-duration">5 min</div>
+    </div>
+    <div class="reflection">
+      <strong>Perusall post or in-class writing</strong>
+      "How do cognitive or expressivist lenses shape the way you give — or receive — feedback? Which framework feels closest to how you currently think about your own writing process?"
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function updateClock() {
+    const now = new Date();
+    const h = now.getHours().toString().padStart(2,'0');
+    const m = now.getMinutes().toString().padStart(2,'0');
+    document.getElementById('clock').textContent = h + ':' + m;
+  }
+  updateClock();
+  setInterval(updateClock, 10000);
+
+  function highlight() {
+    const now = new Date();
+    const mins = now.getHours() * 60 + now.getMinutes();
+    document.querySelectorAll('.tl-item').forEach(el => {
+      el.classList.toggle('active', mins >= +el.dataset.start && mins < +el.dataset.end);
+    });
+    ['sec-1','sec-2','sec-3','sec-4','sec-5','sec-6'].forEach((id, i) => {
+      const starts = [710, 722, 740, 748, 763, 775];
+      const ends   = [722, 740, 748, 763, 775, 780];
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('active', mins >= starts[i] && mins < ends[i]);
+    });
+  }
+  highlight();
+  setInterval(highlight, 30000);
+</script>
+</body>
+</html>

@@ -1979,7 +1979,10 @@ function showWeek(num) {
 
   const workshopPages = {
     2: 'aug27_session.html',
-    // 3: 'sep03_session.html',
+    3: 'sep03_workshop.html',
+  };
+  const tuesdayPages = {
+    3: 'sep01_workshop.html',
   };
   setActive(num);
   document.getElementById('breadcrumb').textContent = `Week ${w.num} · ${w.title}`;
@@ -2184,6 +2187,11 @@ function showWeek(num) {
             <div class="session-header-date">${tue.date} · 11:45 AM – 1:00 PM</div>
           </div>
         </div>
+        ${tuesdayPages[w.num] ? `
+        <div style="background:var(--tue-light);border-bottom:1px solid #C8BCE8;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--tue-mid);">Session Guide</span>
+          <a href="${tuesdayPages[w.num]}" target="_blank" rel="noopener noreferrer" style="font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:var(--tue);text-decoration:none;background:white;border:1px solid #C8BCE8;border-radius:16px;padding:5px 14px;">Open Today's Session Guide →</a>
+        </div>` : ''}
         ${sessionLayout}
       </div>
 

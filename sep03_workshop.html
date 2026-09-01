@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENG 511 — Sep 3: Literacy Narrative & OWI Workshop</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F4F1;
+    --surface: #FFFFFF;
+    --text-1: #1A1918;
+    --text-2: #4A4540;
+    --text-3: #7A726B;
+    --border: #DEDAD4;
+    --thu: #8B3A1A;
+    --thu-light: #FBF0EA;
+    --thu-mid: #C46B3C;
+    --thu-dark: #6E2E12;
+    --time-bg: #FEF0E8;
+    --time-color: #9B4520;
+    --assign-bg: #FEF9F0;
+    --assign-border: #E0A84A;
+    --assign-text: #7A4F10;
+    --note-bg: #EEF1F9;
+    --note-border: #5E78B5;
+    --note-text: #2A4485;
+    --rose: #3D1F5A;
+    --rose-light: #F3EEF9;
+    --elbow: #1A4A3A;
+    --elbow-light: #EAF4EE;
+    --warnock: #2A4485;
+    --warnock-light: #EEF1F9;
+    --shadow: 0 1px 8px rgba(0,0,0,0.07);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text-1);
+    line-height: 1.65;
+    font-size: 15px;
+    min-height: 100vh;
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    background: var(--thu);
+    color: white;
+    padding: 32px 48px 28px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .course-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 6px;
+  }
+
+  .page-title {
+    font-family: 'Spectral', serif;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    font-style: italic;
+  }
+
+  .time-display { text-align: right; }
+
+  .time-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 4px;
+  }
+
+  .time-clock {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 500;
+    color: white;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── SUBMISSION BANNER ── */
+  .submit-banner {
+    background: var(--assign-bg);
+    border-bottom: 1px solid var(--assign-border);
+    padding: 12px 48px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13.5px;
+    color: var(--assign-text);
+  }
+
+  .submit-banner strong { font-weight: 600; }
+
+  /* ── TIMELINE STRIP ── */
+  .timeline-strip {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+
+  .tl-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 14px 18px 12px;
+    border-right: 1px solid var(--border);
+    min-width: 120px;
+    transition: background 0.2s;
+    position: relative;
+  }
+
+  .tl-item:first-child { border-left: 1px solid var(--border); }
+
+  .tl-item.active { background: var(--time-bg); }
+
+  .tl-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0; right: 0;
+    height: 2px;
+    background: var(--time-color);
+  }
+
+  .tl-time {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--time-color);
+    margin-bottom: 3px;
+  }
+
+  .tl-label {
+    font-size: 11px;
+    color: var(--text-2);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .tl-dur {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: var(--text-3);
+    margin-top: 3px;
+  }
+
+  /* ── CONTENT ── */
+  .content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 36px 48px 60px;
+  }
+
+  .section {
+    margin-bottom: 36px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-time-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    background: var(--time-bg);
+    color: var(--time-color);
+    padding: 3px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+  }
+
+  .section-title {
+    font-family: 'Spectral', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-1);
+    flex: 1;
+  }
+
+  .section-duration {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-3);
+    white-space: nowrap;
+  }
+
+  /* Active state */
+  .section.active .section-header { border-bottom-color: var(--time-color); }
+  .section.active .section-time-badge { background: var(--time-color); color: white; }
+  .section.active .section-title { color: var(--time-color); }
+
+  /* ── NOTE BOX ── */
+  .note {
+    background: var(--note-bg);
+    border-left: 3px solid var(--note-border);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    color: var(--note-text);
+    margin-bottom: 14px;
+    line-height: 1.55;
+  }
+
+  .note strong { font-weight: 600; }
+
+  /* ── SHARE-OUT ── */
+  .phase-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 12px;
+  }
+
+  .phase-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+  }
+
+  .phase-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .phase-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    background: var(--thu);
+    color: white;
+    padding: 2px 9px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+
+  .phase-card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-1);
+  }
+
+  .phase-steps {
+    list-style: none;
+  }
+
+  .phase-step {
+    display: flex;
+    gap: 8px;
+    padding: 6px 0;
+    border-bottom: 1px solid #F2EFE9;
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.5;
+    align-items: flex-start;
+  }
+
+  .phase-step:last-child { border-bottom: none; }
+
+  .step-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--thu-mid);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  /* ── OWI MODEL ── */
+  .model-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 14px 0;
+  }
+
+  .model-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .model-card-header {
+    background: var(--warnock-light);
+    color: var(--warnock);
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'Spectral', serif;
+    border-bottom: 1px solid #D0D9EF;
+  }
+
+  .model-card-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--warnock);
+    opacity: 0.7;
+    margin-bottom: 3px;
+  }
+
+  .model-card-body {
+    padding: 12px 14px;
+    font-size: 12.5px;
+    color: var(--text-2);
+    line-height: 1.5;
+  }
+
+  .activity-box {
+    background: var(--thu-light);
+    border: 1px solid #E8C4A8;
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-top: 12px;
+  }
+
+  .activity-box p {
+    font-size: 13.5px;
+    color: var(--thu-dark);
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+
+  .activity-box p:last-child { margin-bottom: 0; }
+
+  .owi-questions {
+    list-style: none;
+    margin-top: 12px;
+  }
+
+  .owi-q {
+    display: flex;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #EAC8A8;
+    font-size: 13px;
+    color: var(--thu-dark);
+    line-height: 1.5;
+    align-items: flex-start;
+  }
+
+  .owi-q:last-child { border-bottom: none; }
+
+  .owi-q-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: white;
+    background: var(--thu-mid);
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ── SCENARIO CARDS ── */
+  .scenario-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 14px;
+  }
+
+  .scenario-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .scenario-header {
+    background: var(--rose-light);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #D9D0E8;
+  }
+
+  .scenario-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--rose);
+    font-weight: 500;
+    background: rgba(61,31,90,0.1);
+    padding: 2px 8px;
+    border-radius: 9px;
+  }
+
+  .scenario-body {
+    padding: 14px 16px;
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.6;
+  }
+
+  .scenario-prompts {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--border);
+  }
+
+  .scenario-prompt-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--text-3);
+    margin-bottom: 6px;
+  }
+
+  .diagnose-q {
+    display: flex;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--rose);
+    padding: 4px 0;
+    line-height: 1.45;
+  }
+
+  .diagnose-arrow {
+    color: var(--rose);
+    flex-shrink: 0;
+    font-size: 10px;
+    margin-top: 2px;
+  }
+
+  /* ── FRAMEWORK COMPARISON ── */
+  .framework-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .framework-col {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+
+  .fw-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    margin-bottom: 8px;
+  }
+
+  .fw-text {
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.55;
+  }
+
+  /* ── REFLECTION ── */
+  .reflection {
+    background: var(--thu-light);
+    border-left: 3px solid var(--thu-mid);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--thu-dark);
+    line-height: 1.65;
+  }
+
+  .reflection strong {
+    font-style: normal;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 6px;
+    color: var(--thu-mid);
+  }
+
+  /* ── PREVIEW ── */
+  .preview-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+  }
+
+  .preview-heading {
+    font-family: 'Spectral', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-1);
+    margin-bottom: 10px;
+  }
+
+  .preview-readings {
+    list-style: none;
+    margin-bottom: 12px;
+  }
+
+  .preview-reading {
+    display: flex;
+    gap: 8px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-2);
+    align-items: flex-start;
+  }
+
+  .preview-reading:last-child { border-bottom: none; }
+
+  .preview-bullet {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--text-3);
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  .preview-questions {
+    list-style: none;
+  }
+
+  .preview-q {
+    display: flex;
+    gap: 8px;
+    padding: 5px 0;
+    font-size: 12.5px;
+    color: var(--text-2);
+    font-style: italic;
+    line-height: 1.45;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 780px) {
+    .scenario-grid { grid-template-columns: 1fr; }
+    .phase-grid { grid-template-columns: 1fr; }
+    .model-grid { grid-template-columns: 1fr; }
+    .framework-compare { grid-template-columns: 1fr; }
+    .page-header { flex-direction: column; align-items: flex-start; }
+    .content { padding: 24px 20px 48px; }
+    .timeline-strip, .submit-banner { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-left">
+    <div class="course-tag">ENG 511 · Week 3 · Thursday, September 3, 2026</div>
+    <div class="page-title">Literacy Narrative Share-Out & OWI Workshop</div>
+    <div class="page-subtitle">Cognitivist & Expressivist Theories — 11:45 AM – 1:00 PM · Assignment due today</div>
+  </div>
+  <div class="time-display">
+    <div class="time-label">Current Time</div>
+    <div class="time-clock" id="clock">--:--</div>
+  </div>
+</div>
+
+<!-- SUBMISSION BANNER -->
+<div class="submit-banner">
+  📝 <strong>Due today:</strong> Literacy Narrative &amp; Teaching Philosophy Draft — written essay (1000–1500 words) OR podcast/video (5–7 min)
+</div>
+
+<!-- TIMELINE STRIP -->
+<div class="timeline-strip">
+  <div class="tl-item" id="tl-0" data-start="705" data-end="708">
+    <div class="tl-time">11:45</div>
+    <div class="tl-label">Opening & Submit</div>
+    <div class="tl-dur">3 min</div>
+  </div>
+  <div class="tl-item" id="tl-1" data-start="708" data-end="733">
+    <div class="tl-time">11:48</div>
+    <div class="tl-label">Literacy Narrative Share-Out</div>
+    <div class="tl-dur">25 min</div>
+  </div>
+  <div class="tl-item" id="tl-2" data-start="733" data-end="753">
+    <div class="tl-time">12:13</div>
+    <div class="tl-label">Cognitive Models & OWI</div>
+    <div class="tl-dur">20 min</div>
+  </div>
+  <div class="tl-item" id="tl-3" data-start="753" data-end="768">
+    <div class="tl-time">12:33</div>
+    <div class="tl-label">Writer's Block Scenarios</div>
+    <div class="tl-dur">15 min</div>
+  </div>
+  <div class="tl-item" id="tl-4" data-start="768" data-end="775">
+    <div class="tl-time">12:48</div>
+    <div class="tl-label">Exit Reflection</div>
+    <div class="tl-dur">7 min</div>
+  </div>
+  <div class="tl-item" id="tl-5" data-start="775" data-end="780">
+    <div class="tl-time">12:55</div>
+    <div class="tl-label">Preview Week 4</div>
+    <div class="tl-dur">5 min</div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="content">
+
+  <!-- OPENING -->
+  <div class="section" id="sec-0">
+    <div class="section-header">
+      <div class="section-time-badge">11:45</div>
+      <div class="section-title">Opening</div>
+      <div class="section-duration">3 min</div>
+    </div>
+    <p style="font-size:14px;color:var(--text-2);line-height:1.65;">Today your literacy narratives are the primary text. We'll use them to examine what cognitive and expressivist theories actually explain about how writers work — and where those frameworks fall short.</p>
+  </div>
+
+  <!-- LITERACY NARRATIVE SHARE-OUT -->
+  <div class="section" id="sec-1">
+    <div class="section-header">
+      <div class="section-time-badge">11:48</div>
+      <div class="section-title">Literacy Narrative Share-Out</div>
+      <div class="section-duration">25 min</div>
+    </div>
+    <p style="font-size:13.5px;color:var(--text-2);margin-bottom:14px;line-height:1.6;">Return to your groups from Tuesday. You've already set your listening protocol and planned what you'll share.</p>
+
+    <div class="phase-grid">
+      <div class="phase-card">
+        <div class="phase-card-header">
+          <div class="phase-badge">In Groups — 18 min</div>
+        </div>
+        <ul class="phase-steps">
+          <li class="phase-step">
+            <div class="step-dot"></div>
+            <div>Each person shares 2–3 minutes from their narrative: a key moment, or a brief summary of the central tension with a close reading of one scene. Not a reading aloud of the full piece.</div>
+          </li>
+          <li class="phase-step">
+            <div class="step-dot"></div>
+            <div>Listeners hold questions until the person finishes. Then respond using the group's listening protocol from Tuesday.</div>
+          </li>
+          <li class="phase-step">
+            <div class="step-dot"></div>
+            <div>After everyone shares: 3–4 min to notice patterns. What experiences do you share? Where are you strikingly different? What theoretical question does your collective story raise?</div>
+          </li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-card-header">
+          <div class="phase-badge">Full-Class Report-Back — 7 min</div>
+        </div>
+        <ul class="phase-steps">
+          <li class="phase-step">
+            <div class="step-dot"></div>
+            <div>One person per group offers 1–2 sentences: the pattern that emerged and the question it raised.</div>
+          </li>
+          <li class="phase-step">
+            <div class="step-dot"></div>
+            <div>Keep it fast. The goal is surfacing 3–4 threads for the rest of the session — not debriefing every group's full conversation.</div>
+          </li>
+          <li class="phase-step">
+            <div class="step-dot"></div>
+            <div>Note the threads on the board — you'll return to what the cognitive model explains and doesn't explain.</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- OWI DESIGN ACTIVITY -->
+  <div class="section" id="sec-2">
+    <div class="section-header">
+      <div class="section-time-badge">12:13</div>
+      <div class="section-title">Cognitive Models & OWI Design</div>
+      <div class="section-duration">20 min</div>
+    </div>
+
+    <p style="font-size:13.5px;color:var(--text-2);margin-bottom:14px;line-height:1.6;">Use the Flower &amp; Hayes cognitive process model below as a reference frame for the pair activity. The three components map the composing episode you'll analyze.</p>
+
+    <div class="model-grid">
+      <div class="model-card">
+        <div class="model-card-header">
+          <div class="model-card-label">Component</div>
+          Task Environment
+        </div>
+        <div class="model-card-body">External constraints shaping the composing: the assignment, the audience, the writing so far. In OWI: the platform, the interface, the lack of physical co-presence.</div>
+      </div>
+      <div class="model-card">
+        <div class="model-card-header">
+          <div class="model-card-label">Component</div>
+          Long-Term Memory
+        </div>
+        <div class="model-card-body">What the writer already knows about the topic, audience, and genre. Prior instruction, internalized rules, schemas. Helps and sometimes hinders.</div>
+      </div>
+      <div class="model-card">
+        <div class="model-card-header">
+          <div class="model-card-label">Component</div>
+          Composing Processes
+        </div>
+        <div class="model-card-body">Planning, translating, reviewing — recursive, not linear. The monitor regulates movement between them. Imbalance produces stuck writing.</div>
+      </div>
+    </div>
+
+    <div class="activity-box">
+      <p><strong>Pair or trio activity (12 min):</strong> Take one moment from one of your literacy narratives — a specific episode of composing (stuck, flowing, surprising yourself, writing for someone for the first time).</p>
+      <ul class="owi-questions">
+        <li class="owi-q">
+          <div class="owi-q-num">1</div>
+          <div>What was the task environment at that moment? What external constraints were shaping the composing?</div>
+        </li>
+        <li class="owi-q">
+          <div class="owi-q-num">2</div>
+          <div>What long-term memory was active? What did you already know — or think you knew — about writing at that point?</div>
+        </li>
+        <li class="owi-q">
+          <div class="owi-q-num">3</div>
+          <div>What were planning, translating, and reviewing doing? Were they in balance, or was one dominating?</div>
+        </li>
+        <li class="owi-q">
+          <div class="owi-q-num">4</div>
+          <div>Given what the model reveals about this episode: design one OWI task that would address the challenge this moment represents. What would a well-designed digital writing task do differently for a writer at this stage?</div>
+        </li>
+      </ul>
+      <p style="margin-top:10px;"><strong>Brief share-out (5 min):</strong> Two or three pairs. What patterns emerge in what the cognitive model reveals — and in what it doesn't explain?</p>
+    </div>
+  </div>
+
+  <!-- WRITER'S BLOCK SCENARIOS -->
+  <div class="section" id="sec-3">
+    <div class="section-header">
+      <div class="section-time-badge">12:33</div>
+      <div class="section-title">Writer's Block Scenarios</div>
+      <div class="section-duration">15 min</div>
+    </div>
+
+    <div class="note">
+      <strong>Rose's framework:</strong> Writer's block, Rose argues, is a function of cognitive rigidity — overly rigid or conflicting rules that interrupt the composing process before it can generate. These rules are often internalized from prior instruction and operate below conscious awareness.
+    </div>
+
+    <div class="note" style="margin-top:10px;">
+      Each group works through one assigned scenario. Using Rose's framework, diagnose what is happening in the case — then consider: What would a cognitivist intervention look like? What would an expressivist response suggest? Are they compatible?
+    </div>
+
+    <div class="scenario-grid">
+
+      <!-- SCENARIO A -->
+      <div class="scenario-card">
+        <div class="scenario-header">
+          <div class="scenario-label">Scenario A</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--rose);opacity:0.7;">Premature Editing</div>
+        </div>
+        <div class="scenario-body">
+          A student writes one sentence, reads it, deletes it, writes it again slightly differently, reads it, deletes it again. After 45 minutes, she has a blank document. When asked what's happening, she says: "I just don't think it's good enough yet."
+          <div class="scenario-prompts">
+            <div class="scenario-prompt-label">Diagnose with Rose — then:</div>
+            <div class="diagnose-q"><span class="diagnose-arrow">▸</span><span>What rule is operating? Where might it have come from?</span></div>
+            <div class="diagnose-q"><span class="diagnose-arrow">▸</span><span>Cognitivist intervention? Expressivist intervention?</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCENARIO B -->
+      <div class="scenario-card">
+        <div class="scenario-header">
+          <div class="scenario-label">Scenario B</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--rose);opacity:0.7;">Internalized Prohibition</div>
+        </div>
+        <div class="scenario-body">
+          A student has been told since middle school never to use "I" in formal writing. Now in a first-year college course that asks for personal analysis, he starts every draft with "It is" or "There are" and cannot generate specific claims. His sentences are grammatically correct and informationally empty.
+          <div class="scenario-prompts">
+            <div class="scenario-prompt-label">Diagnose with Rose — then:</div>
+            <div class="diagnose-q"><span class="diagnose-arrow">▸</span><span>How does a rigid rule produce emptiness rather than error?</span></div>
+            <div class="diagnose-q"><span class="diagnose-arrow">▸</span><span>Cognitivist intervention? Expressivist intervention?</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCENARIO C -->
+      <div class="scenario-card">
+        <div class="scenario-header">
+          <div class="scenario-label">Scenario C</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--rose);opacity:0.7;">Indefinite Research Deferral</div>
+        </div>
+        <div class="scenario-body">
+          A student says she can't start writing until she's finished reading everything. She has been researching her paper for two weeks, taking notes, and adding more sources. The draft due date is tomorrow. She insists the problem is she doesn't know enough yet.
+          <div class="scenario-prompts">
+            <div class="scenario-prompt-label">Diagnose with Rose — then:</div>
+            <div class="diagnose-q"><span class="diagnose-arrow">▸</span><span>Is this a knowledge problem or a rule problem? How would you know?</span></div>
+            <div class="diagnose-q"><span class="diagnose-arrow">▸</span><span>Cognitivist intervention? Expressivist intervention?</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCENARIO D -->
+      <div class="scenario-card">
+        <div class="scenario-header">
+          <div class="scenario-label">Scenario D</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--rose);opacity:0.7;">Perpetual Redraft</div>
+        </div>
+        <div class="scenario-body">
+          A student completes a full draft, reads it, and concludes it is "just bad." He will not revise it. He will, however, start an entirely new draft from scratch. He has done this four times. The new drafts are not meaningfully different from the first.
+          <div class="scenario-prompts">
+            <div class="scenario-prompt-label">Diagnose with Rose — then:</div>
+            <div class="diagnose-q"><span class="diagnose-arrow">▸</span><span>Why does "starting over" feel different from revising, even when the output is the same?</span></div>
+            <div class="diagnose-q"><span class="diagnose-arrow">▸</span><span>Cognitivist intervention? Expressivist intervention?</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="framework-compare" style="margin-top:14px;">
+      <div class="framework-col">
+        <div class="fw-label">Brief Share-Out — 2 min</div>
+        <div class="fw-text">What's the practical difference between a cognitivist and expressivist intervention? Where does the difference matter most for what the teacher actually does?</div>
+      </div>
+      <div class="framework-col">
+        <div class="fw-label">Synthesis</div>
+        <div class="fw-text">Do any moments from the share-out narratives map onto these scenarios? What does that correspondence — or its absence — tell you about the relationship between theory and experience?</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXIT REFLECTION -->
+  <div class="section" id="sec-4">
+    <div class="section-header">
+      <div class="section-time-badge">12:48</div>
+      <div class="section-title">Exit Reflection</div>
+      <div class="section-duration">7 min</div>
+    </div>
+
+    <div class="note">
+      Write privately — as a Perusall post or in-class writing. You won't be asked to share unless you choose to.
+    </div>
+
+    <div class="reflection">
+      <strong>Exit Reflection Prompt (Elbow)</strong>
+      "Elbow argues that writing can happen without teachers — that the editing self and the producing self need to be separated for writing to flow. Does your Literacy Narrative bear this out? Where in your story was the internal teacher most present — and what was the cost?"
+    </div>
+  </div>
+
+  <!-- PREVIEW WEEK 4 -->
+  <div class="section" id="sec-5">
+    <div class="section-header">
+      <div class="section-time-badge">12:55</div>
+      <div class="section-title">Preview: Week 4</div>
+      <div class="section-duration">5 min</div>
+    </div>
+
+    <div class="preview-box">
+      <div class="preview-heading">The Social Turn — Berlin, Trimbur, Pratt</div>
+      <ul class="preview-readings">
+        <li class="preview-reading">
+          <div class="preview-bullet"></div>
+          <div>Berlin, "Rhetoric and Ideology in the Writing Class" (1988)</div>
+        </li>
+        <li class="preview-reading">
+          <div class="preview-bullet"></div>
+          <div>Trimbur, "Taking the Social Turn" (1994)</div>
+        </li>
+        <li class="preview-reading">
+          <div class="preview-bullet"></div>
+          <div>Pratt, "Arts of the Contact Zone" (1991)</div>
+        </li>
+      </ul>
+      <ul class="preview-questions">
+        <li class="preview-q">▸ If cognitive and expressivist theories locate the problem of writing inside the writer — where does the social turn locate it?</li>
+        <li class="preview-q">▸ What changes about teaching as a result?</li>
+      </ul>
+    </div>
+  </div>
+
+</div><!-- /content -->
+
+<script>
+  // Live clock
+  function updateClock() {
+    const now = new Date();
+    const h = now.getHours().toString().padStart(2,'0');
+    const m = now.getMinutes().toString().padStart(2,'0');
+    document.getElementById('clock').textContent = h + ':' + m;
+  }
+  updateClock();
+  setInterval(updateClock, 10000);
+
+  // Activity highlighting
+  function highlight() {
+    const now = new Date();
+    const mins = now.getHours() * 60 + now.getMinutes();
+
+    document.querySelectorAll('.tl-item').forEach(el => {
+      const s = parseInt(el.dataset.start);
+      const e = parseInt(el.dataset.end);
+      el.classList.toggle('active', mins >= s && mins < e);
+    });
+
+    const sections = ['sec-0','sec-1','sec-2','sec-3','sec-4','sec-5'];
+    const starts   = [705, 708, 733, 753, 768, 775];
+    const ends     = [708, 733, 753, 768, 775, 780];
+    sections.forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('active', mins >= starts[i] && mins < ends[i]);
+    });
+  }
+  highlight();
+  setInterval(highlight, 30000);
+</script>
+</body>
+</html>
