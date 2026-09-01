@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing Exemplars — ENG 511 Fall 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F9F5EF;
+    --cream-dark: #F0EAE0;
+    --ink: #1C1410;
+    --ink-mid: #4A3F35;
+    --ink-soft: #8B7B6F;
+    --tue: #3D2B6E;
+    --tue-light: #EDE8F7;
+    --tue-mid: #7B5EA7;
+    --thu: #8B3A1A;
+    --thu-mid: #C46B3C;
+    --assign: #1A5C3A;
+    --assign-light: #E8F5EE;
+    --assign-mid: #3D8B5E;
+    --border: #D9D0C4;
+    --sidebar-bg: #1C1410;
+    --sidebar-text: #E8DDD4;
+    --sidebar-muted: #7A6C62;
+    --sidebar-hover: #2E231C;
+    --sidebar-active: #3D2B1A;
+    --sidebar-accent: #C4832F;
+    --shadow: 0 2px 12px rgba(0,0,0,0.07);
+    --card-bg: #FFFFFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--cream);
+    color: var(--ink);
+    display: flex;
+    min-height: 100vh;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR ────────────────────────────── */
+  .sidebar {
+    width: 240px; min-width: 240px;
+    background: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    display: flex; flex-direction: column;
+    position: fixed; top: 0; left: 0;
+    height: 100vh; overflow-y: auto; z-index: 100;
+  }
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-thumb { background: #4A3A2E; border-radius: 2px; }
+  .sidebar-header { padding: 28px 20px 20px; border-bottom: 1px solid #2E231C; }
+  .sidebar-course { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sidebar-accent); margin-bottom: 6px; }
+  .sidebar-title { font-family: 'Playfair Display', serif; font-size: 15px; line-height: 1.4; color: var(--sidebar-text); font-weight: 600; }
+  .sidebar-sub { font-size: 11px; color: var(--sidebar-muted); margin-top: 4px; }
+  .sidebar-section-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sidebar-muted); padding: 14px 20px 6px; }
+  .sidebar-link { display: flex; align-items: center; gap: 10px; padding: 9px 20px; cursor: pointer; transition: background 0.15s; border-left: 2px solid transparent; text-decoration: none; color: var(--sidebar-text); font-size: 13px; }
+  .sidebar-link:hover { background: var(--sidebar-hover); }
+  .sidebar-link.active { background: var(--sidebar-active); border-left-color: var(--sidebar-accent); }
+  .sidebar-link-icon { font-size: 14px; min-width: 18px; text-align: center; }
+
+  /* ── MAIN ───────────────────────────────── */
+  .main { margin-left: 240px; flex: 1; display: flex; flex-direction: column; min-height: 100vh; }
+  .topbar { background: var(--cream); border-bottom: 1px solid var(--border); padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
+  .topbar-breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ink-soft); letter-spacing: 0.06em; }
+  .topbar-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--tue-mid); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: opacity 0.15s; }
+  .topbar-back:hover { opacity: 0.7; }
+
+  /* ── PAGE ───────────────────────────────── */
+  .page { padding: 48px 40px 80px; max-width: 900px; }
+  .page-tag { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px; }
+  .page-heading { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 12px; text-wrap: balance; }
+  .page-heading em { font-style: italic; color: var(--assign); }
+  .page-intro { font-size: 15px; color: var(--ink-mid); max-width: 680px; line-height: 1.75; margin-bottom: 40px; }
+
+  /* ── SECTION NAV CARDS ──────────────────── */
+  .section-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 52px; }
+  .section-nav-card {
+    display: flex; align-items: stretch;
+    background: var(--card-bg); border: 1.5px solid var(--border);
+    border-radius: 10px; box-shadow: var(--shadow);
+    text-decoration: none; overflow: hidden;
+    transition: box-shadow 0.15s, transform 0.1s;
+  }
+  .section-nav-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.10); transform: translateY(-1px); }
+  .section-nav-card:focus-visible { outline: 2px solid var(--tue-mid); outline-offset: 3px; }
+  .section-nav-stripe { width: 5px; flex-shrink: 0; }
+  .section-nav-stripe.ln { background: var(--tue); }
+  .section-nav-stripe.tp { background: var(--assign); }
+  .section-nav-body { padding: 20px 20px 18px; flex: 1; }
+  .section-nav-label { font-family: 'DM Mono', monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-soft); margin-bottom: 5px; }
+  .section-nav-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; margin-bottom: 6px; line-height: 1.3; }
+  .section-nav-card .section-nav-title.ln { color: var(--tue); }
+  .section-nav-card .section-nav-title.tp { color: var(--assign); }
+  .section-nav-desc { font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; }
+  .section-nav-arrow { display: flex; align-items: center; padding: 0 18px 0 6px; font-family: 'DM Mono', monospace; font-size: 15px; color: var(--ink-soft); }
+
+  /* ── EXEMPLAR SECTION ───────────────────── */
+  .exemplar-section { margin-bottom: 50px; }
+  .exemplar-heading {
+    font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600;
+    color: var(--ink); padding-bottom: 12px;
+    border-bottom: 1.5px solid var(--border); margin-bottom: 6px;
+    scroll-margin-top: 80px;
+  }
+  .exemplar-desc { font-size: 14px; color: var(--ink-soft); font-style: italic; margin-bottom: 20px; }
+
+  .exemplar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .exemplar-grid.single { grid-template-columns: 1fr; }
+
+  /* ── EXEMPLAR CARD ──────────────────────── */
+  .exemplar-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 8px; box-shadow: var(--shadow);
+    display: flex; align-items: stretch; overflow: hidden;
+  }
+  .card-stripe { width: 5px; flex-shrink: 0; }
+  .card-stripe.ln { background: var(--tue); }
+  .card-stripe.tp { background: var(--assign); }
+  .card-body { flex: 1; padding: 16px 18px 16px; display: flex; flex-direction: column; gap: 4px; }
+  .card-type { font-family: 'DM Mono', monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.13em; color: var(--ink-soft); }
+  .card-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600; color: var(--ink); line-height: 1.3; }
+  .card-domain { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--ink-soft); margin-bottom: 8px; }
+  .card-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'DM Mono', monospace; font-size: 10.5px; font-weight: 500;
+    text-decoration: none; padding: 5px 14px; border-radius: 20px;
+    transition: background 0.15s, color 0.15s; align-self: flex-start;
+    border: 1.5px solid transparent;
+  }
+  .card-link:focus-visible { outline: 2px solid var(--tue-mid); outline-offset: 3px; }
+  .card-link.ln { background: var(--tue-light); color: var(--tue); border-color: #C9C0E8; }
+  .card-link.ln:hover { background: var(--tue); color: white; border-color: var(--tue); }
+  .card-link.tp { background: var(--assign-light); color: var(--assign); border-color: #B0D9C0; }
+  .card-link.tp:hover { background: var(--assign); color: white; border-color: var(--assign); }
+
+  /* ── RESPONSIVE ─────────────────────────── */
+  @media (max-width: 720px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; }
+    .page { padding: 32px 20px 60px; }
+    .topbar { padding: 14px 20px; }
+    .section-nav { grid-template-columns: 1fr; }
+    .exemplar-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── SIDEBAR ─────────────────────────────── -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-course">ENG 511 · Fall 2026</div>
+    <div class="sidebar-title">Theory &amp; Research in Composition</div>
+    <div class="sidebar-sub">Prof. Kirsti Cole</div>
+  </div>
+
+  <div class="sidebar-section-label">Pages</div>
+  <a class="sidebar-link" href="index.html">
+    <span class="sidebar-link-icon">⌂</span> Course Website
+  </a>
+  <a class="sidebar-link" href="submissions.html">
+    <span class="sidebar-link-icon">📁</span> Submissions &amp; Portfolio
+  </a>
+  <a class="sidebar-link active" href="exemplars.html">
+    <span class="sidebar-link-icon">🔍</span> Writing Exemplars
+  </a>
+
+  <div class="sidebar-section-label">Jump To</div>
+  <a class="sidebar-link" href="#teaching-philosophy">
+    <span class="sidebar-link-icon">①</span> Teaching Philosophy
+  </a>
+
+  <div class="sidebar-section-label">Quick Links</div>
+  <a class="sidebar-link" href="https://drive.google.com/drive/folders/1Uig3JajMidSxqVGx6VeY5AYwYoIu1FXu?usp=sharing" target="_blank">
+    <span class="sidebar-link-icon">📂</span> Class Folder
+  </a>
+  <a class="sidebar-link" href="https://app.perusall.com/courses/eng-511-001-fall-2026-theory-and-research-in-composition/_/assignments" target="_blank">
+    <span class="sidebar-link-icon">📖</span> Perusall
+  </a>
+  <a class="sidebar-link" href="https://moodle-courses2527.wolfware.ncsu.edu/course/view.php?id=12455" target="_blank">
+    <span class="sidebar-link-icon">🐺</span> Moodle
+  </a>
+  <a class="sidebar-link" href="https://calendar.app.google/bpaYNUBRrE62aKxMA" target="_blank">
+    <span class="sidebar-link-icon">📅</span> Office Hours
+  </a>
+</aside>
+
+<!-- ── MAIN ───────────────────────────────── -->
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-breadcrumb">ENG 511 · Fall 2026 → Writing Exemplars</div>
+    <a class="topbar-back" href="submissions.html">← Submissions &amp; Portfolio</a>
+  </div>
+
+  <div class="page">
+    <div class="page-tag">ENG 511 · Fall 2026 · Prof. Kirsti Cole</div>
+    <h1 class="page-heading">Writing <em>Exemplars</em></h1>
+    <p class="page-intro">These teaching philosophy statements represent a range of approaches, voices, and career stages. Read widely before drafting. Notice how different writers handle specificity, the relationship between personal experience and pedagogical conviction, and the degree of theoretical framing.</p>
+
+    <!-- SECTION NAV: links to submissions.html -->
+    <div class="section-nav">
+      <a class="section-nav-card" href="submissions.html#assignments">
+        <div class="section-nav-stripe ln"></div>
+        <div class="section-nav-body">
+          <div class="section-nav-label">Tab 1 · Portfolio Doc</div>
+          <div class="section-nav-title ln">Literacy Narrative</div>
+          <div class="section-nav-desc">Assignment details, word counts, and submission instructions for Week 3</div>
+        </div>
+        <div class="section-nav-arrow">→</div>
+      </a>
+      <a class="section-nav-card" href="submissions.html#assignments">
+        <div class="section-nav-stripe tp"></div>
+        <div class="section-nav-body">
+          <div class="section-nav-label">Tab 2 · Portfolio Doc</div>
+          <div class="section-nav-title tp">Teaching Philosophy</div>
+          <div class="section-nav-desc">Assignment details, word counts, and submission instructions for Week 3</div>
+        </div>
+        <div class="section-nav-arrow">→</div>
+      </a>
+    </div>
+
+    <!-- ── TEACHING PHILOSOPHY SECTION ─────── -->
+    <div class="exemplar-section" id="teaching-philosophy">
+      <h2 class="exemplar-heading">Teaching Philosophy</h2>
+      <p class="exemplar-desc">Nine examples across a range of approaches, voices, and career stages.</p>
+      <div class="exemplar-grid">
+
+        <div class="exemplar-card">
+          <div class="card-stripe tp"></div>
+          <div class="card-body">
+            <div class="card-type">Teaching Philosophy · Instructor Example</div>
+            <div class="card-name">Kirsti Cole</div>
+            <div class="card-domain">Shared via Adobe Acrobat</div>
+            <a class="card-link tp"
+               href="https://acrobat.adobe.com/id/urn:aaid:sc:VA6C2:c1cd1617-1722-47c3-a931-95c64afac896?x_api_client_id=chrome_extension_viewer&x_api_client_location=share"
+               target="_blank" rel="noopener noreferrer">
+              ↗ View PDF
+            </a>
+          </div>
+        </div>
+
+        <div class="exemplar-card">
+          <div class="card-stripe tp"></div>
+          <div class="card-body">
+            <div class="card-type">Teaching Philosophy</div>
+            <div class="card-name">Zachary Beare</div>
+            <div class="card-domain">zacharybeare.com</div>
+            <a class="card-link tp"
+               href="https://www.zacharybeare.com/teaching-philosophy"
+               target="_blank" rel="noopener noreferrer">
+              ↗ View Statement
+            </a>
+          </div>
+        </div>
+
+        <div class="exemplar-card">
+          <div class="card-stripe tp"></div>
+          <div class="card-body">
+            <div class="card-type">Teaching Philosophy</div>
+            <div class="card-name">Wonderful Faison</div>
+            <div class="card-domain">wonderfulfaison.wordpress.com</div>
+            <a class="card-link tp"
+               href="https://wonderfulfaison.wordpress.com/teaching-philosophy-2/"
+               target="_blank" rel="noopener noreferrer">
+              ↗ View Statement
+            </a>
+          </div>
+        </div>
+
+        <div class="exemplar-card">
+          <div class="card-stripe tp"></div>
+          <div class="card-body">
+            <div class="card-type">Teaching Philosophy</div>
+            <div class="card-name">Bryna Siegel Finer</div>
+            <div class="card-domain">brynasiegelfiner.org</div>
+            <a class="card-link tp"
+               href="https://brynasiegelfiner.org/teaching/teaching-statement/"
+               target="_blank" rel="noopener noreferrer">
+              ↗ View Statement
+            </a>
+          </div>
+        </div>
+
+        <div class="exemplar-card">
+          <div class="card-stripe tp"></div>
+          <div class="card-body">
+            <div class="card-type">Teaching Philosophy · FYC</div>
+            <div class="card-name">Justiss Burry</div>
+            <div class="card-domain">justissburry.com</div>
+            <a class="card-link tp"
+               href="https://justissburry.com/fyc-teaching-philosophy/"
+               target="_blank" rel="noopener noreferrer">
+              ↗ View Statement
+            </a>
+          </div>
+        </div>
+
+        <div class="exemplar-card">
+          <div class="card-stripe tp"></div>
+          <div class="card-body">
+            <div class="card-type">Teaching Philosophy</div>
+            <div class="card-name">Lisa Meloncon</div>
+            <div class="card-domain">tek-ritr.com</div>
+            <a class="card-link tp"
+               href="https://tek-ritr.com/teaching/teaching-philosophy/"
+               target="_blank" rel="noopener noreferrer">
+              ↗ View Statement
+            </a>
+          </div>
+        </div>
+
+        <div class="exemplar-card">
+          <div class="card-stripe tp"></div>
+          <div class="card-body">
+            <div class="card-type">Teaching Philosophy</div>
+            <div class="card-name">Matt R. King</div>
+            <div class="card-domain">mattrking.com</div>
+            <a class="card-link tp"
+               href="https://mattrking.com/teaching-portfolio/teaching-philosophy/"
+               target="_blank" rel="noopener noreferrer">
+              ↗ View Statement
+            </a>
+          </div>
+        </div>
+
+        <div class="exemplar-card">
+          <div class="card-stripe tp"></div>
+          <div class="card-body">
+            <div class="card-type">Teaching Philosophy · Comp/Rhet</div>
+            <div class="card-name">Eric Luttrell</div>
+            <div class="card-domain">ericluttrell.wordpress.com</div>
+            <a class="card-link tp"
+               href="https://ericluttrell.wordpress.com/teaching/teaching-philosophy-composition-rhetoric/"
+               target="_blank" rel="noopener noreferrer">
+              ↗ View Statement
+            </a>
+          </div>
+        </div>
+
+        <div class="exemplar-card">
+          <div class="card-stripe tp"></div>
+          <div class="card-body">
+            <div class="card-type">Teaching Philosophy</div>
+            <div class="card-name">Ash Mayes</div>
+            <div class="card-domain">ashmayes.com</div>
+            <a class="card-link tp"
+               href="https://ashmayes.com/pedagogical-materials/teaching-philosophy-statement"
+               target="_blank" rel="noopener noreferrer">
+              ↗ View Statement
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
