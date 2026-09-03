@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,400&family=DM+Mono:wght@400;500&display=swap">
   <style>
-    /* ── Site tokens (exact match to eng511cole.org) ── */
+    /* ── Site tokens — exact match to eng511cole.org ── */
     :root {
       --cream:         #F9F5EF;
       --cream-dark:    #F0EAE0;
@@ -26,10 +26,8 @@
       --sidebar-text:  #E8DDD4;
       --sidebar-muted: #7A6C62;
       --sidebar-accent:#C4832F;
-
-      --bg:     var(--cream);
-      --text:   var(--ink);
-      --muted:  var(--ink-soft);
+      --surface:       #FFFFFF;
+      --shadow:        0 2px 12px rgba(0,0,0,0.07);
     }
 
     @media (prefers-color-scheme: dark) {
@@ -46,9 +44,8 @@
         --assign-light:  #0E1F18;
         --assign-mid:    #5AAB7C;
         --border:        #3D3028;
-        --bg:            #1C1410;
-        --text:          #E8DDD4;
-        --muted:         #7A6C62;
+        --surface:       #2C221A;
+        --shadow:        0 2px 12px rgba(0,0,0,0.28);
       }
     }
 
@@ -65,20 +62,18 @@
       --assign-light:  #0E1F18;
       --assign-mid:    #5AAB7C;
       --border:        #3D3028;
-      --bg:            #1C1410;
-      --text:          #E8DDD4;
-      --muted:         #7A6C62;
+      --surface:       #2C221A;
+      --shadow:        0 2px 12px rgba(0,0,0,0.28);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background: var(--bg);
-      color: var(--text);
+      background: var(--cream);
+      color: var(--ink);
       font-family: 'Source Serif 4', Georgia, serif;
       font-size: 1rem;
-      font-weight: 400;
-      line-height: 1.75;
+      line-height: 1.72;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -103,13 +98,13 @@
       font-family: 'DM Mono', monospace;
       font-size: 0.68rem;
       font-weight: 500;
-      letter-spacing: 0.08em;
-      color: var(--sidebar-accent);
+      letter-spacing: 0.1em;
       text-transform: uppercase;
+      color: var(--sidebar-accent);
     }
 
     .course-title-sm {
-      font-family: 'Playfair Display', Georgia, serif;
+      font-family: 'Playfair Display', serif;
       font-size: 1rem;
       font-weight: 700;
       color: var(--sidebar-text);
@@ -127,180 +122,298 @@
 
     .back-link:hover { color: var(--sidebar-text); }
 
-    /* ── Page content ── */
+    /* ── Page ── */
     .page {
-      max-width: 740px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 3rem 2rem 6rem;
+      padding: 3rem 2.5rem 6rem;
     }
 
-    /* ── Title block ── */
-    .title-block {
-      margin-bottom: 2.75rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid var(--border);
+    /* ── Page hero (matches week-hero) ── */
+    .page-hero {
+      margin-bottom: 2.5rem;
     }
 
-    .assignment-tag {
+    .page-tag {
       font-family: 'DM Mono', monospace;
       font-size: 0.65rem;
       font-weight: 500;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--tue-mid);
-      margin-bottom: 0.6rem;
-    }
-
-    h1 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(2rem, 4.5vw, 2.8rem);
-      font-weight: 700;
-      line-height: 1.1;
-      text-wrap: balance;
-      color: var(--text);
+      color: var(--ink-soft);
       margin-bottom: 0.5rem;
     }
 
-    .title-meta {
-      font-style: italic;
-      color: var(--muted);
-      font-size: 0.95rem;
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 0.45rem;
+      text-wrap: balance;
     }
 
-    /* ── Sections ── */
-    section { margin-bottom: 2.25rem; }
+    .page-subhead {
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      font-style: italic;
+      margin-bottom: 1.1rem;
+    }
 
-    .section-label {
+    .meta-row {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.25rem 0.8rem;
       font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.75rem;
+      font-size: 0.67rem;
+      color: var(--ink-mid);
+    }
+
+    /* ── Session card (matches main site) ── */
+    .session-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      margin-bottom: 1.75rem;
+      overflow: hidden;
+    }
+
+    /* ── Card header bands ── */
+    .session-header {
       display: flex;
       align-items: center;
       gap: 0.75rem;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
     }
 
-    .section-label::after {
+    .session-header.tue-header {
+      background: var(--tue);
+      border-bottom-color: rgba(255,255,255,0.15);
+    }
+
+    .session-header.assign-header {
+      background: var(--assign);
+      border-bottom-color: rgba(255,255,255,0.15);
+    }
+
+    .session-header.neutral-header {
+      background: var(--cream-dark);
+    }
+
+    .session-day-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.65rem;
+      border-radius: 12px;
+      font-weight: 500;
+    }
+
+    .tue-badge {
+      background: rgba(255,255,255,0.18);
+      color: white;
+    }
+
+    .assign-badge {
+      background: rgba(255,255,255,0.18);
+      color: white;
+    }
+
+    .neutral-badge {
+      background: rgba(0,0,0,0.08);
+      color: var(--ink-mid);
+    }
+
+    .session-header-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .tue-header .session-header-title,
+    .assign-header .session-header-title { color: white; }
+
+    .neutral-header .session-header-title { color: var(--ink); }
+
+    /* ── Session body ── */
+    .session-body {
+      padding: 1.5rem;
+    }
+
+    .session-body.two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    /* ── Block title (exact match to main site) ── */
+    .block-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .block-title::after {
       content: '';
       flex: 1;
       height: 1px;
       background: var(--border);
     }
 
-    h2 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 0.6rem;
-      color: var(--text);
-    }
-
+    /* ── Body text ── */
     p {
-      margin-bottom: 0.65rem;
-      max-width: 620px;
+      font-size: 0.925rem;
       color: var(--ink-mid);
+      line-height: 1.72;
+      margin-bottom: 0.6rem;
     }
-
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) p { color: var(--ink-mid); }
-    }
-    :root[data-theme="dark"] p { color: var(--ink-mid); }
 
     p:last-child { margin-bottom: 0; }
 
-    a {
-      color: var(--tue-mid);
-      text-decoration: underline;
-      text-underline-offset: 2px;
+    strong { font-weight: 600; color: var(--ink); }
+
+    /* ── Lists (matches reading-item style) ── */
+    .item-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
 
-    a:hover { color: var(--tue); }
-    a:focus-visible { outline: 2px solid var(--tue); outline-offset: 2px; border-radius: 2px; }
-
-    /* ── Bulleted list ── */
-    ul.reading-list {
-      list-style: disc;
-      padding-left: 1.5rem;
-      margin: 0.5rem 0 0.65rem;
-    }
-
-    ul.reading-list li {
-      margin-bottom: 0.4rem;
+    .item-list li {
+      display: flex;
+      gap: 0.65rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--cream-dark);
+      font-size: 0.9rem;
       color: var(--ink-mid);
+      line-height: 1.5;
+      align-items: flex-start;
     }
 
-    /* ── Purple card (like Tuesday Seminar) ── */
-    .card-purple {
+    .item-list li:last-child { border-bottom: none; }
+
+    .item-bullet {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--ink-soft);
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    /* ── Reflection box (matches main site) ── */
+    .reflection-box {
       background: var(--tue-light);
-      border-left: 3px solid var(--tue);
-      padding: 1.25rem 1.4rem;
-      margin-bottom: 0;
-    }
-
-    .card-purple-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--tue-mid);
-      margin-bottom: 0.4rem;
-    }
-
-    .card-purple p {
+      border-left: 3px solid var(--tue-mid);
+      border-radius: 0 6px 6px 0;
+      padding: 0.9rem 1.1rem;
+      font-size: 0.925rem;
       font-style: italic;
-      font-size: 1.05rem;
-      color: var(--ink);
-      max-width: 100%;
+      color: var(--tue);
+      line-height: 1.6;
     }
 
     @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) .card-purple p { color: var(--ink); }
+      :root:not([data-theme="light"]) .reflection-box { color: var(--tue-mid); }
     }
-    :root[data-theme="dark"] .card-purple p { color: var(--ink); }
+    :root[data-theme="dark"] .reflection-box { color: var(--tue-mid); }
 
-    /* ── Green card (like Assignment Due) ── */
-    .card-green {
+    /* ── Assignment box (matches main site) ── */
+    .assignment-box {
       background: var(--assign-light);
-      border-left: 3px solid var(--assign);
-      padding: 1.25rem 1.4rem;
+      border: 1px solid var(--assign-mid);
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
       margin-top: 1rem;
     }
 
-    .card-green-label {
+    .assignment-box-label {
       font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
+      font-size: 0.58rem;
       font-weight: 500;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--assign-mid);
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.5rem;
     }
 
-    .card-green p {
-      font-size: 0.95rem;
+    .assignment-box p {
+      font-size: 0.875rem;
       color: var(--ink-mid);
       margin-bottom: 0.35rem;
-      max-width: 100%;
     }
 
-    .card-green p:last-child { margin-bottom: 0; }
+    /* ── Sign-up strip (inside schedule card) ── */
+    .signup-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: var(--assign-light);
+      border-bottom: 1px solid var(--assign-mid);
+      padding: 0.75rem 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .signup-strip-text {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.03em;
+      color: var(--assign-mid);
+    }
+
+    .signup-btn {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--assign);
+      border: 1px solid var(--assign);
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 0.4rem 0.95rem;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .signup-btn:hover {
+      background: var(--assign);
+      color: white;
+    }
 
     /* ── Schedule table ── */
     .table-wrap {
       overflow-x: auto;
-      margin-top: 0.75rem;
-      border: 1px solid var(--border);
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
       font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 0.9rem;
+      font-size: 0.875rem;
     }
 
     thead th {
@@ -310,77 +423,102 @@
       font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--muted);
-      padding: 0.6rem 0.9rem;
+      color: var(--ink-soft);
+      padding: 0.55rem 1rem;
       text-align: left;
       border-bottom: 1px solid var(--border);
     }
 
-    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+    }
+
     tbody tr:last-child { border-bottom: none; }
 
     tbody td {
-      padding: 0.65rem 0.9rem;
+      padding: 0.6rem 1rem;
       vertical-align: top;
       line-height: 1.5;
     }
 
     .td-date {
       font-family: 'DM Mono', monospace;
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       color: var(--tue-mid);
       white-space: nowrap;
-      width: 7rem;
+      width: 6.5rem;
       font-weight: 500;
     }
 
     .td-student {
-      font-weight: 400;
+      font-size: 0.9rem;
       width: 11rem;
-      color: var(--text);
+      color: var(--ink);
     }
 
     .td-text {
       font-style: italic;
-      color: var(--muted);
+      color: var(--ink-soft);
+      font-size: 0.875rem;
     }
 
     /* ── Resource links ── */
-    .resource-links {
+    .resource-link {
       display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-      margin-top: 0.5rem;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--cream-dark);
+      text-decoration: none;
+      font-size: 0.875rem;
+      color: var(--ink-mid);
+      transition: color 0.15s;
     }
 
-    .resource-links a {
+    .resource-link:last-child { border-bottom: none; }
+
+    .resource-link:hover { color: var(--tue); }
+
+    .resource-link-name {
+      font-family: 'Source Serif 4', serif;
+    }
+
+    .resource-link-type {
       font-family: 'DM Mono', monospace;
-      font-size: 0.78rem;
-      color: var(--tue-mid);
-      letter-spacing: 0.02em;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-left: auto;
     }
 
-    /* ── Section rule ── */
-    hr {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 0 0 2.25rem;
+    .resource-arrow {
+      font-size: 0.8rem;
+      color: var(--tue-mid);
+      flex-shrink: 0;
     }
+
+    /* ── Global link ── */
+    a { color: var(--tue-mid); text-decoration: underline; text-underline-offset: 2px; }
+    a:hover { color: var(--tue); }
+    a:focus-visible { outline: 2px solid var(--tue); outline-offset: 2px; border-radius: 2px; }
 
     /* ── Footer ── */
     footer {
-      margin-top: 3.5rem;
+      margin-top: 2rem;
       padding-top: 1.25rem;
       border-top: 1px solid var(--border);
       font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       letter-spacing: 0.04em;
-      color: var(--muted);
+      color: var(--ink-soft);
     }
 
-    @media (max-width: 520px) {
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
       .page { padding: 2rem 1.25rem 4rem; }
       .site-header { padding: 1rem 1.25rem; }
+      .session-body.two-col { grid-template-columns: 1fr; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -390,6 +528,7 @@
 </head>
 <body>
 
+<!-- Site header bar -->
 <header class="site-header">
   <div class="site-header-left">
     <span class="course-id">ENG 511 · Fall 2026</span>
@@ -400,151 +539,190 @@
 
 <div class="page">
 
-  <div class="title-block">
-    <div class="assignment-tag">Assignment</div>
+  <!-- Page hero -->
+  <div class="page-hero">
+    <div class="page-tag">ENG 511 · Fall 2026 · Assignment</div>
     <h1>Discussion Starter</h1>
-    <p class="title-meta">One session per student · approximately 20 minutes</p>
+    <p class="page-subhead">One session per student · approximately 20 minutes</p>
+    <div class="meta-row">
+      <span class="meta-pill">📅 Sign up by Week 1</span>
+      <span class="meta-pill">⏱ ~20 min per session</span>
+      <span class="meta-pill">💬 Tuesdays, Weeks 2–14</span>
+    </div>
   </div>
 
-  <section>
-    <div class="section-label">How You Open Is Up to You</div>
-    <p>You are not teaching for the day. You are a reader who has thought more carefully about this text than anyone else in the room, and you are inviting the class into a conversation about it. The goal is genuine engagement — not a presentation, not a summary, not a performance of expertise. Some approaches that work well:</p>
-    <ul class="reading-list">
-      <li>Draw the class's attention to a particular passage and sit with it</li>
-      <li>Put ideas from different readings in conversation with each other</li>
-      <li>Discuss the rhetorical style of one or more of the texts</li>
-      <li>Show a video or connect the reading to a current cultural issue</li>
-      <li>Design an activity or short writing prompt that invites us into the texts</li>
-    </ul>
-    <p>A rhythm that tends to work: spend 2–3 minutes framing the reading — not summarizing it, but orienting us to what you found interesting, surprising, or worth arguing about. Then spend the remaining time in actual discussion. Follow threads as they open up.</p>
-  </section>
-
-  <hr>
-
-  <section>
-    <div class="section-label">What to Prepare</div>
-    <p>Bring a set of <strong>3–4 questions</strong> you think would be useful for the class to explore. Two or three anchor questions will carry you further than a list of eight — you do not have to get through all of them.</p>
-
-    <div class="card-green">
-      <div class="card-green-label">Encouraged but not required</div>
-      <p>Develop a <strong>digital component</strong> for your discussion — a slide, a shared document, a visual, whatever fits your approach.</p>
-      <p>Bring a <strong>one-page handout</strong> for your classmates. I am happy to print copies or display it in class.</p>
+  <!-- How You Open -->
+  <div class="session-card">
+    <div class="session-header tue-header">
+      <div class="session-day-badge tue-badge">Approach</div>
+      <div class="session-header-title">How You Open Is Up to You</div>
     </div>
-  </section>
+    <div class="session-body">
+      <p>You are not teaching for the day. You are a reader who has thought more carefully about this text than anyone else in the room, and you are inviting the class into a conversation about it. The goal is genuine engagement — not a presentation, not a summary, not a performance of expertise.</p>
 
-  <hr>
+      <div class="block-title" style="margin-top:1rem;">Approaches that work well</div>
+      <ul class="item-list">
+        <li><span class="item-bullet"></span>Draw the class's attention to a particular passage and sit with it</li>
+        <li><span class="item-bullet"></span>Put ideas from different readings in conversation with each other</li>
+        <li><span class="item-bullet"></span>Discuss the rhetorical style of one or more of the texts</li>
+        <li><span class="item-bullet"></span>Show a video or connect the reading to a current cultural issue</li>
+        <li><span class="item-bullet"></span>Design an activity or short writing prompt that invites us into the texts</li>
+      </ul>
 
-  <section>
-    <div class="section-label">Purpose</div>
-    <p>The goals here are multiple: you gain experience describing complex ideas to your peers; you have the opportunity to explore topics in composition that genuinely interest you; and you practice summarizing and synthesizing scholarship. This activity is meant to connect your literacy narrative to your applied pedagogy pathway — choose texts that matter to you.</p>
-    <p>You may also partner up. If you work with a colleague, coordinate beforehand and develop a shared strategy for opening discussion together.</p>
-  </section>
-
-  <hr>
-
-  <section>
-    <div class="card-purple">
-      <div class="card-purple-label">The whole assignment</div>
-      <p>Read it carefully. Show up with something real to say or ask.</p>
+      <div class="reflection-box" style="margin-top:1rem;">
+        A rhythm that tends to work: spend 2–3 minutes framing the reading — not summarizing it, but orienting us to what you found interesting, surprising, or worth arguing about. Then spend the remaining time in actual discussion. Follow threads as they open up.
+      </div>
     </div>
-  </section>
+  </div>
 
-  <hr>
-
-  <section>
-    <div class="section-label">A Note on Flexibility</div>
-    <p>If you want to try something not listed above, check in with me beforehand — my default answer is yes. If something does not land the way you intended, we will move through it together. Discussion leading is a practice, not a test.</p>
-  </section>
-
-  <hr>
-
-  <section>
-    <div class="section-label">Sign-Up Schedule</div>
-    <p>Current assignments as of the start of the semester. See the <a href="https://docs.google.com/document/d/1TjaVcTYLDnntfeiZc-ToCDTr_qf9b7Fu/edit?usp=sharing&ouid=111858507848459718130&rtpof=true&sd=true" target="_blank" rel="noopener">syllabus</a> and <a href="https://docs.google.com/document/d/1iUNmpNjN8LBRrwSZeusxvf5fwVf9zpTRgSzY9dIi5ws/edit?usp=sharing" target="_blank" rel="noopener">reading list</a> for full session dates and citations.</p>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th class="td-date">Date</th>
-            <th class="td-student">Student</th>
-            <th class="td-text">Text</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="td-date">Sep 3</td>
-            <td class="td-student">Cecilia Rothwell</td>
-            <td class="td-text">Rose, "A Cognitive Analysis of Writer's Block"</td>
-          </tr>
-          <tr>
-            <td class="td-date">Sep 8</td>
-            <td class="td-student">Torie Boyte</td>
-            <td class="td-text">Berlin, "Rhetoric and Ideology in the Writing Class"</td>
-          </tr>
-          <tr>
-            <td class="td-date">Sep 8</td>
-            <td class="td-student">Grace Parro</td>
-            <td class="td-text">Pratt, "Arts of the Contact Zone" (1991)</td>
-          </tr>
-          <tr>
-            <td class="td-date">Sep 22</td>
-            <td class="td-student">Anthony Kang</td>
-            <td class="td-text">McDonald, "Genres: Shape of Meaning"</td>
-          </tr>
-          <tr>
-            <td class="td-date">Sep 29</td>
-            <td class="td-student">Olivia Smith</td>
-            <td class="td-text">Smith, "The Genre of the End Comment"</td>
-          </tr>
-          <tr>
-            <td class="td-date">Oct 13</td>
-            <td class="td-student">Hadia Sultana</td>
-            <td class="td-text">Stenberg, "Feminist Repurposing" (2015)</td>
-          </tr>
-          <tr>
-            <td class="td-date">Oct 15</td>
-            <td class="td-student">Kayla Burrell</td>
-            <td class="td-text">Winans, "Queering Pedagogy in the English Classroom"</td>
-          </tr>
-          <tr>
-            <td class="td-date">Oct 20</td>
-            <td class="td-student">Emma McLeod</td>
-            <td class="td-text">Feminism in Composition</td>
-          </tr>
-          <tr>
-            <td class="td-date">Oct 20</td>
-            <td class="td-student">Callie Beasley</td>
-            <td class="td-text">Stenberg, "Feminist Repurposing" (2015)</td>
-          </tr>
-          <tr>
-            <td class="td-date">Oct 20</td>
-            <td class="td-student">Kayla Lare</td>
-            <td class="td-text">Stenberg, "Feminist Repurposing"</td>
-          </tr>
-          <tr>
-            <td class="td-date">Oct 27</td>
-            <td class="td-student">Nevaeh</td>
-            <td class="td-text">Wardle, "Mutt Genres and the Goal of FYC"</td>
-          </tr>
-          <tr>
-            <td class="td-date">Nov 3</td>
-            <td class="td-student">Grace Harrington</td>
-            <td class="td-text">Tomlinson &amp; Newman, "Valuing Neurodiversity" (2017)</td>
-          </tr>
-          <tr>
-            <td class="td-date">Nov 3</td>
-            <td class="td-student">Laura Zdanski</td>
-            <td class="td-text">Dolmage, "Mapping Composition"</td>
-          </tr>
-          <tr>
-            <td class="td-date">Nov 3</td>
-            <td class="td-student">Noah Britt</td>
-            <td class="td-text">Tomlinson &amp; Newman, "Valuing Neurodiversity"</td>
-          </tr>
-        </tbody>
-      </table>
+  <!-- What to Bring -->
+  <div class="session-card">
+    <div class="session-header tue-header">
+      <div class="session-day-badge tue-badge">Preparation</div>
+      <div class="session-header-title">What to Bring</div>
     </div>
-  </section>
+    <div class="session-body">
+      <p>Come prepared with <strong>3–4 questions</strong> you think would be useful for the class to explore. Two or three anchor questions will carry you further than a list of eight — you do not have to get through all of them.</p>
+
+      <div class="assignment-box">
+        <div class="assignment-box-label">Encouraged but not required</div>
+        <p>Develop a <strong>digital component</strong> for your discussion — a slide, a shared document, a visual, whatever fits your approach.</p>
+        <p>Bring a <strong>one-page handout</strong> for your classmates. I am happy to print copies or display it in class.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Purpose & Flexibility — two-column like session-body -->
+  <div class="session-card">
+    <div class="session-body two-col">
+      <div>
+        <div class="block-title">Purpose</div>
+        <p>The goals here are multiple: you gain experience describing complex ideas to your peers; you have the opportunity to explore topics in composition that matter to you; and you practice summarizing and synthesizing scholarship. Choose texts that connect to your literacy narrative and applied pedagogy pathway.</p>
+        <p>You may also partner up. If you work with a colleague, coordinate beforehand and develop a shared strategy for opening discussion together.</p>
+      </div>
+      <div>
+        <div class="block-title">On Flexibility</div>
+        <p>If you want to try something not listed above, check in with me beforehand — my default answer is yes. If something does not land the way you intended, we will move through it together. Discussion leading is a practice, not a test.</p>
+        <div class="reflection-box" style="margin-top:0.75rem;">
+          Read it carefully. Show up with something real to say or ask.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign-Up Schedule -->
+  <div class="session-card">
+    <div class="signup-strip">
+      <span class="signup-strip-text">Claim your date and text — first come, first served</span>
+      <a class="signup-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdDexqnNT6YrzMFN_JFU2SUrxLs8bIiMungY17WrngWonEkQw/viewform?usp=header" target="_blank" rel="noopener">Sign-Up Form →</a>
+    </div>
+    <div class="session-header neutral-header">
+      <div class="session-day-badge neutral-badge">Schedule</div>
+      <div class="session-header-title">Current Sign-Ups</div>
+    </div>
+    <div class="session-body" style="padding:0;">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Student</th>
+              <th>Text</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-date">Sep 3</td>
+              <td class="td-student">Cecilia Rothwell</td>
+              <td class="td-text">Rose, "A Cognitive Analysis of Writer's Block"</td>
+            </tr>
+            <tr>
+              <td class="td-date">Sep 8</td>
+              <td class="td-student">Torie Boyte</td>
+              <td class="td-text">Berlin, "Rhetoric and Ideology in the Writing Class"</td>
+            </tr>
+            <tr>
+              <td class="td-date">Sep 8</td>
+              <td class="td-student">Grace Parro</td>
+              <td class="td-text">Pratt, "Arts of the Contact Zone" (1991)</td>
+            </tr>
+            <tr>
+              <td class="td-date">Sep 22</td>
+              <td class="td-student">Anthony Kang</td>
+              <td class="td-text">McDonald, "Genres: Shape of Meaning"</td>
+            </tr>
+            <tr>
+              <td class="td-date">Sep 29</td>
+              <td class="td-student">Olivia Smith</td>
+              <td class="td-text">Smith, "The Genre of the End Comment"</td>
+            </tr>
+            <tr>
+              <td class="td-date">Oct 13</td>
+              <td class="td-student">Hadia Sultana</td>
+              <td class="td-text">Flynn, "Composing as a Woman" (1988)</td>
+            </tr>
+            <tr>
+              <td class="td-date">Oct 15</td>
+              <td class="td-student">Kayla Burrell</td>
+              <td class="td-text">Winans, "Queering Pedagogy in the English Classroom"</td>
+            </tr>
+            <tr>
+              <td class="td-date">Oct 20</td>
+              <td class="td-student">Emma McLeod</td>
+              <td class="td-text">Feminism in Composition</td>
+            </tr>
+            <tr>
+              <td class="td-date">Oct 20</td>
+              <td class="td-student">Callie Beasley</td>
+              <td class="td-text">Stenberg, "Feminist Repurposing" (2015)</td>
+            </tr>
+            <tr>
+              <td class="td-date">Oct 20</td>
+              <td class="td-student">Kayla Lare</td>
+              <td class="td-text">Stenberg, "Feminist Repurposing"</td>
+            </tr>
+            <tr>
+              <td class="td-date">Oct 27</td>
+              <td class="td-student">Nevaeh</td>
+              <td class="td-text">Wardle, "Mutt Genres and the Goal of FYC"</td>
+            </tr>
+            <tr>
+              <td class="td-date">Nov 3</td>
+              <td class="td-student">Grace Harrington</td>
+              <td class="td-text">Tomlinson &amp; Newman, "Valuing Neurodiversity" (2017)</td>
+            </tr>
+            <tr>
+              <td class="td-date">Nov 3</td>
+              <td class="td-student">Laura Zdanski</td>
+              <td class="td-text">Dolmage, "Mapping Composition"</td>
+            </tr>
+            <tr>
+              <td class="td-date">Nov 3</td>
+              <td class="td-student">Noah Britt</td>
+              <td class="td-text">Tomlinson &amp; Newman, "Valuing Neurodiversity"</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Resources -->
+  <div class="session-card">
+    <div class="session-body">
+      <div class="block-title">Resources</div>
+      <a class="resource-link" href="https://docs.google.com/document/d/1TjaVcTYLDnntfeiZc-ToCDTr_qf9b7Fu/edit?usp=sharing&ouid=111858507848459718130&rtpof=true&sd=true" target="_blank" rel="noopener">
+        <span class="resource-arrow">↗</span>
+        <span class="resource-link-name">ENG 511 Syllabus</span>
+        <span class="resource-link-type">Google Doc</span>
+      </a>
+      <a class="resource-link" href="https://docs.google.com/document/d/1iUNmpNjN8LBRrwSZeusxvf5fwVf9zpTRgSzY9dIi5ws/edit?usp=sharing" target="_blank" rel="noopener">
+        <span class="resource-arrow">↗</span>
+        <span class="resource-link-name">Weekly Reading List</span>
+        <span class="resource-link-type">Google Doc</span>
+      </a>
+    </div>
+  </div>
 
   <footer>
     ENG 511 · Prof. Kirsti Cole · Questions? Email me or catch me before class.
