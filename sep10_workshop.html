@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENG 511 — Sep 10: Collaborative Writing Design Workshop</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F4F1;
+    --surface: #FFFFFF;
+    --text-1: #1A1918;
+    --text-2: #4A4540;
+    --text-3: #6B635C;
+    --border: #DEDAD4;
+    --thu: #8B3A1A;
+    --thu-light: #FBF0EA;
+    --thu-mid: #B85A2C;
+    --thu-dark: #6E2E12;
+    --time-bg: #FEF0E8;
+    --time-color: #9B4520;
+    --note-bg: #EEF1F9;
+    --note-border: #5E78B5;
+    --note-text: #2A4485;
+    --anson: #3D1F5A;
+    --anson-light: #F3EEF9;
+    --pratt: #1A4A3A;
+    --pratt-light: #EAF4EE;
+    --design: #2A4485;
+    --design-light: #EEF1F9;
+    --shadow: 0 1px 8px rgba(0,0,0,0.07);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text-1);
+    line-height: 1.65;
+    font-size: 15px;
+    min-height: 100vh;
+  }
+
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--note-border); outline-offset: 2px; }
+
+  .skip-link {
+    position: absolute; left: -999px; top: 8px;
+    background: white; color: var(--thu-dark); padding: 8px 12px;
+    border-radius: 6px; z-index: 10; font-size: 13px;
+  }
+  .skip-link:focus { left: 12px; }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    background: var(--thu);
+    color: white;
+    padding: 32px 48px 28px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .course-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 6px;
+  }
+
+  .page-title {
+    font-family: 'Spectral', serif;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+    font-style: italic;
+  }
+
+  .time-display { text-align: right; }
+
+  .time-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 4px;
+  }
+
+  .time-clock {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 500;
+    color: white;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── SEQUENCE STRIP ── */
+  .timeline-strip {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    list-style: none;
+  }
+
+  .tl-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 18px 12px;
+    border-right: 1px solid var(--border);
+    min-width: 130px;
+    transition: background 0.2s;
+    position: relative;
+  }
+
+  .tl-item:first-child { border-left: 1px solid var(--border); }
+
+  .tl-item.active { background: var(--time-bg); }
+
+  .tl-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0; right: 0;
+    height: 2px;
+    background: var(--time-color);
+  }
+
+  .tl-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--time-color);
+    margin-bottom: 3px;
+  }
+
+  .tl-label {
+    font-size: 11.5px;
+    color: var(--text-2);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .tl-dur {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-3);
+    margin-top: 3px;
+  }
+
+  /* ── CONTENT ── */
+  .content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 36px 48px 60px;
+  }
+
+  .section { margin-bottom: 40px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    background: var(--time-bg);
+    color: var(--time-color);
+    padding: 3px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: 'Spectral', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-1);
+    flex: 1;
+  }
+
+  .section-duration {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    white-space: nowrap;
+  }
+
+  .section.active .section-header { border-bottom-color: var(--time-color); }
+  .section.active .section-num { background: var(--time-color); color: white; }
+  .section.active .section-title { color: var(--time-color); }
+
+  .lede {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+
+  /* ── NOTE BOX ── */
+  .note {
+    background: var(--note-bg);
+    border-left: 3px solid var(--note-border);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    color: var(--note-text);
+    margin-bottom: 14px;
+    line-height: 1.55;
+  }
+
+  .note strong { font-weight: 600; }
+
+  /* ── PHASE CARDS ── */
+  .phase-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 12px;
+  }
+
+  .phase-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+  }
+
+  .phase-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  .phase-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    background: var(--thu);
+    color: white;
+    padding: 2px 9px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+
+  .phase-card-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-1);
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+
+  .phase-steps { list-style: none; }
+
+  .phase-step {
+    display: flex;
+    gap: 8px;
+    padding: 6px 0;
+    border-bottom: 1px solid #F2EFE9;
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.5;
+    align-items: flex-start;
+  }
+
+  .phase-step:last-child { border-bottom: none; }
+
+  .step-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--thu-mid);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  /* ── REQUIRED COMPONENTS ── */
+  .component-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin: 14px 0;
+  }
+
+  .component-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .component-card-header {
+    background: var(--design-light);
+    color: var(--design);
+    padding: 9px 12px;
+    font-size: 12.5px;
+    font-weight: 600;
+    font-family: 'Spectral', serif;
+    border-bottom: 1px solid #D0D9EF;
+  }
+
+  .component-card-body {
+    padding: 10px 12px;
+    font-size: 12px;
+    color: var(--text-2);
+    line-height: 1.5;
+  }
+
+  .activity-box {
+    background: var(--thu-light);
+    border: 1px solid #E8C4A8;
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-top: 12px;
+  }
+
+  .activity-box p {
+    font-size: 13.5px;
+    color: var(--thu-dark);
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+
+  .activity-box p:last-child { margin-bottom: 0; }
+
+  .num-list { list-style: none; margin-top: 12px; }
+
+  .num-item {
+    display: flex;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #EAC8A8;
+    font-size: 13px;
+    color: var(--thu-dark);
+    line-height: 1.5;
+    align-items: flex-start;
+  }
+
+  .num-item:last-child { border-bottom: none; }
+
+  .num-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: white;
+    background: var(--thu-dark);
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ── SAMPLE PASSAGE ── */
+  .sample {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-top: 14px;
+  }
+
+  .sample-header {
+    background: var(--anson-light);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #D9D0E8;
+    flex-wrap: wrap;
+  }
+
+  .sample-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--anson);
+    font-weight: 500;
+    background: rgba(61,31,90,0.1);
+    padding: 2px 8px;
+    border-radius: 9px;
+  }
+
+  .sample-context {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--anson);
+  }
+
+  .sample-body {
+    padding: 16px 20px;
+    font-family: 'Spectral', serif;
+    font-size: 15px;
+    color: var(--text-1);
+    line-height: 1.75;
+  }
+
+  .sort-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .sort-col {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+
+  .sort-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--anson);
+    margin-bottom: 6px;
+  }
+
+  .sort-text {
+    font-size: 12.5px;
+    color: var(--text-2);
+    line-height: 1.5;
+  }
+
+  /* ── CONTACT ZONE ── */
+  .cz-arts {
+    background: var(--pratt-light);
+    border: 1px solid #C5DDD0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--pratt);
+    line-height: 1.6;
+  }
+
+  .cz-arts strong {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+
+  /* ── FRAMEWORK COMPARISON ── */
+  .framework-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .framework-col {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+
+  .fw-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    margin-bottom: 8px;
+  }
+
+  .fw-text {
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.55;
+  }
+
+  /* ── REFLECTION ── */
+  .reflection {
+    background: var(--thu-light);
+    border-left: 3px solid var(--thu-mid);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--thu-dark);
+    line-height: 1.65;
+  }
+
+  .reflection strong {
+    font-style: normal;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 6px;
+    color: var(--thu-dark);
+  }
+
+  /* ── PREVIEW ── */
+  .preview-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+  }
+
+  .preview-heading {
+    font-family: 'Spectral', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-1);
+    margin-bottom: 10px;
+  }
+
+  .preview-readings { list-style: none; margin-bottom: 12px; }
+
+  .preview-reading {
+    display: flex;
+    gap: 8px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-2);
+    align-items: flex-start;
+  }
+
+  .preview-reading:last-child { border-bottom: none; }
+
+  .preview-bullet {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--text-3);
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  .preview-questions { list-style: none; }
+
+  .preview-q {
+    display: flex;
+    gap: 8px;
+    padding: 5px 0;
+    font-size: 12.5px;
+    color: var(--text-2);
+    font-style: italic;
+    line-height: 1.45;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .component-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 780px) {
+    .phase-grid, .framework-compare, .sort-grid { grid-template-columns: 1fr; }
+    .component-grid { grid-template-columns: 1fr; }
+    .page-header { flex-direction: column; align-items: flex-start; }
+    .time-display { text-align: left; }
+    .content { padding: 24px 20px 48px; }
+    .timeline-strip { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to workshop content</a>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="page-header-left">
+    <div class="course-tag">ENG 511 · Week 4 · Thursday, September 10, 2026</div>
+    <h1 class="page-title">Collaborative Writing Design Workshop</h1>
+    <div class="page-subtitle">Social Construction &amp; the Social Turn — Anson (2000), Giroux (2006)</div>
+  </div>
+  <div class="time-display">
+    <div class="time-label" id="clock-label">Current Time</div>
+    <div class="time-clock" id="clock" aria-labelledby="clock-label">--:--</div>
+  </div>
+</header>
+
+<!-- SEQUENCE STRIP -->
+<nav aria-label="Workshop sequence">
+<ol class="timeline-strip">
+  <li class="tl-item" id="tl-0">
+    <div class="tl-num">01</div>
+    <div class="tl-label">Opening</div>
+    <div class="tl-dur">3 min</div>
+  </li>
+  <li class="tl-item" id="tl-1">
+    <div class="tl-num">02</div>
+    <div class="tl-label">Designing Group Writing Tasks</div>
+    <div class="tl-dur">25 min</div>
+  </li>
+  <li class="tl-item" id="tl-2">
+    <div class="tl-num">03</div>
+    <div class="tl-label">Anson on Error</div>
+    <div class="tl-dur">20 min</div>
+  </li>
+  <li class="tl-item" id="tl-3">
+    <div class="tl-num">04</div>
+    <div class="tl-label">Contact Zone in Action</div>
+    <div class="tl-dur">20 min</div>
+  </li>
+  <li class="tl-item" id="tl-4">
+    <div class="tl-num">05</div>
+    <div class="tl-label">Exit Reflection</div>
+    <div class="tl-dur">5 min</div>
+  </li>
+  <li class="tl-item" id="tl-5">
+    <div class="tl-num">06</div>
+    <div class="tl-label">Preview Week 5</div>
+    <div class="tl-dur">2 min</div>
+  </li>
+</ol>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="content" id="main">
+
+  <!-- OPENING -->
+  <section class="section" id="sec-0" aria-labelledby="h-sec-0">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <h2 class="section-title" id="h-sec-0">Opening</h2>
+      <div class="section-duration">3 min</div>
+    </div>
+    <p class="lede">Tuesday moved the problem of writing out of the writer and into the social. Today we build with the move. Three design activities, each ending in an artifact or a decision rather than a summary.</p>
+    <div class="note">
+      <strong>Giroux's frame for the day:</strong> Public pedagogy names the claim that education happens across institutions and media, not only in classrooms, and that intellectuals hold responsibility for the social relations their teaching produces. The question for each activity: what does it mean to design writing tasks and feedback practices as if this were true?
+    </div>
+  </section>
+
+  <!-- ACTIVITY 1 -->
+  <section class="section" id="sec-1" aria-labelledby="h-sec-1">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <h2 class="section-title" id="h-sec-1">Designing Group Writing Tasks</h2>
+      <div class="section-duration">25 min</div>
+    </div>
+
+    <p class="lede">Design a collaborative writing activity for an ENG 101 context, face-to-face or online, which enacts social construction theory. The question is structural: What structures support genuine co-authorship? What undermines it?</p>
+
+    <p class="lede" style="margin-bottom:6px;">Every design names these five components. Your group should be able to say which one carries the theoretical weight.</p>
+    <div class="component-grid">
+      <div class="component-card">
+        <h3 class="component-card-header">The Product</h3>
+        <div class="component-card-body">What the group writes, for whom, and in what genre.</div>
+      </div>
+      <div class="component-card">
+        <h3 class="component-card-header">Labor</h3>
+        <div class="component-card-body">How work is divided, or deliberately not divided.</div>
+      </div>
+      <div class="component-card">
+        <h3 class="component-card-header">Disagreement</h3>
+        <div class="component-card-body">What happens when the group does not agree about a claim or a sentence.</div>
+      </div>
+      <div class="component-card">
+        <h3 class="component-card-header">Assessment</h3>
+        <div class="component-card-body">How the group's work is evaluated, and by whom.</div>
+      </div>
+      <div class="component-card">
+        <h3 class="component-card-header">The Individual</h3>
+        <div class="component-card-body">What each writer remains accountable for inside the collective.</div>
+      </div>
+    </div>
+
+    <div class="phase-grid">
+      <div class="phase-card">
+        <div class="phase-card-header">
+          <div class="phase-badge">Groups of 3–4</div>
+          <h3 class="phase-card-title">Design</h3>
+        </div>
+        <ul class="phase-steps">
+          <li class="phase-step">
+            <div class="step-dot"></div>
+            <div><strong>5 min.</strong> Choose a context: a specific course moment, a modality, a student population. Name the social claim your activity enacts, in one sentence.</div>
+          </li>
+          <li class="phase-step">
+            <div class="step-dot"></div>
+            <div><strong>12 min.</strong> Draft the task on a shared document. All five components, written out. Mark the one doing the theoretical work.</div>
+          </li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-card-header">
+          <div class="phase-badge">Swap</div>
+          <h3 class="phase-card-title">Stress Test and Report</h3>
+        </div>
+        <ul class="phase-steps">
+          <li class="phase-step">
+            <div class="step-dot"></div>
+            <div><strong>5 min.</strong> Exchange designs with a neighboring group. Reader's task: find the moment where the design reverts to individual authorship with a social veneer. Return one sentence of critique.</div>
+          </li>
+          <li class="phase-step">
+            <div class="step-dot"></div>
+            <div><strong>3 min.</strong> Two groups share the critique they received and what they would change.</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:14px;">
+      <strong>Watch for:</strong> designs where collaboration means dividing a paper into sections. The theory requires knowledge made between people, not assembled from parts.
+    </div>
+  </section>
+
+  <!-- ACTIVITY 2 -->
+  <section class="section" id="sec-2" aria-labelledby="h-sec-2">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <h2 class="section-title" id="h-sec-2">Anson on Error</h2>
+      <div class="section-duration">20 min</div>
+    </div>
+
+    <div class="note">
+      <strong>Anson's claim:</strong> Error is not a property of texts. It is a judgment made by readers within social contexts. The same feature is an error in one setting and a resource in another. Response practice is therefore partly a matter of the reader's awareness of the context they read from. On Tuesday, Pratt's question about student error was the theoretical version. This is the practical one.
+    </div>
+
+    <div class="sample">
+      <div class="sample-header">
+        <div class="sample-label">Sample Student Passage</div>
+        <div class="sample-context">ENG 101 · Literacy narrative, first draft · opening paragraph</div>
+      </div>
+      <div class="sample-body">
+        Me and my brother learned to read at the same time even though he is two years older. My mom would sit us both at the kitchen table, she had this one book about a dog she read so many times the pages fell out. People say reading is something you do alone but in my house it was never like that, it was loud. When I got to middle school the teachers wanted us to read silent for 20 minutes and honestly it felt like punishment. I still read with my mouth moving a little which one of my professors pointed out like it was a problem. My grandma says in her village the old people read the newspaper out loud on the porch every morning so everybody heard the news, so maybe I got it from her. Anyways this is why I think reading should be taught as a group thing and not a test.
+      </div>
+    </div>
+
+    <div class="activity-box">
+      <p><strong>In pairs, two passes.</strong></p>
+      <ul class="num-list">
+        <li class="num-item">
+          <div class="num-badge">1</div>
+          <div><strong>Pass one (4 min).</strong> Mark everything you would ordinarily flag. No discussion yet.</div>
+        </li>
+        <li class="num-item">
+          <div class="num-badge">2</div>
+          <div><strong>Pass two (8 min).</strong> Sort your marks into the three columns below. Then write one sentence of feedback for a single item in the middle column, addressed to the student, which names the mismatch without treating it as deficiency.</div>
+        </li>
+        <li class="num-item">
+          <div class="num-badge">3</div>
+          <div><strong>Share (4 min).</strong> Two or three feedback sentences read aloud. How would each be received by the student who wrote the passage? What does the sentence assume about who has to change?</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="sort-grid">
+      <div class="sort-col">
+        <div class="sort-label">Error by any standard</div>
+        <div class="sort-text">Features nearly every reader in nearly every context would read as a mistake.</div>
+      </div>
+      <div class="sort-col">
+        <div class="sort-label">Social mismatch</div>
+        <div class="sort-text">Register, dialect, genre convention, citation culture, audience assumption. Right somewhere, misread here.</div>
+      </div>
+      <div class="sort-col">
+        <div class="sort-label">Reader preference dressed as rule</div>
+        <div class="sort-text">Your habit, your training, your taste. Be honest about which marks belong here.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACTIVITY 3 -->
+  <section class="section" id="sec-3" aria-labelledby="h-sec-3">
+    <div class="section-header">
+      <div class="section-num">04</div>
+      <h2 class="section-title" id="h-sec-3">Contact Zone in Action</h2>
+      <div class="section-duration">20 min</div>
+    </div>
+
+    <p class="lede">Identify a moment in a class you have taken or taught which felt like a contact zone. What happened? How might social construction theory have guided the response?</p>
+
+    <div class="cz-arts">
+      <strong>Pratt's literate arts of the contact zone</strong>
+      Autoethnography · transculturation · critique · collaboration · bilingualism · mediation · parody · denunciation · imaginary dialogue · vernacular expression
+    </div>
+
+    <div class="phase-grid">
+      <div class="phase-card">
+        <div class="phase-card-header">
+          <div class="phase-badge">Private, then trios</div>
+          <h3 class="phase-card-title">Describe and Reread</h3>
+        </div>
+        <ul class="phase-steps">
+          <li class="phase-step">
+            <div class="step-dot"></div>
+            <div><strong>5 min, alone.</strong> Describe the moment in five or six sentences. What clashed? Who held institutional authority? What was the outcome for the person with less of it?</div>
+          </li>
+          <li class="phase-step">
+            <div class="step-dot"></div>
+            <div><strong>10 min, trios.</strong> Each person shares. Do not evaluate the response taken at the time. For each case, name one of Pratt's literate arts present in the room and unrecognized. Then propose one concrete change a teacher committed to social construction would have made.</div>
+          </li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-card-header">
+          <div class="phase-badge">Full class</div>
+          <h3 class="phase-card-title">Report</h3>
+        </div>
+        <ul class="phase-steps">
+          <li class="phase-step">
+            <div class="step-dot"></div>
+            <div><strong>5 min.</strong> One case per trio, two sentences: the unrecognized literate art and the change.</div>
+          </li>
+          <li class="phase-step">
+            <div class="step-dot"></div>
+            <div>Pratt's concept requires asymmetry. A polite disagreement between peers of equal standing is not a contact zone. Where did the asymmetry sit in your case?</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXIT REFLECTION -->
+  <section class="section" id="sec-4" aria-labelledby="h-sec-4">
+    <div class="section-header">
+      <div class="section-num">05</div>
+      <h2 class="section-title" id="h-sec-4">Exit Reflection</h2>
+      <div class="section-duration">5 min</div>
+    </div>
+
+    <div class="note">
+      Write privately, as a Perusall post or in-class writing. You will not be asked to share unless you choose to. With Giroux in mind: the structures in question include the ones you benefit from.
+    </div>
+
+    <div class="reflection">
+      <strong>Exit Reflection Prompt</strong>
+      "What institutional structures support or hinder social approaches to writing in the courses you teach or will teach?"
+    </div>
+  </section>
+
+  <!-- PREVIEW WEEK 5 -->
+  <section class="section" id="sec-5" aria-labelledby="h-sec-5">
+    <div class="section-header">
+      <div class="section-num">06</div>
+      <h2 class="section-title" id="h-sec-5">Preview: Week 5</h2>
+      <div class="section-duration">2 min</div>
+    </div>
+
+    <div class="preview-box">
+      <h3 class="preview-heading">Critical Pedagogy &amp; Language — Freire, Anzaldúa, Wilson Logan</h3>
+      <ul class="preview-readings">
+        <li class="preview-reading">
+          <div class="preview-bullet"></div>
+          <div>Freire, <em>Pedagogy of the Oppressed</em>, Ch. 2</div>
+        </li>
+        <li class="preview-reading">
+          <div class="preview-bullet"></div>
+          <div>Anzaldúa, "How to Tame a Wild Tongue" (1987)</div>
+        </li>
+        <li class="preview-reading">
+          <div class="preview-bullet"></div>
+          <div>Wilson Logan, "Black Sites of Rhetorical Education" (2005)</div>
+        </li>
+      </ul>
+      <ul class="preview-questions">
+        <li class="preview-q">▸ How do Freire's principles translate to writing instruction?</li>
+        <li class="preview-q">▸ How do Anzaldúa and Wilson Logan expand critical pedagogy beyond Freire's framework?</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // Live clock
+  function updateClock() {
+    const now = new Date();
+    const h = now.getHours().toString().padStart(2,'0');
+    const m = now.getMinutes().toString().padStart(2,'0');
+    document.getElementById('clock').textContent = h + ':' + m;
+  }
+  updateClock();
+  setInterval(updateClock, 10000);
+
+  // Sequence highlighting: windows derived from the session start and each
+  // segment's duration. Nothing on the page displays a clock time.
+  const SESSION_START = 11 * 60 + 45;
+  const DURATIONS = [3, 25, 20, 20, 5, 2];
+  const bounds = [];
+  let t = SESSION_START;
+  DURATIONS.forEach(d => { bounds.push([t, t + d]); t += d; });
+
+  function highlight() {
+    const now = new Date();
+    const mins = now.getHours() * 60 + now.getMinutes();
+    bounds.forEach(([s, e], i) => {
+      const on = mins >= s && mins < e;
+      const tl = document.getElementById('tl-' + i);
+      const sec = document.getElementById('sec-' + i);
+      if (tl) { tl.classList.toggle('active', on); if (on) tl.setAttribute('aria-current', 'step'); else tl.removeAttribute('aria-current'); }
+      if (sec) sec.classList.toggle('active', on);
+    });
+  }
+  highlight();
+  setInterval(highlight, 30000);
+</script>
+</body>
+</html>
