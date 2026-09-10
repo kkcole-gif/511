@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENG 511, Sep 17: Critical Literacy and OWI, Asynchronous Session</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F4F1;
+    --surface: #FFFFFF;
+    --text-1: #1A1918;
+    --text-2: #4A4540;
+    --text-3: #6B635C;
+    --border: #DEDAD4;
+    --thu: #8B3A1A;
+    --thu-light: #FBF0EA;
+    --thu-mid: #B85A2C;
+    --thu-dark: #6E2E12;
+    --time-bg: #FEF0E8;
+    --time-color: #9B4520;
+    --note-bg: #EEF1F9;
+    --note-border: #5E78B5;
+    --note-text: #2A4485;
+    --doc: #1A4A3A;
+    --doc-light: #EAF4EE;
+    --doc-border: #C5DDD0;
+    --design: #2A4485;
+    --design-light: #EEF1F9;
+    --shadow: 0 1px 8px rgba(0,0,0,0.07);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text-1);
+    line-height: 1.65;
+    font-size: 15px;
+    min-height: 100vh;
+  }
+
+  a { color: var(--design); }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--note-border); outline-offset: 2px; }
+
+  .skip-link {
+    position: absolute; left: -999px; top: 8px;
+    background: white; color: var(--thu-dark); padding: 8px 12px;
+    border-radius: 6px; z-index: 10; font-size: 13px;
+  }
+  .skip-link:focus { left: 12px; }
+
+  /* PAGE HEADER */
+  .page-header {
+    background: var(--thu);
+    color: white;
+    padding: 32px 48px 28px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .course-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 6px;
+  }
+
+  .page-title {
+    font-family: 'Spectral', serif;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+    font-style: italic;
+  }
+
+  .mode-display { text-align: right; }
+
+  .mode-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 4px;
+  }
+
+  .mode-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    letter-spacing: 0.05em;
+  }
+
+  /* SEQUENCE STRIP */
+  .timeline-strip {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    list-style: none;
+  }
+
+  .tl-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 18px 12px;
+    border-right: 1px solid var(--border);
+    min-width: 130px;
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .tl-item:first-child { border-left: 1px solid var(--border); }
+  .tl-item:hover { background: var(--time-bg); }
+
+  .tl-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--time-color);
+    margin-bottom: 3px;
+  }
+
+  .tl-label {
+    font-size: 11.5px;
+    color: var(--text-2);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  /* CONTENT */
+  .content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 36px 48px 60px;
+  }
+
+  .section { margin-bottom: 40px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    background: var(--time-bg);
+    color: var(--time-color);
+    padding: 3px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: 'Spectral', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-1);
+    flex: 1;
+  }
+
+  .section-pace {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    white-space: nowrap;
+  }
+
+  .lede {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+
+  /* NOTE BOX */
+  .note {
+    background: var(--note-bg);
+    border-left: 3px solid var(--note-border);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    color: var(--note-text);
+    margin-bottom: 14px;
+    line-height: 1.55;
+  }
+
+  .note strong { font-weight: 600; }
+
+  /* DOC BOX */
+  .doc-box {
+    background: var(--doc-light);
+    border: 1px solid var(--doc-border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 14px 0;
+    color: var(--doc);
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+
+  .doc-box strong.doc-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .doc-box p { margin-bottom: 8px; }
+  .doc-box p:last-child { margin-bottom: 0; }
+
+  .doc-link {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+    background: var(--doc);
+    text-decoration: none;
+    border-radius: 16px;
+    padding: 7px 16px;
+    margin-top: 6px;
+  }
+
+  .doc-link:hover { background: #12362A; }
+
+  /* PHASE CARDS */
+  .phase-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 12px;
+  }
+
+  .phase-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+  }
+
+  .phase-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  .phase-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    background: var(--thu);
+    color: white;
+    padding: 2px 9px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+
+  .phase-card-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-1);
+  }
+
+  .phase-steps { list-style: none; }
+
+  .phase-step {
+    display: flex;
+    gap: 8px;
+    padding: 6px 0;
+    border-bottom: 1px solid #F2EFE9;
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.5;
+    align-items: flex-start;
+  }
+
+  .phase-step:last-child { border-bottom: none; }
+
+  .step-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--thu-mid);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  /* COMPONENT CARDS */
+  .component-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 14px 0;
+  }
+
+  .component-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .component-card-header {
+    background: var(--design-light);
+    color: var(--design);
+    padding: 9px 12px;
+    font-size: 12.5px;
+    font-weight: 600;
+    font-family: 'Spectral', serif;
+    border-bottom: 1px solid #D0D9EF;
+  }
+
+  .component-card-body {
+    padding: 10px 12px;
+    font-size: 12px;
+    color: var(--text-2);
+    line-height: 1.5;
+  }
+
+  .activity-box {
+    background: var(--thu-light);
+    border: 1px solid #E8C4A8;
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-top: 12px;
+  }
+
+  .activity-box p {
+    font-size: 13.5px;
+    color: var(--thu-dark);
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+
+  .activity-box p:last-child { margin-bottom: 0; }
+
+  .num-list { list-style: none; margin-top: 12px; }
+
+  .num-item {
+    display: flex;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #EAC8A8;
+    font-size: 13px;
+    color: var(--thu-dark);
+    line-height: 1.5;
+    align-items: flex-start;
+  }
+
+  .num-item:last-child { border-bottom: none; }
+
+  .num-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: white;
+    background: var(--thu-dark);
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* SAMPLE */
+  .sample {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-top: 14px;
+  }
+
+  .sample-header {
+    background: var(--design-light);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #D0D9EF;
+    flex-wrap: wrap;
+  }
+
+  .sample-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--design);
+    font-weight: 500;
+    background: rgba(42,68,133,0.1);
+    padding: 2px 8px;
+    border-radius: 9px;
+  }
+
+  .sample-context {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--design);
+  }
+
+  .sample-body {
+    padding: 16px 20px;
+    font-family: 'Spectral', serif;
+    font-size: 15px;
+    color: var(--text-1);
+    line-height: 1.75;
+  }
+
+  .sample-body p { margin-bottom: 10px; }
+  .sample-body p:last-child { margin-bottom: 0; }
+
+  .sort-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .sort-col {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+
+  .sort-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--design);
+    margin-bottom: 6px;
+  }
+
+  .sort-text {
+    font-size: 12.5px;
+    color: var(--text-2);
+    line-height: 1.5;
+  }
+
+  /* REFLECTION */
+  .reflection {
+    background: var(--thu-light);
+    border-left: 3px solid var(--thu-mid);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--thu-dark);
+    line-height: 1.65;
+  }
+
+  .reflection strong {
+    font-style: normal;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 6px;
+    color: var(--thu-dark);
+  }
+
+  /* PREVIEW */
+  .preview-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+  }
+
+  .preview-heading {
+    font-family: 'Spectral', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-1);
+    margin-bottom: 10px;
+  }
+
+  .preview-readings { list-style: none; margin-bottom: 12px; }
+
+  .preview-reading {
+    display: flex;
+    gap: 8px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-2);
+    align-items: flex-start;
+  }
+
+  .preview-reading:last-child { border-bottom: none; }
+
+  .preview-bullet {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--text-3);
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  .preview-questions { list-style: none; }
+
+  .preview-q {
+    display: flex;
+    gap: 8px;
+    padding: 5px 0;
+    font-size: 12.5px;
+    color: var(--text-2);
+    font-style: italic;
+    line-height: 1.45;
+  }
+
+  .deadline {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    background: var(--time-bg);
+    color: var(--time-color);
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-top: 8px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .component-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 780px) {
+    .phase-grid, .sort-grid { grid-template-columns: 1fr; }
+    .page-header { flex-direction: column; align-items: flex-start; }
+    .mode-display { text-align: left; }
+    .content { padding: 24px 20px 48px; }
+    .timeline-strip { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to session content</a>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="page-header-left">
+    <div class="course-tag">ENG 511 · Week 5 · Thursday, September 17, 2026</div>
+    <h1 class="page-title">Critical Literacy and OWI: Designing Your Microteaching Opening</h1>
+    <div class="page-subtitle">Asynchronous session. CCCC OWI Principles, Horning (2024)</div>
+  </div>
+  <div class="mode-display">
+    <div class="mode-label">Format</div>
+    <div class="mode-value">No classroom meeting</div>
+  </div>
+</header>
+
+<!-- SEQUENCE STRIP -->
+<nav aria-label="Session sequence">
+<ol class="timeline-strip">
+  <li><a class="tl-item" href="#sec-0"><div class="tl-num">01</div><div class="tl-label">What Changed</div></a></li>
+  <li><a class="tl-item" href="#sec-1"><div class="tl-num">02</div><div class="tl-label">Set Up Your Padlet Section</div></a></li>
+  <li><a class="tl-item" href="#sec-2"><div class="tl-num">03</div><div class="tl-label">Problem-Posing Opening</div></a></li>
+  <li><a class="tl-item" href="#sec-3"><div class="tl-num">04</div><div class="tl-label">Horning Rationale</div></a></li>
+  <li><a class="tl-item" href="#sec-4"><div class="tl-num">05</div><div class="tl-label">OWI Principle Check</div></a></li>
+  <li><a class="tl-item" href="#sec-5"><div class="tl-num">06</div><div class="tl-label">Respond to Two Peers</div></a></li>
+  <li><a class="tl-item" href="#sec-6"><div class="tl-num">07</div><div class="tl-label">Exit Reflection</div></a></li>
+  <li><a class="tl-item" href="#sec-7"><div class="tl-num">08</div><div class="tl-label">What Comes Next</div></a></li>
+</ol>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="content" id="main">
+
+  <!-- 01 WHAT CHANGED -->
+  <section class="section" id="sec-0" aria-labelledby="h-sec-0">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <h2 class="section-title" id="h-sec-0">What Changed</h2>
+      <div class="section-pace">Read first</div>
+    </div>
+    <p class="lede">Everyone, we are not meeting in the classroom this Thursday. Instead of a live workshop, you all will do the same three design moves on your own time, and you will do them on the thing you all need to build anyway: your microteaching lesson. Nothing here is graded. The work you all do on this page becomes the opening of your lesson plan and the material for our microteaching circle next week.</p>
+    <div class="note">
+      <strong>How this connects to your project.</strong> Your Lesson Plan and Microteaching Presentation asks for a fifteen-minute lesson on a core ENG 101 writing skill. This session produces the first piece of it: the opening move, written as a problem-posing prompt, with a short rationale grounded in Horning and a check against the OWI principles. When we sit in a circle on September 24, this opening is what you all will talk through. The written lesson plan is due September 27.
+    </div>
+    <p class="lede">Plan on about the length of a normal Thursday session, and no more. If you find yourself past it, stop, leave a short post in your section about where you got, and bring the rest to the circle. Work in one sitting or two, whichever suits you. The order below is a suggestion, with one exception: respond to peers last, since you need their drafts to exist first.</p>
+  </section>
+
+  <!-- 02 SET UP -->
+  <section class="section" id="sec-1" aria-labelledby="h-sec-1">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <h2 class="section-title" id="h-sec-1">Set Up Your Padlet Section</h2>
+      <div class="section-pace">Short</div>
+    </div>
+    <p class="lede">All of the writing for this session lives on one Padlet so you all are able to see each other's work side by side. Open it, sign in, and add a new section titled with your name. Everything you write for this session goes into your own section as a series of posts, one post per part, in the order below.</p>
+
+    <div class="doc-box">
+      <strong class="doc-label">Where you all write</strong>
+      <p>The Padlet is set up so each of you owns one section. Click "Add section," title it with your name, then add posts inside it. Title each post with the part number and name (for example, "2. Problem-Posing Opening") so the section reads in order and your peers know where to comment.</p>
+      <a class="doc-link" href="https://padlet.com/kkcole2/september-17th-activity-s023gaz1umverl2pos20" target="_blank" rel="noopener noreferrer">Open the September 17 Padlet</a>
+    </div>
+
+    <p class="lede" style="margin-bottom:6px;">Your section holds five posts. Each later step on this page fills one of them.</p>
+    <div class="component-grid">
+      <div class="component-card">
+        <h3 class="component-card-header">1. Skill and Context</h3>
+        <div class="component-card-body">The ENG 101 writing skill your lesson teaches, and one sentence about the course moment it belongs to.</div>
+      </div>
+      <div class="component-card">
+        <h3 class="component-card-header">2. Problem-Posing Opening</h3>
+        <div class="component-card-body">The prompt or opening move students encounter first. Written out as students would see it.</div>
+      </div>
+      <div class="component-card">
+        <h3 class="component-card-header">3. Horning Rationale</h3>
+        <div class="component-card-body">One paragraph naming which element of critical literacy your opening enacts, and how it would change online.</div>
+      </div>
+      <div class="component-card">
+        <h3 class="component-card-header">4. OWI Principle Check</h3>
+        <div class="component-card-body">One principle your opening honors, one it strains against, one sentence each.</div>
+      </div>
+      <div class="component-card">
+        <h3 class="component-card-header">5. Exit Reflection</h3>
+        <div class="component-card-body">Your answer to the closing question. A few sentences.</div>
+      </div>
+      <div class="component-card">
+        <h3 class="component-card-header">Peer Responses</h3>
+        <div class="component-card-body">These go in your peers' sections, not yours. Use the comment field on their post 2, the problem-posing opening, so the responses stay attached to the draft.</div>
+      </div>
+    </div>
+
+    <div class="doc-box">
+      <strong class="doc-label">Format it how you choose. Some suggestions</strong>
+      <p>Give the opening its own post with nothing else in it, so a peer reads it the way a student would, without your rationale sitting next to it. If your prompt depends on a text or an example, attach it: paste the passage into the post, upload a screenshot, or add a link. Padlet posts hold images, PDFs, links, and short video, and a photo of a whiteboard sketch or a marked-up page is welcome.</p>
+      <p>For the rationale, a plain paragraph is fine. For the OWI check, two short labeled lines read more clearly than a paragraph. For the reflection, use whatever form fits: a paragraph, a voice memo, a short video, or an image with a caption. The only requirement is one post per part, titled by number, in your own section.</p>
+    </div>
+
+    <div class="note">
+      <strong>Readings for this session.</strong> The CCCC OWI Principle Statement, which you have seen before and are now rereading through a critical pedagogy lens, and the introduction to Horning, <em>The Case for Critical Literacy</em> (2024). Have both open. You will quote or paraphrase from each once.
+    </div>
+  </section>
+
+  <!-- 03 PROBLEM-POSING OPENING -->
+  <section class="section" id="sec-2" aria-labelledby="h-sec-2">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <h2 class="section-title" id="h-sec-2">Problem-Posing Opening</h2>
+      <div class="section-pace">The main work</div>
+    </div>
+    <p class="lede">On Tuesday, Freire's distinction between banking and problem-posing education was the theoretical version. This is the practical one. Your microteaching lesson needs an opening, and this step writes it as a problem-posing move rather than a demonstration of a skill students then copy.</p>
+
+    <div class="note">
+      <strong>The test.</strong> In a banking opening, the teacher already holds the answer and the activity delivers it. In a problem-posing opening, students confront a situation, a text, or a question where the difficulty is real to them and the teacher does not yet know what they will make of it. Ask of your draft: who defines the problem, and is the students' answer able to surprise you?
+    </div>
+
+    <div class="phase-grid">
+      <div class="phase-card">
+        <div class="phase-card-header">
+          <div class="phase-badge">Part 1</div>
+          <h3 class="phase-card-title">Choose the Skill</h3>
+        </div>
+        <ul class="phase-steps">
+          <li class="phase-step"><div class="step-dot"></div><div>Name the core ENG 101 writing skill your fifteen-minute lesson will teach. Keep it small enough to fit: integrating a source, revising a paragraph for a reader, moving from summary to response, framing a claim, reading an assignment sheet.</div></li>
+          <li class="phase-step"><div class="step-dot"></div><div>Add one sentence on where in a first-year course this lesson sits. Week three of a research unit reads differently from the first day.</div></li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-card-header">
+          <div class="phase-badge">Part 2</div>
+          <h3 class="phase-card-title">Draft the Opening</h3>
+        </div>
+        <ul class="phase-steps">
+          <li class="phase-step"><div class="step-dot"></div><div>Write the prompt exactly as ENG 101 students would encounter it. Address them directly. Include any text, example, or scenario they would need in front of them.</div></li>
+          <li class="phase-step"><div class="step-dot"></div><div>Keep it short. A problem-posing prompt is often a single situation and one or two questions. If it runs past a paragraph, you are likely explaining the skill instead of posing the problem.</div></li>
+          <li class="phase-step"><div class="step-dot"></div><div>Add one line for yourself, in brackets, on what you expect students to do with it in the first few minutes.</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sample">
+      <div class="sample-header">
+        <div class="sample-label">Example of the difference</div>
+        <div class="sample-context">Skill: integrating a source into an argument</div>
+      </div>
+      <div class="sample-body">
+        <p><em>Banking version.</em> "Today we will learn the quotation sandwich. Every quotation needs an introduction, the quote, and an explanation. Here is an example. Now find a quotation in your source and write a sandwich for it."</p>
+        <p><em>Problem-posing version.</em> "Here are two paragraphs from last year's students. Both quote the same sentence from the same article. One of them got a note from a reader saying 'I don't see why this is here,' and the other did not. Read them with a partner and decide which one got the note, and what the reader wanted. Then look at your own draft and find the quotation most likely to get the same note."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 HORNING RATIONALE -->
+  <section class="section" id="sec-3" aria-labelledby="h-sec-3">
+    <div class="section-header">
+      <div class="section-num">04</div>
+      <h2 class="section-title" id="h-sec-3">Horning Rationale</h2>
+      <div class="section-pace">One paragraph</div>
+    </div>
+    <p class="lede">Horning argues for critical literacy as the goal of writing instruction, not as an add-on to it. This step asks you all to say, in writing, what your opening has to do with her claim. It becomes the theoretical grounding your lesson plan needs, and it feeds forward into your Writing Assignment Design in Week 10 and the revised teaching philosophy in your final portfolio.</p>
+
+    <div class="activity-box">
+      <p><strong>Write one paragraph, roughly 150 to 200 words, as post 3 in your section.</strong></p>
+      <ul class="num-list">
+        <li class="num-item"><div class="num-badge">1</div><div>Name the element of Horning's framework your opening enacts most directly. Quote or closely paraphrase her once, with a page number, so your peers and I know where in the introduction you are drawing from.</div></li>
+        <li class="num-item"><div class="num-badge">2</div><div>State what the opening asks students to do with a text or a situation beyond reproducing a form. Be specific about the reading or judgment involved.</div></li>
+        <li class="num-item"><div class="num-badge">3</div><div>Then answer the workshop's original question for your own lesson: if this opening ran in an asynchronous online writing course, what would have to change for the critical literacy to survive? Name one concrete adjustment.</div></li>
+      </ul>
+    </div>
+
+    <div class="note" style="margin-top:14px;">
+      <strong>Watch for:</strong> rationales describing the skill rather than the literacy. "Students learn to integrate sources" is the skill. What they come to understand about why readers need integration, and who gets to decide when a source belongs, is the critical literacy.
+    </div>
+  </section>
+
+  <!-- 05 OWI PRINCIPLE CHECK -->
+  <section class="section" id="sec-4" aria-labelledby="h-sec-4">
+    <div class="section-header">
+      <div class="section-num">05</div>
+      <h2 class="section-title" id="h-sec-4">OWI Principle Check</h2>
+      <div class="section-pace">Brief</div>
+    </div>
+    <p class="lede">The live version of this session had you all auditing every OWI principle in pairs, sorting which enact justice values and which reinforce institutional norms. We will do the full audit in Week 10, when the assignment is about OWI design. For now, run the audit on your own opening only.</p>
+
+    <div class="sort-grid">
+      <div class="sort-col">
+        <div class="sort-label">One principle your opening honors</div>
+        <div class="sort-text">Name it by number and short title. One sentence on how the opening enacts it, and whether the enactment reads as a justice value or as compliance with an institutional norm.</div>
+      </div>
+      <div class="sort-col">
+        <div class="sort-label">One principle your opening strains against</div>
+        <div class="sort-text">Name it. One sentence on where the friction is. Do not resolve it here. The friction is often where the most interesting lesson design decision lives, so bring it to the circle.</div>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:14px;">
+      The critical pedagogy lens matters in the second column. A principle you strain against because it assumes an institutional arrangement your students lack is a different finding from a principle you strain against because your lesson is underbuilt. Say which.
+    </div>
+  </section>
+
+  <!-- 06 PEER RESPONSE -->
+  <section class="section" id="sec-5" aria-labelledby="h-sec-5">
+    <div class="section-header">
+      <div class="section-num">06</div>
+      <h2 class="section-title" id="h-sec-5">Respond to Two Peers</h2>
+      <div class="section-pace">Do this last</div>
+    </div>
+    <p class="lede">This replaces the pair workshopping from the live session. Read the openings of the two people whose sections sit to the right of yours on the Padlet. If you are at the far right, wrap around to the left. If their sections are still empty when you get there, come back later, or leave a comment saying you will.</p>
+
+    <div class="phase-grid">
+      <div class="phase-card">
+        <div class="phase-card-header">
+          <div class="phase-badge">For each peer</div>
+          <h3 class="phase-card-title">Two Fixed Questions</h3>
+        </div>
+        <ul class="phase-steps">
+          <li class="phase-step"><div class="step-dot"></div><div><strong>What problem does this pose?</strong> Restate it in your own words, as a student would understand it. If no restatement comes, say so. The writer needs to know.</div></li>
+          <li class="phase-step"><div class="step-dot"></div><div><strong>Who gets to define it?</strong> Point to the place in the prompt where the teacher's answer is already visible, if there is one, or the place where the students' judgment is real.</div></li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-card-header">
+          <div class="phase-badge">Form</div>
+          <h3 class="phase-card-title">Keep It Short and Addressed</h3>
+        </div>
+        <ul class="phase-steps">
+          <li class="phase-step"><div class="step-dot"></div><div>Use the comment field on their post 2, the opening, so your response stays attached to the draft. A few sentences per question is enough.</div></li>
+          <li class="phase-step"><div class="step-dot"></div><div>Write to the person, not about the draft. Remember Anson from last week: your reading is one reader's judgment from one context, and it helps to say what context you read from.</div></li>
+          <li class="phase-step"><div class="step-dot"></div><div>Do not revise your own opening in response before the circle. Bring the comments with you and we will talk about them together.</div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 EXIT REFLECTION -->
+  <section class="section" id="sec-6" aria-labelledby="h-sec-6">
+    <div class="section-header">
+      <div class="section-num">07</div>
+      <h2 class="section-title" id="h-sec-6">Exit Reflection</h2>
+      <div class="section-pace">A few sentences</div>
+    </div>
+    <div class="note">
+      Post this as post 5 in your section, in whatever form you choose. A few sentences is plenty if you write it. This is the same question the live session would have ended on, and it is one you all will meet again when you revise your teaching philosophy for the final portfolio.
+    </div>
+    <div class="reflection">
+      <strong>Exit Reflection Prompt</strong>
+      "You have redesigned one opening. How does critical pedagogy challenge you to redesign not only assignments but the entire structure of a course? What in your own lesson would have to change next, beyond the first fifteen minutes?"
+    </div>
+  </section>
+
+  <!-- 08 WHAT COMES NEXT -->
+  <section class="section" id="sec-7" aria-labelledby="h-sec-7">
+    <div class="section-header">
+      <div class="section-num">08</div>
+      <h2 class="section-title" id="h-sec-7">What Comes Next</h2>
+      <div class="section-pace">Week 6</div>
+    </div>
+
+    <div class="doc-box">
+      <strong class="doc-label">Microteaching circle, Thursday, September 24</strong>
+      <p>We will meet in person, sit in a circle, and talk through each opening informally. No slides, no fifteen-minute performance. Each of you all will read or describe your problem-posing opening, say what your two peers noticed, and name the OWI principle you strained against. Then we talk. We will have the Padlet on the screen and move section by section.</p>
+      <p>The written Lesson Plan and Microteaching Presentation document is due September 27. Everything you wrote for this session belongs in it. Revise after the circle, not before.</p>
+      <span class="deadline">Circle: Sep 24 · Written lesson plan due: Sep 27</span>
+    </div>
+
+    <div class="preview-box">
+      <h3 class="preview-heading">Week 6: Genre Theory and Post-Process Writing</h3>
+      <ul class="preview-readings">
+        <li class="preview-reading"><div class="preview-bullet"></div><div>Miller, "Genre as Social Action" (1984)</div></li>
+        <li class="preview-reading"><div class="preview-bullet"></div><div>McDonald, "Genres: Shapes of Meaning" (2008)</div></li>
+        <li class="preview-reading"><div class="preview-bullet"></div><div>Hyland, "Genre-Based Pedagogies" (2005)</div></li>
+        <li class="preview-reading"><div class="preview-bullet"></div><div>Thursday: Brooks, "Reading, Writing, and Teaching Creative Hypertext: A Genre-Based Pedagogy" (2022)</div></li>
+      </ul>
+      <ul class="preview-questions">
+        <li class="preview-q">▸ How does genre as "social action" challenge process pedagogy's individualism?</li>
+        <li class="preview-q">▸ If genres are social actions, what action is your problem-posing opening asking students to perform?</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+</body>
+</html>
