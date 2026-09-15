@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENG 511, Sep 15: Critical Pedagogy and Language Seminar</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F4F1;
+    --surface: #FFFFFF;
+    --text-1: #1A1918;
+    --text-2: #4A4540;
+    --text-3: #6B635C;
+    --border: #DEDAD4;
+    --tue: #2A4485;
+    --tue-light: #EEF1F9;
+    --tue-mid: #5E78B5;
+    --tue-dark: #1C2F5E;
+    --badge-bg: #EEF1F9;
+    --badge-color: #2A4485;
+    --note-bg: #FBF0EA;
+    --note-border: #B85A2C;
+    --note-text: #6E2E12;
+    --quote-bg: #F3EEF9;
+    --quote-color: #3D1F5A;
+    --pad: #1A4A3A;
+    --pad-light: #EAF4EE;
+    --pad-border: #C5DDD0;
+    --shadow: 0 1px 8px rgba(0,0,0,0.07);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text-1);
+    line-height: 1.65;
+    font-size: 15px;
+    min-height: 100vh;
+  }
+
+  a { color: var(--tue); }
+  a:focus-visible { outline: 3px solid var(--tue-mid); outline-offset: 2px; }
+
+  .skip-link {
+    position: absolute; left: -999px; top: 8px;
+    background: white; color: var(--tue-dark); padding: 8px 12px;
+    border-radius: 6px; z-index: 10; font-size: 13px;
+  }
+  .skip-link:focus { left: 12px; }
+
+  .page-header {
+    background: var(--tue);
+    color: white;
+    padding: 32px 48px 28px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .course-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 6px;
+  }
+
+  .page-title {
+    font-family: 'Spectral', serif;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+    font-style: italic;
+  }
+
+  .mode-display { text-align: right; }
+
+  .mode-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 4px;
+  }
+
+  .mode-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    letter-spacing: 0.05em;
+  }
+
+  .timeline-strip {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    overflow-x: auto;
+    list-style: none;
+  }
+
+  .tl-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 18px 12px;
+    border-right: 1px solid var(--border);
+    min-width: 140px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .tl-item:first-child { border-left: 1px solid var(--border); }
+  .tl-item:hover { background: var(--tue-light); }
+
+  .tl-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--tue);
+    margin-bottom: 3px;
+  }
+
+  .tl-label {
+    font-size: 11.5px;
+    color: var(--text-2);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 36px 48px 60px;
+  }
+
+  .section { margin-bottom: 44px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    background: var(--badge-bg);
+    color: var(--badge-color);
+    padding: 3px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: 'Spectral', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-1);
+    flex: 1;
+  }
+
+  .section-pace {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    white-space: nowrap;
+  }
+
+  .lede {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+
+  .note {
+    background: var(--note-bg);
+    border-left: 3px solid var(--note-border);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    color: var(--note-text);
+    margin-bottom: 14px;
+    line-height: 1.55;
+  }
+
+  .note strong { font-weight: 600; }
+
+  /* QUOTE CARDS */
+  .quote-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 14px 0;
+  }
+
+  .quote-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .quote-label {
+    background: var(--quote-bg);
+    color: var(--quote-color);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 8px 14px;
+    border-bottom: 1px solid #D9D0E8;
+  }
+
+  .quote-body {
+    padding: 16px 18px;
+    font-family: 'Spectral', serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-1);
+    flex: 1;
+  }
+
+  /* PHASE CARDS */
+  .phase-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 12px;
+  }
+
+  .phase-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+  }
+
+  .phase-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  .phase-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    background: var(--tue);
+    color: white;
+    padding: 2px 9px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+
+  .phase-card-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-1);
+  }
+
+  .phase-steps { list-style: none; }
+
+  .phase-step {
+    display: flex;
+    gap: 8px;
+    padding: 6px 0;
+    border-bottom: 1px solid #F2EFE9;
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.5;
+    align-items: flex-start;
+  }
+
+  .phase-step:last-child { border-bottom: none; }
+
+  .step-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--tue-mid);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  /* PRACTICE CHIPS */
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0;
+  }
+
+  .chip {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 5px 14px;
+    font-size: 13px;
+    color: var(--text-2);
+  }
+
+  /* SCENARIO */
+  .scenario {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-top: 14px;
+  }
+
+  .scenario-header {
+    background: var(--quote-bg);
+    padding: 10px 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--quote-color);
+    border-bottom: 1px solid #D9D0E8;
+  }
+
+  .scenario-body {
+    padding: 16px 20px;
+    font-family: 'Spectral', serif;
+    font-size: 15.5px;
+    color: var(--text-1);
+    line-height: 1.75;
+  }
+
+  .answer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .answer-col {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+
+  .answer-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--tue);
+    margin-bottom: 6px;
+  }
+
+  .answer-text {
+    font-size: 12.5px;
+    color: var(--text-2);
+    line-height: 1.5;
+  }
+
+  /* QUICK WRITE */
+  .reflection {
+    background: var(--tue-light);
+    border-left: 3px solid var(--tue-mid);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    font-style: italic;
+    font-size: 14.5px;
+    color: var(--tue-dark);
+    line-height: 1.65;
+    margin-top: 12px;
+  }
+
+  .reflection strong {
+    font-style: normal;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 6px;
+    color: var(--tue-dark);
+  }
+
+  /* PADLET BOX */
+  .pad-box {
+    background: var(--pad-light);
+    border: 1px solid var(--pad-border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 14px 0;
+    color: var(--pad);
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+
+  .pad-box strong.pad-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .pad-box p { margin-bottom: 8px; }
+  .pad-box p:last-child { margin-bottom: 0; }
+
+  .pad-link {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+    background: var(--pad);
+    text-decoration: none;
+    border-radius: 16px;
+    padding: 7px 16px;
+    margin-top: 6px;
+    margin-right: 6px;
+  }
+
+  .pad-link.secondary {
+    background: transparent;
+    color: var(--pad);
+    border: 1px solid var(--pad);
+  }
+
+  .pad-link:hover { background: #12362A; color: white; }
+
+  @media (max-width: 900px) {
+    .quote-grid, .answer-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 780px) {
+    .phase-grid { grid-template-columns: 1fr; }
+    .page-header { flex-direction: column; align-items: flex-start; }
+    .mode-display { text-align: left; }
+    .content { padding: 24px 20px 48px; }
+    .timeline-strip { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to seminar content</a>
+
+<header class="page-header">
+  <div class="page-header-left">
+    <div class="course-tag">ENG 511 · Week 5 · Tuesday, September 15, 2026</div>
+    <h1 class="page-title">Critical Pedagogy and Language</h1>
+    <div class="page-subtitle">Freire, Pedagogy of the Oppressed, Ch. 2 · Anzaldúa, "How to Tame a Wild Tongue" · Wilson Logan, "Black Sites of Rhetorical Education"</div>
+  </div>
+  <div class="mode-display">
+    <div class="mode-label">Format</div>
+    <div class="mode-value">Seminar, in person</div>
+  </div>
+</header>
+
+<nav aria-label="Seminar sequence">
+<ol class="timeline-strip">
+  <li><a class="tl-item" href="#sec-0"><div class="tl-num">01</div><div class="tl-label">Three Sentences From Your Reading</div></a></li>
+  <li><a class="tl-item" href="#sec-1"><div class="tl-num">02</div><div class="tl-label">The Translation Test</div></a></li>
+  <li><a class="tl-item" href="#sec-2"><div class="tl-num">03</div><div class="tl-label">The Office-Hours Question</div></a></li>
+  <li><a class="tl-item" href="#sec-3"><div class="tl-num">04</div><div class="tl-label">Sites You Already Know</div></a></li>
+  <li><a class="tl-item" href="#sec-4"><div class="tl-num">05</div><div class="tl-label">Before You Leave</div></a></li>
+</ol>
+</nav>
+
+<main class="content" id="main">
+
+  <!-- 01 -->
+  <section class="section" id="sec-0" aria-labelledby="h-sec-0">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <h2 class="section-title" id="h-sec-0">Three Sentences From Your Reading</h2>
+      <div class="section-pace">Full class</div>
+    </div>
+    <p class="lede">Everyone, no discussion leader today, so your Perusall annotations lead instead. The three sentences below are yours, lightly trimmed and unattributed. Read them, then answer the two questions as a room.</p>
+
+    <div class="quote-grid">
+      <div class="quote-card">
+        <div class="quote-label">Sentence A</div>
+        <div class="quote-body">"In my master's classes my professors allow students to speak on the same level as them."</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-label">Sentence B</div>
+        <div class="quote-body">"Even the best teachers have to conform to one of these practices because the school district requires it."</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-label">Sentence C</div>
+        <div class="quote-body">"A language cannot be incorrect because its rules exist within it."</div>
+      </div>
+    </div>
+
+    <div class="phase-grid">
+      <div class="phase-card">
+        <div class="phase-card-header">
+          <div class="phase-badge">Question 1</div>
+          <h3 class="phase-card-title">Which sentence is Freire's claim?</h3>
+        </div>
+        <ul class="phase-steps">
+          <li class="phase-step"><div class="step-dot"></div><div>Sentences A and B both describe the banking model. They disagree about where it lives. One locates it in what a teacher chooses to do. The other locates it in what a teacher is required to do. Decide which one Freire would recognize, and find the passage in Chapter 2 supporting your answer.</div></li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-card-header">
+          <div class="phase-badge">Question 2</div>
+          <h3 class="phase-card-title">What does Sentence C leave out?</h3>
+        </div>
+        <ul class="phase-steps">
+          <li class="phase-step"><div class="step-dot"></div><div>Sentence C is true, and Anzaldúa would agree with it. Her mother still told her to learn English without an accent because of jobs. What does the sentence fail to say about power? Hold your answer. We return to it in part 03.</div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section class="section" id="sec-1" aria-labelledby="h-sec-1">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <h2 class="section-title" id="h-sec-1">The Translation Test</h2>
+      <div class="section-pace">Groups of three</div>
+    </div>
+    <p class="lede">Your annotations were strong on what banking looks like in grade school and quiet on what it looks like in a first-year writing course. This part asks you all to translate. Each group takes one ordinary ENG 101 practice from the row below.</p>
+
+    <div class="chip-row">
+      <span class="chip">Peer review</span>
+      <span class="chip">A grading rubric</span>
+      <span class="chip">The correctness comment in the margin</span>
+      <span class="chip">A grammar quiz</span>
+      <span class="chip">The assignment sheet</span>
+      <span class="chip">The syllabus attendance policy</span>
+    </div>
+
+    <div class="phase-grid">
+      <div class="phase-card">
+        <div class="phase-card-header">
+          <div class="phase-badge">In your group</div>
+          <h3 class="phase-card-title">Two questions, written down</h3>
+        </div>
+        <ul class="phase-steps">
+          <li class="phase-step"><div class="step-dot"></div><div><strong>Where is the banking in it?</strong> Answer structurally. Not "a bad teacher would use this badly," but what the practice itself assumes about who holds knowledge and who receives it, whoever the teacher is.</div></li>
+          <li class="phase-step"><div class="step-dot"></div><div><strong>What is the problem-posing version?</strong> Freire's alternative is not a friendlier version of the same practice. It changes who defines the problem. Describe the practice redesigned so students confront a question the teacher has not already answered.</div></li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-card-header">
+          <div class="phase-badge">Report</div>
+          <h3 class="phase-card-title">One sentence per group</h3>
+        </div>
+        <ul class="phase-steps">
+          <li class="phase-step"><div class="step-dot"></div><div>Name the practice and the single change you made. We will hear all six before discussing any.</div></li>
+          <li class="phase-step"><div class="step-dot"></div><div>Then the limitation, which one of you already wrote: "Conforming is almost always easier than creating change." Freire's learners did not choose the institution. First-year students did, and many came for the credential. What does problem-posing mean for people who came for the bank? We will not settle this today. It comes back Thursday.</div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section class="section" id="sec-2" aria-labelledby="h-sec-2">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <h2 class="section-title" id="h-sec-2">The Office-Hours Question</h2>
+      <div class="section-pace">Pairs</div>
+    </div>
+    <p class="lede">Back to Sentence C. Several of you arrived at the same position in Perusall: no variety of a language is incorrect on its own terms, and judging one by another's rules is imposition. Anzaldúa agrees. The scenario below is where the position gets tested.</p>
+
+    <div class="scenario">
+      <div class="scenario-header">Scenario</div>
+      <div class="scenario-body">
+        It is week four of ENG 101. A student comes to your office hours with a draft of the literacy narrative. Parts of it are written in a variety of English the course outcomes do not name, and the student knows it. They put the draft on the desk and ask: "Is this going to cost me?"
+      </div>
+    </div>
+
+    <p class="lede" style="margin-top:14px;margin-bottom:6px;">Three answers are available in this week's readings. None of them is the safe one.</p>
+    <div class="answer-grid">
+      <div class="answer-col">
+        <div class="answer-label">The descriptivist answer</div>
+        <div class="answer-text">Your writing is not incorrect. Its rules are its own. This is true. It does not answer the question the student asked, which was about consequences.</div>
+      </div>
+      <div class="answer-col">
+        <div class="answer-label">Freire's answer</div>
+        <div class="answer-text">A pedagogy made with the oppressed, not for them. One of you connected this to "nothing about us without us." What would it mean to decide the answer together with the student rather than deliver it?</div>
+      </div>
+      <div class="answer-col">
+        <div class="answer-label">Wilson Logan's answer</div>
+        <div class="answer-text">Rhetorical education has never depended on the institution's permission. The literary societies built their own sites. What does the student already know about audience and consequence, and how does the draft show it?</div>
+      </div>
+    </div>
+
+    <div class="phase-grid">
+      <div class="phase-card">
+        <div class="phase-card-header">
+          <div class="phase-badge">With a partner</div>
+          <h3 class="phase-card-title">Write the sentence you would say</h3>
+        </div>
+        <ul class="phase-steps">
+          <li class="phase-step"><div class="step-dot"></div><div>One or two sentences, addressed to the student, in the words you would use in the office. Not a policy. What you would say out loud.</div></li>
+          <li class="phase-step"><div class="step-dot"></div><div>Under it, write which of the three answers you drew on, or what you drew on instead.</div></li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-card-header">
+          <div class="phase-badge">Full class</div>
+          <h3 class="phase-card-title">Hear four or five aloud</h3>
+        </div>
+        <ul class="phase-steps">
+          <li class="phase-step"><div class="step-dot"></div><div>For each sentence, the same question we used on Anson last week: what does it assume about who has to change?</div></li>
+          <li class="phase-step"><div class="step-dot"></div><div>Notice where a sentence protects the student from the institution and where it protects the institution from the student. Thursday's OWI check asks you to make the same distinction about a published principle.</div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section class="section" id="sec-3" aria-labelledby="h-sec-3">
+    <div class="section-header">
+      <div class="section-num">04</div>
+      <h2 class="section-title" id="h-sec-3">Sites You Already Know</h2>
+      <div class="section-pace">Alone, then one line each</div>
+    </div>
+    <p class="lede">The Wilson Logan thread produced the best question of the week, and it came from you all. One of you wrote about English learned from movies, news, and conversation rather than any classroom, and concluded the "sites" Wilson Logan describes are far more scattered than we usually assume. Another asked the question directly.</p>
+
+    <div class="note">
+      <strong>Your question, from Perusall:</strong> "How can teachers change the way they teach writing and communication skills so as to develop and contextualize the rhetorical knowledge students already have?"
+    </div>
+
+    <div class="reflection">
+      <strong>Quick write, alone</strong>
+      Name one site of rhetorical education your future ENG 101 students already inhabit and your syllabus does not recognize. Be concrete: a platform, a job, a family practice, a community, a game, a form of worship, a group chat. Then one sentence on what they learn there about audience.
+    </div>
+
+    <p class="lede" style="margin-top:14px;">We go around the room once. One site each, no commentary. Keep what you wrote. It is the raw material for Thursday: a problem-posing opening built from a site your students already occupy is what makes the problem theirs to define rather than yours to hand over.</p>
+  </section>
+
+  <!-- 05 -->
+  <section class="section" id="sec-4" aria-labelledby="h-sec-4">
+    <div class="section-header">
+      <div class="section-num">05</div>
+      <h2 class="section-title" id="h-sec-4">Before You Leave</h2>
+      <div class="section-pace">Thursday</div>
+    </div>
+
+    <div class="pad-box">
+      <strong class="pad-label">Thursday, September 17, is asynchronous</strong>
+      <p>We are not meeting in the classroom on Thursday. Instead, you all will draft the problem-posing opening for your microteaching lesson on your own time, following the session page, and post it in your own section of the class Padlet. It should take about the length of a normal Thursday and no more. Nothing is graded. What you build is what we talk through in the microteaching circle on September 24, and the written lesson plan is due September 27.</p>
+      <p>Do the first step now, while we are in the room together: open the Padlet, sign in, and add a section titled with your name. Then you have somewhere to post when you sit down Thursday.</p>
+      <a class="pad-link" href="https://padlet.com/kkcole2/september-17th-activity-s023gaz1umverl2pos20" target="_blank" rel="noopener noreferrer">Open the Padlet</a>
+      <a class="pad-link secondary" href="sep17_workshop.html" target="_blank" rel="noopener noreferrer">Thursday Session Page</a>
+    </div>
+
+    <p class="lede">Thursday's readings are the CCCC OWI Principle Statement, reread through this week's lens, and the introduction to Horning, <em>The Case for Critical Literacy</em> (2024). Perusall annotations are due as usual before you begin the session.</p>
+  </section>
+
+</main>
+</body>
+</html>
