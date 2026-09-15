@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENG 511, Sep 15: Debrief, What We Just Did</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F4F1;
+    --surface: #FFFFFF;
+    --text-1: #1A1918;
+    --text-2: #4A4540;
+    --text-3: #6B635C;
+    --border: #DEDAD4;
+    --tue: #2A4485;
+    --tue-light: #EEF1F9;
+    --tue-mid: #5E78B5;
+    --tue-dark: #1C2F5E;
+    --badge-bg: #EEF1F9;
+    --badge-color: #2A4485;
+    --note-bg: #FBF0EA;
+    --note-border: #B85A2C;
+    --note-text: #6E2E12;
+    --quote-bg: #F3EEF9;
+    --quote-color: #3D1F5A;
+    --pad: #1A4A3A;
+    --pad-light: #EAF4EE;
+    --pad-border: #C5DDD0;
+    --shadow: 0 1px 8px rgba(0,0,0,0.07);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text-1);
+    line-height: 1.65;
+    font-size: 15px;
+    min-height: 100vh;
+  }
+
+  a { color: var(--tue); }
+  a:focus-visible { outline: 3px solid var(--tue-mid); outline-offset: 2px; }
+
+  .skip-link {
+    position: absolute; left: -999px; top: 8px;
+    background: white; color: var(--tue-dark); padding: 8px 12px;
+    border-radius: 6px; z-index: 10; font-size: 13px;
+  }
+  .skip-link:focus { left: 12px; }
+
+  .page-header {
+    background: var(--tue);
+    color: white;
+    padding: 32px 48px 28px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .course-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 6px;
+  }
+
+  .page-title {
+    font-family: 'Spectral', serif;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+    font-style: italic;
+  }
+
+  .mode-display { text-align: right; }
+
+  .mode-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 4px;
+  }
+
+  .mode-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    letter-spacing: 0.05em;
+  }
+
+  .timeline-strip {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    overflow-x: auto;
+    list-style: none;
+  }
+
+  .tl-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 18px 12px;
+    border-right: 1px solid var(--border);
+    min-width: 140px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .tl-item:first-child { border-left: 1px solid var(--border); }
+  .tl-item:hover { background: var(--tue-light); }
+
+  .tl-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--tue);
+    margin-bottom: 3px;
+  }
+
+  .tl-label {
+    font-size: 11.5px;
+    color: var(--text-2);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 36px 48px 60px;
+  }
+
+  .section { margin-bottom: 44px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    background: var(--badge-bg);
+    color: var(--badge-color);
+    padding: 3px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: 'Spectral', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-1);
+    flex: 1;
+  }
+
+  .section-pace {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    white-space: nowrap;
+  }
+
+  .lede {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+
+  .note {
+    background: var(--note-bg);
+    border-left: 3px solid var(--note-border);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    color: var(--note-text);
+    margin-bottom: 14px;
+    line-height: 1.55;
+  }
+
+  .note strong { font-weight: 600; }
+
+  /* QUOTE CARDS */
+  .quote-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 14px 0;
+  }
+
+  .quote-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .quote-label {
+    background: var(--quote-bg);
+    color: var(--quote-color);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 8px 14px;
+    border-bottom: 1px solid #D9D0E8;
+  }
+
+  .quote-body {
+    padding: 16px 18px;
+    font-family: 'Spectral', serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-1);
+    flex: 1;
+  }
+
+  /* PHASE CARDS */
+  .phase-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 12px;
+  }
+
+  .phase-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+  }
+
+  .phase-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  .phase-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    background: var(--tue);
+    color: white;
+    padding: 2px 9px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+
+  .phase-card-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-1);
+  }
+
+  .phase-steps { list-style: none; }
+
+  .phase-step {
+    display: flex;
+    gap: 8px;
+    padding: 6px 0;
+    border-bottom: 1px solid #F2EFE9;
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.5;
+    align-items: flex-start;
+  }
+
+  .phase-step:last-child { border-bottom: none; }
+
+  .step-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--tue-mid);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  /* PRACTICE CHIPS */
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0;
+  }
+
+  .chip {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 5px 14px;
+    font-size: 13px;
+    color: var(--text-2);
+  }
+
+  /* SCENARIO */
+  .scenario {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-top: 14px;
+  }
+
+  .scenario-header {
+    background: var(--quote-bg);
+    padding: 10px 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--quote-color);
+    border-bottom: 1px solid #D9D0E8;
+  }
+
+  .scenario-body {
+    padding: 16px 20px;
+    font-family: 'Spectral', serif;
+    font-size: 15.5px;
+    color: var(--text-1);
+    line-height: 1.75;
+  }
+
+  .answer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .answer-col {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+
+  .answer-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--tue);
+    margin-bottom: 6px;
+  }
+
+  .answer-text {
+    font-size: 12.5px;
+    color: var(--text-2);
+    line-height: 1.5;
+  }
+
+  /* QUICK WRITE */
+  .reflection {
+    background: var(--tue-light);
+    border-left: 3px solid var(--tue-mid);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    font-style: italic;
+    font-size: 14.5px;
+    color: var(--tue-dark);
+    line-height: 1.65;
+    margin-top: 12px;
+  }
+
+  .reflection strong {
+    font-style: normal;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 6px;
+    color: var(--tue-dark);
+  }
+
+  /* PADLET BOX */
+  .pad-box {
+    background: var(--pad-light);
+    border: 1px solid var(--pad-border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 14px 0;
+    color: var(--pad);
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+
+  .pad-box strong.pad-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .pad-box p { margin-bottom: 8px; }
+  .pad-box p:last-child { margin-bottom: 0; }
+
+  .pad-link {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+    background: var(--pad);
+    text-decoration: none;
+    border-radius: 16px;
+    padding: 7px 16px;
+    margin-top: 6px;
+    margin-right: 6px;
+  }
+
+  .pad-link.secondary {
+    background: transparent;
+    color: var(--pad);
+    border: 1px solid var(--pad);
+  }
+
+  .pad-link:hover { background: #12362A; color: white; }
+
+
+  /* TODO BOX */
+  .todo {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--tue);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 14px 0;
+    box-shadow: var(--shadow);
+  }
+
+  .todo-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--tue);
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .todo-list { list-style: none; }
+
+  .todo-list li {
+    padding: 6px 0;
+    border-bottom: 1px solid #F2EFE9;
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.55;
+  }
+
+  .todo-list li:last-child { border-bottom: none; }
+  .todo-list li strong { color: var(--text-1); }
+
+  .next-link {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--tue);
+    text-decoration: none;
+    border: 1px solid var(--tue);
+    border-radius: 16px;
+    padding: 6px 16px;
+  }
+
+  .next-link:hover { background: var(--tue-light); }
+
+  .quote-grid.two { grid-template-columns: 1fr 1fr; }
+
+  .todo .pad-link { margin-top: 12px; }
+
+
+  /* PROPOSAL / DECISION / FORK / RESERVE */
+  .proposal {
+    background: var(--quote-bg);
+    border: 1px solid #D9D0E8;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 14px 0;
+    color: var(--quote-color);
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+
+  .proposal-label, .decision-label, .fork-label, .reserve-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .decision {
+    background: var(--note-bg);
+    border: 1px solid #E8C4A8;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 14px 0;
+    color: var(--note-text);
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+
+  .decision-line {
+    font-family: 'Spectral', serif;
+    font-size: 17px;
+    margin-top: 10px;
+    padding: 10px 0 4px;
+    border-bottom: 1px dashed #B85A2C;
+    color: var(--note-text);
+  }
+
+  .fork {
+    margin-top: 18px;
+    padding: 14px 18px;
+    background: var(--surface);
+    border: 1px dashed var(--tue-mid);
+    border-radius: 8px;
+    color: var(--text-2);
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+
+  .fork-label { color: var(--tue); }
+
+  .fork-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .fork-links .next-link { margin-top: 6px; }
+
+  .reserve {
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: transparent;
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+  }
+
+  .reserve-label { color: var(--text-3); }
+
+  .reserve-body {
+    padding: 4px 0 0;
+    font-size: 14.5px;
+    color: var(--text-2);
+  }
+
+  .slot {
+    font-family: 'Spectral', serif;
+    font-size: 15px;
+    color: var(--text-3);
+    letter-spacing: 0.02em;
+    word-break: break-all;
+  }
+
+  @media (max-width: 900px) {
+    .quote-grid, .quote-grid.two, .answer-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 780px) {
+    .phase-grid { grid-template-columns: 1fr; }
+    .page-header { flex-direction: column; align-items: flex-start; }
+    .mode-display { text-align: left; }
+    .content { padding: 24px 20px 48px; }
+    .timeline-strip { padding: 0 20px; }
+  }
+
+  /* DEBRIEF MAP */
+  .map { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 14px; }
+  .map-row {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .map-head {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    padding: 10px 16px;
+    background: var(--quote-bg);
+    border-bottom: 1px solid #D9D0E8;
+  }
+  .map-part {
+    font-family: 'IBM Plex Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;
+    background: var(--quote-color); color: white; padding: 2px 9px; border-radius: 10px;
+  }
+  .map-term { font-family: 'Spectral', serif; font-size: 16px; font-weight: 600; color: var(--quote-color); }
+  .map-body { display: grid; grid-template-columns: 1fr 1fr; }
+  .map-cell { padding: 14px 16px; font-size: 13.5px; color: var(--text-2); line-height: 1.6; }
+  .map-cell + .map-cell { border-left: 1px solid var(--border); }
+  .map-cell strong.cell-label {
+    font-family: 'IBM Plex Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;
+    display: block; margin-bottom: 6px; color: var(--text-3); font-weight: 500;
+  }
+  .map-cell.did strong.cell-label { color: var(--tue); }
+  .map-cell.not strong.cell-label { color: var(--note-border); }
+  @media (max-width: 780px) { .map-body { grid-template-columns: 1fr; } .map-cell + .map-cell { border-left: none; border-top: 1px solid var(--border); } }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to debrief content</a>
+
+<header class="page-header">
+  <div class="page-header-left">
+    <div class="course-tag">ENG 511 · Week 5 · Tuesday, September 15, 2026 · Debrief</div>
+    <h1 class="page-title">What We Just Did</h1>
+    <div class="page-subtitle">Today's session, re-read through Freire, Pedagogy of the Oppressed, Chapter 2</div>
+  </div>
+  <div class="mode-display">
+    <div class="mode-label">Open</div>
+    <div class="mode-value">At the end of class</div>
+  </div>
+</header>
+
+<nav aria-label="Debrief sequence">
+<ol class="timeline-strip">
+  <li><a class="tl-item" href="#d-0"><div class="tl-num">01</div><div class="tl-label">The Design</div></a></li>
+  <li><a class="tl-item" href="#d-1"><div class="tl-num">02</div><div class="tl-label">Part by Part</div></a></li>
+  <li><a class="tl-item" href="#d-2"><div class="tl-num">03</div><div class="tl-label">Where It Stayed Banking</div></a></li>
+  <li><a class="tl-item" href="#d-3"><div class="tl-num">04</div><div class="tl-label">What This Means for Thursday</div></a></li>
+</ol>
+</nav>
+
+<main class="content" id="main">
+
+  <section class="section" id="d-0" aria-labelledby="h-d-0">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <h2 class="section-title" id="h-d-0">The Design</h2>
+      <div class="section-pace">Read together</div>
+    </div>
+    <p class="lede">Everyone, the page you worked through today was built on the chapter you read for it. Nothing on it said so. The structure was Freire's, and the vocabulary was left off so you would meet the structure before the terms. This page puts the terms back.</p>
+    <div class="proposal">
+      <strong class="proposal-label">The chapter's claim, in one line</strong>
+      <p>Banking education deposits knowledge the teacher already holds into students who receive it. Problem-posing education puts a situation in front of teacher and students together, neither of whom holds the answer, and both of whom change by working on it. Today's page tried to be the second thing. Whether it was is the last question on this page.</p>
+    </div>
+  </section>
+
+  <section class="section" id="d-1" aria-labelledby="h-d-1">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <h2 class="section-title" id="h-d-1">Part by Part</h2>
+      <div class="section-pace">The map</div>
+    </div>
+    <p class="lede">Each row names one thing the page did, the term Freire uses for it, and the version the page did not do. The second column is the version most session plans use, including most of mine.</p>
+
+    <div class="map">
+
+      <div class="map-row">
+        <div class="map-head"><span class="map-part">Start</span><span class="map-term">The teacher-student contradiction</span></div>
+        <div class="map-body">
+          <div class="map-cell did"><strong class="cell-label">What the page did</strong>The plan was called a proposal. It named what I did not know. It gave you a vote at the end of Part 01 and a line on the screen where your decision was written. Freire's term for this is the resolution of the teacher-student contradiction: the teacher stops being the one who knows and the students the ones who do not, and both become, in his phrase, co-investigators. The authority did not disappear. It was stated, and made changeable.</div>
+          <div class="map-cell not"><strong class="cell-label">What it did not do</strong>A schedule with times, activities, and outputs, authored in advance and delivered. This was the version of the page two hours before class. It was clearer. It was also a deposit.</div>
+        </div>
+      </div>
+
+      <div class="map-row">
+        <div class="map-head"><span class="map-part">Part 01</span><span class="map-term">Codification and decoding</span></div>
+        <div class="map-body">
+          <div class="map-cell did"><strong class="cell-label">What the page did</strong>Three of your own sentences, unattributed. The questions were what situation each one described and from where it was written. In Freire's culture circles the coordinator brought a codification, a picture or phrase representing the group's own situation, and the group decoded it by moving from the picture to the conditions producing it. Your sentences were the codifications. Nobody was waiting for a right answer, and the page said so.</div>
+          <div class="map-cell not"><strong class="cell-label">What it did not do</strong>Ask you to sort the three sentences into the reading each one belongs to, with one of them being Freire's own claim. This was the earlier draft. It had an answer key.</div>
+        </div>
+      </div>
+
+      <div class="map-row">
+        <div class="map-head"><span class="map-part">Part 02</span><span class="map-term">Generative themes</span></div>
+        <div class="map-body">
+          <div class="map-cell did"><strong class="cell-label">What the page did</strong>Asked each of you to name a routine practice from your own first-year course before any list appeared. Freire's investigation begins from the learners' lives, from what he calls generative themes, because a problem worth posing is one the learners already inhabit. The six practices held in reserve at the bottom were the coordinator's prepared material, there in case the room's own themes did not surface.</div>
+          <div class="map-cell not"><strong class="cell-label">What it did not do</strong>Put my list of six practices at the top and assign one to each group. Same activity, different origin. The practice would have been mine.</div>
+        </div>
+      </div>
+
+      <div class="map-row">
+        <div class="map-head"><span class="map-part">Part 03</span><span class="map-term">Problem-posing, and the teacher who learns</span></div>
+        <div class="map-body">
+          <div class="map-cell did"><strong class="cell-label">What the page did</strong>Built the scenario from whoever in the room had lived it. Left three empty slots for what each reading lets you say, and asked the class to fill them. I wrote a sentence too and it was heard among yours. Freire describes the teacher as one who is also taught, in dialogue with the students, and the empty slots were the concrete form of that: the page did not hold the readings' answers for you to receive.</div>
+          <div class="map-cell not"><strong class="cell-label">What it did not do</strong>Give you the scenario I wrote and three answers I had already labeled Freire, Anzaldúa, and Wilson Logan. I had drafted those. They were deleted an hour before class. You would have been evaluating my readings of the texts instead of producing yours.</div>
+        </div>
+      </div>
+
+      <div class="map-row">
+        <div class="map-head"><span class="map-part">Part 04</span><span class="map-term">Praxis, and where knowledge goes</span></div>
+        <div class="map-body">
+          <div class="map-cell did"><strong class="cell-label">What the page did</strong>Your two sentences went onto the Padlet immediately, public to the group, as the first post in the section you will use Thursday. In banking, what students produce goes to the teacher to be checked. Here it went to each other, and it becomes the starting material for something you will make. Freire's word for reflection tied to action on the world is praxis. The page ended with a question rather than a statement about why the site you named matters, because the answer was yours to give.</div>
+          <div class="map-cell not"><strong class="cell-label">What it did not do</strong>Tell you to keep your two sentences in your notes for Thursday, and explain in a box why they matter. This was the earlier draft.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="d-2" aria-labelledby="h-d-2">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <h2 class="section-title" id="h-d-2">Where It Stayed Banking</h2>
+      <div class="section-pace">Honest accounting</div>
+    </div>
+    <p class="lede">A page designed on Freire is still a page designed in advance by the teacher. The readings were assigned. The course is graded. You are here for a credential. Freire calls the conditions people cannot yet see past limit-situations, and the point of naming them is not to apologize for them but to make them visible enough to act on.</p>
+    <div class="note">
+      <strong>The limitation from Part 02 is the page's own limitation.</strong> One of you wrote: "Conforming is almost always easier than creating change." I asked what problem-posing means for people who came for the bank. The honest answer is that this page was one attempt at it inside an institution built for banking, and it worked exactly as far as you all decided to let it. The vote at the end of Part 01 was the test. What you chose, and whether the choice felt real, is the evidence.
+    </div>
+    <div class="reflection">
+      <strong>The question for the room</strong>
+      Where did today stay banking despite the design? Name one moment. Then name what would have had to change for it not to.
+    </div>
+  </section>
+
+  <section class="section" id="d-3" aria-labelledby="h-d-3">
+    <div class="section-header">
+      <div class="section-num">04</div>
+      <h2 class="section-title" id="h-d-3">What This Means for Thursday</h2>
+      <div class="section-pace">The bridge</div>
+    </div>
+    <p class="lede">On Thursday you all draft the opening of your microteaching lesson as a problem-posing prompt. You have now been inside one. The opening you write should do what Part 03 did: put a situation in front of students which comes from a site they already inhabit, and whose answer you do not hold. The site is the one you posted in Part 04. The test is the one from Part 01: is their answer able to surprise you?</p>
+    <div class="pad-box">
+      <strong class="pad-label">Two things to carry out the door</strong>
+      <p>Your section on the Padlet exists and has one post in it. The Thursday session page walks you through the rest, on your own time, in about the length of a normal Thursday.</p>
+      <p>If you want to answer the question above in writing rather than aloud, post it under your two sentences. I read the Padlet before I build the next page.</p>
+      <a class="pad-link" href="https://padlet.com/kkcole2/september-17th-activity-s023gaz1umverl2pos20" target="_blank" rel="noopener noreferrer">Open the Padlet</a>
+      <a class="pad-link secondary" href="sep17_workshop.html" target="_blank" rel="noopener noreferrer">Thursday Session Page</a>
+    </div>
+  </section>
+
+</main>
+</body>
+</html>
