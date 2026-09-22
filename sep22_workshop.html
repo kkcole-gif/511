@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENG 511, Sep 22: Genre as Social Action</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F4F1;
+    --surface: #FFFFFF;
+    --text-1: #1A1918;
+    --text-2: #4A4540;
+    --text-3: #6B635C;
+    --border: #DEDAD4;
+    --tue: #2A4485;
+    --tue-light: #EEF1F9;
+    --tue-mid: #5E78B5;
+    --tue-dark: #1C2F5E;
+    --badge-bg: #EEF1F9;
+    --badge-color: #2A4485;
+    --note-bg: #FBF0EA;
+    --note-border: #B85A2C;
+    --note-text: #6E2E12;
+    --quote-bg: #F3EEF9;
+    --quote-color: #3D1F5A;
+    --green: #1A4A3A;
+    --green-light: #EAF4EE;
+    --green-border: #C5DDD0;
+    --shadow: 0 1px 8px rgba(0,0,0,0.07);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text-1);
+    line-height: 1.65;
+    font-size: 15px;
+    min-height: 100vh;
+  }
+
+  a { color: var(--tue); }
+  a:focus-visible { outline: 3px solid var(--tue-mid); outline-offset: 2px; }
+
+  .skip-link {
+    position: absolute; left: -999px; top: 8px;
+    background: white; color: var(--tue-dark); padding: 8px 12px;
+    border-radius: 6px; z-index: 10; font-size: 13px;
+  }
+  .skip-link:focus { left: 12px; }
+
+  .page-header {
+    background: var(--tue);
+    color: white;
+    padding: 32px 48px 28px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .course-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 6px;
+  }
+
+  .page-title {
+    font-family: 'Spectral', serif;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+    font-style: italic;
+  }
+
+  .mode-display { text-align: right; }
+
+  .mode-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 4px;
+  }
+
+  .mode-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    letter-spacing: 0.05em;
+  }
+
+  .timeline-strip {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    overflow-x: auto;
+    list-style: none;
+  }
+
+  .tl-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 18px 12px;
+    border-right: 1px solid var(--border);
+    min-width: 130px;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+  }
+
+  .tl-item:first-child { border-left: 1px solid var(--border); }
+  .tl-item:hover { background: var(--tue-light); }
+  .tl-item.active { background: var(--tue-light); }
+  .tl-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 2px;
+    background: var(--tue);
+  }
+
+  .tl-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--tue);
+    margin-bottom: 3px;
+  }
+
+  .tl-label {
+    font-size: 11.5px;
+    color: var(--text-2);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 36px 48px 60px;
+  }
+
+  .section { margin-bottom: 44px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    background: var(--badge-bg);
+    color: var(--badge-color);
+    padding: 3px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: 'Spectral', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-1);
+    flex: 1;
+  }
+
+  .section-pace {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    white-space: nowrap;
+  }
+
+  .section.active .section-header { border-bottom-color: var(--tue); }
+  .section.active .section-num { background: var(--tue); color: white; }
+  .section.active .section-title { color: var(--tue); }
+
+  .lede {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+
+  .note {
+    background: var(--note-bg);
+    border-left: 3px solid var(--note-border);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    color: var(--note-text);
+    margin-bottom: 14px;
+    line-height: 1.55;
+  }
+
+  .note strong { font-weight: 600; }
+
+  /* Reading arc strip */
+  .arc-row {
+    display: flex;
+    gap: 0;
+    align-items: stretch;
+    margin: 14px 0;
+  }
+
+  .arc-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    flex: 1;
+    box-shadow: var(--shadow);
+  }
+
+  .arc-arrow-wrap {
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    color: var(--text-3);
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .arc-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    margin-bottom: 4px;
+  }
+
+  .arc-author {
+    font-family: 'Spectral', serif;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--text-1);
+    margin-bottom: 4px;
+  }
+
+  .arc-desc {
+    font-size: 12px;
+    color: var(--text-2);
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  /* Phase cards */
+  .phase-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 12px;
+  }
+
+  .phase-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+  }
+
+  .phase-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  .phase-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    background: var(--tue);
+    color: white;
+    padding: 2px 9px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+
+  .phase-card-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-1);
+  }
+
+  .phase-steps { list-style: none; }
+
+  .phase-step {
+    display: flex;
+    gap: 8px;
+    padding: 6px 0;
+    border-bottom: 1px solid #F2EFE9;
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.5;
+    align-items: flex-start;
+  }
+
+  .phase-step:last-child { border-bottom: none; }
+
+  .step-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--tue-mid);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  /* Opener card */
+  .opener-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-top: 14px;
+  }
+
+  .opener-header {
+    background: var(--tue);
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .opener-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    padding: 2px 9px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+
+  .opener-title {
+    font-family: 'Spectral', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+  }
+
+  .opener-body {
+    padding: 20px 22px;
+    font-family: 'Spectral', serif;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-1);
+    font-style: italic;
+  }
+
+  /* Cluster cards */
+  .cluster-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .cluster-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .cluster-header {
+    background: var(--badge-bg);
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #D0D9EF;
+  }
+
+  .cluster-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    background: var(--tue);
+    color: white;
+    padding: 1px 7px;
+    border-radius: 9px;
+    flex-shrink: 0;
+  }
+
+  .cluster-theme {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--tue-dark);
+    flex: 1;
+  }
+
+  .cluster-body { padding: 10px 16px 12px; }
+
+  .cluster-q {
+    padding: 8px 0;
+    border-bottom: 1px solid #F2EFE9;
+    font-size: 13.5px;
+    color: var(--text-1);
+    line-height: 1.6;
+  }
+
+  .cluster-q:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .cluster-attr {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-3);
+    display: block;
+    margin-top: 3px;
+  }
+
+  .upvote-tag {
+    display: inline-block;
+    background: var(--badge-bg);
+    color: var(--tue-dark);
+    border-radius: 8px;
+    padding: 1px 7px;
+    font-size: 9px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* Activity instructions */
+  .activity-steps {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+    margin-bottom: 14px;
+  }
+
+  .activity-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .step-list { list-style: none; }
+
+  .step-row {
+    display: flex;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #F2EFE9;
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.55;
+    align-items: flex-start;
+  }
+
+  .step-row:last-child { border-bottom: none; }
+
+  .step-n {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--tue);
+    color: white;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* Reflection / bridge box */
+  .reflection {
+    background: var(--tue-light);
+    border-left: 3px solid var(--tue-mid);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    font-style: italic;
+    font-size: 14.5px;
+    color: var(--tue-dark);
+    line-height: 1.65;
+    margin-top: 12px;
+  }
+
+  .reflection strong {
+    font-style: normal;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 6px;
+    color: var(--tue-dark);
+  }
+
+  .next-link {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--tue);
+    text-decoration: none;
+    border: 1px solid var(--tue);
+    border-radius: 16px;
+    padding: 6px 16px;
+  }
+  .next-link:hover { background: var(--tue-light); }
+
+  @media (max-width: 780px) {
+    .page-header { flex-direction: column; align-items: flex-start; padding: 24px 20px; }
+    .mode-display { text-align: left; }
+    .content { padding: 24px 20px 48px; }
+    .timeline-strip { padding: 0 16px; }
+    .phase-grid { grid-template-columns: 1fr; }
+    .arc-row { flex-direction: column; }
+    .arc-arrow-wrap { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to session content</a>
+
+<header class="page-header">
+  <div>
+    <div class="course-tag">ENG 511 · Week 6 · Tuesday, September 22, 2026</div>
+    <h1 class="page-title">Genre as Social Action</h1>
+    <div class="page-subtitle">Miller, "Genre as Social Action" · Hyland, "Genre-Based Pedagogies" · McDonald, "Genres: Shapes of Meaning"</div>
+  </div>
+  <div class="mode-display">
+    <div class="mode-label">Format</div>
+    <div class="mode-value">Seminar, in person</div>
+  </div>
+</header>
+
+<nav aria-label="Session sequence">
+<ol class="timeline-strip">
+  <li><a class="tl-item" href="#sec-arc" id="tl-0" data-start="705" data-end="710"><div class="tl-num">Opening</div><div class="tl-label">The Reading Arc</div></a></li>
+  <li><a class="tl-item" href="#sec-anthony" id="tl-1" data-start="710" data-end="722"><div class="tl-num">01</div><div class="tl-label">Discussion Starter</div></a></li>
+  <li><a class="tl-item" href="#sec-questions" id="tl-2" data-start="722" data-end="747"><div class="tl-num">02</div><div class="tl-label">Your Questions</div></a></li>
+  <li><a class="tl-item" href="#sec-bridge" id="tl-3" data-start="747" data-end="755"><div class="tl-num">03</div><div class="tl-label">Bridge to Thursday</div></a></li>
+</ol>
+</nav>
+
+<main class="content" id="main">
+
+  <!-- OPENING / ARC -->
+  <section class="section" id="sec-arc" aria-labelledby="h-arc">
+    <div class="section-header">
+      <div class="section-num">Opening</div>
+      <h2 class="section-title" id="h-arc">The Reading Arc</h2>
+      <div class="section-pace">~5 min</div>
+    </div>
+    <p class="lede">Three texts, one movement: from what genre <em>is</em> to what genre <em>does</em> to what genre <em>makes possible</em>. By Thursday you'll be performing a genre yourself — the lesson plan — and McDonald's question will be live in your own work.</p>
+
+    <div class="arc-row">
+      <div class="arc-box">
+        <div class="arc-label">Miller, 1984</div>
+        <div class="arc-author">Genre as social action</div>
+        <div class="arc-desc">Genre is what a text does in a social situation, not what it looks like. The form follows from the recurring situation.</div>
+      </div>
+      <div class="arc-arrow-wrap">→</div>
+      <div class="arc-box">
+        <div class="arc-label">Hyland, 2005</div>
+        <div class="arc-author">Genre-based pedagogy</div>
+        <div class="arc-desc">If genre is learnable, teach it explicitly. The teaching-learning cycle stages the move from model to production.</div>
+      </div>
+      <div class="arc-arrow-wrap">→</div>
+      <div class="arc-box">
+        <div class="arc-label">McDonald, 2008</div>
+        <div class="arc-author">Genres as shapes of meaning</div>
+        <div class="arc-desc">Genre doesn't just shape how you write — it shapes what meaning is available to be made at all.</div>
+      </div>
+    </div>
+    <a class="next-link" href="#sec-anthony">Go to Part 01 →</a>
+  </section>
+
+  <!-- ANTHONY'S DISCUSSION STARTER -->
+  <section class="section" id="sec-anthony" aria-labelledby="h-anthony">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <h2 class="section-title" id="h-anthony">Discussion Starter</h2>
+      <div class="section-pace">Anthony · ~12 min</div>
+    </div>
+    <p class="lede">Anthony is opening discussion today on McDonald.</p>
+
+    <div class="opener-card">
+      <div class="opener-header">
+        <span class="opener-badge">Opening Question</span>
+        <span class="opener-title">McDonald</span>
+      </div>
+      <div class="opener-body">
+        If genres are social actions, what actions are our assignments asking students to perform?
+      </div>
+    </div>
+
+    <a class="next-link" href="#sec-questions">Go to Part 02 →</a>
+  </section>
+
+  <!-- QUESTION ACTIVITY -->
+  <section class="section" id="sec-questions" aria-labelledby="h-questions">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <h2 class="section-title" id="h-questions">Your Questions Drive Discussion</h2>
+      <div class="section-pace">~25 min</div>
+    </div>
+    <p class="lede">Your Perusall annotations this week produced thirteen questions in five clusters. The second half of class belongs to those questions. Pick the cluster that's pulling at you most — that's your group.</p>
+
+    <div class="activity-steps">
+      <span class="activity-label">How it works</span>
+      <ul class="step-list">
+        <li class="step-row">
+          <div class="step-n">1</div>
+          <div>Read the five clusters below. Choose the one you want to dig into. Form a group of two or three with others who chose the same one.</div>
+        </li>
+        <li class="step-row">
+          <div class="step-n">2</div>
+          <div>In your group (8 min): What is this question actually asking? What does it assume about genre, meaning, or pedagogy? What would Miller, Hyland, and McDonald each say — and do they agree? What does this question mean for how you design a FYC course?</div>
+        </li>
+        <li class="step-row">
+          <div class="step-n">3</div>
+          <div>Report back as a full group. Share your question and one thing that came out of your discussion. We'll look for the threads connecting clusters.</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="cluster-list">
+
+      <div class="cluster-card">
+        <div class="cluster-header">
+          <span class="cluster-num">01</span>
+          <span class="cluster-theme">Genre conventions, creative agency, and innovation</span>
+        </div>
+        <div class="cluster-body">
+          <div class="cluster-q">
+            What happens when the action a genre accomplishes is clear, but the rules governing it are not?
+            <span class="cluster-attr">— Callie</span>
+          </div>
+          <div class="cluster-q">
+            Can words mean anything without people involved? At what point does social context become constitutive of meaning rather than just enabling it?
+            <span class="cluster-attr">— Anthony</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cluster-card">
+        <div class="cluster-header">
+          <span class="cluster-num">02</span>
+          <span class="cluster-theme">Genre, cultural context, and writing across communities</span>
+        </div>
+        <div class="cluster-body">
+          <div class="cluster-q">
+            What happens when two groups recognize the same rhetorical situation completely differently? Whose genre prevails?
+            <span class="cluster-attr">— Hadia</span>
+          </div>
+          <div class="cluster-q">
+            Genre rules are like desire paths — invisible until you're an outsider. How do we make them visible for writers who've never had to notice them?
+            <span class="cluster-attr">— Hadia, developed by Laura</span>
+          </div>
+          <div class="cluster-q">
+            When we teach academic writing to multilingual students, whose genre assumptions are we transmitting? What gets lost in the move from one language to another?
+            <span class="cluster-attr">— Grace H.</span>
+          </div>
+          <div class="cluster-q">
+            Email to a professor vs. text to a friend: we shift genres instantly and fluently. What does that lived competence tell us about what genre instruction actually needs to teach?
+            <span class="cluster-attr">— Emma</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cluster-card">
+        <div class="cluster-header">
+          <span class="cluster-num">03</span>
+          <span class="cluster-theme">Pedagogical change, student adjustment, and access</span>
+        </div>
+        <div class="cluster-body">
+          <div class="cluster-q">
+            Freirean pedagogy asks students to examine and challenge the systems around them — but rapid pedagogical change produces anxiety in students who were succeeding in the old system. How do we implement transformative pedagogy without destabilizing the students who need stability most?
+            <span class="cluster-attr">— Kayla L. <span class="upvote-tag">3 upvotes</span></span>
+          </div>
+          <div class="cluster-q">
+            Social knowledge isn't intuitive for everyone — for some students, the implicit codes of genre have to be made explicit as a matter of access, not remediation. How does genre pedagogy account for this?
+            <span class="cluster-attr">— Kayla B. <span class="upvote-tag">3 upvotes</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cluster-card">
+        <div class="cluster-header">
+          <span class="cluster-num">04</span>
+          <span class="cluster-theme">Meaning-making: action, form, substance, intention</span>
+        </div>
+        <div class="cluster-body">
+          <div class="cluster-q">
+            If McDonald is right that genres shape what meaning is available to be made, does explicit genre instruction expand or constrain what students can say?
+            <span class="cluster-attr">— Callie, Anthony, Grace P.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cluster-card">
+        <div class="cluster-header">
+          <span class="cluster-num">05</span>
+          <span class="cluster-theme">Genre knowledge, transfer, and students' lived experience</span>
+        </div>
+        <div class="cluster-body">
+          <div class="cluster-q">
+            Understanding rhetorical expectations seems like the transferable skill here — more portable than any individual genre. But how do we teach an abstraction?
+            <span class="cluster-attr">— Nevaeh</span>
+          </div>
+          <div class="cluster-q">
+            Miller says genres hold social situations in place. Does teaching genre literacy make students more agile participants — or better at conforming to something they should be questioning?
+            <span class="cluster-attr">— Laura</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <a class="next-link" href="#sec-bridge">Go to Part 03 →</a>
+  </section>
+
+  <!-- BRIDGE TO THURSDAY -->
+  <section class="section" id="sec-bridge" aria-labelledby="h-bridge">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <h2 class="section-title" id="h-bridge">Bridge to Thursday</h2>
+      <div class="section-pace">~5 min</div>
+    </div>
+    <p class="lede">On Thursday you each teach a five-minute lesson from the plan you've been designing. That lesson plan is a genre. Hold this question going into it:</p>
+
+    <div class="reflection">
+      <strong>Take into Thursday</strong>
+      What social action does a lesson plan perform? What meaning does the lesson plan genre make available — and what does it foreclose?
+    </div>
+
+    <div class="note" style="margin-top:16px;">
+      <strong>Lesson Plan &amp; Microteaching due Sunday, September 27</strong> — 15-minute lesson plan on a core ENG 101 skill + pedagogical rationale (750–1000 words). Thursday's workshop gives you time to see your plan in action before you submit it.
+    </div>
+
+  </section>
+
+</main>
+
+<script>
+  function highlight() {
+    const now = new Date();
+    const mins = now.getHours() * 60 + now.getMinutes();
+
+    document.querySelectorAll('.tl-item').forEach(el => {
+      const s = parseInt(el.dataset.start);
+      const e = parseInt(el.dataset.end);
+      el.classList.toggle('active', mins >= s && mins < e);
+    });
+
+    const map = [
+      ['sec-arc',       705, 710],
+      ['sec-anthony',   710, 722],
+      ['sec-questions', 722, 747],
+      ['sec-bridge',    747, 755],
+    ];
+    map.forEach(([id, s, e]) => {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('active', mins >= s && mins < e);
+    });
+  }
+  highlight();
+  setInterval(highlight, 30000);
+</script>
+
+</body>
+</html>

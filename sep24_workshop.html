@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENG 511, Sep 24: Microteaching Workshop</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F4F1;
+    --surface: #FFFFFF;
+    --text-1: #1A1918;
+    --text-2: #4A4540;
+    --text-3: #6B635C;
+    --border: #DEDAD4;
+    --thu: #8B3A1A;
+    --thu-light: #F8EDE8;
+    --thu-mid: #B5705A;
+    --thu-dark: #5C2010;
+    --badge-bg: #F8EDE8;
+    --badge-color: #8B3A1A;
+    --note-bg: #FBF0EA;
+    --note-border: #B85A2C;
+    --note-text: #6E2E12;
+    --green: #1A4A3A;
+    --green-light: #EAF4EE;
+    --green-border: #C5DDD0;
+    --shadow: 0 1px 8px rgba(0,0,0,0.07);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text-1);
+    line-height: 1.65;
+    font-size: 15px;
+    min-height: 100vh;
+  }
+
+  a { color: var(--thu); }
+  a:focus-visible { outline: 3px solid var(--thu-mid); outline-offset: 2px; }
+
+  .skip-link {
+    position: absolute; left: -999px; top: 8px;
+    background: white; color: var(--thu-dark); padding: 8px 12px;
+    border-radius: 6px; z-index: 10; font-size: 13px;
+  }
+  .skip-link:focus { left: 12px; }
+
+  .page-header {
+    background: var(--thu);
+    color: white;
+    padding: 32px 48px 28px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .course-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 6px;
+  }
+
+  .page-title {
+    font-family: 'Spectral', serif;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+    font-style: italic;
+  }
+
+  .mode-display { text-align: right; }
+
+  .mode-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 4px;
+  }
+
+  .mode-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    letter-spacing: 0.05em;
+  }
+
+  .submission-banner {
+    background: var(--thu-dark);
+    color: rgba(255,255,255,0.92);
+    padding: 10px 48px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .banner-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #E8A882;
+    flex-shrink: 0;
+  }
+
+  .timeline-strip {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    overflow-x: auto;
+    list-style: none;
+  }
+
+  .tl-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 18px 12px;
+    border-right: 1px solid var(--border);
+    min-width: 140px;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+  }
+
+  .tl-item:first-child { border-left: 1px solid var(--border); }
+  .tl-item:hover { background: var(--thu-light); }
+  .tl-item.active { background: var(--thu-light); }
+  .tl-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 2px;
+    background: var(--thu);
+  }
+
+  .tl-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--thu);
+    margin-bottom: 3px;
+  }
+
+  .tl-label {
+    font-size: 11.5px;
+    color: var(--text-2);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 36px 48px 60px;
+  }
+
+  .section { margin-bottom: 44px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    background: var(--badge-bg);
+    color: var(--badge-color);
+    padding: 3px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: 'Spectral', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-1);
+    flex: 1;
+  }
+
+  .section-pace {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    white-space: nowrap;
+  }
+
+  .section.active .section-header { border-bottom-color: var(--thu); }
+  .section.active .section-num { background: var(--thu); color: white; }
+  .section.active .section-title { color: var(--thu); }
+
+  .lede {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+
+  .note {
+    background: var(--note-bg);
+    border-left: 3px solid var(--note-border);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    color: var(--note-text);
+    margin-bottom: 14px;
+    line-height: 1.55;
+  }
+
+  .note strong { font-weight: 600; }
+
+  /* Two-group split layout */
+  .group-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 14px 0;
+  }
+
+  .group-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .group-header {
+    background: var(--thu);
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .group-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    padding: 2px 9px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+
+  .group-title {
+    font-family: 'Spectral', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+  }
+
+  .group-body {
+    padding: 14px 18px;
+  }
+
+  .group-detail {
+    font-size: 13px;
+    color: var(--text-2);
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+
+  /* Activity instruction box */
+  .activity-steps {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+    margin-bottom: 14px;
+  }
+
+  .activity-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .step-list { list-style: none; }
+
+  .step-row {
+    display: flex;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #F2EFE9;
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.55;
+    align-items: flex-start;
+  }
+
+  .step-row:last-child { border-bottom: none; }
+
+  .step-n {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--thu);
+    color: white;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* Observation protocol cards */
+  .protocol-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .protocol-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .protocol-top {
+    background: var(--badge-bg);
+    border-bottom: 1px solid #E8D4CB;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .protocol-n {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    background: var(--thu);
+    color: white;
+    padding: 1px 7px;
+    border-radius: 9px;
+    flex-shrink: 0;
+  }
+
+  .protocol-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--thu-dark);
+  }
+
+  .protocol-body {
+    padding: 10px 14px 12px;
+    font-size: 13px;
+    color: var(--text-1);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  /* Reflection box */
+  .reflection {
+    background: var(--thu-light);
+    border-left: 3px solid var(--thu-mid);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--thu-dark);
+    line-height: 1.7;
+    margin-top: 12px;
+  }
+
+  .reflection strong {
+    font-style: normal;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 6px;
+    color: var(--thu-dark);
+  }
+
+  /* Synthesis question */
+  .synthesis-q {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-top: 14px;
+  }
+
+  .synthesis-header {
+    background: var(--thu);
+    padding: 12px 18px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .synthesis-body {
+    padding: 20px 22px;
+    font-family: 'Spectral', serif;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-1);
+    font-style: italic;
+  }
+
+  /* Leave box */
+  .leave-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+    margin-top: 12px;
+  }
+
+  .leave-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .leave-prompt {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.65;
+    margin-bottom: 10px;
+  }
+
+  .next-link {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--thu);
+    text-decoration: none;
+    border: 1px solid var(--thu);
+    border-radius: 16px;
+    padding: 6px 16px;
+  }
+  .next-link:hover { background: var(--thu-light); }
+
+  @media (max-width: 780px) {
+    .page-header { flex-direction: column; align-items: flex-start; padding: 24px 20px; }
+    .submission-banner { padding: 10px 20px; }
+    .mode-display { text-align: left; }
+    .content { padding: 24px 20px 48px; }
+    .timeline-strip { padding: 0 16px; }
+    .group-split { grid-template-columns: 1fr; }
+    .protocol-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to session content</a>
+
+<header class="page-header">
+  <div>
+    <div class="course-tag">ENG 511 · Week 6 · Thursday, September 24, 2026</div>
+    <h1 class="page-title">Microteaching Workshop</h1>
+    <div class="page-subtitle">Genre as Social Action — putting theory into practice</div>
+  </div>
+  <div class="mode-display">
+    <div class="mode-label">Format</div>
+    <div class="mode-value">Workshop, in person</div>
+  </div>
+</header>
+
+<div class="submission-banner">
+  <div class="banner-dot"></div>
+  Lesson Plan &amp; Microteaching due Sunday, September 27
+</div>
+
+<nav aria-label="Session sequence">
+<ol class="timeline-strip">
+  <li><a class="tl-item" href="#sec-setup" id="tl-0" data-start="705" data-end="710"><div class="tl-num">Setup</div><div class="tl-label">Two Groups</div></a></li>
+  <li><a class="tl-item" href="#sec-present" id="tl-1" data-start="710" data-end="745"><div class="tl-num">01</div><div class="tl-label">Presentations (35 min)</div></a></li>
+  <li><a class="tl-item" href="#sec-reflect" id="tl-2" data-start="745" data-end="753"><div class="tl-num">02</div><div class="tl-label">Written Reflection</div></a></li>
+  <li><a class="tl-item" href="#sec-synthesis" id="tl-3" data-start="753" data-end="773"><div class="tl-num">03</div><div class="tl-label">Whole-Class Synthesis</div></a></li>
+  <li><a class="tl-item" href="#sec-leave" id="tl-4" data-start="773" data-end="780"><div class="tl-num">Before You Leave</div><div class="tl-label">One Thing to Revise</div></a></li>
+</ol>
+</nav>
+
+<main class="content" id="main">
+
+  <!-- SETUP -->
+  <section class="section" id="sec-setup" aria-labelledby="h-setup">
+    <div class="section-header">
+      <div class="section-num">Setup</div>
+      <h2 class="section-title" id="h-setup">Two Groups, Running at the Same Time</h2>
+      <div class="section-pace">~5 min</div>
+    </div>
+    <p class="lede">Rather than watching fourteen presentations in sequence, we'll split into two groups and run simultaneously — each group sees seven five-minute lessons, then we come back together to compare what we observed.</p>
+
+    <div class="group-split">
+      <div class="group-card">
+        <div class="group-header">
+          <span class="group-badge">Group A</span>
+          <span class="group-title">Stays in this room</span>
+        </div>
+        <div class="group-body">
+          <p class="group-detail">Seven presenters. Rotate in the order on the sign-up sheet. One person keeps time — raise a hand at 4:30 to signal the presenter.</p>
+        </div>
+      </div>
+      <div class="group-card">
+        <div class="group-header">
+          <span class="group-badge">Group B</span>
+          <span class="group-title">Moves to the hall or second space</span>
+        </div>
+        <div class="group-body">
+          <p class="group-detail">Same structure: seven presenters in rotation, one timekeeper. Reconvene in this room at the 35-minute mark.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top: 4px;">
+      <strong>Timekeeper role:</strong> Each group needs one volunteer to track time. At 4:30, give a visual signal. At 5:00, say "time." The presenter wraps in the next 30 seconds.
+    </div>
+
+    <a class="next-link" href="#sec-present">Go to Part 01 →</a>
+  </section>
+
+  <!-- PRESENTATIONS -->
+  <section class="section" id="sec-present" aria-labelledby="h-present">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <h2 class="section-title" id="h-present">Presentations</h2>
+      <div class="section-pace">35 min, parallel groups</div>
+    </div>
+    <p class="lede">Five minutes each. While you wait to present, you're an observer. Use the three questions below to structure what you notice — you'll need your observations for the reflection.</p>
+
+    <div class="protocol-grid">
+      <div class="protocol-card">
+        <div class="protocol-top">
+          <span class="protocol-n">1</span>
+          <span class="protocol-label">Genre</span>
+        </div>
+        <div class="protocol-body">What genre does this lesson plan perform? What does its structure assume about how learning works?</div>
+      </div>
+      <div class="protocol-card">
+        <div class="protocol-top">
+          <span class="protocol-n">2</span>
+          <span class="protocol-label">Social Action</span>
+        </div>
+        <div class="protocol-body">What is this lesson actually doing for students? What social action does it enact — what situation does it respond to?</div>
+      </div>
+      <div class="protocol-card">
+        <div class="protocol-top">
+          <span class="protocol-n">3</span>
+          <span class="protocol-label">Feedback</span>
+        </div>
+        <div class="protocol-body">One concrete strength you saw. One question for the presenter to take into revision — specific to their lesson, not generic.</div>
+      </div>
+    </div>
+
+    <a class="next-link" href="#sec-reflect">Go to Part 02 →</a>
+  </section>
+
+  <!-- WRITTEN REFLECTION -->
+  <section class="section" id="sec-reflect" aria-labelledby="h-reflect">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <h2 class="section-title" id="h-reflect">Written Reflection</h2>
+      <div class="section-pace">~8 min</div>
+    </div>
+    <p class="lede">Both groups reconvene here. Take eight minutes to write before we discuss.</p>
+
+    <div class="reflection">
+      <strong>Write in response to this</strong>
+      Name one pattern you saw across the presentations in your group. What did multiple lessons have in common — in structure, in what they assumed, in what they asked students to do?
+    </div>
+
+    <a class="next-link" href="#sec-synthesis">Go to Part 03 →</a>
+  </section>
+
+  <!-- WHOLE-CLASS SYNTHESIS -->
+  <section class="section" id="sec-synthesis" aria-labelledby="h-synthesis">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <h2 class="section-title" id="h-synthesis">Whole-Class Synthesis</h2>
+      <div class="section-pace">~20 min</div>
+    </div>
+    <p class="lede">Share what you wrote. We'll map the patterns on the board and work toward this question:</p>
+
+    <div class="synthesis-q">
+      <div class="synthesis-header">Opening Question</div>
+      <div class="synthesis-body">
+        What did you see in the lesson plans that connected to what Miller, Hyland, and McDonald gave us on Tuesday?
+      </div>
+    </div>
+
+    <a class="next-link" href="#sec-leave">Before You Leave →</a>
+  </section>
+
+  <!-- BEFORE YOU LEAVE -->
+  <section class="section" id="sec-leave" aria-labelledby="h-leave">
+    <div class="section-header">
+      <div class="section-num">Before You Leave</div>
+      <h2 class="section-title" id="h-leave">One Thing to Revise</h2>
+      <div class="section-pace">~5 min</div>
+    </div>
+    <p class="lede">Before Sunday, revise your lesson plan based on what you saw today.</p>
+
+    <div class="leave-box">
+      <span class="leave-label">In writing, right now</span>
+      <p class="leave-prompt">What is one thing you're changing before Sunday — and why? Be specific: name the element in your plan and what you saw today that prompted the revision.</p>
+    </div>
+
+    <div class="note" style="margin-top: 16px;">
+      <strong>Due Sunday, September 27:</strong> Your revised lesson plan (15-minute lesson on a core ENG 101 skill) plus a pedagogical rationale (750–1000 words). Submit both to Canvas.
+    </div>
+
+  </section>
+
+</main>
+
+<script>
+  function highlight() {
+    const now = new Date();
+    const mins = now.getHours() * 60 + now.getMinutes();
+
+    document.querySelectorAll('.tl-item').forEach(el => {
+      const s = parseInt(el.dataset.start);
+      const e = parseInt(el.dataset.end);
+      el.classList.toggle('active', mins >= s && mins < e);
+    });
+
+    const map = [
+      ['sec-setup',     705, 710],
+      ['sec-present',   710, 745],
+      ['sec-reflect',   745, 753],
+      ['sec-synthesis', 753, 773],
+      ['sec-leave',     773, 780],
+    ];
+    map.forEach(([id, s, e]) => {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('active', mins >= s && mins < e);
+    });
+  }
+  highlight();
+  setInterval(highlight, 30000);
+</script>
+
+</body>
+</html>
