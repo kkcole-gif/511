@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENG 511, Oct 8: Linguistic Justice — Combined Session</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F4F1;
+    --surface: #FFFFFF;
+    --text-1: #1A1918;
+    --text-2: #4A4540;
+    --text-3: #6B635C;
+    --border: #DEDAD4;
+    --thu: #8B3A1A;
+    --thu-light: #F9EDE8;
+    --thu-mid: #C47050;
+    --thu-dark: #5A2210;
+    --badge-bg: #F9EDE8;
+    --badge-color: #8B3A1A;
+    --note-bg: #FBF0EA;
+    --note-border: #B85A2C;
+    --note-text: #6E2E12;
+    --shadow: 0 1px 8px rgba(0,0,0,0.07);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text-1);
+    line-height: 1.65;
+    font-size: 15px;
+    min-height: 100vh;
+  }
+
+  a { color: var(--thu); }
+  a:focus-visible { outline: 3px solid var(--thu-mid); outline-offset: 2px; }
+
+  .skip-link {
+    position: absolute; left: -999px; top: 8px;
+    background: white; color: var(--thu-dark); padding: 8px 12px;
+    border-radius: 6px; z-index: 10; font-size: 13px;
+  }
+  .skip-link:focus { left: 12px; }
+
+  .conf-banner {
+    background: var(--thu-dark);
+    padding: 10px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .sub-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .sub-text {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+  }
+
+  .page-header {
+    background: var(--thu);
+    color: white;
+    padding: 32px 48px 28px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .course-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 6px;
+  }
+
+  .page-title {
+    font-family: 'Spectral', serif;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+    font-style: italic;
+  }
+
+  .mode-display { text-align: right; }
+
+  .mode-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 4px;
+  }
+
+  .mode-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    letter-spacing: 0.05em;
+  }
+
+  .timeline-strip {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    overflow-x: auto;
+    list-style: none;
+  }
+
+  .tl-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 18px 12px;
+    border-right: 1px solid var(--border);
+    min-width: 130px;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+  }
+
+  .tl-item:first-child { border-left: 1px solid var(--border); }
+  .tl-item:hover { background: var(--thu-light); }
+  .tl-item.active { background: var(--thu-light); }
+  .tl-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 2px;
+    background: var(--thu);
+  }
+
+  .tl-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--thu);
+    margin-bottom: 3px;
+  }
+
+  .tl-label {
+    font-size: 11.5px;
+    color: var(--text-2);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 36px 48px 60px;
+  }
+
+  .section { margin-bottom: 44px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    background: var(--badge-bg);
+    color: var(--badge-color);
+    padding: 3px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: 'Spectral', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-1);
+    flex: 1;
+  }
+
+  .section-pace {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    white-space: nowrap;
+  }
+
+  .section.active .section-header { border-bottom-color: var(--thu); }
+  .section.active .section-num { background: var(--thu); color: white; }
+  .section.active .section-title { color: var(--thu); }
+
+  .lede {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+
+  .note {
+    background: var(--note-bg);
+    border-left: 3px solid var(--note-border);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    color: var(--note-text);
+    margin-bottom: 14px;
+    line-height: 1.55;
+  }
+
+  .note strong { font-weight: 600; }
+
+  .reading-pair {
+    display: flex;
+    gap: 14px;
+    margin: 14px 0;
+  }
+
+  .reading-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    flex: 1;
+    box-shadow: var(--shadow);
+  }
+
+  .reading-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    margin-bottom: 6px;
+  }
+
+  .reading-author {
+    font-family: 'Spectral', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-1);
+    margin-bottom: 6px;
+  }
+
+  .reading-desc {
+    font-size: 12.5px;
+    color: var(--text-2);
+    line-height: 1.55;
+  }
+
+  .opener-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-top: 14px;
+  }
+
+  .opener-header {
+    background: var(--thu);
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .opener-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    padding: 2px 9px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+
+  .opener-title {
+    font-family: 'Spectral', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+  }
+
+  .opener-body {
+    padding: 18px 20px;
+    font-family: 'Spectral', serif;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text-1);
+    font-style: italic;
+  }
+
+  .activity-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin: 14px 0;
+  }
+
+  .activity-header {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--thu-light);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .activity-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--thu);
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .activity-meta { flex: 1; }
+
+  .activity-title {
+    font-family: 'Spectral', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-1);
+    line-height: 1.3;
+  }
+
+  .activity-body { padding: 16px 20px; }
+
+  .activity-framing {
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.6;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .step-list { list-style: none; }
+
+  .step-row {
+    display: flex;
+    gap: 12px;
+    padding: 7px 0;
+    border-bottom: 1px solid #F2EFE9;
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.55;
+    align-items: flex-start;
+  }
+
+  .step-row:last-child { border-bottom: none; }
+
+  .step-n {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--thu);
+    color: white;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .prompt-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 10px;
+  }
+
+  .prompt-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-3);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .prompt-text {
+    font-family: 'Spectral', serif;
+    font-size: 14.5px;
+    font-style: italic;
+    color: var(--text-1);
+    line-height: 1.6;
+  }
+
+  .demand-box {
+    background: var(--thu-dark);
+    border-radius: 10px;
+    padding: 22px 26px;
+    margin-top: 14px;
+  }
+
+  .demand-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .demand-text {
+    font-family: 'Spectral', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: white;
+    line-height: 1.65;
+  }
+
+  .leave-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+    margin-top: 14px;
+  }
+
+  .leave-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .next-link {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--thu);
+    text-decoration: none;
+    border: 1px solid var(--thu);
+    border-radius: 16px;
+    padding: 6px 16px;
+  }
+  .next-link:hover { background: var(--thu-light); }
+
+  @media (max-width: 780px) {
+    .page-header { flex-direction: column; align-items: flex-start; padding: 24px 20px; }
+    .conf-banner { padding: 10px 20px; flex-direction: column; gap: 4px; align-items: flex-start; }
+    .mode-display { text-align: left; }
+    .content { padding: 24px 20px 48px; }
+    .timeline-strip { padding: 0 16px; }
+    .reading-pair { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to session content</a>
+
+<div class="conf-banner">
+  <span class="sub-label">Today's plan</span>
+  <span class="sub-text">Tuesday, Oct 6 was cancelled — Prof. Cole was presenting at a conference. This session covers both days.</span>
+</div>
+
+<header class="page-header">
+  <div>
+    <div class="course-tag">ENG 511 · Week 8 · Thursday, October 8, 2026 — Combined Session</div>
+    <h1 class="page-title">Linguistic Justice</h1>
+    <div class="page-subtitle">Royster, "When the First Voice You Hear Is Not Your Own" · Young, "Your Average N****" · Baker-Bell et al., "This Ain't Another Statement"</div>
+  </div>
+  <div class="mode-display">
+    <div class="mode-label">Format</div>
+    <div class="mode-value">Seminar + Workshop, in person</div>
+  </div>
+</header>
+
+<nav aria-label="Session sequence">
+<ol class="timeline-strip">
+  <li><a class="tl-item" href="#sec-opening" id="tl-0" data-start="705" data-end="725"><div class="tl-num">Opening</div><div class="tl-label">Royster & Young</div></a></li>
+  <li><a class="tl-item" href="#sec-audit" id="tl-1" data-start="725" data-end="745"><div class="tl-num">01</div><div class="tl-label">OWI Design Audit</div></a></li>
+  <li><a class="tl-item" href="#sec-syllabus" id="tl-2" data-start="745" data-end="760"><div class="tl-num">02</div><div class="tl-label">Syllabus Language</div></a></li>
+  <li><a class="tl-item" href="#sec-demand" id="tl-3" data-start="760" data-end="780"><div class="tl-num">03</div><div class="tl-label">The DEMAND</div></a></li>
+</ol>
+</nav>
+
+<main class="content" id="main">
+
+  <!-- OPENING -->
+  <section class="section" id="sec-opening" aria-labelledby="h-opening">
+    <div class="section-header">
+      <div class="section-num">Opening</div>
+      <h2 class="section-title" id="h-opening">Royster and Young: The Seminar Discussion</h2>
+      <div class="section-pace">~20 min</div>
+    </div>
+    <p class="lede">Tuesday's seminar moves here. Royster and Young both write about linguistic ownership, but from different angles — Royster about who gets heard, Young about the cost of code-switching. We open with them before turning to Baker-Bell et al.'s contemporary demand in Activity 03.</p>
+
+    <div class="reading-pair">
+      <div class="reading-card">
+        <div class="reading-label">Royster, 1996</div>
+        <div class="reading-author">When the First Voice You Hear Is Not Your Own</div>
+        <div class="reading-desc">Royster asks what it costs a writer, and a listener, when the voice that reaches print is never quite the writer's own — and what changes when we insist on hearing the first voice instead.</div>
+      </div>
+      <div class="reading-card">
+        <div class="reading-label">Young, 2004</div>
+        <div class="reading-author">Your Average N****</div>
+        <div class="reading-desc">Young argues against code-switching pedagogy itself, making the case that asking students to leave a home language at the classroom door is not neutral accommodation but a demand with a cost.</div>
+      </div>
+    </div>
+
+    <div class="opener-card">
+      <div class="opener-header">
+        <span class="opener-badge">Opening Discussion</span>
+        <span class="opener-title">Royster & Young in conversation</span>
+      </div>
+      <div class="opener-body">
+        Royster asks us to consider "when the first voice you hear is not your own." How does Young's argument against code-switching extend, or complicate, that idea? Where do the two of them agree about what composition owes a writer's home language — and where do they part ways?
+      </div>
+    </div>
+
+    <ul class="step-list" style="margin-top:14px;">
+      <li class="step-row">
+        <div class="step-n">1</div>
+        <div><strong>Full class (8 min):</strong> Work through the opening question together. What would it mean to center, rather than accommodate, linguistic diversity — and is that the same thing Royster and Young are each asking for?</div>
+      </li>
+      <li class="step-row">
+        <div class="step-n">2</div>
+        <div><strong>Pairs (8 min):</strong> How does Young's essay connect to current debates about linguistic justice you've encountered — in your own teaching, in policy, or in the field? Name one specific connection.</div>
+      </li>
+      <li class="step-row">
+        <div class="step-n">3</div>
+        <div><strong>Report (4 min):</strong> Share one connection with the room before we move into the workshop activities.</div>
+      </li>
+    </ul>
+
+    <a class="next-link" href="#sec-audit">Go to Activity 01 →</a>
+  </section>
+
+  <!-- ACTIVITY 01: OWI AUDIT -->
+  <section class="section" id="sec-audit" aria-labelledby="h-audit">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <h2 class="section-title" id="h-audit">OWI Design Audit</h2>
+      <div class="section-pace">~20 min</div>
+    </div>
+
+    <div class="activity-block">
+      <div class="activity-header">
+        <span class="activity-num">01</span>
+        <div class="activity-meta">
+          <div class="activity-title">Whose languages does this task make visible?</div>
+        </div>
+      </div>
+      <div class="activity-body">
+        <p class="activity-framing">Royster and Young both ask us to notice what gets erased when a single linguistic standard is treated as neutral. This activity turns that question onto our own course materials.</p>
+
+        <ul class="step-list">
+          <li class="step-row">
+            <div class="step-n">1</div>
+            <div><strong>Pairs (10 min):</strong> Review an existing online writing task (your instructor will share one, or bring one from your own teaching). Who does it center? Whose languages and rhetorical traditions are visible — and whose are invisible?</div>
+          </li>
+          <li class="step-row">
+            <div class="step-n">2</div>
+            <div><strong>Pairs (7 min):</strong> Revise one element of the task to better center linguistic diversity. What did you change, and why?</div>
+          </li>
+          <li class="step-row">
+            <div class="step-n">3</div>
+            <div><strong>Report (3 min):</strong> One or two pairs share their revision.</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <a class="next-link" href="#sec-syllabus">Go to Activity 02 →</a>
+  </section>
+
+  <!-- ACTIVITY 02: SYLLABUS LANGUAGE -->
+  <section class="section" id="sec-syllabus" aria-labelledby="h-syllabus">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <h2 class="section-title" id="h-syllabus">SRTOL to Syllabus Language</h2>
+      <div class="section-pace">~15 min</div>
+    </div>
+
+    <div class="activity-block">
+      <div class="activity-header">
+        <span class="activity-num">02</span>
+        <div class="activity-meta">
+          <div class="activity-title">Writing justice into the syllabus itself</div>
+        </div>
+      </div>
+      <div class="activity-body">
+        <p class="activity-framing">Students' Right to Their Own Language (SRTOL) is a policy commitment. This activity asks what it looks like as prose a student would actually read.</p>
+
+        <ul class="step-list">
+          <li class="step-row">
+            <div class="step-n">1</div>
+            <div><strong>Solo (8 min):</strong> Draft three sentences for a course syllabus that enact linguistic justice — not just acknowledge it. Avoid boilerplate; write language you would actually want a student to read on day one.</div>
+          </li>
+          <li class="step-row">
+            <div class="step-n">2</div>
+            <div><strong>Pairs (5 min):</strong> Trade drafts. Does the language make a commitment, or does it hedge? Suggest one specific revision.</div>
+          </li>
+          <li class="step-row">
+            <div class="step-n">3</div>
+            <div><strong>Report (2 min):</strong> One or two examples shared aloud.</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <a class="next-link" href="#sec-demand">Go to Activity 03 →</a>
+  </section>
+
+  <!-- ACTIVITY 03: THE DEMAND -->
+  <section class="section" id="sec-demand" aria-labelledby="h-demand">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <h2 class="section-title" id="h-demand">The DEMAND</h2>
+      <div class="section-pace">~20 min</div>
+    </div>
+
+    <div class="reading-card" style="max-width:100%;">
+      <div class="reading-label">Baker-Bell et al., 2020</div>
+      <div class="reading-author">This Ain't Another Statement: This is a DEMAND for Black Linguistic Justice</div>
+      <div class="reading-desc">Baker-Bell and co-authors issue a demand, not a statement — a distinction the piece insists on. It names concrete institutional commitments rather than expressions of support.</div>
+    </div>
+
+    <ul class="step-list" style="margin-top:14px;">
+      <li class="step-row">
+        <div class="step-n">1</div>
+        <div><strong>Pairs (8 min):</strong> What's the difference between a statement and a demand? Find one specific passage where Baker-Bell et al. make that difference concrete.</div>
+      </li>
+      <li class="step-row">
+        <div class="step-n">2</div>
+        <div><strong>Full class (12 min):</strong> What would it look like to honor this demand in a first-year writing program — structurally, not just rhetorically? Connect back to your syllabus language from Activity 02 and your OWI revision from Activity 01: do they rise to the level of a demand, or do they still read as a statement?</div>
+      </li>
+    </ul>
+
+    <div class="demand-box">
+      <span class="demand-label">Take with you</span>
+      <p class="demand-text">Royster, Young, and Baker-Bell et al. all refuse a version of "neutral" language policy. What would a truly linguistically just writing course look like if you built it from their refusal, rather than adding it as a late accommodation?</p>
+    </div>
+
+    <div class="leave-box">
+      <span class="leave-label">Optional further reading this week</span>
+      <div style="font-size:13.5px;color:var(--text-2);line-height:1.6;">Shen, "Identity as a Key to Learning English Composition" (1989), and Perryman-Clark, "African American Language and SRTOL" (2013) — both good background on the history behind today's discussion, not required.</div>
+    </div>
+
+  </section>
+
+</main>
+
+<script>
+  function highlight() {
+    const now = new Date();
+    const mins = now.getHours() * 60 + now.getMinutes();
+
+    document.querySelectorAll('.tl-item').forEach(el => {
+      const s = parseInt(el.dataset.start);
+      const e = parseInt(el.dataset.end);
+      el.classList.toggle('active', mins >= s && mins < e);
+    });
+
+    const map = [
+      ['sec-opening', 705, 725],
+      ['sec-audit',   725, 745],
+      ['sec-syllabus',745, 760],
+      ['sec-demand',  760, 780],
+    ];
+    map.forEach(([id, s, e]) => {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('active', mins >= s && mins < e);
+    });
+  }
+  highlight();
+  setInterval(highlight, 30000);
+</script>
+
+</body>
+</html>
