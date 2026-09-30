@@ -407,6 +407,92 @@
   }
   .annot-q:last-child { border-bottom: none; }
 
+
+  /* Sample texts */
+  .sample-set { margin: 4px 0 14px; }
+  .sample-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin: 10px 0;
+    overflow: hidden;
+  }
+  .sample-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 9px 16px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .sample-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--thu);
+  }
+  .sample-kind {
+    font-size: 11.5px;
+    font-style: italic;
+    color: var(--text-3);
+  }
+  .sample-body {
+    padding: 14px 16px;
+    font-family: 'Spectral', serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-1);
+  }
+  .sample-body.comment {
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-size: 14px;
+    color: var(--text-1);
+    border-left: 3px solid #C0392B;
+  }
+  .sample-body.comment.formative { border-left-color: var(--reg-ped); }
+  .sample-grade {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+    color: #C0392B;
+    margin-left: 6px;
+  }
+  .sample-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .sample-note {
+    font-size: 12px;
+    color: var(--text-3);
+    font-style: italic;
+    margin-top: 4px;
+  }
+
+
+  .portfolio-tag {
+    margin-top: 12px;
+    background: var(--thu-light);
+    border: 1px solid #E8C4A8;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--thu-dark);
+    line-height: 1.55;
+  }
+  .portfolio-tag strong {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--thu);
+    display: block;
+    margin-bottom: 2px;
+  }
+
   /* Reading arc */
   .arc-row {
     display: flex;
@@ -781,7 +867,7 @@
     .timeline-strip { padding: 0 16px; }
     .arc-row { flex-direction: column; gap: 10px; }
     .arc-arrow-wrap { display: none; }
-    .framework-cols, .answer-grid, .voices-grid { grid-template-columns: 1fr; }
+    .framework-cols, .answer-grid, .voices-grid, .sample-pair { grid-template-columns: 1fr; }
     .voice-col { border-right: none; border-bottom: 1px solid var(--border); }
     .voice-col:last-child { border-bottom: none; }
     .reg-col { border-right: none; border-bottom: 1px solid var(--border); }
@@ -796,7 +882,7 @@
 
 <div class="wellness-banner">
   <span class="sub-label">Assignment due</span>
-  <span class="sub-text">Feedback Portfolio, Sunday, October 4, 11:59 PM</span>
+  <span class="sub-text">Feedback & Assessment Portfolio, Part 1 (Tab 5), Sunday, October 4, midnight</span>
 </div>
 
 <header class="page-header">
@@ -828,7 +914,6 @@
     <div class="section-header">
       <div class="section-num">Opening</div>
       <h2 class="section-title" id="h-opening">One Question, Three Registers</h2>
-      <div class="section-pace">~18 min</div>
     </div>
 
     <p class="lede">Tuesday was NC State's Wellness Day, so today does the work of both sessions. One question organizes all of it. Sommers, Inoue, and Smith each answer it, and each answers it from a different register. They are not disagreeing about the same thing. Seeing where each one stands is the move today, and every activity below comes back to the same question.</p>
@@ -919,7 +1004,7 @@
     </div>
 
     <div class="note" style="margin-top:14px;">
-      <strong>How the opening runs:</strong> one-sentence answers, written solo (3 min). Pairs compare and name which register each answer lives in (5 min). Full class places Sommers, Inoue, and Smith on the register map and reads their answers against yours (10 min). Then the three activities put the question to work.
+      <strong>How the opening runs:</strong> one-sentence answers, written solo. Pairs compare and name which register each answer lives in. Full class places Sommers, Inoue, and Smith on the register map and reads their answers against yours. Then the three activities put the question to work.
     </div>
 
     <a class="next-link" href="#sec-summative">Go to Activity 01 →</a>
@@ -930,7 +1015,6 @@
     <div class="section-header">
       <div class="section-num">01</div>
       <h2 class="section-title" id="h-summative">Summative Feedback: Is Feedback for Judgment?</h2>
-      <div class="section-pace">~15 min</div>
     </div>
 
     <div class="activity-block">
@@ -950,18 +1034,36 @@
         </div>
         <p class="activity-framing">Summative feedback makes a judgment about finished work. Smith argues that when we write end comments, we perform a genre with its own conventions and assumptions about what writing is. Reading the genre as a method claim lets you see what a comment treats as evidence, and so what it thinks feedback is for.</p>
 
+        <div class="sample-set">
+          <div class="sample-card">
+            <div class="sample-head"><span class="sample-label">Student passage</span><span class="sample-kind">Shared practice text for Activities 01 and 02</span></div>
+            <div class="sample-body">Ever since the beginning of time, people have had to work to survive, and college students are no different. I work twenty-five hours a week at a grocery store while taking fifteen credits. Alot of people think students who work are less serious about school, but I think its the opposite. When I close the store on a Tuesday night and still have a reading due, I have to decide what matters most, and I learned more about time management from that then from any class. My manager says I am one of the most reliable people on the schedule. Which shows that working students bring skills to college that other students don't have. Colleges should give credit for work experience, because work is a kind of learning too.</div>
+          </div>
+          <div class="sample-pair">
+            <div class="sample-card">
+              <div class="sample-head"><span class="sample-label">End Comment A</span><span class="sample-kind">The conventional genre Smith describes</span></div>
+              <div class="sample-body comment">You have a strong personal connection to this topic, and your example of closing the store on a Tuesday night is vivid. But the paragraph needs more development. Your opening is too broad, your evidence rests on a single personal example, and several errors (alot, its/it's, then/than, a sentence fragment) distract the reader. Your final claim is interesting but unsupported. Work on narrowing your thesis and proofreading carefully. Good start! Stop by office hours if you'd like to talk about revision.<span class="sample-grade">B&minus;</span></div>
+            </div>
+            <div class="sample-card">
+              <div class="sample-head"><span class="sample-label">End Comment B</span><span class="sample-kind">The rubber-stamp comment Sommers critiques</span></div>
+              <div class="sample-body comment">Good ideas, but be more specific. Think about your audience. Expand your argument. Watch transitions and grammar.<span class="sample-grade">C+</span></div>
+            </div>
+          </div>
+          <p class="sample-note">Constructed for this session. Written in the patterns Smith and Sommers document, not taken from their studies.</p>
+        </div>
+
         <ul class="step-list">
           <li class="step-row">
             <div class="step-n meth">1</div>
-            <div><strong>Solo (3 min):</strong> Read the sample end comment in the ENG 511 Examples folder. Don't respond to it yet. Notice what it addresses, what it ignores, and what its structure implies about why it was written.</div>
+            <div><strong>Solo:</strong> Read the student passage, then End Comments A and B. Don't evaluate them yet. Notice what each addresses, what each ignores, and what its structure implies about why it was written.</div>
           </li>
           <li class="step-row">
             <div class="step-n meth">2</div>
-            <div><strong>Pairs (6 min):</strong> Apply Smith's genre analysis. What moves does the comment make? Who is its real audience: the student, the teacher, a future reader of the grade? Is it for the grade, the revision, or the writer's future?</div>
+            <div><strong>Pairs:</strong> Apply Smith's genre analysis to A, then B. What moves does each comment make? Why does A end with an invitation and a grade? Who is its real audience: the student, the teacher, a future reader of the grade? Is it for the grade, the revision, or the writer's future?</div>
           </li>
           <li class="step-row">
             <div class="step-n meth">3</div>
-            <div><strong>Report (6 min, full class):</strong> What did the genre reading reveal about purpose that the question "is this good feedback?" would have missed?</div>
+            <div><strong>Report (full class):</strong> What did the genre reading reveal about purpose that the question "is this good feedback?" would have missed?</div>
           </li>
         </ul>
 
@@ -969,6 +1071,7 @@
           <span class="prompt-label">What is feedback for, in this comment?</span>
           <p class="prompt-text">If end comments are a genre, what social action does this one perform, and for whom? Name what it measures, what it ignores, and what a student reading it would conclude feedback is for.</p>
         </div>
+        <div class="portfolio-tag"><strong>For your portfolio</strong>Summative feedback, analyzed. Your genre notes become a reflection paragraph that engages Smith, which covers your "at least one other course reading."</div>
       </div>
     </div>
 
@@ -980,7 +1083,6 @@
     <div class="section-header">
       <div class="section-num">02</div>
       <h2 class="section-title" id="h-formative">Formative Feedback: Is Feedback for the Writer?</h2>
-      <div class="section-pace">~15 min</div>
     </div>
 
     <div class="activity-block">
@@ -1007,22 +1109,38 @@
         <ul class="step-list">
           <li class="step-row">
             <div class="step-n ped">1</div>
-            <div><strong>Solo (4 min):</strong> Read the same student passage from the ENG 511 Examples folder, setting the Activity 01 end comment aside. Write a one-paragraph formative response addressed to the writer, not the grade. Name something they're doing well and open one question for revision.</div>
+            <div><strong>Solo:</strong> Open one ENG 101 paper from the <a href="https://drive.google.com/drive/folders/1Af_8kSOBO76dcMt5xwsrRhedgqT18T6Q?usp=sharing" target="_blank" rel="noopener noreferrer">student sample papers folder</a>. Trios, choose the same paper. Write marginal comments on the first page and a short formative note addressed to the writer, not the grade. Name something they're doing well and open one question for revision.</div>
           </li>
           <li class="step-row">
             <div class="step-n ped">2</div>
-            <div><strong>Trios (6 min):</strong> Read each other's responses. What does each one assume the writer is trying to do? Does it appropriate the text by rewriting it, or does it teach?</div>
+            <div><strong>Trios:</strong> Read each other's comments on the paper, then Formative Comments A and B below, written on the shared practice passage. What does each one assume the writer is trying to do? Which appropriate the text by rewriting it, and which teach?</div>
           </li>
           <li class="step-row">
             <div class="step-n ped">3</div>
-            <div><strong>Report (5 min, full class):</strong> Where does Sommers' answer hold up? Where does formative feedback slide back into summative judgment?</div>
+            <div><strong>Report (full class):</strong> Where does Sommers' answer hold up? Where does formative feedback slide back into summative judgment?</div>
           </li>
         </ul>
 
+
+        <div class="sample-set" style="margin-top:14px;">
+          <div class="sample-pair">
+            <div class="sample-card">
+              <div class="sample-head"><span class="sample-label">Formative Comment A</span><span class="sample-kind">Formative in timing, appropriative in practice</span></div>
+              <div class="sample-body comment formative">Cut the first sentence. Try this instead: "Working twenty-five hours a week while carrying fifteen credits taught me to prioritize under pressure, a skill colleges should recognize." Fix alot, its, and then. Combine the fragment with the sentence before it. Add a second example.</div>
+            </div>
+            <div class="sample-card">
+              <div class="sample-head"><span class="sample-label">Formative Comment B</span><span class="sample-kind">Addressed to the writer, in the direction Sommers argues for</span></div>
+              <div class="sample-body comment formative">I kept thinking about your Tuesday night at the store. You're doing something interesting here: using your own schedule as evidence that work produces a kind of learning. That's an argument. What exactly did you learn about deciding "what matters most," and how would a college recognize it? If the paragraph started from that Tuesday night instead of "the beginning of time," what would your reader understand sooner?</div>
+            </div>
+          </div>
+          <p class="sample-note">Constructed for this session, on the practice passage in Activity 01. Read these after you write your own comments.</p>
+        </div>
+
         <div class="prompt-card">
           <span class="prompt-label">What is feedback for, in your response?</span>
-          <p class="prompt-text">What does your response assume this writer needs next? Compare that answer to the one the Activity 01 end comment gives. Where do the two purposes collide?</p>
+          <p class="prompt-text">What does your response assume this writer needs next? Compare that answer to the ones End Comment A and Formative Comment A give. Where do the two purposes collide?</p>
         </div>
+        <div class="portfolio-tag"><strong>For your portfolio</strong>This is annotated feedback sample one. Keep annotating the paper after class. Your trio's comparison with Formative Comments A and B gives you a reflection paragraph that engages Sommers.</div>
       </div>
     </div>
 
@@ -1034,7 +1152,6 @@
     <div class="section-header">
       <div class="section-num">03</div>
       <h2 class="section-title" id="h-labor">Labor-Based Lens: Feedback for Whom?</h2>
-      <div class="section-pace">~12 min</div>
     </div>
 
     <div class="activity-block">
@@ -1061,11 +1178,15 @@
         <ul class="step-list">
           <li class="step-row">
             <div class="step-n meth">1</div>
-            <div><strong>Pairs (6 min):</strong> Set the Activity 01 end comment beside your Activity 02 response. What is each one measuring, and whose standard sits behind it? What would a labor-based protocol count as evidence instead? One annotation raised a third case: tools like Acrolinx, and now AI checkers, that train every writer toward one house voice. What is that feedback for, and whose standard does it encode?</div>
+            <div><strong>Pairs:</strong> Start with the practice passage, whose writer argues colleges should credit work as learning. Which of End Comment A and Formative Comment B treats the labor the paragraph describes as evidence of learning? Then turn to the ENG 101 paper you annotated. What are your comments measuring, and whose standard sits behind them? Rewrite your formative note as a labor-based response: what labor is visible in this draft, and what is the next labor? Write it, or record it as a short audio or video comment.</div>
           </li>
           <li class="step-row">
             <div class="step-n meth">2</div>
-            <div><strong>Full class (6 min):</strong> Synthesis question, below.</div>
+            <div><strong>Pairs, extending:</strong> One annotation raised a third case: tools like Acrolinx, and now AI checkers, that train every writer toward one house voice. What is that feedback for, and whose standard does it encode?</div>
+          </li>
+          <li class="step-row">
+            <div class="step-n meth">3</div>
+            <div><strong>Full class:</strong> Synthesis question, below.</div>
           </li>
         </ul>
 
@@ -1073,6 +1194,7 @@
           <span class="prompt-label">Synthesis question</span>
           <p class="prompt-text">Activities 01, 02, and 03 give three answers to what feedback is for, and each answer rests on a different account of what counts as evidence that a student is writing. Which answer can absorb the other two's critiques? Which one can't?</p>
         </div>
+        <div class="portfolio-tag"><strong>For your portfolio</strong>Your labor-based rewrite, written or recorded, joins annotated sample one and puts Inoue into practice. Your answer to the synthesis question is the start of your reflection's argument.</div>
       </div>
     </div>
 
@@ -1083,11 +1205,10 @@
   <section class="section" id="sec-synthesis" aria-labelledby="h-synthesis">
     <div class="section-header">
       <div class="section-num">Close</div>
-      <h2 class="section-title" id="h-synthesis">Your Answer, Revised: Feedback Portfolio Frame</h2>
-      <div class="section-pace">~15 min</div>
+      <h2 class="section-title" id="h-synthesis">Your Answer, Revised: Portfolio Part 1</h2>
     </div>
 
-    <p class="lede">Go back to the sentence you wrote at the start of class. Revise it now that you have tested it against all three registers. That revised sentence is the seed of your framing essay. The end comment, your formative response, and the labor-based analysis are all candidates for your three examples.</p>
+    <p class="lede">Go back to the sentence you wrote at the start of class. Revise it now that you have tested it against all three registers. That revised sentence is the claim your reflection argues. Today you practiced four approaches the portfolio asks about: summative (Activity 01), formative (Activity 02), labor-based and audio or video (Activity 03). The paper you annotated is your first sample, and your activity notes are draft reflection paragraphs.</p>
 
     <div class="answer-grid">
       <div class="answer-cell">
@@ -1105,26 +1226,31 @@
     </div>
 
     <div class="prompt-card" style="background:var(--thu-light);border-color:#E8C4A8;">
-      <span class="prompt-label" style="color:var(--thu-dark);">What the Feedback Portfolio asks</span>
-      <p class="prompt-text" style="color:var(--thu-dark);">Select three pieces of feedback, given, received, or both, and analyze each one by the register it operates in, what it assumes writing is, and what it makes visible or invisible. The framing essay (400 to 500 words) argues what feedback is for, using your three examples together as evidence.</p>
+      <span class="prompt-label" style="color:var(--thu-dark);">What Portfolio Part 1 asks, and where today fits</span>
+      <ul class="step-list" style="margin-top:4px;">
+        <li class="step-row" style="border-bottom-color:#E8C4A8;"><div class="step-n">1</div><div style="color:var(--thu-dark);"><strong>Annotated feedback samples:</strong> 2 to 3 papers from the <a href="https://drive.google.com/drive/folders/1Af_8kSOBO76dcMt5xwsrRhedgqT18T6Q?usp=sharing" target="_blank" rel="noopener noreferrer">student sample papers folder</a> with your marginal comments. Today gives you one, with a labor-based rewrite. Try a different approach on the next paper.</div></li>
+        <li class="step-row" style="border-bottom-color:#E8C4A8;"><div class="step-n">2</div><div style="color:var(--thu-dark);"><strong>Written reflection, 1000 to 1500 words:</strong> argue your answer to "What is feedback for?" using your samples as evidence and the registers as your frame.</div></li>
+        <li class="step-row" style="border-bottom-color:#E8C4A8;"><div class="step-n">3</div><div style="color:var(--thu-dark);"><strong>Sommers, Inoue, and at least one other reading:</strong> Activity 02 gives you Sommers, Activity 03 gives you Inoue, and Activity 01 gives you Smith.</div></li>
+        <li class="step-row"><div class="step-n">4</div><div style="color:var(--thu-dark);"><strong>What you'd revise with more time or context:</strong> start from the gap between the sentence you wrote at the start of class and your revised one.</div></li>
+      </ul>
     </div>
 
     <div class="leave-box">
       <span class="leave-label">Before you leave</span>
-      <div class="leave-title">Three things to have before Sunday</div>
+      <div class="leave-title">Three things to have in Tab 5 today</div>
       <ul class="leave-items">
-        <li class="leave-item"><div class="leave-dot"></div><div>Your revised one-sentence answer to "What is feedback for?"</div></li>
-        <li class="leave-item"><div class="leave-dot"></div><div>Three feedback examples selected, each with a note on which register it operates in and what it assumes feedback is for.</div></li>
-        <li class="leave-item"><div class="leave-dot"></div><div>One paragraph of analysis drafted for one example.</div></li>
+        <li class="leave-item"><div class="leave-dot"></div><div>Your revised one-sentence answer to "What is feedback for?" as the working claim of your reflection.</div></li>
+        <li class="leave-item"><div class="leave-dot"></div><div>One sample paper started, with marginal comments, a formative note, and your labor-based rewrite.</div></li>
+        <li class="leave-item"><div class="leave-dot"></div><div>Notes from each activity, labeled Smith, Sommers, and Inoue, ready to become reflection paragraphs.</div></li>
       </ul>
     </div>
 
     <div class="note" style="margin-top:16px;">
-      <strong>Feedback Portfolio due Sunday, October 4, 11:59 PM.</strong> Submit through Moodle. Three feedback examples plus a 400 to 500 word framing essay.
+      <strong>Feedback & Assessment Portfolio, Part 1, due Sunday, October 4, at midnight in Tab 5.</strong> Part 2 in Week 13 extends and revises this work, so keep both visible in Tab 5.
     </div>
 
     <div class="note" style="margin-top:10px;">
-      <strong>Further reading, optional:</strong> Inman & Powell, "In the Absence of Grades" (2018), and Grigoryan, "Feedback 2.0" (2017). Both extend today's question into course-contract design and digital feedback tools, if you want more for the portfolio.
+      <strong>Further reading, optional:</strong> Inman & Powell, "In the Absence of Grades" (2018), and Grigoryan, "Feedback 2.0" (2017). Inman & Powell extend Inoue into contract design. Grigoryan supports the audio and video approach. Either works as your additional reading.
     </div>
 
   </section>
