@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENG 511, Nov 17: AI & the Future of Composition</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F4F1;
+    --surface: #FFFFFF;
+    --text-1: #1A1918;
+    --text-2: #4A4540;
+    --text-3: #6B635C;
+    --border: #DEDAD4;
+    --thu: #2A4485;
+    --thu-light: #EEF1F9;
+    --thu-mid: #5E78B5;
+    --thu-dark: #1C2F5E;
+    --badge-bg: #EEF1F9;
+    --badge-color: #2A4485;
+    --note-bg: #FBF0EA;
+    --note-border: #B85A2C;
+    --note-text: #6E2E12;
+    --shadow: 0 1px 8px rgba(0,0,0,0.07);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text-1);
+    line-height: 1.65;
+    font-size: 15px;
+    min-height: 100vh;
+  }
+
+  a { color: var(--thu); }
+  a:focus-visible { outline: 3px solid var(--thu-mid); outline-offset: 2px; }
+
+  .skip-link {
+    position: absolute; left: -999px; top: 8px;
+    background: white; color: var(--thu-dark); padding: 8px 12px;
+    border-radius: 6px; z-index: 10; font-size: 13px;
+  }
+  .skip-link:focus { left: 12px; }
+
+  .conf-banner {
+    background: var(--thu-dark);
+    padding: 10px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .sub-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .sub-text {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+  }
+
+  .page-header {
+    background: var(--thu);
+    color: white;
+    padding: 32px 48px 28px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .course-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 6px;
+  }
+
+  .page-title {
+    font-family: 'Spectral', serif;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+    font-style: italic;
+  }
+
+  .mode-display { text-align: right; }
+
+  .mode-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 4px;
+  }
+
+  .mode-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    letter-spacing: 0.05em;
+  }
+
+  .timeline-strip {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    overflow-x: auto;
+    list-style: none;
+  }
+
+  .tl-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 18px 12px;
+    border-right: 1px solid var(--border);
+    min-width: 130px;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+  }
+
+  .tl-item:first-child { border-left: 1px solid var(--border); }
+  .tl-item:hover { background: var(--thu-light); }
+  .tl-item.active { background: var(--thu-light); }
+  .tl-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 2px;
+    background: var(--thu);
+  }
+
+  .tl-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--thu);
+    margin-bottom: 3px;
+  }
+
+  .tl-label {
+    font-size: 11.5px;
+    color: var(--text-2);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 36px 48px 60px;
+  }
+
+  .section { margin-bottom: 44px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    background: var(--badge-bg);
+    color: var(--badge-color);
+    padding: 3px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: 'Spectral', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-1);
+    flex: 1;
+  }
+
+  .section-pace {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    white-space: nowrap;
+  }
+
+  .section.active .section-header { border-bottom-color: var(--thu); }
+  .section.active .section-num { background: var(--thu); color: white; }
+  .section.active .section-title { color: var(--thu); }
+
+  .lede {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+
+  .note {
+    background: var(--note-bg);
+    border-left: 3px solid var(--note-border);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    color: var(--note-text);
+    margin-bottom: 14px;
+    line-height: 1.55;
+  }
+
+  .note strong { font-weight: 600; }
+
+  .reading-pair {
+    display: flex;
+    gap: 14px;
+    margin: 14px 0;
+  }
+
+  .reading-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    flex: 1;
+    box-shadow: var(--shadow);
+  }
+
+  .reading-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    margin-bottom: 6px;
+  }
+
+  .reading-author {
+    font-family: 'Spectral', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-1);
+    margin-bottom: 6px;
+  }
+
+  .reading-desc {
+    font-size: 12.5px;
+    color: var(--text-2);
+    line-height: 1.55;
+  }
+
+  .reading-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+    background: var(--thu);
+    text-decoration: none;
+    border-radius: 16px;
+    padding: 6px 16px;
+  }
+  .reading-link:hover { background: var(--thu-dark); }
+
+  .opener-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-top: 14px;
+  }
+
+  .opener-header {
+    background: var(--thu);
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .opener-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    padding: 2px 9px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+
+  .opener-title {
+    font-family: 'Spectral', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+  }
+
+  .opener-body {
+    padding: 18px 20px;
+    font-family: 'Spectral', serif;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text-1);
+    font-style: italic;
+  }
+
+  .activity-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin: 14px 0;
+  }
+
+  .activity-header {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--thu-light);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .activity-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--thu);
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .activity-meta { flex: 1; }
+
+  .activity-title {
+    font-family: 'Spectral', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-1);
+    line-height: 1.3;
+  }
+
+  .activity-body { padding: 16px 20px; }
+
+  .activity-framing {
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.6;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .step-list { list-style: none; }
+
+  .step-row {
+    display: flex;
+    gap: 12px;
+    padding: 7px 0;
+    border-bottom: 1px solid #F2EFE9;
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.55;
+    align-items: flex-start;
+  }
+
+  .step-row:last-child { border-bottom: none; }
+
+  .step-n {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--thu);
+    color: white;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .prompt-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 10px;
+  }
+
+  .prompt-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-3);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .prompt-text {
+    font-family: 'Spectral', serif;
+    font-size: 14.5px;
+    font-style: italic;
+    color: var(--text-1);
+    line-height: 1.6;
+  }
+
+  .demand-box {
+    background: var(--thu-dark);
+    border-radius: 10px;
+    padding: 22px 26px;
+    margin-top: 14px;
+  }
+
+  .demand-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .demand-text {
+    font-family: 'Spectral', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: white;
+    line-height: 1.65;
+  }
+
+  .leave-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+    margin-top: 14px;
+  }
+
+  .leave-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .next-link {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--thu);
+    text-decoration: none;
+    border: 1px solid var(--thu);
+    border-radius: 16px;
+    padding: 6px 16px;
+  }
+  .next-link:hover { background: var(--thu-light); }
+
+  @media (max-width: 780px) {
+    .page-header { flex-direction: column; align-items: flex-start; padding: 24px 20px; }
+    .conf-banner { padding: 10px 20px; flex-direction: column; gap: 4px; align-items: flex-start; }
+    .mode-display { text-align: left; }
+    .content { padding: 24px 20px 48px; }
+    .timeline-strip { padding: 0 16px; }
+    .reading-pair { flex-direction: column; }
+  }
+
+  .group-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .group-tile {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--thu);
+    border-radius: 8px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: inherit;
+  }
+  .group-tile:hover { background: var(--thu-light); }
+  .group-tile-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--thu);
+    line-height: 1;
+  }
+  .group-tile-title {
+    font-family: 'Spectral', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-1);
+  }
+  .group-tile-desc { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+  .group-tile-brings {
+    margin-top: auto;
+    padding-top: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--thu-dark);
+  }
+
+  .sample-task {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .sample-task-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    background: #EEF0F2;
+    border-bottom: 1px solid var(--border);
+    padding: 8px 16px;
+  }
+  .sample-task-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: var(--thu);
+    color: white;
+    padding: 2px 9px;
+    border-radius: 10px;
+  }
+  .sample-task-where {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+  }
+  .sample-task-body {
+    padding: 16px 20px;
+    font-size: 14px;
+    color: var(--text-1);
+    line-height: 1.6;
+  }
+  .sample-task-body h3 {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .sample-task-body p { margin-bottom: 10px; }
+  .sample-task-body ol { margin: 0 0 10px 20px; }
+  .sample-task-body ol li { margin-bottom: 4px; }
+  .sample-task-head {
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-2);
+    margin: 14px 0 6px !important;
+  }
+  .sample-rubric { list-style: none; border-top: 1px solid var(--border); }
+  .sample-rubric li {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13.5px;
+  }
+  .sample-rubric li span:last-child { font-family: 'IBM Plex Mono', monospace; color: var(--text-2); }
+
+  .step-n { min-width: 20px; width: auto; padding: 0 5px; border-radius: 10px; }
+
+  @media (max-width: 780px) {
+    .group-grid { grid-template-columns: 1fr; }
+  }
+</style>
+<style>
+  .three-col { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:14px 0; }
+  .mode-tag { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.08em; padding:2px 8px; border-radius:9px; background:var(--bg); border:1px solid var(--border); color:var(--text-2); margin-right:6px; white-space:nowrap; }
+  .wayin { background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:12px 16px; margin-top:12px; font-size:13.5px; color:var(--text-2); line-height:1.55; }
+  .wayin b { font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:500; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-3); display:block; margin-bottom:4px; }
+  .board { width:100%; border-collapse:collapse; margin:12px 0 4px; font-size:13px; background:var(--surface); }
+  .board th, .board td { border:1px solid var(--border); padding:9px 11px; text-align:left; vertical-align:top; }
+  .board th { background:var(--thu-light); font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.06em; color:var(--thu-dark); font-weight:500; }
+  .board td:first-child { font-weight:600; color:var(--text-1); width:34%; }
+  .board td.blank { background:repeating-linear-gradient(0deg,#fff,#fff 22px,#F2EFE9 23px); min-height:40px; }
+  .audit-list { list-style:none; counter-reset:a; margin-top:4px; }
+  .audit-list li { counter-increment:a; position:relative; padding:9px 0 9px 34px; border-bottom:1px solid #F2EFE9; font-size:13.5px; color:var(--text-2); line-height:1.55; }
+  .audit-list li:last-child { border-bottom:none; }
+  .audit-list li::before { content:counter(a); position:absolute; left:0; top:9px; width:22px; height:22px; border-radius:50%; background:var(--thu-light); color:var(--thu); font-family:'IBM Plex Mono',monospace; font-size:11px; display:flex; align-items:center; justify-content:center; font-weight:500; }
+  .audit-list strong { color:var(--text-1); }
+  .sample-task { border:1px solid var(--border); border-radius:8px; overflow:hidden; background:var(--surface); margin-top:12px; }
+  .sample-task-bar { display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; background:#EEF0F2; border-bottom:1px solid var(--border); padding:8px 16px; }
+  .sample-task-badge { font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.1em; background:var(--thu); color:white; padding:2px 9px; border-radius:10px; }
+  .sample-task-where { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-3); }
+  .sample-task-body { padding:16px 20px; font-size:14px; color:var(--text-1); line-height:1.6; }
+  .sample-task-body h3 { font-family:'IBM Plex Sans',sans-serif; font-size:16px; font-weight:600; margin-bottom:8px; }
+  .sample-task-body p { margin-bottom:8px; }
+  .link-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+  .reading-link { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:500; color:white; background:var(--thu); text-decoration:none; border-radius:16px; padding:6px 16px; }
+  .reading-link.ghost { background:white; color:var(--thu); border:1px solid var(--thu); }
+  .reading-link:hover { background:var(--thu-dark); color:white; }
+  @media (max-width:780px) { .three-col { grid-template-columns:1fr; } .board { font-size:12px; } }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to session content</a>
+
+<div class="conf-banner">
+  <span class="sub-label">This week</span>
+  <span class="sub-text">Bring your current course AI policy to Thursday, if you have one. If you don't, Thursday's page has two examples to start from.</span>
+</div>
+
+<header class="page-header">
+  <div>
+    <div class="course-tag">ENG 511 · Week 14 · Tuesday, November 17, 2026</div>
+    <h1 class="page-title">AI &amp; the Future of Composition</h1>
+    <div class="page-subtitle">MLA-CCCC Joint Task Force, Working Paper 1 · Sano-Franchini, McIntyre &amp; Fernandes, <em>Refusing GenAI in Writing Studies: A Quickstart Guide</em></div>
+  </div>
+  <div class="mode-display">
+    <div class="mode-label">Format</div>
+    <div class="mode-value">Seminar, in person</div>
+  </div>
+</header>
+
+<nav aria-label="Session sequence">
+<ol class="timeline-strip">
+  <li><a class="tl-item" href="#sec-line" data-start="705" data-end="713"><div class="tl-num">Opening</div><div class="tl-label">The Line</div></a></li>
+  <li><a class="tl-item" href="#sec-pair" data-start="713" data-end="733"><div class="tl-num">01</div><div class="tl-label">Two Documents</div></a></li>
+  <li><a class="tl-item" href="#sec-history" data-start="733" data-end="748"><div class="tl-num">02</div><div class="tl-label">We've Been Here Before</div></a></li>
+  <li><a class="tl-item" href="#sec-registers" data-start="748" data-end="770"><div class="tl-num">03</div><div class="tl-label">Three Registers</div></a></li>
+  <li><a class="tl-item" href="#sec-close" data-start="770" data-end="780"><div class="tl-num">Close</div><div class="tl-label">Bridge to Thursday</div></a></li>
+</ol>
+</nav>
+
+<main class="content" id="main">
+
+  <!-- LINE -->
+  <section class="section" id="sec-line" aria-labelledby="h-line">
+    <div class="section-header">
+      <div class="section-num">Opening</div>
+      <h2 class="section-title" id="h-line">Stand on the Line</h2>
+      <div class="section-pace">8 min</div>
+    </div>
+    <p class="lede">Tape or imagine a line across the room. One end reads <em>Integrate</em>, the other <em>Refuse</em>. Prof. Cole reads three scenarios. For each one, stand where your current teaching would put you.</p>
+
+    <div class="three-col">
+      <div class="reading-card"><div class="reading-label">Scenario 1</div><div class="reading-desc">A student asks a chatbot for five possible research topics, then picks one and researches it on their own.</div></div>
+      <div class="reading-card"><div class="reading-label">Scenario 2</div><div class="reading-desc">A multilingual student runs a finished draft through an AI tool to "fix the grammar" before submitting.</div></div>
+      <div class="reading-card"><div class="reading-label">Scenario 3</div><div class="reading-desc">A writing program adopts an AI feedback tool so instructors grade more sections per term.</div></div>
+    </div>
+
+    <ul class="step-list">
+      <li class="step-row">
+        <div class="step-n">1</div>
+        <div><span class="mode-tag">Analog</span><strong>Move (8 min):</strong> After each scenario, two or three of you say why you are standing where you are. Notice who moved between scenarios. Moving is the interesting part.</div>
+      </li>
+    </ul>
+    <a class="next-link" href="#sec-pair">Go to Part 01 →</a>
+  </section>
+
+  <!-- PAIR -->
+  <section class="section" id="sec-pair" aria-labelledby="h-pair">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <h2 class="section-title" id="h-pair">Two Documents, Two Positions</h2>
+      <div class="section-pace">20 min</div>
+    </div>
+
+    <div class="reading-pair">
+      <div class="reading-card">
+        <div class="reading-label">MLA-CCCC Joint Task Force, 2023</div>
+        <div class="reading-author">Working Paper 1: Overview of the Issues, Statement of Principles, and Recommendations</div>
+        <div class="reading-desc">The two flagship organizations of the field set out principles and recommendations for teaching writing alongside generative AI.</div>
+        <div class="link-row"><a class="reading-link ghost" href="https://mlaai.hcommons.org/working-papers/" target="_blank" rel="noopener">Task Force working papers ↗</a></div>
+      </div>
+      <div class="reading-card">
+        <div class="reading-label">Sano-Franchini, McIntyre &amp; Fernandes, 2024</div>
+        <div class="reading-author">Refusing GenAI in Writing Studies: A Quickstart Guide</div>
+        <div class="reading-desc">Ten premises for refusal as a disciplinary response. Premise 10: "Refusal can be a principled and pragmatic response to the incursion of GenAI technologies in college writing courses."</div>
+        <div class="link-row"><a class="reading-link ghost" href="https://refusal.blog/" target="_blank" rel="noopener">Open the Quickstart Guide ↗</a></div>
+      </div>
+    </div>
+
+    <ul class="step-list">
+      <li class="step-row">
+        <div class="step-n">1</div>
+        <div><strong>Pairs (8 min):</strong> Find one sentence in each document stating its core position on AI. Copy both sentences word for word. Where do the two documents agree? The course page's starter points to "human rhetorical agency." Does each document mean the same thing by agency?</div>
+      </li>
+      <li class="step-row">
+        <div class="step-n">2</div>
+        <div><strong>Full class (12 min):</strong> Return to the line. Where would each document stand on Scenarios 1 through 3? What does it mean to "refuse" GenAI, and when might refusal be pedagogically necessary?</div>
+      </li>
+    </ul>
+    <a class="next-link" href="#sec-history">Go to Part 02 →</a>
+  </section>
+
+  <!-- HISTORY -->
+  <section class="section" id="sec-history" aria-labelledby="h-history">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <h2 class="section-title" id="h-history">We've Been Here Before</h2>
+      <div class="section-pace">15 min</div>
+    </div>
+    <p class="lede">Current AI debates echo older composition controversies. Each card below links an earlier week to a question we are asking about AI now.</p>
+
+    <table class="board" aria-label="History cards">
+      <thead><tr><th>Earlier week</th><th>Then</th><th>Now</th></tr></thead>
+      <tbody>
+        <tr><td>Week 2 · Process</td><td style="font-weight:400;font-size:12.5px;color:var(--text-2);">Murray: teach the process, not the product.</td><td style="font-weight:400;font-size:12.5px;color:var(--text-2);">If AI produces products instantly, does process pedagogy become more important or less?</td></tr>
+        <tr><td>Week 3 · Grammar</td><td style="font-weight:400;font-size:12.5px;color:var(--text-2);">Hartwell's five grammars and the case against drill.</td><td style="font-weight:400;font-size:12.5px;color:var(--text-2);">Is AI grammar correction the newest form of drill?</td></tr>
+        <tr><td>Week 7 · Assessment</td><td style="font-weight:400;font-size:12.5px;color:var(--text-2);">Inoue: grading for "quality" encodes whose language counts.</td><td style="font-weight:400;font-size:12.5px;color:var(--text-2);">Whose language does an AI model treat as correct?</td></tr>
+        <tr><td>Week 8 · SRTOL</td><td style="font-weight:400;font-size:12.5px;color:var(--text-2);">Students' right to their own language.</td><td style="font-weight:400;font-size:12.5px;color:var(--text-2);">Does a student keep the right when a tool rewrites their sentences?</td></tr>
+      </tbody>
+    </table>
+
+    <ul class="step-list" style="margin-top:12px;">
+      <li class="step-row">
+        <div class="step-n">1</div>
+        <div><strong>Pairs (8 min):</strong> Pick one row. Answer its question with the earlier reading's own argument. Add a fifth row from another week.</div>
+      </li>
+      <li class="step-row">
+        <div class="step-n">2</div>
+        <div><strong>Share (7 min):</strong> Three pairs share their answers. Anyone who added a fifth row reads it.</div>
+      </li>
+    </ul>
+    <a class="next-link" href="#sec-registers">Go to Part 03 →</a>
+  </section>
+
+  <!-- REGISTERS -->
+  <section class="section" id="sec-registers" aria-labelledby="h-registers">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <h2 class="section-title" id="h-registers">Semester Synthesis: Three Registers</h2>
+      <div class="section-pace">22 min</div>
+    </div>
+    <p class="lede">The registers frame from Week 3 goes to work one more time. <a href="writing_framework.html" target="_blank" rel="noopener">Review the framework</a> if you need it.</p>
+
+    <div class="three-col">
+      <div class="reading-card"><div class="reading-label">Register 1</div><div class="reading-author">Writing as Activity</div><div class="reading-desc">What does AI mean for what writers do? Example: does drafting with a chatbot change where invention happens?</div></div>
+      <div class="reading-card"><div class="reading-label">Register 2</div><div class="reading-author">Writing as Pedagogy</div><div class="reading-desc">What does AI demand of teaching? Example: what happens to the take-home essay?</div></div>
+      <div class="reading-card"><div class="reading-label">Register 3</div><div class="reading-author">Writing as Method</div><div class="reading-desc">What does AI do to how we know about writing? Example: what counts as evidence of a student's learning now?</div></div>
+    </div>
+
+    <ul class="step-list">
+      <li class="step-row">
+        <div class="step-n">1</div>
+        <div><strong>Groups by register (12 min):</strong> Choose the register where the AI question feels least resolved for you. Answer your register's question, using both of today's documents.</div>
+      </li>
+      <li class="step-row">
+        <div class="step-n">2</div>
+        <div><strong>Full class (10 min):</strong> Each group reports. Which register is the field's current response operating in? Which register is it leaving out?</div>
+      </li>
+    </ul>
+    <a class="next-link" href="#sec-close">Go to Close →</a>
+  </section>
+
+  <!-- CLOSE -->
+  <section class="section" id="sec-close" aria-labelledby="h-close">
+    <div class="section-header">
+      <div class="section-num">Close</div>
+      <h2 class="section-title" id="h-close">Bridge to Thursday</h2>
+      <div class="section-pace">10 min</div>
+    </div>
+    <ul class="step-list">
+      <li class="step-row">
+        <div class="step-n">1</div>
+        <div><strong>Thursday (10 min):</strong> Thursday you all draft a course AI policy with Working Paper 2 and McIntyre et al. in hand. Before you leave, write one value your policy will protect. Example: "Students own their sentences."</div>
+      </li>
+    </ul>
+    <div class="demand-box">
+      <span class="demand-label">Weekly reflection prompt</span>
+      <p class="demand-text">What should the role of AI be in the writing classroom, and who decides?</p>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  function highlight() {
+    const now = new Date();
+    const mins = now.getHours() * 60 + now.getMinutes();
+    document.querySelectorAll('.tl-item').forEach(el => {
+      const s = parseInt(el.dataset.start), e = parseInt(el.dataset.end);
+      el.classList.toggle('active', mins >= s && mins < e);
+    });
+    [['sec-line',705,713],['sec-pair',713,733],['sec-history',733,748],['sec-registers',748,770],['sec-close',770,780]]
+      .forEach(([id,s,e]) => { const el = document.getElementById(id); if (el) el.classList.toggle('active', mins >= s && mins < e); });
+  }
+  highlight();
+  setInterval(highlight, 30000);
+</script>
+
+</body>
+</html>
