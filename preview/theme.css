@@ -1,0 +1,156 @@
+/* ENG 511, Fall 2026. One shared theme for every page at the site root.
+   Each page keeps its own layout rules in its own <style> block. This file,
+   loaded after that block, sets every color and every font. Change a value
+   here and all pages change together.
+
+   Register: the Fall 2027 teal register. No red, no yellow.
+   Deep Teal is never text on Mist or on tint. Text there is Umber or plum. */
+
+/* 1. Palette and type. Edit here. */
+:root {
+  --h-white: #FFFFFF;
+  --h-tint:  #E7EFEB;
+  --h-mist:  #C3D6CE;
+  --h-teal:  #457877;
+  --h-umber: #41292B;
+  --h-soft:  #5E4649;   /* Umber, lightened. Secondary text. 5.6 to 1 on Mist. */
+  --h-ink:   #383140;
+  --h-plum:  #583B65;
+  --h-dusk:  #6C4880;
+  --h-rule:      rgba(65, 41, 43, 0.22);    /* hairline on any light ground */
+  --h-rule-dark: rgba(255, 255, 255, 0.18); /* hairline on Ink, plum, or teal */
+  --h-on-dark: #FFFFFF;                     /* all text on a teal, dusk, plum, or Ink band */
+  --h-pill: rgba(0, 0, 0, 0.22);            /* a label pill set on one of those bands */
+
+  --font-head:  Georgia, 'Times New Roman', serif;
+  --font-body:  Arial, Helvetica, sans-serif;
+  --font-label: Arial, Helvetica, sans-serif;
+
+  color-scheme: light;
+}
+
+/* 2. Hub pages: schedule, Perusall guide, submissions, exemplars, discussion starter. */
+:root {
+  --cream: var(--h-white);
+  --cream-dark: var(--h-tint);
+  --ink: var(--h-umber);
+  --ink-mid: var(--h-umber);
+  --ink-soft: var(--h-soft);
+  --border: var(--h-mist);
+  --preview-bg: var(--h-tint);
+  --preview-border: var(--h-mist);
+  --shadow: none;
+  --shadow-lg: none;
+
+  /* Tuesday: teal band, white panel. */
+  --tue: var(--h-teal);
+  --tue-mid: var(--h-teal);
+  --tue-dark: var(--h-ink);
+  --tue-light: var(--h-white);
+
+  /* Thursday: dusk band, Mist panel. */
+  --thu: var(--h-dusk);
+  --thu-mid: var(--h-dusk);
+  --thu-dark: var(--h-plum);
+  --thu-light: var(--h-mist);
+
+  /* Assignment due: Umber. */
+  --assign: var(--h-umber);
+  --assign-mid: var(--h-umber);
+  --assign-light: var(--h-tint);
+
+  /* Perusall guide accent. */
+  --ann: var(--h-teal);
+  --ann-mid: var(--h-teal);
+  --ann-light: var(--h-white);
+
+  /* Sidebar. */
+  --sidebar-bg: var(--h-ink);
+  --sidebar-text: var(--h-white);
+  --sidebar-muted: var(--h-mist);
+  --sidebar-hover: var(--h-plum);
+  --sidebar-active: var(--h-dusk);
+  --sidebar-accent: var(--h-mist);
+}
+
+/* 3. Session pages (the dated workshop and seminar pages). */
+:root {
+  --bg: var(--h-white);
+  --surface: var(--h-white);
+  --card-bg: var(--h-white);
+  --white: var(--h-white);
+  --text-1: var(--h-umber);
+  --text-2: var(--h-umber);
+  --text-3: var(--h-soft);
+
+  --badge-bg: var(--h-tint);
+  --badge-color: var(--h-umber);
+  --note-bg: var(--h-tint);
+  --note-border: var(--h-teal);
+  --note-text: var(--h-umber);
+  --quote-bg: var(--h-tint);
+  --quote-color: var(--h-plum);
+  --time-bg: var(--h-tint);
+  --time-color: var(--h-umber);
+
+  --assign-bg: var(--h-tint);
+  --assign-border: var(--h-umber);
+  --assign-text: var(--h-umber);
+  --assign-text-2: var(--h-soft);
+
+  --accent: var(--h-teal);
+  --accent-hover: var(--h-umber);
+  --accent-text: var(--h-white);
+  --accent-muted: var(--h-white);
+  --accent-muted-border: var(--h-mist);
+  --active-bg: var(--h-white);
+  --active-border: var(--h-teal);
+
+  /* Colors keyed to one reading or one register on a page.
+     Three values carry every set: teal, plum, Umber. */
+  --pratt: var(--h-teal);    --pratt-light: var(--h-white);
+  --elbow: var(--h-teal);    --elbow-light: var(--h-white);
+  --perl: var(--h-teal);     --perl-light: var(--h-white);
+  --doc: var(--h-teal);      --doc-light: var(--h-white);   --doc-border: var(--h-mist);
+  --pad: var(--h-teal);      --pad-light: var(--h-white);   --pad-border: var(--h-mist);
+  --green: var(--h-teal);    --green-light: var(--h-white); --green-border: var(--h-mist);
+  --reg-ped: var(--h-teal);  --reg-ped-bg: var(--h-white);
+  --anson: var(--h-plum);    --anson-light: var(--h-tint);
+  --rose: var(--h-plum);     --rose-light: var(--h-tint);
+  --hartwell: var(--h-plum); --hartwell-light: var(--h-tint);
+  --reg-meth: var(--h-plum); --reg-meth-bg: var(--h-tint);
+  --fh: var(--h-umber);      --fh-light: var(--h-tint);
+  --warnock: var(--h-umber); --warnock-light: var(--h-tint);
+  --design: var(--h-umber);  --design-light: var(--h-tint);
+  --reg-act: var(--h-umber); --reg-act-bg: var(--h-tint);
+}
+
+/* A session page declares its day on the <html> tag. Tuesday reads in teal,
+   Thursday in dusk and Mist. */
+:root[data-day="tue"] {
+  --thu: var(--h-teal);
+  --thu-mid: var(--h-teal);
+  --thu-dark: var(--h-ink);
+  --thu-light: var(--h-white);
+}
+:root[data-day="thu"] {
+  --badge-bg: var(--h-mist);
+  --badge-color: var(--h-plum);
+  --note-border: var(--h-dusk);
+  --accent: var(--h-dusk);
+  --active-border: var(--h-dusk);
+}
+
+/* 4. Shared behavior. */
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid var(--h-teal);
+  outline-offset: 2px;
+}
+.sidebar a:focus-visible, .sidebar [tabindex]:focus-visible {
+  outline-color: var(--h-white);
+}
+
+/* Dimmed rows fell below 4.5 to 1. They stay at full strength, and italics mark the optional readings. */
+.sidebar-week.break-week, .sidebar-week.cancelled-week, .reading-item.optional { opacity: 1; }
+.expert-card-header .author { opacity: 1; }
+div[style*="opacity:0.7"] { opacity: 1 !important; }   /* four inline labels on the September 3 page */

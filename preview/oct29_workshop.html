@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-day="thu">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENG 511, Oct 29: Transfer & Course Design Workshop</title>
+<style>
+  :root {
+    --bg: #F5F4F1;
+    --surface: #FFFFFF;
+    --text-1: #1A1918;
+    --text-2: #4A4540;
+    --text-3: #6B635C;
+    --border: #DEDAD4;
+    --thu: #8B3A1A;
+    --thu-light: #F9EDE8;
+    --thu-mid: #C47050;
+    --thu-dark: #5A2210;
+    --badge-bg: #F9EDE8;
+    --badge-color: #8B3A1A;
+    --note-bg: #FBF0EA;
+    --note-border: #B85A2C;
+    --note-text: #6E2E12;
+    --shadow: 0 1px 8px rgba(0,0,0,0.07);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-body, 'IBM Plex Sans', system-ui, sans-serif);
+    background: var(--bg);
+    color: var(--text-1);
+    line-height: 1.65;
+    font-size: 15px;
+    min-height: 100vh;
+  }
+
+  a { color: var(--thu); }
+  a:focus-visible { outline: 3px solid var(--thu-mid); outline-offset: 2px; }
+
+  .skip-link {
+    position: absolute; left: -999px; top: 8px;
+    background: white; color: var(--thu-dark); padding: 8px 12px;
+    border-radius: 6px; z-index: 10; font-size: 13px;
+  }
+  .skip-link:focus { left: 12px; }
+
+  .conf-banner {
+    background: var(--thu-dark);
+    padding: 10px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .sub-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--h-on-dark, rgba(255,255,255,0.75));
+  }
+
+  .sub-text {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+  }
+
+  .page-header {
+    background: var(--thu);
+    color: white;
+    padding: 32px 48px 28px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .course-tag {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--h-on-dark, rgba(255,255,255,0.85));
+    margin-bottom: 6px;
+  }
+
+  .page-title {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+    color: var(--h-on-dark, rgba(255,255,255,0.9));
+    font-style: italic;
+  }
+
+  .mode-display { text-align: right; }
+
+  .mode-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--h-on-dark, rgba(255,255,255,0.85));
+    margin-bottom: 4px;
+  }
+
+  .mode-value {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    letter-spacing: 0.05em;
+  }
+
+  .timeline-strip {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    overflow-x: auto;
+    list-style: none;
+  }
+
+  .tl-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 18px 12px;
+    border-right: 1px solid var(--border);
+    min-width: 130px;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+  }
+
+  .tl-item:first-child { border-left: 1px solid var(--border); }
+  .tl-item:hover { background: var(--thu-light); }
+  .tl-item.active { background: var(--thu-light); }
+  .tl-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 2px;
+    background: var(--thu);
+  }
+
+  .tl-num {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--thu);
+    margin-bottom: 3px;
+  }
+
+  .tl-label {
+    font-size: 11.5px;
+    color: var(--text-2);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 36px 48px 60px;
+  }
+
+  .section { margin-bottom: 44px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-num {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    font-weight: 500;
+    background: var(--badge-bg);
+    color: var(--badge-color);
+    padding: 3px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-1);
+    flex: 1;
+  }
+
+  .section-pace {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 11px;
+    color: var(--text-3);
+    white-space: nowrap;
+  }
+
+  .section.active .section-header { border-bottom-color: var(--thu); }
+  .section.active .section-num { background: var(--thu); color: white; }
+  .section.active .section-title { color: var(--thu); }
+
+  .lede {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+
+  .note {
+    background: var(--note-bg);
+    border-left: 3px solid var(--note-border);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    color: var(--note-text);
+    margin-bottom: 14px;
+    line-height: 1.55;
+  }
+
+  .note strong { font-weight: 600; }
+
+  .reading-pair {
+    display: flex;
+    gap: 14px;
+    margin: 14px 0;
+  }
+
+  .reading-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    flex: 1;
+    box-shadow: var(--shadow);
+  }
+
+  .reading-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    margin-bottom: 6px;
+  }
+
+  .reading-author {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-1);
+    margin-bottom: 6px;
+  }
+
+  .reading-desc {
+    font-size: 12.5px;
+    color: var(--text-2);
+    line-height: 1.55;
+  }
+
+  .reading-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+    background: var(--thu);
+    text-decoration: none;
+    border-radius: 16px;
+    padding: 6px 16px;
+  }
+  .reading-link:hover { background: var(--thu-dark); }
+
+  .opener-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-top: 14px;
+  }
+
+  .opener-header {
+    background: var(--thu);
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .opener-badge {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    background: var(--h-pill, rgba(255,255,255,0.2));
+    color: white;
+    padding: 2px 9px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+
+  .opener-title {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+  }
+
+  .opener-body {
+    padding: 18px 20px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text-1);
+    font-style: italic;
+  }
+
+  .activity-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin: 14px 0;
+  }
+
+  .activity-header {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--thu-light);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .activity-num {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--thu);
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .activity-meta { flex: 1; }
+
+  .activity-title {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-1);
+    line-height: 1.3;
+  }
+
+  .activity-body { padding: 16px 20px; }
+
+  .activity-framing {
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.6;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .step-list { list-style: none; }
+
+  .step-row {
+    display: flex;
+    gap: 12px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--h-tint, #F2EFE9);
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.55;
+    align-items: flex-start;
+  }
+
+  .step-row:last-child { border-bottom: none; }
+
+  .step-n {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--thu);
+    color: white;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .prompt-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 10px;
+  }
+
+  .prompt-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-3);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .prompt-text {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 14.5px;
+    font-style: italic;
+    color: var(--text-1);
+    line-height: 1.6;
+  }
+
+  .demand-box {
+    background: var(--thu-dark);
+    border-radius: 10px;
+    padding: 22px 26px;
+    margin-top: 14px;
+  }
+
+  .demand-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--h-on-dark, rgba(255,255,255,0.7));
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .demand-text {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 16px;
+    font-style: italic;
+    color: white;
+    line-height: 1.65;
+  }
+
+  .leave-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+    margin-top: 14px;
+  }
+
+  .leave-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .next-link {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--thu);
+    text-decoration: none;
+    border: 1px solid var(--thu);
+    border-radius: 16px;
+    padding: 6px 16px;
+  }
+  .next-link:hover { background: var(--thu-light); }
+
+  @media (max-width: 780px) {
+    .page-header { flex-direction: column; align-items: flex-start; padding: 24px 20px; }
+    .conf-banner { padding: 10px 20px; flex-direction: column; gap: 4px; align-items: flex-start; }
+    .mode-display { text-align: left; }
+    .content { padding: 24px 20px 48px; }
+    .timeline-strip { padding: 0 16px; }
+    .reading-pair { flex-direction: column; }
+  }
+
+  .group-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .group-tile {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--thu);
+    border-radius: 8px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: inherit;
+  }
+  .group-tile:hover { background: var(--thu-light); }
+  .group-tile-num {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--thu);
+    line-height: 1;
+  }
+  .group-tile-title {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-1);
+  }
+  .group-tile-desc { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+  .group-tile-brings {
+    margin-top: auto;
+    padding-top: 8px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 11px;
+    color: var(--thu-dark);
+  }
+
+  .sample-task {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .sample-task-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    background: var(--h-tint, #EEF0F2);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 16px;
+  }
+  .sample-task-badge {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: var(--thu);
+    color: white;
+    padding: 2px 9px;
+    border-radius: 10px;
+  }
+  .sample-task-where {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 11px;
+    color: var(--text-3);
+  }
+  .sample-task-body {
+    padding: 16px 20px;
+    font-size: 14px;
+    color: var(--text-1);
+    line-height: 1.6;
+  }
+  .sample-task-body h3 {
+    font-family: var(--font-body, 'IBM Plex Sans', sans-serif);
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .sample-task-body p { margin-bottom: 10px; }
+  .sample-task-body ol { margin: 0 0 10px 20px; }
+  .sample-task-body ol li { margin-bottom: 4px; }
+  .sample-task-head {
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-2);
+    margin: 14px 0 6px !important;
+  }
+  .sample-rubric { list-style: none; border-top: 1px solid var(--border); }
+  .sample-rubric li {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13.5px;
+  }
+  .sample-rubric li span:last-child { font-family: var(--font-label, 'IBM Plex Mono', monospace); color: var(--text-2); }
+
+  .step-n { min-width: 20px; width: auto; padding: 0 5px; border-radius: 10px; }
+
+  @media (max-width: 780px) {
+    .group-grid { grid-template-columns: 1fr; }
+  }
+</style>
+<style>
+  .three-col { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:14px 0; }
+  .mode-tag { display:inline-block; font-family:var(--font-label, 'IBM Plex Mono',monospace); font-size:10px; text-transform:uppercase; letter-spacing:0.08em; padding:2px 8px; border-radius:9px; background:var(--bg); border:1px solid var(--border); color:var(--text-2); margin-right:6px; white-space:nowrap; }
+  .wayin { background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:12px 16px; margin-top:12px; font-size:13.5px; color:var(--text-2); line-height:1.55; }
+  .wayin b { font-family:var(--font-label, 'IBM Plex Mono',monospace); font-size:10px; font-weight:500; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-3); display:block; margin-bottom:4px; }
+  .board { width:100%; border-collapse:collapse; margin:12px 0 4px; font-size:13px; background:var(--surface); }
+  .board th, .board td { border:1px solid var(--border); padding:9px 11px; text-align:left; vertical-align:top; }
+  .board th { background:var(--thu-light); font-family:var(--font-label, 'IBM Plex Mono',monospace); font-size:10.5px; text-transform:uppercase; letter-spacing:0.06em; color:var(--thu-dark); font-weight:500; }
+  .board td:first-child { font-weight:600; color:var(--text-1); width:34%; }
+  .board td.blank { background:repeating-linear-gradient(0deg,#fff,#fff 22px,var(--h-tint, #F2EFE9) 23px); min-height:40px; }
+  .audit-list { list-style:none; counter-reset:a; margin-top:4px; }
+  .audit-list li { counter-increment:a; position:relative; padding:9px 0 9px 34px; border-bottom:1px solid var(--h-tint, #F2EFE9); font-size:13.5px; color:var(--text-2); line-height:1.55; }
+  .audit-list li:last-child { border-bottom:none; }
+  .audit-list li::before { content:counter(a); position:absolute; left:0; top:9px; width:22px; height:22px; border-radius:50%; background:var(--thu-light); color:var(--thu); font-family:var(--font-label, 'IBM Plex Mono',monospace); font-size:11px; display:flex; align-items:center; justify-content:center; font-weight:500; }
+  .audit-list strong { color:var(--text-1); }
+  .sample-task { border:1px solid var(--border); border-radius:8px; overflow:hidden; background:var(--surface); margin-top:12px; }
+  .sample-task-bar { display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; background:var(--h-tint, #EEF0F2); border-bottom:1px solid var(--border); padding:8px 16px; }
+  .sample-task-badge { font-family:var(--font-label, 'IBM Plex Mono',monospace); font-size:10px; text-transform:uppercase; letter-spacing:0.1em; background:var(--thu); color:white; padding:2px 9px; border-radius:10px; }
+  .sample-task-where { font-family:var(--font-label, 'IBM Plex Mono',monospace); font-size:11px; color:var(--text-3); }
+  .sample-task-body { padding:16px 20px; font-size:14px; color:var(--text-1); line-height:1.6; }
+  .sample-task-body h3 { font-family:var(--font-body, 'IBM Plex Sans',sans-serif); font-size:16px; font-weight:600; margin-bottom:8px; }
+  .sample-task-body p { margin-bottom:8px; }
+  .link-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+  .reading-link { display:inline-block; font-family:var(--font-label, 'IBM Plex Mono',monospace); font-size:12px; font-weight:500; color:white; background:var(--thu); text-decoration:none; border-radius:16px; padding:6px 16px; }
+  .reading-link.ghost { background:white; color:var(--thu); border:1px solid var(--thu); }
+  .reading-link:hover { background:var(--thu-dark); color:white; }
+  @media (max-width:780px) { .three-col { grid-template-columns:1fr; } .board { font-size:12px; } }
+</style>
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to session content</a>
+
+<div class="conf-banner">
+  <span class="sub-label">Bring</span>
+  <span class="sub-text">The Writing Assignment Design you submitted Sunday, printed or open on a laptop. Today you redesign it for transfer.</span>
+</div>
+
+<header class="page-header">
+  <div>
+    <div class="course-tag">ENG 511 · Week 11 · Thursday, October 29, 2026</div>
+    <h1 class="page-title">Transfer &amp; Course Design Workshop</h1>
+    <div class="page-subtitle">Building on Wardle and Reiff &amp; Bawarshi · <em>Elon Statement on Writing Transfer</em> (2015)</div>
+  </div>
+  <div class="mode-display">
+    <div class="mode-label">Format</div>
+    <div class="mode-value">Workshop, in person</div>
+  </div>
+</header>
+
+<nav aria-label="Session sequence">
+<ol class="timeline-strip">
+  <li><a class="tl-item" href="#sec-stories" data-start="705" data-end="725"><div class="tl-num">01</div><div class="tl-label">Successes &amp; Failures</div></a></li>
+  <li><a class="tl-item" href="#sec-map" data-start="725" data-end="748"><div class="tl-num">02</div><div class="tl-label">Transfer Map</div></a></li>
+  <li><a class="tl-item" href="#sec-scaffold" data-start="748" data-end="770"><div class="tl-num">03</div><div class="tl-label">Scaffolding Lab</div></a></li>
+  <li><a class="tl-item" href="#sec-exit" data-start="770" data-end="780"><div class="tl-num">Exit</div><div class="tl-label">Reflection</div></a></li>
+</ol>
+</nav>
+
+<main class="content" id="main">
+
+  <p class="lede">Tuesday asked whether first-year writing travels. Today asks you to design for it. We start with your own experience, then move to the assignment you wrote, then build the moves a student would need to carry its learning forward.</p>
+
+  <!-- 01 STORIES -->
+  <section class="section" id="sec-stories" aria-labelledby="h-stories">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <h2 class="section-title" id="h-stories">Transfer Successes and Failures</h2>
+      <div class="section-pace">20 min</div>
+    </div>
+
+    <div class="activity-block">
+      <div class="activity-header">
+        <span class="activity-num">01</span>
+        <div class="activity-meta">
+          <div class="activity-title">When did writing knowledge travel for you, and when did it stall?</div>
+        </div>
+      </div>
+      <div class="activity-body">
+        <p class="activity-framing"><span class="mode-tag">Analog</span> Sticky notes and the whiteboard, split into two columns: <em>It traveled</em> and <em>It stalled</em>.</p>
+        <div class="three-col" style="grid-template-columns:1fr 1fr;margin-top:4px;">
+          <div class="reading-card">
+            <div class="reading-label">Example note · It traveled</div>
+            <div class="reading-desc">"The literature review I learned in a psych methods course gave me the structure for a grant report at my job."</div>
+          </div>
+          <div class="reading-card">
+            <div class="reading-label">Example note · It stalled</div>
+            <div class="reading-desc">"My five-paragraph essays fell apart in my first history seminar. The professor wanted a question, and I kept giving him a thesis."</div>
+          </div>
+        </div>
+        <ul class="step-list">
+          <li class="step-row">
+            <div class="step-n">1</div>
+            <div><strong>Solo (3 min):</strong> On two sticky notes, write one moment when something you learned about writing worked in a new setting, and one moment when it failed you. One line each.</div>
+          </li>
+          <li class="step-row">
+            <div class="step-n">2</div>
+            <div><strong>Groups of three or four (10 min):</strong> Tell your stories. For each one, ask what made the difference. Was it the writer, the teacher, the genre, or the setting? Were you guarding a boundary or crossing one, in Reiff and Bawarshi's terms? What would a teacher have needed to do differently?</div>
+          </li>
+          <li class="step-row">
+            <div class="step-n">3</div>
+            <div><strong>Post and read (7 min):</strong> Put your notes in the two columns. As a room, name two patterns in the <em>It traveled</em> column. Those patterns become design principles for the next two activities.</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <a class="next-link" href="#sec-map">Go to Activity 02 →</a>
+  </section>
+
+  <!-- 02 MAP -->
+  <section class="section" id="sec-map" aria-labelledby="h-map">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <h2 class="section-title" id="h-map">Transfer Map for Your Assignment</h2>
+      <div class="section-pace">23 min</div>
+    </div>
+
+    <div class="activity-block">
+      <div class="activity-header">
+        <span class="activity-num">02</span>
+        <div class="activity-meta">
+          <div class="activity-title">What does your assignment build on, and where does it point?</div>
+        </div>
+      </div>
+      <div class="activity-body">
+        <p class="activity-framing">Use the Writing Assignment Design you submitted Sunday. A course you teach now works as well. The middle column shows the grid filled in for the <a href="oct08_workshop.html#sec-audit" target="_blank" rel="noopener">Literacy Remix sample</a> from Oct 8. <span class="mode-tag">Analog</span> Copy the grid onto paper. <span class="mode-tag">Online</span> Add it as a table at the end of your assignment doc.</p>
+
+        <table class="board" aria-label="Transfer map template with worked example">
+          <thead><tr><th>Question</th><th>Worked example: Literacy Remix (Oct 8)</th><th>Your assignment</th></tr></thead>
+          <tbody>
+            <tr><td>Looking back: what genres and writing knowledge will students bring in?</td><td style="font-weight:400;font-size:12.5px;color:var(--text-2);width:33%;">High school personal essays, college application essays, Instagram captions, podcasts they listen to.</td><td class="blank"></td></tr>
+            <tr><td>Mutt check: where does this genre live outside your classroom, and who reads it there?</td><td style="font-weight:400;font-size:12.5px;color:var(--text-2);width:33%;">Memoir, StoryCorps-style audio, and teacher blogs. Readers there listen for a story and a turn, with no thesis required.</td><td class="blank"></td></tr>
+            <tr><td>Naming: which rhetorical concepts (genre, audience, purpose) does the assignment name out loud?</td><td style="font-weight:400;font-size:12.5px;color:var(--text-2);width:33%;">Audience (&quot;beyond our class&quot;) and mode. It never names the conventions of a podcast or a photo essay. This is the thin row.</td><td class="blank"></td></tr>
+            <tr><td>Looking forward: where will students write next, in other courses, jobs, or communities?</td><td style="font-weight:400;font-size:12.5px;color:var(--text-2);width:33%;">Personal statements for jobs and graduate school, reflective writing in nursing and education programs.</td><td class="blank"></td></tr>
+            <tr><td>Evidence: what would show you transfer happened?</td><td style="font-weight:400;font-size:12.5px;color:var(--text-2);width:33%;">A transfer note at semester's end, or a short survey the next term asking where students wrote reflectively.</td><td class="blank"></td></tr>
+          </tbody>
+        </table>
+
+        <ul class="step-list" style="margin-top:12px;">
+          <li class="step-row">
+            <div class="step-n">1</div>
+            <div><strong>Solo (12 min):</strong> Fill the grid for your own assignment. Be specific about real courses and real readers.</div>
+          </li>
+          <li class="step-row">
+            <div class="step-n">2</div>
+            <div><strong>Pairs (11 min):</strong> Trade maps. Your partner looks for the thinnest row and asks one question about it. Mark the row. It is where your scaffolding goes next.</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <a class="next-link" href="#sec-scaffold">Go to Activity 03 →</a>
+  </section>
+
+  <!-- 03 SCAFFOLD -->
+  <section class="section" id="sec-scaffold" aria-labelledby="h-scaffold">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <h2 class="section-title" id="h-scaffold">Scaffolding Design Lab</h2>
+      <div class="section-pace">22 min</div>
+    </div>
+
+    <div class="activity-block">
+      <div class="activity-header">
+        <span class="activity-num">03</span>
+        <div class="activity-meta">
+          <div class="activity-title">Two moves for teaching transfer explicitly</div>
+        </div>
+      </div>
+      <div class="activity-body">
+        <p class="activity-framing">The <a href="https://www.centerforengagedlearning.org/elon-statement-on-writing-transfer/" target="_blank" rel="noopener">Elon Statement on Writing Transfer</a> (2015) calls for "explicitly modeling transfer-focused thinking and the application of metacognitive awareness." A scaffolding move does this work at the scale of one assignment. Three examples to start from:</p>
+
+        <div class="three-col">
+          <div class="reading-card">
+            <div class="reading-label">Before drafting</div>
+            <div class="reading-author">Genre inventory</div>
+            <div class="reading-desc">Students list three genres they have written before and mark which parts of each help with this task and which parts would mislead them.</div>
+          </div>
+          <div class="reading-card">
+            <div class="reading-label">During drafting</div>
+            <div class="reading-author">Two-genre comparison</div>
+            <div class="reading-desc">Students set a sample of the assigned genre beside a sample from a field they plan to enter and annotate where the two expect different moves.</div>
+          </div>
+          <div class="reading-card">
+            <div class="reading-label">After submitting</div>
+            <div class="reading-author">Transfer note</div>
+            <div class="reading-desc">A half-page memo to a future self: one thing learned here, the next course or job where it applies, and how it will need to change there.</div>
+          </div>
+        </div>
+
+        <ul class="step-list">
+          <li class="step-row">
+            <div class="step-n">1</div>
+            <div><strong>Solo (10 min):</strong> Design two moves for your assignment. Aim at the thin row your partner marked. Borrow from the examples or invent your own. Write each move as the student would see it.</div>
+          </li>
+          <li class="step-row">
+            <div class="step-n">2</div>
+            <div><strong>Groups of three (12 min):</strong> Read your moves aloud. The group asks: Does this name the transfer out loud, or leave students to find it alone? Does it fit inside the time the course has? Revise one move before you leave. It belongs in your final Digital Portfolio.</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <a class="next-link" href="#sec-exit">Go to Exit →</a>
+  </section>
+
+  <!-- EXIT -->
+  <section class="section" id="sec-exit" aria-labelledby="h-exit">
+    <div class="section-header">
+      <div class="section-num">Exit</div>
+      <h2 class="section-title" id="h-exit">Exit Reflection</h2>
+      <div class="section-pace">10 min</div>
+    </div>
+
+    <div class="demand-box">
+      <span class="demand-label">Write before you go</span>
+      <p class="demand-text">What institutional structures support or hinder transfer-conscious teaching in programs you've experienced? Name one structure from your own program and one change to it you would argue for.</p>
+    </div>
+
+    <ul class="step-list" style="margin-top:14px;">
+      <li class="step-row">
+        <div class="step-n">1</div>
+        <div><span class="mode-tag">Analog</span> Write on an index card and hand it in. <span class="mode-tag">Online</span> Or post it to <a href="https://moodle-courses2527.wolfware.ncsu.edu/course/view.php?id=12455" target="_blank" rel="noopener">Moodle</a> before you leave the room.</div>
+      </li>
+    </ul>
+
+    <div class="leave-box">
+      <span class="leave-label">Up next · Week 12</span>
+      <div style="font-size:13.5px;color:var(--text-2);line-height:1.6;">Neurodiversity and Universal Design. Tuesday, November 3: Dolmage, "Mapping Composition" (2007), Simpkins, "Accommodation Transfer" (2018), and Tomlinson &amp; Newman, "Valuing Neurodiversity" (2017).</div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  function highlight() {
+    const now = new Date();
+    const mins = now.getHours() * 60 + now.getMinutes();
+    document.querySelectorAll('.tl-item').forEach(el => {
+      const s = parseInt(el.dataset.start), e = parseInt(el.dataset.end);
+      el.classList.toggle('active', mins >= s && mins < e);
+    });
+    [['sec-stories',705,725],['sec-map',725,748],['sec-scaffold',748,770],['sec-exit',770,780]]
+      .forEach(([id,s,e]) => { const el = document.getElementById(id); if (el) el.classList.toggle('active', mins >= s && mins < e); });
+  }
+  highlight();
+  setInterval(highlight, 30000);
+</script>
+
+</body>
+</html>

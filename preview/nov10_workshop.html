@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-day="tue">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENG 511, Nov 10: Multimodal Pedagogy & Digital Writing</title>
+<style>
+  :root {
+    --bg: #F5F4F1;
+    --surface: #FFFFFF;
+    --text-1: #1A1918;
+    --text-2: #4A4540;
+    --text-3: #6B635C;
+    --border: #DEDAD4;
+    --thu: #2A4485;
+    --thu-light: #EEF1F9;
+    --thu-mid: #5E78B5;
+    --thu-dark: #1C2F5E;
+    --badge-bg: #EEF1F9;
+    --badge-color: #2A4485;
+    --note-bg: #FBF0EA;
+    --note-border: #B85A2C;
+    --note-text: #6E2E12;
+    --shadow: 0 1px 8px rgba(0,0,0,0.07);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-body, 'IBM Plex Sans', system-ui, sans-serif);
+    background: var(--bg);
+    color: var(--text-1);
+    line-height: 1.65;
+    font-size: 15px;
+    min-height: 100vh;
+  }
+
+  a { color: var(--thu); }
+  a:focus-visible { outline: 3px solid var(--thu-mid); outline-offset: 2px; }
+
+  .skip-link {
+    position: absolute; left: -999px; top: 8px;
+    background: white; color: var(--thu-dark); padding: 8px 12px;
+    border-radius: 6px; z-index: 10; font-size: 13px;
+  }
+  .skip-link:focus { left: 12px; }
+
+  .conf-banner {
+    background: var(--thu-dark);
+    padding: 10px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .sub-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--h-on-dark, rgba(255,255,255,0.75));
+  }
+
+  .sub-text {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+  }
+
+  .page-header {
+    background: var(--thu);
+    color: white;
+    padding: 32px 48px 28px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .course-tag {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--h-on-dark, rgba(255,255,255,0.85));
+    margin-bottom: 6px;
+  }
+
+  .page-title {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+    color: var(--h-on-dark, rgba(255,255,255,0.9));
+    font-style: italic;
+  }
+
+  .mode-display { text-align: right; }
+
+  .mode-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--h-on-dark, rgba(255,255,255,0.85));
+    margin-bottom: 4px;
+  }
+
+  .mode-value {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    letter-spacing: 0.05em;
+  }
+
+  .timeline-strip {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    overflow-x: auto;
+    list-style: none;
+  }
+
+  .tl-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 18px 12px;
+    border-right: 1px solid var(--border);
+    min-width: 130px;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+  }
+
+  .tl-item:first-child { border-left: 1px solid var(--border); }
+  .tl-item:hover { background: var(--thu-light); }
+  .tl-item.active { background: var(--thu-light); }
+  .tl-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 2px;
+    background: var(--thu);
+  }
+
+  .tl-num {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--thu);
+    margin-bottom: 3px;
+  }
+
+  .tl-label {
+    font-size: 11.5px;
+    color: var(--text-2);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 36px 48px 60px;
+  }
+
+  .section { margin-bottom: 44px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-num {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    font-weight: 500;
+    background: var(--badge-bg);
+    color: var(--badge-color);
+    padding: 3px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-1);
+    flex: 1;
+  }
+
+  .section-pace {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 11px;
+    color: var(--text-3);
+    white-space: nowrap;
+  }
+
+  .section.active .section-header { border-bottom-color: var(--thu); }
+  .section.active .section-num { background: var(--thu); color: white; }
+  .section.active .section-title { color: var(--thu); }
+
+  .lede {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+
+  .note {
+    background: var(--note-bg);
+    border-left: 3px solid var(--note-border);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    color: var(--note-text);
+    margin-bottom: 14px;
+    line-height: 1.55;
+  }
+
+  .note strong { font-weight: 600; }
+
+  .reading-pair {
+    display: flex;
+    gap: 14px;
+    margin: 14px 0;
+  }
+
+  .reading-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    flex: 1;
+    box-shadow: var(--shadow);
+  }
+
+  .reading-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    margin-bottom: 6px;
+  }
+
+  .reading-author {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-1);
+    margin-bottom: 6px;
+  }
+
+  .reading-desc {
+    font-size: 12.5px;
+    color: var(--text-2);
+    line-height: 1.55;
+  }
+
+  .reading-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+    background: var(--thu);
+    text-decoration: none;
+    border-radius: 16px;
+    padding: 6px 16px;
+  }
+  .reading-link:hover { background: var(--thu-dark); }
+
+  .opener-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-top: 14px;
+  }
+
+  .opener-header {
+    background: var(--thu);
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .opener-badge {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    background: var(--h-pill, rgba(255,255,255,0.2));
+    color: white;
+    padding: 2px 9px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+
+  .opener-title {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+  }
+
+  .opener-body {
+    padding: 18px 20px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text-1);
+    font-style: italic;
+  }
+
+  .activity-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin: 14px 0;
+  }
+
+  .activity-header {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--thu-light);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .activity-num {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--thu);
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .activity-meta { flex: 1; }
+
+  .activity-title {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-1);
+    line-height: 1.3;
+  }
+
+  .activity-body { padding: 16px 20px; }
+
+  .activity-framing {
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.6;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .step-list { list-style: none; }
+
+  .step-row {
+    display: flex;
+    gap: 12px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--h-tint, #F2EFE9);
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.55;
+    align-items: flex-start;
+  }
+
+  .step-row:last-child { border-bottom: none; }
+
+  .step-n {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--thu);
+    color: white;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .prompt-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 10px;
+  }
+
+  .prompt-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-3);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .prompt-text {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 14.5px;
+    font-style: italic;
+    color: var(--text-1);
+    line-height: 1.6;
+  }
+
+  .demand-box {
+    background: var(--thu-dark);
+    border-radius: 10px;
+    padding: 22px 26px;
+    margin-top: 14px;
+  }
+
+  .demand-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--h-on-dark, rgba(255,255,255,0.7));
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .demand-text {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 16px;
+    font-style: italic;
+    color: white;
+    line-height: 1.65;
+  }
+
+  .leave-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+    margin-top: 14px;
+  }
+
+  .leave-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .next-link {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--thu);
+    text-decoration: none;
+    border: 1px solid var(--thu);
+    border-radius: 16px;
+    padding: 6px 16px;
+  }
+  .next-link:hover { background: var(--thu-light); }
+
+  @media (max-width: 780px) {
+    .page-header { flex-direction: column; align-items: flex-start; padding: 24px 20px; }
+    .conf-banner { padding: 10px 20px; flex-direction: column; gap: 4px; align-items: flex-start; }
+    .mode-display { text-align: left; }
+    .content { padding: 24px 20px 48px; }
+    .timeline-strip { padding: 0 16px; }
+    .reading-pair { flex-direction: column; }
+  }
+
+  .group-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .group-tile {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--thu);
+    border-radius: 8px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: inherit;
+  }
+  .group-tile:hover { background: var(--thu-light); }
+  .group-tile-num {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--thu);
+    line-height: 1;
+  }
+  .group-tile-title {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-1);
+  }
+  .group-tile-desc { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+  .group-tile-brings {
+    margin-top: auto;
+    padding-top: 8px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 11px;
+    color: var(--thu-dark);
+  }
+
+  .sample-task {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .sample-task-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    background: var(--h-tint, #EEF0F2);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 16px;
+  }
+  .sample-task-badge {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: var(--thu);
+    color: white;
+    padding: 2px 9px;
+    border-radius: 10px;
+  }
+  .sample-task-where {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 11px;
+    color: var(--text-3);
+  }
+  .sample-task-body {
+    padding: 16px 20px;
+    font-size: 14px;
+    color: var(--text-1);
+    line-height: 1.6;
+  }
+  .sample-task-body h3 {
+    font-family: var(--font-body, 'IBM Plex Sans', sans-serif);
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .sample-task-body p { margin-bottom: 10px; }
+  .sample-task-body ol { margin: 0 0 10px 20px; }
+  .sample-task-body ol li { margin-bottom: 4px; }
+  .sample-task-head {
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-2);
+    margin: 14px 0 6px !important;
+  }
+  .sample-rubric { list-style: none; border-top: 1px solid var(--border); }
+  .sample-rubric li {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13.5px;
+  }
+  .sample-rubric li span:last-child { font-family: var(--font-label, 'IBM Plex Mono', monospace); color: var(--text-2); }
+
+  .step-n { min-width: 20px; width: auto; padding: 0 5px; border-radius: 10px; }
+
+  @media (max-width: 780px) {
+    .group-grid { grid-template-columns: 1fr; }
+  }
+</style>
+<style>
+  .three-col { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:14px 0; }
+  .mode-tag { display:inline-block; font-family:var(--font-label, 'IBM Plex Mono',monospace); font-size:10px; text-transform:uppercase; letter-spacing:0.08em; padding:2px 8px; border-radius:9px; background:var(--bg); border:1px solid var(--border); color:var(--text-2); margin-right:6px; white-space:nowrap; }
+  .wayin { background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:12px 16px; margin-top:12px; font-size:13.5px; color:var(--text-2); line-height:1.55; }
+  .wayin b { font-family:var(--font-label, 'IBM Plex Mono',monospace); font-size:10px; font-weight:500; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-3); display:block; margin-bottom:4px; }
+  .board { width:100%; border-collapse:collapse; margin:12px 0 4px; font-size:13px; background:var(--surface); }
+  .board th, .board td { border:1px solid var(--border); padding:9px 11px; text-align:left; vertical-align:top; }
+  .board th { background:var(--thu-light); font-family:var(--font-label, 'IBM Plex Mono',monospace); font-size:10.5px; text-transform:uppercase; letter-spacing:0.06em; color:var(--thu-dark); font-weight:500; }
+  .board td:first-child { font-weight:600; color:var(--text-1); width:34%; }
+  .board td.blank { background:repeating-linear-gradient(0deg,#fff,#fff 22px,var(--h-tint, #F2EFE9) 23px); min-height:40px; }
+  .audit-list { list-style:none; counter-reset:a; margin-top:4px; }
+  .audit-list li { counter-increment:a; position:relative; padding:9px 0 9px 34px; border-bottom:1px solid var(--h-tint, #F2EFE9); font-size:13.5px; color:var(--text-2); line-height:1.55; }
+  .audit-list li:last-child { border-bottom:none; }
+  .audit-list li::before { content:counter(a); position:absolute; left:0; top:9px; width:22px; height:22px; border-radius:50%; background:var(--thu-light); color:var(--thu); font-family:var(--font-label, 'IBM Plex Mono',monospace); font-size:11px; display:flex; align-items:center; justify-content:center; font-weight:500; }
+  .audit-list strong { color:var(--text-1); }
+  .sample-task { border:1px solid var(--border); border-radius:8px; overflow:hidden; background:var(--surface); margin-top:12px; }
+  .sample-task-bar { display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; background:var(--h-tint, #EEF0F2); border-bottom:1px solid var(--border); padding:8px 16px; }
+  .sample-task-badge { font-family:var(--font-label, 'IBM Plex Mono',monospace); font-size:10px; text-transform:uppercase; letter-spacing:0.1em; background:var(--thu); color:white; padding:2px 9px; border-radius:10px; }
+  .sample-task-where { font-family:var(--font-label, 'IBM Plex Mono',monospace); font-size:11px; color:var(--text-3); }
+  .sample-task-body { padding:16px 20px; font-size:14px; color:var(--text-1); line-height:1.6; }
+  .sample-task-body h3 { font-family:var(--font-body, 'IBM Plex Sans',sans-serif); font-size:16px; font-weight:600; margin-bottom:8px; }
+  .sample-task-body p { margin-bottom:8px; }
+  .link-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+  .reading-link { display:inline-block; font-family:var(--font-label, 'IBM Plex Mono',monospace); font-size:12px; font-weight:500; color:white; background:var(--thu); text-decoration:none; border-radius:16px; padding:6px 16px; }
+  .reading-link.ghost { background:white; color:var(--thu); border:1px solid var(--thu); }
+  .reading-link:hover { background:var(--thu-dark); color:white; }
+  @media (max-width:780px) { .three-col { grid-template-columns:1fr; } .board { font-size:12px; } }
+</style>
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to session content</a>
+
+<div class="conf-banner">
+  <span class="sub-label">This week</span>
+  <span class="sub-text">Feedback &amp; Assessment Portfolio Part 2 is due Sunday, November 15. Thursday's rubric activity doubles as practice for it.</span>
+</div>
+
+<header class="page-header">
+  <div>
+    <div class="course-tag">ENG 511 · Week 13 · Tuesday, November 10, 2026</div>
+    <h1 class="page-title">Multimodal Pedagogy &amp; Digital Writing</h1>
+    <div class="page-subtitle">Hocks, "Understanding Visual Rhetoric in Digital Writing Environments" · Shipka, "A Multimodal Task-Based Framework for Composing"</div>
+  </div>
+  <div class="mode-display">
+    <div class="mode-label">Format</div>
+    <div class="mode-value">Student-Led Seminar</div>
+  </div>
+</header>
+
+<nav aria-label="Session sequence">
+<ol class="timeline-strip">
+  <li><a class="tl-item" href="#sec-opening" data-start="705" data-end="711"><div class="tl-num">Opening</div><div class="tl-label">Mode Inventory</div></a></li>
+  <li><a class="tl-item" href="#sec-emma" data-start="711" data-end="723"><div class="tl-num">Starter 1</div><div class="tl-label">Emma on Hocks</div></a></li>
+  <li><a class="tl-item" href="#sec-olivia" data-start="723" data-end="735"><div class="tl-num">Starter 2</div><div class="tl-label">Olivia on Shipka</div></a></li>
+  <li><a class="tl-item" href="#sec-task" data-start="735" data-end="765"><div class="tl-num">Activity</div><div class="tl-label">Read It, Then Redesign It</div></a></li>
+  <li><a class="tl-item" href="#sec-close" data-start="765" data-end="780"><div class="tl-num">Close</div><div class="tl-label">Bridge to Thursday</div></a></li>
+</ol>
+</nav>
+
+<main class="content" id="main">
+
+  <!-- OPENING -->
+  <section class="section" id="sec-opening" aria-labelledby="h-opening">
+    <div class="section-header">
+      <div class="section-num">Opening</div>
+      <h2 class="section-title" id="h-opening">Mode Inventory</h2>
+      <div class="section-pace">6 min</div>
+    </div>
+    <p class="lede">You all composed in several modes before class today. Hocks gives us terms for reading digital texts as visual rhetoric. Shipka asks what happens when students choose the modes and materials of their work and explain those choices.</p>
+
+    <div class="reading-pair">
+      <div class="reading-card">
+        <div class="reading-label">Hocks, 2003</div>
+        <div class="reading-author">Understanding Visual Rhetoric in Digital Writing Environments</div>
+        <div class="reading-desc">Hocks offers three terms, "Audience Stance, Transparency, and Hybridity," to describe how visual rhetoric works in digital writing.</div>
+      </div>
+      <div class="reading-card">
+        <div class="reading-label">Shipka, 2005</div>
+        <div class="reading-author">A Multimodal Task-Based Framework for Composing</div>
+        <div class="reading-desc">Shipka designs tasks in which students decide what to make, in what modes and materials, and then give an account of the goals and choices behind the work.</div>
+      </div>
+    </div>
+
+    <ul class="step-list">
+      <li class="step-row">
+        <div class="step-n">1</div>
+        <div><span class="mode-tag">Analog</span><strong>Inventory (3 min):</strong> On an index card, list everything you composed since you woke up. Example: a text with an emoji, a voice memo, a grocery list, a calendar invite, a photo with a caption.</div>
+      </li>
+      <li class="step-row">
+        <div class="step-n">2</div>
+        <div><strong>Count (3 min):</strong> How many modes are on your card? How many of them would count as "writing" in a first-year course?</div>
+      </li>
+    </ul>
+
+    <a class="next-link" href="#sec-emma">Go to Starter 1 →</a>
+  </section>
+
+  <!-- EMMA -->
+  <section class="section" id="sec-emma" aria-labelledby="h-emma">
+    <div class="section-header">
+      <div class="section-num">Starter 1</div>
+      <h2 class="section-title" id="h-emma">Emma on Hocks</h2>
+      <div class="section-pace">12 min</div>
+    </div>
+
+    <div class="opener-card">
+      <div class="opener-header">
+        <span class="opener-badge">Discussion Starter</span>
+        <span class="opener-title">Emma · Hocks, "Understanding Visual Rhetoric" (2003)</span>
+      </div>
+      <div class="opener-body">Emma opens our discussion of Hocks. Have your Perusall annotations open and ready.</div>
+    </div>
+
+    <ul class="step-list" style="margin-top:14px;">
+      <li class="step-row"><div class="step-n">1</div><div><strong>Emma's opening (about 6 min).</strong></div></li>
+      <li class="step-row"><div class="step-n">2</div><div><strong>Open discussion (about 6 min),</strong> led by Emma.</div></li>
+    </ul>
+
+    <div class="wayin">
+      <b>A way in, if we need one</b>
+      Hocks wrote in 2003, before Instagram and TikTok. Pick one of her three terms and test it on an app you used today. Does "transparency" still describe a feed designed to keep you scrolling?
+    </div>
+
+    <a class="next-link" href="#sec-olivia">Go to Starter 2 →</a>
+  </section>
+
+  <!-- OLIVIA -->
+  <section class="section" id="sec-olivia" aria-labelledby="h-olivia">
+    <div class="section-header">
+      <div class="section-num">Starter 2</div>
+      <h2 class="section-title" id="h-olivia">Olivia on Shipka</h2>
+      <div class="section-pace">12 min</div>
+    </div>
+
+    <div class="opener-card">
+      <div class="opener-header">
+        <span class="opener-badge">Discussion Starter</span>
+        <span class="opener-title">Olivia · Shipka, "A Multimodal Task-Based Framework" (2005)</span>
+      </div>
+      <div class="opener-body">Olivia opens our discussion of Shipka.</div>
+    </div>
+
+    <ul class="step-list" style="margin-top:14px;">
+      <li class="step-row"><div class="step-n">1</div><div><strong>Olivia's opening (about 6 min).</strong></div></li>
+      <li class="step-row"><div class="step-n">2</div><div><strong>Open discussion (about 6 min),</strong> led by Olivia.</div></li>
+    </ul>
+
+    <div class="wayin">
+      <b>A way in, if we need one</b>
+      Shipka hands students the choice of mode and asks them to account for it. Who in a first-year class benefits most from this freedom, and who might find it harder than a five-page essay?
+    </div>
+
+    <a class="next-link" href="#sec-task">Go to the Activity →</a>
+  </section>
+
+  <!-- ACTIVITY -->
+  <section class="section" id="sec-task" aria-labelledby="h-task">
+    <div class="section-header">
+      <div class="section-num">Activity</div>
+      <h2 class="section-title" id="h-task">Read It With Hocks, Redesign It With Shipka</h2>
+      <div class="section-pace">30 min</div>
+    </div>
+
+    <div class="activity-block">
+      <div class="activity-header">
+        <span class="activity-num">A</span>
+        <div class="activity-meta">
+          <div class="activity-title">Part 1: Read a page you know</div>
+        </div>
+      </div>
+      <div class="activity-body">
+        <p class="activity-framing">The artifact is this course website. Open the <a href="eng511_2026.html" target="_blank" rel="noopener">ENG 511 course page</a> and any workshop page from this semester. You have used both for weeks, so you all know their audience from the inside.</p>
+        <ul class="step-list">
+          <li class="step-row">
+            <div class="step-n">1</div>
+            <div><strong>Pairs (12 min):</strong> Read the pages with Hocks' three terms. <em>Audience stance:</em> what does the page ask you to do, and who does it assume you are? <em>Transparency:</em> which design choices did you stop noticing after Week 2? <em>Hybridity:</em> where do text, color, and layout carry meaning together? Example to start: the color-coded Tuesday and Thursday cards tell you the kind of session before you read a word.</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="activity-block">
+      <div class="activity-header">
+        <span class="activity-num">B</span>
+        <div class="activity-meta">
+          <div class="activity-title">Part 2: Turn a prompt into a task</div>
+        </div>
+      </div>
+      <div class="activity-body">
+        <p class="activity-framing">Take one traditional prompt and rewrite it Shipka's way. Students choose the mode, and they explain their choices.</p>
+
+        <div class="sample-task" role="region" aria-label="Before and after prompt example">
+          <div class="sample-task-bar">
+            <span class="sample-task-badge">Example</span>
+            <span class="sample-task-where">ENG 101 · Before and after</span>
+          </div>
+          <div class="sample-task-body">
+            <p><strong>Before:</strong> Write a 4-page essay analyzing a public space on campus.</p>
+            <p><strong>After:</strong> Make something showing how a public space on campus shapes the people who use it. It might be a photo essay, a 3-minute audio walk, a hand-drawn annotated map, or a written essay. Along with it, write one page explaining what you set out to do, why you chose your mode and materials, and what you would change with more time.</p>
+          </div>
+        </div>
+
+        <ul class="step-list" style="margin-top:14px;">
+          <li class="step-row">
+            <div class="step-n">1</div>
+            <div><strong>Pairs (12 min):</strong> Rewrite a prompt from your own teaching, or use the researched-argument prompt from <a href="oct27_workshop.html#sec-mutt" target="_blank" rel="noopener">October 27</a>. Keep the learning goal. Open the mode. Add the account of choices.</div>
+          </li>
+          <li class="step-row">
+            <div class="step-n">2</div>
+            <div><strong>Share (6 min):</strong> Three pairs read their before and after. What does the account of choices let a teacher see?</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <a class="next-link" href="#sec-close">Go to Close →</a>
+  </section>
+
+  <!-- CLOSE -->
+  <section class="section" id="sec-close" aria-labelledby="h-close">
+    <div class="section-header">
+      <div class="section-num">Close</div>
+      <h2 class="section-title" id="h-close">Bridge to Thursday</h2>
+      <div class="section-pace">15 min</div>
+    </div>
+
+    <ul class="step-list">
+      <li class="step-row">
+        <div class="step-n">1</div>
+        <div><strong>Full class (10 min):</strong> Thursday adds Palmeri and Banks. The course page asks how Palmeri's history complicates digital rhetoric narratives, and how Banks' queer and trans digital rhetoric expands multimodal possibilities. Before reading them, where did Hocks and Shipka leave you? Does multimodality begin with the computer?</div>
+      </li>
+      <li class="step-row">
+        <div class="step-n">2</div>
+        <div><strong>Thursday (5 min):</strong> Bring a laptop and one traditional written assignment, yours or one from the <a href="https://drive.google.com/drive/folders/1-59Y3BS25aTsblc22F0euMibTB1kv49p?usp=sharing" target="_blank" rel="noopener">ENG 101 Examples folder</a>. Bring the rubric you are revising for Portfolio Part 2 too.</div>
+      </li>
+    </ul>
+
+    <div class="demand-box">
+      <span class="demand-label">Weekly reflection prompt</span>
+      <p class="demand-text">How can assignments invite students to compose in new modalities, and why should they?</p>
+    </div>
+
+    <div class="leave-box">
+      <span class="leave-label">Assignment</span>
+      <div style="font-size:13.5px;color:var(--text-2);line-height:1.6;">Feedback &amp; Assessment Portfolio Part 2, due Sunday, November 15: a revised grading rubric plus a written reflection (1000 to 1500 words), added below Part 1 in Tab 5. <a href="submissions.html" target="_blank" rel="noopener">Details on the Submissions page →</a></div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  function highlight() {
+    const now = new Date();
+    const mins = now.getHours() * 60 + now.getMinutes();
+    document.querySelectorAll('.tl-item').forEach(el => {
+      const s = parseInt(el.dataset.start), e = parseInt(el.dataset.end);
+      el.classList.toggle('active', mins >= s && mins < e);
+    });
+    [['sec-opening',705,711],['sec-emma',711,723],['sec-olivia',723,735],['sec-task',735,765],['sec-close',765,780]]
+      .forEach(([id,s,e]) => { const el = document.getElementById(id); if (el) el.classList.toggle('active', mins >= s && mins < e); });
+  }
+  highlight();
+  setInterval(highlight, 30000);
+</script>
+
+</body>
+</html>

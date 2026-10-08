@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-day="thu">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENG 511, Nov 5: Accessibility & OWI Design Workshop</title>
+<style>
+  :root {
+    --bg: #F5F4F1;
+    --surface: #FFFFFF;
+    --text-1: #1A1918;
+    --text-2: #4A4540;
+    --text-3: #6B635C;
+    --border: #DEDAD4;
+    --thu: #8B3A1A;
+    --thu-light: #F9EDE8;
+    --thu-mid: #C47050;
+    --thu-dark: #5A2210;
+    --badge-bg: #F9EDE8;
+    --badge-color: #8B3A1A;
+    --note-bg: #FBF0EA;
+    --note-border: #B85A2C;
+    --note-text: #6E2E12;
+    --shadow: 0 1px 8px rgba(0,0,0,0.07);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-body, 'IBM Plex Sans', system-ui, sans-serif);
+    background: var(--bg);
+    color: var(--text-1);
+    line-height: 1.65;
+    font-size: 15px;
+    min-height: 100vh;
+  }
+
+  a { color: var(--thu); }
+  a:focus-visible { outline: 3px solid var(--thu-mid); outline-offset: 2px; }
+
+  .skip-link {
+    position: absolute; left: -999px; top: 8px;
+    background: white; color: var(--thu-dark); padding: 8px 12px;
+    border-radius: 6px; z-index: 10; font-size: 13px;
+  }
+  .skip-link:focus { left: 12px; }
+
+  .conf-banner {
+    background: var(--thu-dark);
+    padding: 10px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .sub-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--h-on-dark, rgba(255,255,255,0.75));
+  }
+
+  .sub-text {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+  }
+
+  .page-header {
+    background: var(--thu);
+    color: white;
+    padding: 32px 48px 28px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .course-tag {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--h-on-dark, rgba(255,255,255,0.85));
+    margin-bottom: 6px;
+  }
+
+  .page-title {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+    color: var(--h-on-dark, rgba(255,255,255,0.9));
+    font-style: italic;
+  }
+
+  .mode-display { text-align: right; }
+
+  .mode-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--h-on-dark, rgba(255,255,255,0.85));
+    margin-bottom: 4px;
+  }
+
+  .mode-value {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    letter-spacing: 0.05em;
+  }
+
+  .timeline-strip {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    overflow-x: auto;
+    list-style: none;
+  }
+
+  .tl-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 18px 12px;
+    border-right: 1px solid var(--border);
+    min-width: 130px;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+  }
+
+  .tl-item:first-child { border-left: 1px solid var(--border); }
+  .tl-item:hover { background: var(--thu-light); }
+  .tl-item.active { background: var(--thu-light); }
+  .tl-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 2px;
+    background: var(--thu);
+  }
+
+  .tl-num {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--thu);
+    margin-bottom: 3px;
+  }
+
+  .tl-label {
+    font-size: 11.5px;
+    color: var(--text-2);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 36px 48px 60px;
+  }
+
+  .section { margin-bottom: 44px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-num {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    font-weight: 500;
+    background: var(--badge-bg);
+    color: var(--badge-color);
+    padding: 3px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-1);
+    flex: 1;
+  }
+
+  .section-pace {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 11px;
+    color: var(--text-3);
+    white-space: nowrap;
+  }
+
+  .section.active .section-header { border-bottom-color: var(--thu); }
+  .section.active .section-num { background: var(--thu); color: white; }
+  .section.active .section-title { color: var(--thu); }
+
+  .lede {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+
+  .note {
+    background: var(--note-bg);
+    border-left: 3px solid var(--note-border);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    color: var(--note-text);
+    margin-bottom: 14px;
+    line-height: 1.55;
+  }
+
+  .note strong { font-weight: 600; }
+
+  .reading-pair {
+    display: flex;
+    gap: 14px;
+    margin: 14px 0;
+  }
+
+  .reading-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    flex: 1;
+    box-shadow: var(--shadow);
+  }
+
+  .reading-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    margin-bottom: 6px;
+  }
+
+  .reading-author {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-1);
+    margin-bottom: 6px;
+  }
+
+  .reading-desc {
+    font-size: 12.5px;
+    color: var(--text-2);
+    line-height: 1.55;
+  }
+
+  .reading-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+    background: var(--thu);
+    text-decoration: none;
+    border-radius: 16px;
+    padding: 6px 16px;
+  }
+  .reading-link:hover { background: var(--thu-dark); }
+
+  .opener-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-top: 14px;
+  }
+
+  .opener-header {
+    background: var(--thu);
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .opener-badge {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    background: var(--h-pill, rgba(255,255,255,0.2));
+    color: white;
+    padding: 2px 9px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+
+  .opener-title {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+  }
+
+  .opener-body {
+    padding: 18px 20px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text-1);
+    font-style: italic;
+  }
+
+  .activity-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin: 14px 0;
+  }
+
+  .activity-header {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--thu-light);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .activity-num {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--thu);
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .activity-meta { flex: 1; }
+
+  .activity-title {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-1);
+    line-height: 1.3;
+  }
+
+  .activity-body { padding: 16px 20px; }
+
+  .activity-framing {
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.6;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .step-list { list-style: none; }
+
+  .step-row {
+    display: flex;
+    gap: 12px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--h-tint, #F2EFE9);
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.55;
+    align-items: flex-start;
+  }
+
+  .step-row:last-child { border-bottom: none; }
+
+  .step-n {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--thu);
+    color: white;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .prompt-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 10px;
+  }
+
+  .prompt-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-3);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .prompt-text {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 14.5px;
+    font-style: italic;
+    color: var(--text-1);
+    line-height: 1.6;
+  }
+
+  .demand-box {
+    background: var(--thu-dark);
+    border-radius: 10px;
+    padding: 22px 26px;
+    margin-top: 14px;
+  }
+
+  .demand-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--h-on-dark, rgba(255,255,255,0.7));
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .demand-text {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 16px;
+    font-style: italic;
+    color: white;
+    line-height: 1.65;
+  }
+
+  .leave-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+    margin-top: 14px;
+  }
+
+  .leave-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .next-link {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--thu);
+    text-decoration: none;
+    border: 1px solid var(--thu);
+    border-radius: 16px;
+    padding: 6px 16px;
+  }
+  .next-link:hover { background: var(--thu-light); }
+
+  @media (max-width: 780px) {
+    .page-header { flex-direction: column; align-items: flex-start; padding: 24px 20px; }
+    .conf-banner { padding: 10px 20px; flex-direction: column; gap: 4px; align-items: flex-start; }
+    .mode-display { text-align: left; }
+    .content { padding: 24px 20px 48px; }
+    .timeline-strip { padding: 0 16px; }
+    .reading-pair { flex-direction: column; }
+  }
+
+  .group-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .group-tile {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--thu);
+    border-radius: 8px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: inherit;
+  }
+  .group-tile:hover { background: var(--thu-light); }
+  .group-tile-num {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--thu);
+    line-height: 1;
+  }
+  .group-tile-title {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-1);
+  }
+  .group-tile-desc { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+  .group-tile-brings {
+    margin-top: auto;
+    padding-top: 8px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 11px;
+    color: var(--thu-dark);
+  }
+
+  .sample-task {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .sample-task-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    background: var(--h-tint, #EEF0F2);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 16px;
+  }
+  .sample-task-badge {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: var(--thu);
+    color: white;
+    padding: 2px 9px;
+    border-radius: 10px;
+  }
+  .sample-task-where {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 11px;
+    color: var(--text-3);
+  }
+  .sample-task-body {
+    padding: 16px 20px;
+    font-size: 14px;
+    color: var(--text-1);
+    line-height: 1.6;
+  }
+  .sample-task-body h3 {
+    font-family: var(--font-body, 'IBM Plex Sans', sans-serif);
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .sample-task-body p { margin-bottom: 10px; }
+  .sample-task-body ol { margin: 0 0 10px 20px; }
+  .sample-task-body ol li { margin-bottom: 4px; }
+  .sample-task-head {
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-2);
+    margin: 14px 0 6px !important;
+  }
+  .sample-rubric { list-style: none; border-top: 1px solid var(--border); }
+  .sample-rubric li {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13.5px;
+  }
+  .sample-rubric li span:last-child { font-family: var(--font-label, 'IBM Plex Mono', monospace); color: var(--text-2); }
+
+  .step-n { min-width: 20px; width: auto; padding: 0 5px; border-radius: 10px; }
+
+  @media (max-width: 780px) {
+    .group-grid { grid-template-columns: 1fr; }
+  }
+</style>
+<style>
+  .three-col { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:14px 0; }
+  .mode-tag { display:inline-block; font-family:var(--font-label, 'IBM Plex Mono',monospace); font-size:10px; text-transform:uppercase; letter-spacing:0.08em; padding:2px 8px; border-radius:9px; background:var(--bg); border:1px solid var(--border); color:var(--text-2); margin-right:6px; white-space:nowrap; }
+  .wayin { background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:12px 16px; margin-top:12px; font-size:13.5px; color:var(--text-2); line-height:1.55; }
+  .wayin b { font-family:var(--font-label, 'IBM Plex Mono',monospace); font-size:10px; font-weight:500; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-3); display:block; margin-bottom:4px; }
+  .board { width:100%; border-collapse:collapse; margin:12px 0 4px; font-size:13px; background:var(--surface); }
+  .board th, .board td { border:1px solid var(--border); padding:9px 11px; text-align:left; vertical-align:top; }
+  .board th { background:var(--thu-light); font-family:var(--font-label, 'IBM Plex Mono',monospace); font-size:10.5px; text-transform:uppercase; letter-spacing:0.06em; color:var(--thu-dark); font-weight:500; }
+  .board td:first-child { font-weight:600; color:var(--text-1); width:34%; }
+  .board td.blank { background:repeating-linear-gradient(0deg,#fff,#fff 22px,var(--h-tint, #F2EFE9) 23px); min-height:40px; }
+  .audit-list { list-style:none; counter-reset:a; margin-top:4px; }
+  .audit-list li { counter-increment:a; position:relative; padding:9px 0 9px 34px; border-bottom:1px solid var(--h-tint, #F2EFE9); font-size:13.5px; color:var(--text-2); line-height:1.55; }
+  .audit-list li:last-child { border-bottom:none; }
+  .audit-list li::before { content:counter(a); position:absolute; left:0; top:9px; width:22px; height:22px; border-radius:50%; background:var(--thu-light); color:var(--thu); font-family:var(--font-label, 'IBM Plex Mono',monospace); font-size:11px; display:flex; align-items:center; justify-content:center; font-weight:500; }
+  .audit-list strong { color:var(--text-1); }
+  .sample-task { border:1px solid var(--border); border-radius:8px; overflow:hidden; background:var(--surface); margin-top:12px; }
+  .sample-task-bar { display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; background:var(--h-tint, #EEF0F2); border-bottom:1px solid var(--border); padding:8px 16px; }
+  .sample-task-badge { font-family:var(--font-label, 'IBM Plex Mono',monospace); font-size:10px; text-transform:uppercase; letter-spacing:0.1em; background:var(--thu); color:white; padding:2px 9px; border-radius:10px; }
+  .sample-task-where { font-family:var(--font-label, 'IBM Plex Mono',monospace); font-size:11px; color:var(--text-3); }
+  .sample-task-body { padding:16px 20px; font-size:14px; color:var(--text-1); line-height:1.6; }
+  .sample-task-body h3 { font-family:var(--font-body, 'IBM Plex Sans',sans-serif); font-size:16px; font-weight:600; margin-bottom:8px; }
+  .sample-task-body p { margin-bottom:8px; }
+  .link-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+  .reading-link { display:inline-block; font-family:var(--font-label, 'IBM Plex Mono',monospace); font-size:12px; font-weight:500; color:white; background:var(--thu); text-decoration:none; border-radius:16px; padding:6px 16px; }
+  .reading-link.ghost { background:white; color:var(--thu); border:1px solid var(--thu); }
+  .reading-link:hover { background:var(--thu-dark); color:white; }
+  @media (max-width:780px) { .three-col { grid-template-columns:1fr; } .board { font-size:12px; } }
+</style>
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to session content</a>
+
+<div class="conf-banner">
+  <span class="sub-label">Bring</span>
+  <span class="sub-text">A syllabus or assignment you have taught or designed. Your Writing Assignment Design works. A sample syllabus is below for anyone without one.</span>
+</div>
+
+<header class="page-header">
+  <div>
+    <div class="course-tag">ENG 511 · Week 12 · Thursday, November 5, 2026</div>
+    <h1 class="page-title">Accessibility &amp; OWI Design Workshop</h1>
+    <div class="page-subtitle">Oswal, "Physical and Learning Disabilities in OWI" (2015) · CAST, <em>UDL Guidelines</em></div>
+  </div>
+  <div class="mode-display">
+    <div class="mode-label">Format</div>
+    <div class="mode-value">Workshop, in person</div>
+  </div>
+</header>
+
+<nav aria-label="Session sequence">
+<ol class="timeline-strip">
+  <li><a class="tl-item" href="#sec-open" data-start="705" data-end="710"><div class="tl-num">Opening</div><div class="tl-label">Three Principles</div></a></li>
+  <li><a class="tl-item" href="#sec-audit" data-start="710" data-end="738"><div class="tl-num">01</div><div class="tl-label">Accessibility Audit</div></a></li>
+  <li><a class="tl-item" href="#sec-owi" data-start="738" data-end="760"><div class="tl-num">02</div><div class="tl-label">OWI Scenario</div></a></li>
+  <li><a class="tl-item" href="#sec-gallery" data-start="760" data-end="772"><div class="tl-num">03</div><div class="tl-label">Revision Gallery</div></a></li>
+  <li><a class="tl-item" href="#sec-exit" data-start="772" data-end="780"><div class="tl-num">Exit</div><div class="tl-label">Reflection</div></a></li>
+</ol>
+</nav>
+
+<main class="content" id="main">
+
+  <!-- OPENING -->
+  <section class="section" id="sec-open" aria-labelledby="h-open">
+    <div class="section-header">
+      <div class="section-num">Opening</div>
+      <h2 class="section-title" id="h-open">Three Principles to Work With</h2>
+      <div class="section-pace">5 min</div>
+    </div>
+    <p class="lede">On Tuesday we sorted retrofits from designs. Today you all redesign. The <a href="https://udlguidelines.cast.org/" target="_blank" rel="noopener">CAST UDL Guidelines</a> give us three principles to name each change by. Oswal's chapter, in <a href="https://wacclearinghouse.org/books/perspectives/owi" target="_blank" rel="noopener">Hewett &amp; DePew's <em>Foundational Practices of OWI</em></a>, brings them into online writing courses.</p>
+
+    <div class="three-col">
+      <div class="reading-card">
+        <div class="reading-label">Principle 1</div>
+        <div class="reading-author">Multiple Means of Engagement</div>
+        <div class="reading-desc">The why of learning. Example: students choose a topic tied to their own communities.</div>
+      </div>
+      <div class="reading-card">
+        <div class="reading-label">Principle 2</div>
+        <div class="reading-author">Multiple Means of Representation</div>
+        <div class="reading-desc">The what. Example: a reading offered as text, audio, and a one-page outline.</div>
+      </div>
+      <div class="reading-card">
+        <div class="reading-label">Principle 3</div>
+        <div class="reading-author">Multiple Means of Action &amp; Expression</div>
+        <div class="reading-desc">The how. Example: a reflection submitted as writing, a voice memo, or an annotated image.</div>
+      </div>
+    </div>
+
+    <a class="next-link" href="#sec-audit">Go to Activity 01 →</a>
+  </section>
+
+  <!-- AUDIT -->
+  <section class="section" id="sec-audit" aria-labelledby="h-audit">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <h2 class="section-title" id="h-audit">Accessibility Audit</h2>
+      <div class="section-pace">28 min</div>
+    </div>
+
+    <div class="activity-block">
+      <div class="activity-header">
+        <span class="activity-num">01</span>
+        <div class="activity-meta">
+          <div class="activity-title">Which elements assume one kind of learner?</div>
+        </div>
+      </div>
+      <div class="activity-body">
+        <p class="activity-framing">Audit your own syllabus or assignment, or use the sample below. <span class="mode-tag">Analog</span> Mark up a printed copy and copy the grid onto paper. <span class="mode-tag">Online</span> Add the grid as a table at the end of your doc.</p>
+
+        <div class="sample-task" role="region" aria-label="Sample syllabus excerpt">
+          <div class="sample-task-bar">
+            <span class="sample-task-badge">Sample syllabus</span>
+            <span class="sample-task-where">ENG 101 · Course Policies</span>
+          </div>
+          <div class="sample-task-body">
+            <p><strong>Attendance.</strong> More than three absences lowers your final grade by one full letter. Late arrivals count as half an absence.</p>
+            <p><strong>Participation.</strong> Participation means speaking in every class discussion.</p>
+            <p><strong>Late work.</strong> Late work is not accepted without documentation.</p>
+            <p><strong>Format.</strong> Submit all papers as printed copies at the start of class, typed in Times New Roman 12 pt, double-spaced.</p>
+            <p><strong>Accommodations.</strong> Students with disabilities should contact the Disability Resource Office.</p>
+          </div>
+        </div>
+
+        <table class="board" aria-label="Audit grid with worked example" style="margin-top:14px;">
+          <thead><tr><th>Element</th><th>Assumption about the learner</th><th>UDL principle</th><th>Redesign</th></tr></thead>
+          <tbody>
+            <tr>
+              <td style="width:22%;">Worked example: "Participation means speaking in every class discussion."</td>
+              <td style="font-weight:400;font-size:12.5px;color:var(--text-2);">Students show engagement by talking aloud, in real time, in a group.</td>
+              <td style="font-weight:400;font-size:12.5px;color:var(--text-2);">Action &amp; Expression</td>
+              <td style="font-weight:400;font-size:12.5px;color:var(--text-2);">"Participate by speaking in class, posting to the discussion thread before or after class, or adding to our shared notes doc. Each counts the same."</td>
+            </tr>
+            <tr><td class="blank" style="height:44px;"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+            <tr><td class="blank" style="height:44px;"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+            <tr><td class="blank" style="height:44px;"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+          </tbody>
+        </table>
+
+        <ul class="step-list" style="margin-top:12px;">
+          <li class="step-row">
+            <div class="step-n">1</div>
+            <div><strong>Solo (14 min):</strong> Find three elements and fill one row for each. Write the redesign in the words a student would read.</div>
+          </li>
+          <li class="step-row">
+            <div class="step-n">2</div>
+            <div><strong>Pairs (14 min):</strong> Trade grids. For each redesign, your partner asks: Does this remove the barrier for everyone, or move it somewhere else? Revise one row. Star your strongest revision for the gallery.</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <a class="next-link" href="#sec-owi">Go to Activity 02 →</a>
+  </section>
+
+  <!-- OWI SCENARIO -->
+  <section class="section" id="sec-owi" aria-labelledby="h-owi">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <h2 class="section-title" id="h-owi">OWI and Neurodiversity: A Scenario</h2>
+      <div class="section-pace">22 min</div>
+    </div>
+
+    <div class="activity-block">
+      <div class="activity-header">
+        <span class="activity-num">02</span>
+        <div class="activity-meta">
+          <div class="activity-title">What does this online module make easier, and what does it make harder?</div>
+        </div>
+      </div>
+      <div class="activity-body">
+        <div class="sample-task" role="region" aria-label="Sample online module">
+          <div class="sample-task-bar">
+            <span class="sample-task-badge">Scenario</span>
+            <span class="sample-task-where">ENG 101 Online · Moodle · Module 4</span>
+          </div>
+          <div class="sample-task-body">
+            <p>Module 4 opens Monday. It holds a 40-minute recorded lecture with auto-generated captions, and a single list of 12 linked readings and web pages. A discussion post is due Wednesday at 11:59 p.m., with two replies due Friday. Peer review happens Thursday in a live Zoom session, cameras on, in timed breakout rooms the instructor assigns. Changes to the schedule go out as Moodle announcements.</p>
+          </div>
+        </div>
+
+        <ul class="step-list" style="margin-top:14px;">
+          <li class="step-row">
+            <div class="step-n">1</div>
+            <div><strong>Pairs (10 min):</strong> List affordances and barriers. Read the module from the position of a range of students, for example: someone who processes spoken information slowly, someone who uses a screen reader, someone managing several overlapping deadlines, someone for whom live conversation with strangers costs a lot of energy. Note where one student's affordance is another's barrier.</div>
+          </li>
+          <li class="step-row">
+            <div class="step-n">2</div>
+            <div><strong>Pairs with Oswal (4 min):</strong> Find one passage in Oswal's chapter naming a barrier you see in this module. Quote it.</div>
+          </li>
+          <li class="step-row">
+            <div class="step-n">3</div>
+            <div><strong>Full class (8 min):</strong> What does online instruction offer neurodivergent and disabled writers here? Recorded lectures let students pause and replay, for one example. What did the design take away? Name one change, and the UDL principle behind it.</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <a class="next-link" href="#sec-gallery">Go to Activity 03 →</a>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section" id="sec-gallery" aria-labelledby="h-gallery">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <h2 class="section-title" id="h-gallery">Design Revision Gallery</h2>
+      <div class="section-pace">12 min</div>
+    </div>
+
+    <div class="activity-block">
+      <div class="activity-header">
+        <span class="activity-num">03</span>
+        <div class="activity-meta">
+          <div class="activity-title">One revision, three lines</div>
+        </div>
+      </div>
+      <div class="activity-body">
+        <p class="activity-framing"><span class="mode-tag">Analog</span> Post your starred revision from Activity 01 on chart paper or the whiteboard, in three lines.</p>
+
+        <div class="wayin">
+          <b>Example post</b>
+          Original assumption: engagement means talking aloud in real time.<br>
+          Principle: Multiple Means of Action &amp; Expression.<br>
+          Revision: three equal ways to participate, spoken, posted, or added to shared notes.
+        </div>
+
+        <ul class="step-list" style="margin-top:12px;">
+          <li class="step-row">
+            <div class="step-n">1</div>
+            <div><strong>Post (3 min).</strong></div>
+          </li>
+          <li class="step-row">
+            <div class="step-n">2</div>
+            <div><strong>Walk and read (6 min):</strong> Leave a sticky note on two posts: "I'd borrow this for&hellip;" plus the course where you would use it.</div>
+          </li>
+          <li class="step-row">
+            <div class="step-n">3</div>
+            <div><strong>Connect (3 min):</strong> Back at your seat, write one sentence linking your revision to your teaching philosophy. It belongs in your final Digital Portfolio.</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <a class="next-link" href="#sec-exit">Go to Exit →</a>
+  </section>
+
+  <!-- EXIT -->
+  <section class="section" id="sec-exit" aria-labelledby="h-exit">
+    <div class="section-header">
+      <div class="section-num">Exit</div>
+      <h2 class="section-title" id="h-exit">Exit Reflection</h2>
+      <div class="section-pace">8 min</div>
+    </div>
+
+    <div class="demand-box">
+      <span class="demand-label">Write before you go</span>
+      <p class="demand-text">What would inclusive writing instruction look like as a design principle from day one? Describe the first week of a course you would build this way.</p>
+    </div>
+
+    <ul class="step-list" style="margin-top:14px;">
+      <li class="step-row">
+        <div class="step-n">1</div>
+        <div><span class="mode-tag">Analog</span> Write on an index card and hand it in. <span class="mode-tag">Online</span> Or post it to <a href="https://moodle-courses2527.wolfware.ncsu.edu/course/view.php?id=12455" target="_blank" rel="noopener">Moodle</a> before you leave the room.</div>
+      </li>
+    </ul>
+
+    <div class="leave-box">
+      <span class="leave-label">Up next · Week 13</span>
+      <div style="font-size:13.5px;color:var(--text-2);line-height:1.6;">Multimodal Pedagogy and Digital Writing. Tuesday, November 10: Emma opens on Hocks, "Understanding Visual Rhetoric" (2003), and Olivia opens on Shipka, "A Multimodal Task-Based Framework" (2005). Feedback &amp; Assessment Portfolio Part 2 is due in Week 13 (<a href="submissions.html" target="_blank" rel="noopener">date and details on the Submissions page</a>).</div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  function highlight() {
+    const now = new Date();
+    const mins = now.getHours() * 60 + now.getMinutes();
+    document.querySelectorAll('.tl-item').forEach(el => {
+      const s = parseInt(el.dataset.start), e = parseInt(el.dataset.end);
+      el.classList.toggle('active', mins >= s && mins < e);
+    });
+    [['sec-open',705,710],['sec-audit',710,738],['sec-owi',738,760],['sec-gallery',760,772],['sec-exit',772,780]]
+      .forEach(([id,s,e]) => { const el = document.getElementById(id); if (el) el.classList.toggle('active', mins >= s && mins < e); });
+  }
+  highlight();
+  setInterval(highlight, 30000);
+</script>
+
+</body>
+</html>

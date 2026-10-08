@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Writing as Activity, Pedagogy, and Method | ENG 511</title>
+<meta name="description" content="Kirsti Cole’s working framework for ENG 511. Writing operates in three registers at once: as activity, as pedagogy, and as method.">
+<meta name="author" content="Kirsti Cole">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Writing as Activity, Pedagogy, and Method">
+<meta property="og:description" content="A working framework for reading composition theory: writing as activity, as pedagogy, and as method.">
+<style>
+/* Registers essay, ENG 511. Teal register of the Hilda palette: no red, no yellow.
+   Deep Teal is never text on Mist or on the tint. Links there are Umber.
+   Type as on the 2027 course site: Georgia for headings, the standfirst, and the synthesis,
+   Arial for reading text, navigation, labels, panels, and notes. No font files load. */
+:root {
+  --teal: #457877;
+  --mist: #C3D6CE;
+  --tint: #E7EFEB;
+  --umber: #41292B;
+  --white: #FFFFFF;
+  --text: Arial, Helvetica, sans-serif;
+  --head: Georgia, "Times New Roman", serif;
+  --ui: Arial, Helvetica, sans-serif;
+  color-scheme: light;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { margin: 0; background: var(--white); color: var(--umber); font-family: var(--text); font-size: 1.125rem; line-height: 1.55; }
+h1, h2, h3, p, ul { margin: 0; }
+a { color: var(--teal); text-decoration-thickness: 1px; text-underline-offset: 0.15em; }
+a:hover { color: var(--umber); text-decoration-thickness: 2px; }
+a:focus-visible { outline: 3px solid var(--teal); outline-offset: 2px; border-radius: 2px; }
+strong { font-weight: 700; }
+
+.skip { position: absolute; left: -9999px; font-family: var(--ui); }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.skip:focus { left: 1rem; top: 1rem; z-index: 10; background: var(--white); color: var(--umber); padding: 0.5rem 1rem; }
+
+/* course band */
+.site-head { background: var(--teal); color: var(--white); font-family: var(--ui); font-size: 1rem; line-height: 1.4; border-bottom: 1px solid transparent; }
+.site-head .in, .site-foot .in, .wrap { max-width: 65rem; margin: 0 auto; padding-left: 1.25rem; padding-right: 1.25rem; }
+.site-head .in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 1.5rem; padding-top: 0.375rem; padding-bottom: 0.375rem; }
+.site-head p, .site-head a { padding: 0.5rem 0; }
+.site-head a, .site-head a:hover { color: var(--white); }
+.site-head a:focus-visible { outline-color: var(--white); }
+
+/* title block */
+.essay-head { padding: 3.25rem 0 2.75rem; }
+.eyebrow, .toc-label, .kicker { font-family: var(--ui); font-size: 0.9375rem; line-height: 1.4; font-weight: 700; color: var(--teal); }
+h1 { font-family: var(--head); font-size: clamp(2.125rem, 1.35rem + 3.4vw, 3.375rem); line-height: 1.1; font-weight: 700; letter-spacing: -0.01em; margin-top: 0.5rem; max-width: 46rem; text-wrap: balance; }
+.standfirst { font-family: var(--head); font-size: clamp(1.1875rem, 1.1rem + 0.5vw, 1.3125rem); line-height: 1.45; margin-top: 1.125rem; max-width: 40rem; }
+.byline { font-family: var(--ui); font-size: 1rem; line-height: 1.4; margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; }
+.byline span + span { padding-left: 1rem; border-left: 1px solid var(--umber); }
+@media (max-width: 30rem) { .byline { flex-direction: column; } .byline span + span { padding-left: 0; border-left: 0; } }
+
+/* page frame: the section list sits beside the essay on wide screens and above it on narrow ones */
+.layout { border-top: 1px solid var(--mist); padding: 2rem 0 4.5rem; display: grid; gap: 2.5rem; }
+.toc { font-family: var(--ui); }
+.toc ul { list-style: none; padding: 0; margin-top: 0.625rem; display: grid; column-gap: 2rem; border-bottom: 1px solid var(--mist); }
+.toc li { border-top: 1px solid var(--mist); }
+.toc a { display: block; padding: 0.625rem 0; text-decoration: none; color: var(--umber); }
+.toc .t { display: block; font-weight: 700; color: var(--teal); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.15em; }
+.toc .g { display: block; font-size: 0.9375rem; line-height: 1.4; }
+.toc a:hover .t { color: var(--umber); text-decoration-thickness: 2px; }
+@media (min-width: 36rem) and (max-width: 63.99rem) { .toc ul { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 64rem) {
+  .layout { grid-template-columns: 15rem minmax(0, 43rem); gap: 4.5rem; padding-top: 3rem; }
+  .toc { position: sticky; top: 1.5rem; align-self: start; }
+}
+
+/* essay */
+.essay > p, .essay section > p { max-width: 38rem; }
+.essay > p + p, .essay section > p + p { margin-top: 1.15em; }
+.essay section { margin-top: 3.5rem; padding-top: 2.75rem; border-top: 1px solid var(--mist); }
+h2 { font-family: var(--head); font-size: clamp(1.625rem, 1.35rem + 1.2vw, 2rem); line-height: 1.2; font-weight: 700; margin-bottom: 1.125rem; scroll-margin-top: 1.5rem; }
+h2 .kicker { display: block; margin-bottom: 0.25rem; letter-spacing: 0; }
+.essay section > p.synthesis { max-width: none; }
+.synthesis { font-family: var(--head); font-size: 1.3125rem; line-height: 1.5; border-top: 3px solid var(--teal); border-bottom: 1px solid var(--mist); padding: 1.25rem 0 1.375rem; margin: 2.25rem 0; }
+
+/* what the register gets right, what it misses */
+.weigh { font-family: var(--ui); background: var(--tint); border: 1px solid transparent; border-radius: 4px; padding: clamp(1.125rem, 4vw, 1.5rem); margin-top: 2rem; display: grid; gap: 1.5rem; }
+.weigh h3 { font-size: 1.0625rem; line-height: 1.3; font-weight: 700; }
+.weigh p { font-size: 1rem; line-height: 1.55; margin-top: 0.5rem; }
+@media (min-width: 44rem) {
+  .weigh { grid-template-columns: 1fr 1fr; gap: 0; }
+  .weigh > div:first-child { padding-right: 1.5rem; }
+  .weigh > div:last-child { padding-left: 1.5rem; border-left: 1px solid var(--teal); }
+}
+.essay section > p.figures { max-width: none; font-family: var(--ui); font-size: 1rem; line-height: 1.55; margin-top: 1.25rem; }
+
+/* note */
+.site-foot { background: var(--tint); font-family: var(--ui); font-size: 1rem; line-height: 1.55; border-top: 1px solid transparent; }
+.site-foot .in { padding-top: 2rem; padding-bottom: 2.5rem; display: grid; gap: 0.875rem; }
+.site-foot p { max-width: 46rem; }
+.site-foot a { color: var(--umber); }
+.site-foot p:last-child a { display: inline-block; padding: 0.25rem 0; }
+
+@media print {
+  .skip, .toc, .site-head a, .site-foot p:last-child { display: none; }
+  body { font-size: 11pt; }
+  .site-head, .site-foot, .weigh { background: none; color: #000; }
+  .site-head a, a { color: #000; }
+  .weigh { border-color: #000; }
+  .layout { display: block; border: 0; padding: 0; }
+  h2, h3 { break-after: avoid; }
+  .weigh, .synthesis { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the essay</a>
+
+<header class="site-head">
+  <div class="in">
+    <p><strong>ENG 511</strong> Theory and Research in Composition, Fall 2026</p>
+    <a href="eng511_2026.html">Course index</a>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <header class="essay-head">
+      <p class="eyebrow">Instructor’s framework</p>
+      <h1>Writing as Activity, Pedagogy, and Method</h1>
+      <p class="standfirst">Why the field’s debates are harder to resolve than they first appear, and what follows for how we read composition theory</p>
+      <p class="byline"><span>Kirsti Cole, NC State University</span> <span>Article in progress, Fall 2026</span></p>
+    </header>
+
+    <div class="layout">
+      <nav class="toc" aria-labelledby="toc-label">
+        <p class="toc-label" id="toc-label">On this page</p>
+        <ul>
+          <li><a href="#activity"><span class="t">Writing as Activity</span> <span class="g">What writers do</span></a></li>
+          <li><a href="#pedagogy"><span class="t">Writing as Pedagogy</span> <span class="g">How we teach</span></a></li>
+          <li><a href="#method"><span class="t">Writing as Method</span> <span class="g">How writing produces knowledge</span></a></li>
+          <li><a href="#entanglement"><span class="t">The Entanglement</span> <span class="g">How a claim in one register implicates the others</span></a></li>
+        </ul>
+      </nav>
+
+      <article class="essay">
+      <p>The debates of composition studies persist. A question settled in one decade returns in the next under a new theoretical vocabulary, and the argument is recognizably the old one. The process-product dispute of the 1970s reappears in current arguments about AI and writing. Hartwell seemed to settle the question of grammar instruction in 1985, and the question came back in debates about code-meshing and linguistic justice. A discipline’s history explains part of this persistence. I think the larger part is structural. The field argues about writing without specifying which thing called “writing” is under dispute.</p>
+      <p>The field has moved toward this specification more than once. In <em>Naming What We Know</em> (2015), Adler-Kassner and Wardle established a foundational threshold concept: “writing is an activity and a subject of study.” The claim reads as obvious until a reader traces what it excludes. Activity theorists from Vygotsky forward supplied terms for writing as a dynamic, socially embedded practice. Post-process theorists held writing to be thoroughly situated. On their account it depends on particular persons, purposes, and contexts, and no generalizable pedagogy accounts for it in full. These are advances. Yet the debates continue, because each advance theorizes one dimension of writing and leaves the others undertheorized.</p>
+      <p>My working framework treats writing as operating in three analytically distinct registers at once: as an <strong>activity</strong>, as a <strong>pedagogy</strong>, and as a <strong>method</strong>. No register reduces to another, though practice entangles all three. Scholars often leave unspecified which register grounds a given argument. I take this omission to be one of the field’s most durable sources of productive disagreement. Seeing the structure leaves the debates open, and it explains the forms they take.</p>
+
+      <section aria-labelledby="activity">
+        <h2 id="activity"><span class="kicker">Register one<span class="vh">:</span></span> Writing as Activity</h2>
+        <p>Writing as activity names what writers do. In this register, writing is a set of cognitive, rhetorical, social, and material practices. Flower and Hayes (1981) mapped the recursive movement among planning, drafting, and revision in their cognitive process model. Perl (1980) described felt sense in “Understanding Composing.” The register also covers the embodied, tool-mediated work of composing in particular contexts, for particular purposes and audiences. The process movement grew from a sustained commitment to this register, and its founding insight was pedagogical. Attention to what writers do opens possibilities for teaching unavailable to current-traditional approaches, which treated the product as the only meaningful object of study.</p>
+        <p>Activity Theory gave this register its fullest theoretical statement. Where the skills view lodged writing in an individual mind, Activity Theory describes a literate activity shaped by tools, communities, rules, and divisions of labor. Prior, Russell, and Bazerman have applied this apparatus to writing contexts with precision. The threshold concept scholarship assembled by Adler-Kassner and Wardle (2015) builds on the tradition. Writing is an activity, and to understand it as one changes what counts as learning it.</p>
+        <p>The activity register is the oldest dimension of composition studies and the most developed empirically. Most students and teachers mean this register when they say “writing” without further specification.</p>
+        <div class="weigh">
+          <div>
+            <h3>What this register gets right</h3>
+            <p>Writing is a practice as well as a product. How writers compose bears on how they should be taught. The register supports tractable empirical research (think-aloud protocols, ethnographies of composing, longitudinal studies of writing development) because the activity is, at least in part, observable. Instruction built on it answers to observed composing behavior, where product-centered teaching answered to an idealized text.</p>
+          </div>
+          <div>
+            <h3>What it tends to miss</h3>
+            <p>The activity register tends to center the individual writer. Genre, power, and the reader’s constitutive role go undertheorized as a result. Writing is construed as an event inside a writer, when it occurs among writers, readers, texts, and institutional contexts. The register also tends to treat activity as prior to pedagogy, as though knowing what writers do were enough to determine how we should teach. The inference collapses the distinction between the two registers.</p>
+          </div>
+        </div>
+        <p class="figures"><strong>Key figures.</strong> Murray, Flower &amp; Hayes, Perl, Graves, Prior, Adler-Kassner &amp; Wardle</p>
+      </section>
+
+      <section aria-labelledby="pedagogy">
+        <h2 id="pedagogy"><span class="kicker">Register two<span class="vh">:</span></span> Writing as Pedagogy</h2>
+        <p>Writing as pedagogy names how we teach. In this register, writing is the object of instructional design, curricular decision-making, and professional practice. It is also, in Berlin’s formulation, always already ideological. Berlin’s taxonomies (1982, 1988) sort instruction into current-traditional, expressive, cognitive, and social-epistemic rhetorics, and they describe the pedagogy register above all. Each rhetoric answers the question of what writing instruction is for and what it should do. Fulkerson’s competing account, “Four Philosophies of Composition” (1979), works at the same level. His “philosophies” are pedagogical commitments: positions on what the teaching of writing should accomplish and value.</p>
+        <p>The Writing Across the Curriculum movement extended this register. Emig (1977) argued for writing as “a unique mode of learning,” and Britton, Applebee, Graham, and others developed and tested the claim empirically. If writing is a mode of learning, pedagogy does more than deliver knowledge about an activity. Pedagogy is itself epistemic. How writing is assigned, sequenced, responded to, and assessed shapes what students come to believe writing is and does. Writing-to-learn approaches and low-stakes writing follow from this insight, as does the resistance to composition taught as skills instruction alone.</p>
+        <p>In the pedagogy register, Freire’s critique still clarifies: no pedagogy is neutral. An assignment encodes assumptions. A feedback comment enacts values, and a grading rubric privileges particular textual behaviors. To state those assumptions, to ourselves as teachers and to our students, is intellectually honest, and it changes practice.</p>
+        <div class="weigh">
+          <div>
+            <h3>What this register gets right</h3>
+            <p>Teaching is itself a theoretical practice. The pedagogy register names the values embedded in instructional choices and makes them available for examination and revision. The WAC and writing-to-learn tradition shows how the writing asked of students shapes what they learn to think. The claim bears on every academic discipline, English among them.</p>
+          </div>
+          <div>
+            <h3>What it tends to miss</h3>
+            <p>The pedagogy register tends toward theoretical sophistication without practical effect, a risk Freire named and left unsolved. It also tends to treat assessment as a later problem, the application of pedagogical values already settled. Yet assessment practices constitute what writing becomes in a course. Grading is a form of teaching, and it defines what the activity was.</p>
+          </div>
+        </div>
+        <p class="figures"><strong>Key figures.</strong> Berlin, Fulkerson, Emig, Britton, Freire, Inoue</p>
+      </section>
+
+      <section aria-labelledby="method">
+        <h2 id="method"><span class="kicker">Register three<span class="vh">:</span></span> Writing as Method</h2>
+        <p>Writing as method is the least theorized of the three registers. I argue it is the most foundational. It names how writing produces knowledge, for individual writers and for the field as a whole. The claim is related to “writing to learn” and distinct from it. Method names writing as a way of knowing. Expressivist and social-epistemic traditions share one assertion: writing is the process through which ideas take shape and become available for scrutiny.</p>
+        <p>At the level of the field, method names the research practices composition uses to produce knowledge about writing. Research design carries epistemological commitments. A think-aloud protocol treats verbal reports during composing as approximations of cognitive processes, and it treats those reports as evidence about writing as activity. Inoue’s argument for labor-based grading (2019) is pedagogical, and it is also methodological. He holds labor to be a more meaningful and more equitable measure of student development than the evaluation of textual products, which encodes the preferences of a dominant linguistic habitus. Smith (1997) makes a similar move in analyzing the “genre of the end comment.” The analysis treats the end comment as a form of writing with genre conventions of its own, and it shows what the field has trained itself to value and to overlook.</p>
+        <p>Post-process theory, in its more radical formulations, made the method register central. Because writing is irreducibly situated and hermeneutic, the argument runs, no generalizable pedagogy accounts for it in full. Composition’s research methods are situated in the same way, and they must reckon with the fact. The position is rigorous and uncomfortable. The field has yet to take it up in full.</p>
+        <div class="weigh">
+          <div>
+            <h3>What this register gets right</h3>
+            <p>How we know things about writing is inseparable from what we believe writing is. Research method is theory enacted. A method constitutes its object: it produces particular kinds of knowledge and leaves other kinds unseen. To foreground method is to ask whose knowledge counts, and under what conditions a claim becomes legible as evidence.</p>
+          </div>
+          <div>
+            <h3>What it tends to miss</h3>
+            <p>The method register risks circularity. An inquiry using writing to justify claims about writing tends to reproduce the assumptions it set out to examine. The register also tends to obscure whose methods count as legitimate inquiry in the field. The question decides who produces knowledge in composition studies, and whose theoretical frameworks are read as data when they are offered as analysis.</p>
+          </div>
+        </div>
+        <p class="figures"><strong>Key figures.</strong> Kent, Inoue, Smith, Wardle, Kastman Breuch, Prior</p>
+      </section>
+
+      <section aria-labelledby="entanglement">
+        <h2 id="entanglement"><span class="kicker">Why it matters<span class="vh">:</span></span> The Entanglement</h2>
+        <p>The three registers form neither a sequence nor a hierarchy. A claim in one implicates the others, and the implication is productive when recognized and paralyzing when missed. Berlin’s argument for writing as social and epistemic makes a claim in all three registers at once. The activity of writing is constitutively social, a stronger claim than influence by social context. Pedagogy must enact this social character, and acknowledgment alone does not suffice. Research methods must account for the ideological positions they occupy. So his argument is compelling and difficult to adopt in full. It demands change at all three levels at once, and most institutional contexts allow revision in one register at a time.</p>
+        <p>Genre theory displays the same entanglement. Miller’s “genre as social action” (1984) is first an activity claim. Genres are typified rhetorical responses to recurrent situations, so the activity of writing is unintelligible apart from the social occasions calling for it. But the activity claim produces a pedagogical problem at once. If writers learn genres through participation in communities and not through explicit instruction, what does a composition course teach? The claim produces a methodological problem as well. How do we study genre acquisition without reducing a genre to its textual features, which are only its most visible part?</p>
+        <p class="synthesis">People arguing about process pedagogy often argue from different registers. One defends a claim about what writers do (activity). Another critiques a set of institutional practices (pedagogy). A third asks how process research was conducted and what it was able to demonstrate (method). Each position holds within its register. The three fail to engage one another, because no one has established which register grounds the disagreement.</p>
+        <p>I teach with this framework because naming the registers clarifies without reducing. The debates remain. They are real, and they persist because the intellectual stakes are real. But the framework gives students a stable means of analysis. With it they explain why the debates take the forms they do, and why one theorist reads as visionary in one decade and limited in the next. The limitation is usually a register problem. A theory right about activity often undertheorizes method, and a theory with pedagogical accomplishments often lacks an account of them in its research practices.</p>
+        <p>The framework also describes how composition studies makes progress. Progress comes when scholars recognize how claims in one register constrain and enable claims in the others. It comes from theorists and research programs holding the three dimensions together, each distinct, in productive tension. Resolving a debate within a single register and moving on produces no such result. Thinking of this kind is harder and slower than winning an argument. It is also more likely to produce durable knowledge.</p>
+      </section>
+      </article>
+    </div>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="in">
+    <p><strong>Note.</strong> This essay sets out my working framework for ENG 511: Theory &amp; Research in Composition at NC State University (Fall 2026). It is a draft toward a journal article in progress. I will develop the argument with fuller citation and longer engagement with post-process and threshold concept scholarship. Comments and conversation are welcome: <a href="mailto:kkcole2@ncsu.edu">kkcole2@ncsu.edu</a></p>
+    <p><strong>Related.</strong> <a href="https://thewritingprogramexchange.org/commitments.html">Field Commitments in Writing Studies</a>, on The Writing Program Exchange, sorts the field’s claims by these three registers.</p>
+    <p><a href="#main">Back to top</a></p>
+  </div>
+</footer>
+</body>
+</html>

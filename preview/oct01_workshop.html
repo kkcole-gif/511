@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-day="thu">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENG 511, Oct 1: What Is Feedback For?</title>
+<style>
+  :root {
+    --bg: #F5F4F1;
+    --surface: #FFFFFF;
+    --text-1: #1A1918;
+    --text-2: #4A4540;
+    --text-3: #6B635C;
+    --border: #DEDAD4;
+    --thu: #8B3A1A;
+    --thu-light: #F9EDE8;
+    --thu-mid: #C47050;
+    --thu-dark: #5A2210;
+    --badge-bg: #F9EDE8;
+    --badge-color: #8B3A1A;
+    --note-bg: #FBF0EA;
+    --note-border: #B85A2C;
+    --note-text: #6E2E12;
+    /* Register palette */
+    --reg-act: #6B4C1A;
+    --reg-act-bg: #FBF3E8;
+    --reg-ped: #2A4485;
+    --reg-ped-bg: #EEF1F9;
+    --reg-meth: #3D1F5A;
+    --reg-meth-bg: #F3EEF9;
+    --shadow: 0 1px 8px rgba(0,0,0,0.07);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-body, 'IBM Plex Sans', system-ui, sans-serif);
+    background: var(--bg);
+    color: var(--text-1);
+    line-height: 1.65;
+    font-size: 15px;
+    min-height: 100vh;
+  }
+
+  a { color: var(--thu); }
+  a:focus-visible { outline: 3px solid var(--thu-mid); outline-offset: 2px; }
+
+  .skip-link {
+    position: absolute; left: -999px; top: 8px;
+    background: white; color: var(--thu-dark); padding: 8px 12px;
+    border-radius: 6px; z-index: 10; font-size: 13px;
+  }
+  .skip-link:focus { left: 12px; }
+
+  .wellness-banner {
+    background: var(--thu-dark);
+    padding: 10px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .sub-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--h-on-dark, rgba(255,255,255,0.75));
+  }
+
+  .sub-text {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+  }
+
+  .page-header {
+    background: var(--thu);
+    color: white;
+    padding: 32px 48px 28px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .course-tag {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--h-on-dark, rgba(255,255,255,0.85));
+    margin-bottom: 6px;
+  }
+
+  .page-title {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+    color: var(--h-on-dark, rgba(255,255,255,0.9));
+    font-style: italic;
+  }
+
+  .mode-display { text-align: right; }
+
+  .mode-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--h-on-dark, rgba(255,255,255,0.85));
+    margin-bottom: 4px;
+  }
+
+  .mode-value {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    letter-spacing: 0.05em;
+  }
+
+  .timeline-strip {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    overflow-x: auto;
+    list-style: none;
+  }
+
+  .tl-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 18px 12px;
+    border-right: 1px solid var(--border);
+    min-width: 130px;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+  }
+
+  .timeline-strip li:first-child .tl-item { border-left: 1px solid var(--border); }
+  .tl-item:hover { background: var(--thu-light); }
+  .tl-item.active { background: var(--thu-light); }
+  .tl-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 2px;
+    background: var(--thu);
+  }
+
+  .tl-num {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--thu);
+    margin-bottom: 3px;
+  }
+
+  .tl-label {
+    font-size: 11.5px;
+    color: var(--text-2);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 36px 48px 60px;
+  }
+
+  .section { margin-bottom: 44px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-num {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    font-weight: 500;
+    background: var(--badge-bg);
+    color: var(--badge-color);
+    padding: 3px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-1);
+    flex: 1;
+  }
+
+  .section-pace {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 11px;
+    color: var(--text-3);
+    white-space: nowrap;
+  }
+
+  .section.active .section-header { border-bottom-color: var(--thu); }
+  .section.active .section-num { background: var(--thu); color: white; }
+  .section.active .section-title { color: var(--thu); }
+
+  .lede {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+
+  .note {
+    background: var(--note-bg);
+    border-left: 3px solid var(--note-border);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    color: var(--note-text);
+    margin-bottom: 14px;
+    line-height: 1.55;
+  }
+
+  .note strong { font-weight: 600; }
+
+  /* Guiding question */
+  .question-card {
+    background: var(--thu-dark);
+    border-radius: 10px;
+    padding: 26px 28px 24px;
+    margin: 4px 0 18px;
+    box-shadow: var(--shadow);
+  }
+
+  .question-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--h-on-dark, rgba(255,255,255,0.75));
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .question-text {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.15;
+    color: white;
+    margin-bottom: 12px;
+  }
+
+  .question-sub {
+    font-size: 13.5px;
+    color: var(--h-on-dark, rgba(255,255,255,0.9));
+    line-height: 1.6;
+    max-width: 680px;
+  }
+
+  /* Answer line, reused across arc and activities */
+  .answer-line {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--border);
+    font-size: 12.5px;
+    color: var(--text-1);
+    line-height: 1.5;
+  }
+
+  .answer-line .answer-tag {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--thu);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .activity-answer {
+    background: var(--thu-light);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    font-size: 13.5px;
+    color: var(--thu-dark);
+    line-height: 1.55;
+  }
+
+  .activity-answer .answer-tag {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--thu);
+    display: block;
+    margin-bottom: 3px;
+  }
+
+
+  /* Perusall voices */
+  .voices-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin: 14px 0;
+    overflow: hidden;
+  }
+  .voices-head {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+  .voices-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--thu);
+    display: block;
+    margin-bottom: 2px;
+  }
+  .voices-title {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-1);
+  }
+  .voices-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .voice-col {
+    padding: 14px 16px;
+    border-right: 1px solid var(--border);
+  }
+  .voice-col:last-child { border-right: none; }
+  .voice-col .reg-pill { margin-bottom: 8px; }
+  .voice {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 13.5px;
+    font-style: italic;
+    color: var(--text-1);
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  .voice:last-child { margin-bottom: 0; }
+  .voice-name {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-style: normal;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--text-3);
+    display: block;
+    margin-top: 2px;
+  }
+  .voices-foot {
+    padding: 12px 20px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.55;
+  }
+  .annot-card {
+    border: 1px solid var(--h-rule, #E8C4A8);
+    background: var(--h-white, #FFFCFA);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 0 0 12px;
+  }
+  .annot-card .voices-label { margin-bottom: 8px; }
+  .annot-q {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 14px;
+    font-style: italic;
+    color: var(--text-1);
+    line-height: 1.5;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--h-tint, #F2EFE9);
+  }
+  .annot-q:last-child { border-bottom: none; }
+
+
+  /* Sample texts */
+  .sample-set { margin: 4px 0 14px; }
+  .sample-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin: 10px 0;
+    overflow: hidden;
+  }
+  .sample-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 9px 16px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .sample-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--thu);
+  }
+  .sample-kind {
+    font-size: 11.5px;
+    font-style: italic;
+    color: var(--text-3);
+  }
+  .sample-body {
+    padding: 14px 16px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-1);
+  }
+  .sample-body.comment {
+    font-family: var(--font-body, 'IBM Plex Sans', system-ui, sans-serif);
+    font-size: 14px;
+    color: var(--text-1);
+    border-left: 3px solid var(--h-umber, #C0392B);
+  }
+  .sample-body.comment.formative { border-left-color: var(--reg-ped); }
+  .sample-grade {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-weight: 500;
+    color: var(--h-umber, #C0392B);
+    margin-left: 6px;
+  }
+  .sample-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .sample-note {
+    font-size: 12px;
+    color: var(--text-3);
+    font-style: italic;
+    margin-top: 4px;
+  }
+
+
+  .portfolio-tag {
+    margin-top: 12px;
+    background: var(--thu-light);
+    border: 1px solid var(--h-rule, #E8C4A8);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--thu-dark);
+    line-height: 1.55;
+  }
+  .portfolio-tag strong {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 9.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--thu);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* Reading arc */
+  .arc-row {
+    display: flex;
+    gap: 0;
+    align-items: stretch;
+    margin: 14px 0;
+  }
+
+  .arc-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    flex: 1;
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+
+  .arc-arrow-wrap {
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    color: var(--text-3);
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .arc-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    margin-bottom: 4px;
+  }
+
+  .arc-author {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--text-1);
+    margin-bottom: 4px;
+  }
+
+  .arc-desc {
+    font-size: 12px;
+    color: var(--text-2);
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  .reg-badge, .reg-pill {
+    display: inline-block;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    padding: 2px 8px;
+    border-radius: 9px;
+    margin-top: 10px;
+    white-space: nowrap;
+  }
+
+  .reg-badge.act, .reg-pill.act { background: var(--reg-act-bg); color: var(--reg-act); }
+  .reg-badge.ped, .reg-pill.ped { background: var(--reg-ped-bg); color: var(--reg-ped); }
+  .reg-badge.meth, .reg-pill.meth { background: var(--reg-meth-bg); color: var(--reg-meth); }
+
+  /* Framework card */
+  .framework-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin: 14px 0;
+  }
+
+  .framework-header {
+    background: var(--thu-dark);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .framework-header-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--h-on-dark, rgba(255,255,255,0.8));
+  }
+
+  .framework-header-title {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+  }
+
+  .framework-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .reg-col {
+    padding: 14px 16px;
+    border-right: 1px solid var(--border);
+  }
+
+  .reg-col:last-child { border-right: none; }
+
+  .reg-col-tag {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .reg-col-tag.act { color: var(--reg-act); }
+  .reg-col-tag.ped { color: var(--reg-ped); }
+  .reg-col-tag.meth { color: var(--reg-meth); }
+
+  .reg-col-name {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-1);
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+
+  .reg-col-q {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 14px;
+    font-style: italic;
+    color: var(--text-1);
+    line-height: 1.45;
+    margin-bottom: 6px;
+  }
+
+  .reg-col-def {
+    font-size: 12px;
+    color: var(--text-2);
+    line-height: 1.5;
+  }
+
+  .reg-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 0;
+    margin-right: 4px;
+    margin-bottom: 4px;
+  }
+
+  /* Activity block */
+  .activity-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin: 14px 0;
+  }
+
+  .activity-header {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .activity-header.act { background: var(--reg-act-bg); border-bottom-color: var(--h-rule, #E8D8B8); }
+  .activity-header.ped { background: var(--reg-ped-bg); border-bottom-color: var(--h-rule, #D0D9EF); }
+  .activity-header.meth { background: var(--reg-meth-bg); border-bottom-color: var(--h-rule, #D8CCE8); }
+
+  .activity-num {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .activity-num.act { color: var(--reg-act); }
+  .activity-num.ped { color: var(--reg-ped); }
+  .activity-num.meth { color: var(--reg-meth); }
+
+  .activity-meta { flex: 1; }
+
+  .activity-tags { margin-bottom: 4px; }
+
+  .activity-title {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-1);
+    line-height: 1.3;
+  }
+
+  .activity-body { padding: 16px 20px; }
+
+  .activity-framing {
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.6;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .step-list { list-style: none; }
+
+  .step-row {
+    display: flex;
+    gap: 12px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--h-tint, #F2EFE9);
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.55;
+    align-items: flex-start;
+  }
+
+  .step-row:last-child { border-bottom: none; }
+
+  .step-n {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--thu);
+    color: white;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-n.act { background: var(--reg-act); }
+  .step-n.ped { background: var(--reg-ped); }
+  .step-n.meth { background: var(--reg-meth); }
+
+  .prompt-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 10px;
+  }
+
+  .prompt-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-3);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .prompt-text {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 14.5px;
+    font-style: italic;
+    color: var(--text-1);
+    line-height: 1.6;
+  }
+
+  /* Answer table in the close */
+  .answer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin: 14px 0;
+  }
+
+  .answer-cell {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    box-shadow: var(--shadow);
+  }
+
+  .answer-cell .reg-pill { margin-bottom: 8px; }
+
+  .answer-cell p {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 14px;
+    font-style: italic;
+    color: var(--text-1);
+    line-height: 1.5;
+  }
+
+  .leave-box {
+    background: var(--thu-dark);
+    border-radius: 10px;
+    padding: 22px 26px;
+    margin-top: 14px;
+  }
+
+  .leave-label {
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--h-on-dark, rgba(255,255,255,0.7));
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .leave-title {
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 12px;
+  }
+
+  .leave-items { list-style: none; }
+
+  .leave-item {
+    display: flex;
+    gap: 10px;
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    font-size: 13.5px;
+    color: var(--h-on-dark, rgba(255,255,255,0.9));
+    line-height: 1.55;
+    align-items: flex-start;
+  }
+
+  .leave-item:last-child { border-bottom: none; }
+
+  .leave-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  .next-link {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--thu);
+    text-decoration: none;
+    border: 1px solid var(--thu);
+    border-radius: 16px;
+    padding: 6px 16px;
+  }
+  .next-link:hover { background: var(--thu-light); }
+
+  @media (max-width: 780px) {
+    .page-header { flex-direction: column; align-items: flex-start; padding: 24px 20px; }
+    .wellness-banner { padding: 10px 20px; flex-direction: column; gap: 4px; align-items: flex-start; }
+    .mode-display { text-align: left; }
+    .content { padding: 24px 20px 48px; }
+    .timeline-strip { padding: 0 16px; }
+    .arc-row { flex-direction: column; gap: 10px; }
+    .arc-arrow-wrap { display: none; }
+    .framework-cols, .answer-grid, .voices-grid, .sample-pair { grid-template-columns: 1fr; }
+    .voice-col { border-right: none; border-bottom: 1px solid var(--border); }
+    .voice-col:last-child { border-bottom: none; }
+    .reg-col { border-right: none; border-bottom: 1px solid var(--border); }
+    .reg-col:last-child { border-bottom: none; }
+    .question-text { font-size: 24px; }
+  }
+</style>
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to session content</a>
+
+<div class="wellness-banner">
+  <span class="sub-label">Assignment due</span>
+  <span class="sub-text">Feedback & Assessment Portfolio, Part 1 (Tab 5), Sunday, October 4, midnight</span>
+</div>
+
+<header class="page-header">
+  <div>
+    <div class="course-tag">ENG 511 · Week 7 · Thursday, October 1, 2026 · Combined Session</div>
+    <h1 class="page-title">What Is Feedback For?</h1>
+    <div class="page-subtitle">Sommers, "Responding to Student Writing" · Inoue, "Problematizing Grading and the White Habitus of the Writing Classroom" · Smith, "The Genre of the End Comment"</div>
+  </div>
+  <div class="mode-display">
+    <div class="mode-label">Format</div>
+    <div class="mode-value">Seminar + Workshop, in person</div>
+  </div>
+</header>
+
+<nav aria-label="Session sequence">
+<ol class="timeline-strip">
+  <li><a class="tl-item" href="#sec-opening" id="tl-0" data-start="705" data-end="723"><div class="tl-num">Opening</div><div class="tl-label">The Question & the Registers</div></a></li>
+  <li><a class="tl-item" href="#sec-summative" id="tl-1" data-start="723" data-end="738"><div class="tl-num">01</div><div class="tl-label">Summative: For Judgment?</div></a></li>
+  <li><a class="tl-item" href="#sec-formative" id="tl-2" data-start="738" data-end="753"><div class="tl-num">02</div><div class="tl-label">Formative: For the Writer?</div></a></li>
+  <li><a class="tl-item" href="#sec-labor" id="tl-3" data-start="753" data-end="765"><div class="tl-num">03</div><div class="tl-label">Labor-Based: For Whom?</div></a></li>
+  <li><a class="tl-item" href="#sec-synthesis" id="tl-4" data-start="765" data-end="780"><div class="tl-num">Close</div><div class="tl-label">Your Answer & Portfolio</div></a></li>
+</ol>
+</nav>
+
+<main class="content" id="main">
+
+  <!-- OPENING -->
+  <section class="section" id="sec-opening" aria-labelledby="h-opening">
+    <div class="section-header">
+      <div class="section-num">Opening</div>
+      <h2 class="section-title" id="h-opening">One Question, Three Registers</h2>
+    </div>
+
+    <p class="lede">Tuesday was NC State's Wellness Day, so today does the work of both sessions. One question organizes all of it. Sommers, Inoue, and Smith each answer it, and each answers it from a different register. They are not disagreeing about the same thing. Seeing where each one stands is the move today, and every activity below comes back to the same question.</p>
+
+    <div class="question-card">
+      <span class="question-label">Today's guiding question</span>
+      <p class="question-text">What is feedback for?</p>
+      <p class="question-sub">Before we open any reading, write your own answer in one sentence. Keep it. You will test it against each register in the activities, and you will revise it at the end of class for your portfolio.</p>
+    </div>
+
+    <div class="voices-card">
+      <div class="voices-head">
+        <span class="voices-label">From your Perusall annotations</span>
+        <div class="voices-title">You all were already answering the question</div>
+      </div>
+      <div class="voices-grid">
+        <div class="voice-col">
+          <span class="reg-pill act">Activity</span>
+          <p class="voice">"Feedback can tell me something is wrong without actually giving me a reason to rethink it."<span class="voice-name">on Sommers</span></p>
+          <p class="voice">"I don't aim for impeccable writing, grammar, or structure because everything I write will likely change."<span class="voice-name">on Sommers</span></p>
+        </div>
+        <div class="voice-col">
+          <span class="reg-pill ped">Pedagogy</span>
+          <p class="voice">"Comments made on student writing should help students be able to read their own writing from another perspective."<span class="voice-name">on Sommers</span></p>
+          <p class="voice">"The end comment ... really shouldn't be the end of the conversation."<span class="voice-name">on Smith</span></p>
+        </div>
+        <div class="voice-col">
+          <span class="reg-pill meth">Method</span>
+          <p class="voice">"I wonder if students who already know the unwritten language of academic feedback have a pretty big advantage here."<span class="voice-name">on Sommers</span></p>
+          <p class="voice">What would change if feedback asked whether a writer achieved their own purpose, rather than whether they met the teacher's expectations?</p>
+        </div>
+      </div>
+      <div class="voices-foot">Most of your annotations answered from Pedagogy, and most did it through memory: the student you were in high school or your first year of college. That is useful evidence. Today asks you to move from that position into the other two registers, where the question becomes what feedback does to a draft in progress, and what it counts as evidence.</div>
+    </div>
+
+    <div class="framework-card">
+      <div class="framework-header">
+        <span class="framework-header-label">The question, asked three ways</span>
+        <span class="framework-header-title">Writing as Activity · Pedagogy · Method</span>
+      </div>
+      <div class="framework-cols">
+        <div class="reg-col">
+          <span class="reg-col-tag act">Register 1</span>
+          <div class="reg-col-name">Activity</div>
+          <p class="reg-col-q">What does feedback do to a writer's next move?</p>
+          <div class="reg-col-def">Feedback as an event inside the writing process. None of today's texts work primarily here, so today's activities put you here.</div>
+        </div>
+        <div class="reg-col">
+          <span class="reg-col-tag ped">Register 2</span>
+          <div class="reg-col-name">Pedagogy</div>
+          <p class="reg-col-q">What should feedback teach?</p>
+          <div class="reg-col-def">Sommers: comments should teach toward future writing rather than fix the current text. Inoue: contracts change what the course values and rewards.</div>
+        </div>
+        <div class="reg-col">
+          <span class="reg-col-tag meth">Register 3</span>
+          <div class="reg-col-name">Method</div>
+          <p class="reg-col-q">What does feedback count as evidence of learning?</p>
+          <div class="reg-col-def">Smith: the end comment as genre reveals what teachers assume writing is. Inoue: grading "quality" encodes whose language counts.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arc-row">
+      <div class="arc-box">
+        <div class="arc-label">Sommers, 1982</div>
+        <div class="arc-author">Responding to Student Writing</div>
+        <div class="arc-desc">Teacher comments appropriate student texts. They rewrite rather than teach.</div>
+        <div class="answer-line"><span class="answer-tag">Feedback is for</span>the writer's next draft, not the teacher's version of this one.</div>
+        <span class="reg-badge ped">Register 2 · Pedagogy</span>
+      </div>
+      <div class="arc-arrow-wrap">→</div>
+      <div class="arc-box">
+        <div class="arc-label">Inoue, 2019</div>
+        <div class="arc-author">Problematizing Grading and the White Habitus of the Writing Classroom</div>
+        <div class="arc-desc">Measuring "quality" encodes whose language counts. Contracts reset what the course measures, and why.</div>
+        <div class="answer-line"><span class="answer-tag">Feedback is for</span>supporting labor and learning, not ranking writers against a single standard.</div>
+        <span class="reg-badge ped">Register 2 · Pedagogy</span>
+        <span class="reg-badge meth" style="margin-left:4px;">Register 3 · Method</span>
+      </div>
+      <div class="arc-arrow-wrap">→</div>
+      <div class="arc-box">
+        <div class="arc-label">Smith, 1997</div>
+        <div class="arc-author">The Genre of the End Comment</div>
+        <div class="arc-desc">End comments are a genre with conventions, purposes, and audiences of their own.</div>
+        <div class="answer-line"><span class="answer-tag">Feedback is for</span>performing a social action, often justifying a grade, that the genre makes routine.</div>
+        <span class="reg-badge meth">Register 3 · Method</span>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:14px;">
+      <strong>How the opening runs:</strong> one-sentence answers, written solo. Pairs compare and name which register each answer lives in. Full class places Sommers, Inoue, and Smith on the register map and reads their answers against yours. Then the three activities put the question to work.
+    </div>
+
+    <a class="next-link" href="#sec-summative">Go to Activity 01 →</a>
+  </section>
+
+  <!-- ACTIVITY 01: SUMMATIVE -->
+  <section class="section" id="sec-summative" aria-labelledby="h-summative">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <h2 class="section-title" id="h-summative">Summative Feedback: Is Feedback for Judgment?</h2>
+    </div>
+
+    <div class="activity-block">
+      <div class="activity-header meth">
+        <span class="activity-num meth">01</span>
+        <div class="activity-meta">
+          <div class="activity-tags"><span class="reg-pill meth">Register 3 · Method</span></div>
+          <div class="activity-title">Reading an end comment as a genre</div>
+        </div>
+      </div>
+      <div class="activity-body">
+        <div class="activity-answer"><span class="answer-tag">The answer under test</span>Feedback is for evaluating a finished product and justifying the grade.</div>
+        <div class="annot-card">
+          <span class="voices-label">Carrying in from Perusall</span>
+          <p class="annot-q">"Is there a way to make end comments have less pressure attached to them? Or is it because of the genre that it will always feel like a weighted comment?"</p>
+          <p class="annot-q">"How do we as teachers make sure our comments are accessible to students of all knowledge bases?"</p>
+        </div>
+        <p class="activity-framing">Summative feedback makes a judgment about finished work. Smith argues that when we write end comments, we perform a genre with its own conventions and assumptions about what writing is. Reading the genre as a method claim lets you see what a comment treats as evidence, and so what it thinks feedback is for.</p>
+
+        <div class="sample-set">
+          <div class="sample-card">
+            <div class="sample-head"><span class="sample-label">Student passage</span><span class="sample-kind">Shared text for all three activities</span></div>
+            <div class="sample-body">Ever since the beginning of time, people have had to work to survive, and college students are no different. I work twenty-five hours a week at a grocery store while taking fifteen credits. Alot of people think students who work are less serious about school, but I think its the opposite. When I close the store on a Tuesday night and still have a reading due, I have to decide what matters most, and I learned more about time management from that then from any class. My manager says I am one of the most reliable people on the schedule. Which shows that working students bring skills to college that other students don't have. Colleges should give credit for work experience, because work is a kind of learning too.</div>
+          </div>
+          <div class="sample-pair">
+            <div class="sample-card">
+              <div class="sample-head"><span class="sample-label">End Comment A</span><span class="sample-kind">The conventional genre Smith describes</span></div>
+              <div class="sample-body comment">You have a strong personal connection to this topic, and your example of closing the store on a Tuesday night is vivid. But the paragraph needs more development. Your opening is too broad, your evidence rests on a single personal example, and several errors (alot, its/it's, then/than, a sentence fragment) distract the reader. Your final claim is interesting but unsupported. Work on narrowing your thesis and proofreading carefully. Good start! Stop by office hours if you'd like to talk about revision.<span class="sample-grade">B&minus;</span></div>
+            </div>
+            <div class="sample-card">
+              <div class="sample-head"><span class="sample-label">End Comment B</span><span class="sample-kind">The rubber-stamp comment Sommers critiques</span></div>
+              <div class="sample-body comment">Good ideas, but be more specific. Think about your audience. Expand your argument. Watch transitions and grammar.<span class="sample-grade">C+</span></div>
+            </div>
+          </div>
+          <p class="sample-note">Constructed for this session. Written in the patterns Smith and Sommers document, not taken from their studies.</p>
+        </div>
+
+        <ul class="step-list">
+          <li class="step-row">
+            <div class="step-n meth">1</div>
+            <div><strong>Solo:</strong> Read the student passage, then End Comments A and B. Don't evaluate them yet. Notice what each addresses, what each ignores, and what its structure implies about why it was written.</div>
+          </li>
+          <li class="step-row">
+            <div class="step-n meth">2</div>
+            <div><strong>Pairs:</strong> Apply Smith's genre analysis to A, then B. What moves does each comment make? Why does A end with an invitation and a grade? Who is its real audience: the student, the teacher, a future reader of the grade? Is it for the grade, the revision, or the writer's future?</div>
+          </li>
+          <li class="step-row">
+            <div class="step-n meth">3</div>
+            <div><strong>Report (full class):</strong> What did the genre reading reveal about purpose that the question "is this good feedback?" would have missed?</div>
+          </li>
+        </ul>
+
+        <div class="prompt-card">
+          <span class="prompt-label">What is feedback for, in this comment?</span>
+          <p class="prompt-text">If end comments are a genre, what social action does this one perform, and for whom? Name what it measures, what it ignores, and what a student reading it would conclude feedback is for.</p>
+        </div>
+        <div class="portfolio-tag"><strong>For your portfolio</strong>End Comments A and B are two of your annotated samples. Annotate each one with your genre notes: what it does, who it addresses, and what it assumes feedback is for. This work engages Smith, your "at least one other course reading."</div>
+      </div>
+    </div>
+
+    <a class="next-link" href="#sec-formative">Go to Activity 02 →</a>
+  </section>
+
+  <!-- ACTIVITY 02: FORMATIVE -->
+  <section class="section" id="sec-formative" aria-labelledby="h-formative">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <h2 class="section-title" id="h-formative">Formative Feedback: Is Feedback for the Writer?</h2>
+    </div>
+
+    <div class="activity-block">
+      <div class="activity-header ped">
+        <span class="activity-num ped">02</span>
+        <div class="activity-meta">
+          <div class="activity-tags">
+            <span class="reg-pill act">Register 1 · Activity</span>
+            <span class="reg-pill ped">Register 2 · Pedagogy</span>
+          </div>
+          <div class="activity-title">Responding to the writer, not the text</div>
+        </div>
+      </div>
+      <div class="activity-body">
+        <div class="activity-answer"><span class="answer-tag">The answer under test</span>Feedback is for the writer's next move, and for teaching them something they carry past this draft.</div>
+        <div class="annot-card">
+          <span class="voices-label">Carrying in from Perusall</span>
+          <p class="annot-q">"What comments would let the students understand that growing from their first draft is good?"</p>
+          <p class="annot-q">"Maybe one answer is not necessarily adding more feedback, but making each round do less."</p>
+          <p class="annot-q">"How can we ensure this multistep process of feedback and editing occurs during a limited ENG 101 schedule?"</p>
+        </div>
+        <p class="activity-framing">Sommers argues effective feedback addresses the writer's future work rather than the current text's problems. Formative feedback intervenes in the writing process (Register 1) by naming what a writer is doing and what they might try next. That makes it a claim about what writers do and about what instruction should value (Register 2) at the same time.</p>
+
+        <ul class="step-list">
+          <li class="step-row">
+            <div class="step-n ped">1</div>
+            <div><strong>Solo:</strong> Return to the practice passage in Activity 01, setting the end comments aside. Write two or three marginal comments and a short formative note addressed to the writer, not the grade. Name something they're doing well and open one question for revision.</div>
+          </li>
+          <li class="step-row">
+            <div class="step-n ped">2</div>
+            <div><strong>Trios:</strong> Read each other's comments, then Formative Comments A and B below, written on the same passage. What does each one assume the writer is trying to do? Which appropriate the text by rewriting it, and which teach?</div>
+          </li>
+          <li class="step-row">
+            <div class="step-n ped">3</div>
+            <div><strong>Report (full class):</strong> Where does Sommers' answer hold up? Where does formative feedback slide back into summative judgment?</div>
+          </li>
+        </ul>
+
+
+        <div class="sample-set" style="margin-top:14px;">
+          <div class="sample-pair">
+            <div class="sample-card">
+              <div class="sample-head"><span class="sample-label">Formative Comment A</span><span class="sample-kind">Formative in timing, appropriative in practice</span></div>
+              <div class="sample-body comment formative">Cut the first sentence. Try this instead: "Working twenty-five hours a week while carrying fifteen credits taught me to prioritize under pressure, a skill colleges should recognize." Fix alot, its, and then. Combine the fragment with the sentence before it. Add a second example.</div>
+            </div>
+            <div class="sample-card">
+              <div class="sample-head"><span class="sample-label">Formative Comment B</span><span class="sample-kind">Addressed to the writer, in the direction Sommers argues for</span></div>
+              <div class="sample-body comment formative">I kept thinking about your Tuesday night at the store. You're doing something interesting here: using your own schedule as evidence that work produces a kind of learning. That's an argument. What exactly did you learn about deciding "what matters most," and how would a college recognize it? If the paragraph started from that Tuesday night instead of "the beginning of time," what would your reader understand sooner?</div>
+            </div>
+          </div>
+          <p class="sample-note">Constructed for this session, on the practice passage in Activity 01. Read these after you write your own comments.</p>
+        </div>
+
+        <div class="prompt-card">
+          <span class="prompt-label">What is feedback for, in your response?</span>
+          <p class="prompt-text">What does your response assume this writer needs next? Compare that answer to the ones End Comment A and Formative Comment A give. Where do the two purposes collide?</p>
+        </div>
+        <div class="portfolio-tag"><strong>For your portfolio</strong>Formative Comments A and B are two more annotated samples, and your own comments on the passage are the third. Your trio's comparison gives you a reflection paragraph that engages Sommers.</div>
+      </div>
+    </div>
+
+    <a class="next-link" href="#sec-labor">Go to Activity 03 →</a>
+  </section>
+
+  <!-- ACTIVITY 03: LABOR-BASED -->
+  <section class="section" id="sec-labor" aria-labelledby="h-labor">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <h2 class="section-title" id="h-labor">Labor-Based Lens: Feedback for Whom?</h2>
+    </div>
+
+    <div class="activity-block">
+      <div class="activity-header meth">
+        <span class="activity-num meth">03</span>
+        <div class="activity-meta">
+          <div class="activity-tags">
+            <span class="reg-pill ped">Register 2 · Pedagogy</span>
+            <span class="reg-pill meth">Register 3 · Method (repudiating)</span>
+          </div>
+          <div class="activity-title">What would we measure instead?</div>
+        </div>
+      </div>
+      <div class="activity-body">
+        <div class="activity-answer"><span class="answer-tag">The answer under test</span>Feedback is for supporting labor and learning, and for refusing to rank writers by one group's language norms.</div>
+        <div class="annot-card">
+          <span class="voices-label">Carrying in from Perusall</span>
+          <p class="annot-q">"How do we prepare students for classes that hold more tightly to White language supremacy?"</p>
+          <p class="annot-q">"I want my students to preserve their voices, but sometimes, those sentences need a little help."</p>
+          <p class="annot-q">"If a student has to guess what 'clarify' or 'develop' means, then the revision is almost testing how well they can interpret the teacher."</p>
+        </div>
+        <p class="activity-framing">Inoue's argument is a method claim as much as a pedagogical preference. If grading "quality" encodes whose linguistic norms count as evidence of learning, then the question shifts from what feedback is for to whom it serves. This activity turns that question on what you built in Activities 01 and 02.</p>
+
+        <ul class="step-list">
+          <li class="step-row">
+            <div class="step-n meth">1</div>
+            <div><strong>Pairs:</strong> Start with the practice passage, whose writer argues colleges should credit work as learning. Which of End Comment A and Formative Comment B treats the labor the paragraph describes as evidence of learning? Then turn to your own comments from Activity 02. What are they measuring, and whose standard sits behind them? Rewrite your formative note as a labor-based response: what labor is visible in this passage, and what is the next labor? Write it, or record it as a short audio or video comment.</div>
+          </li>
+          <li class="step-row">
+            <div class="step-n meth">2</div>
+            <div><strong>Pairs, extending:</strong> One annotation raised a third case: tools like Acrolinx, and now AI checkers, that train every writer toward one house voice. What is that feedback for, and whose standard does it encode?</div>
+          </li>
+          <li class="step-row">
+            <div class="step-n meth">3</div>
+            <div><strong>Full class:</strong> Synthesis question, below.</div>
+          </li>
+        </ul>
+
+        <div class="prompt-card">
+          <span class="prompt-label">Synthesis question</span>
+          <p class="prompt-text">Activities 01, 02, and 03 give three answers to what feedback is for, and each answer rests on a different account of what counts as evidence that a student is writing. Which answer can absorb the other two's critiques? Which one can't?</p>
+        </div>
+        <div class="portfolio-tag"><strong>For your portfolio</strong>Your labor-based rewrite, written or recorded, sits beside your own comments and puts Inoue into practice. Your answer to the synthesis question is the start of your reflection's argument.</div>
+      </div>
+    </div>
+
+    <a class="next-link" href="#sec-synthesis">Go to Close →</a>
+  </section>
+
+  <!-- CLOSE -->
+  <section class="section" id="sec-synthesis" aria-labelledby="h-synthesis">
+    <div class="section-header">
+      <div class="section-num">Close</div>
+      <h2 class="section-title" id="h-synthesis">Your Answer, Revised: Portfolio Part 1</h2>
+    </div>
+
+    <p class="lede">Go back to the sentence you wrote at the start of class. Revise it now that you have tested it against all three registers. That revised sentence is the claim your reflection argues. Today you practiced four approaches the portfolio asks about: summative (Activity 01), formative (Activity 02), labor-based and audio or video (Activity 03). Every sample Part 1 asks for is on this page, and your activity notes are draft reflection paragraphs.</p>
+
+    <div class="answer-grid">
+      <div class="answer-cell">
+        <span class="reg-pill act">Activity</span>
+        <p>Feedback is for the writer's next move.</p>
+      </div>
+      <div class="answer-cell">
+        <span class="reg-pill ped">Pedagogy</span>
+        <p>Feedback is for teaching something that outlasts the draft.</p>
+      </div>
+      <div class="answer-cell">
+        <span class="reg-pill meth">Method</span>
+        <p>Feedback is for deciding what counts as evidence of learning, and whose.</p>
+      </div>
+    </div>
+
+    <div class="prompt-card" style="background:var(--thu-light);border-color:var(--h-rule, #E8C4A8);">
+      <span class="prompt-label" style="color:var(--thu-dark);">What Portfolio Part 1 asks, and where today fits</span>
+      <ul class="step-list" style="margin-top:4px;">
+        <li class="step-row" style="border-bottom-color:var(--h-rule, #E8C4A8);"><div class="step-n">1</div><div style="color:var(--thu-dark);"><strong>Annotated feedback samples:</strong> End Comments A and B, Formative Comments A and B, and your own comments on the practice passage with your labor-based rewrite. Annotate each one: what it does, which register it works in, and what it assumes feedback is for.</div></li>
+        <li class="step-row" style="border-bottom-color:var(--h-rule, #E8C4A8);"><div class="step-n">2</div><div style="color:var(--thu-dark);"><strong>Written reflection, 1000 to 1500 words:</strong> argue your answer to "What is feedback for?" using your samples as evidence and the registers as your frame.</div></li>
+        <li class="step-row" style="border-bottom-color:var(--h-rule, #E8C4A8);"><div class="step-n">3</div><div style="color:var(--thu-dark);"><strong>Sommers, Inoue, and at least one other reading:</strong> Activity 02 gives you Sommers, Activity 03 gives you Inoue, and Activity 01 gives you Smith.</div></li>
+        <li class="step-row"><div class="step-n">4</div><div style="color:var(--thu-dark);"><strong>What you'd revise with more time or context:</strong> start from the gap between the sentence you wrote at the start of class and your revised one.</div></li>
+      </ul>
+    </div>
+
+    <div class="leave-box">
+      <span class="leave-label">Before you leave</span>
+      <div class="leave-title">Three things to have in Tab 5 today</div>
+      <ul class="leave-items">
+        <li class="leave-item"><div class="leave-dot"></div><div>Your revised one-sentence answer to "What is feedback for?" as the working claim of your reflection.</div></li>
+        <li class="leave-item"><div class="leave-dot"></div><div>Your own marginal comments and formative note on the practice passage, plus your labor-based rewrite.</div></li>
+        <li class="leave-item"><div class="leave-dot"></div><div>Notes from each activity, labeled Smith, Sommers, and Inoue, ready to become reflection paragraphs.</div></li>
+      </ul>
+    </div>
+
+    <div class="note" style="margin-top:16px;">
+      <strong>Feedback & Assessment Portfolio, Part 1, due Sunday, October 4, at midnight in Tab 5.</strong> Annotating papers from the <a href="https://drive.google.com/drive/folders/1Af_8kSOBO76dcMt5xwsrRhedgqT18T6Q?usp=sharing" target="_blank" rel="noopener noreferrer">student sample papers folder</a> moves to Part 2 in Week 13, which extends and revises this work, so keep both visible in Tab 5.
+    </div>
+
+    <div class="note" style="margin-top:10px;">
+      <strong>Further reading, optional:</strong> Inman & Powell, "In the Absence of Grades" (2018), and Grigoryan, "Feedback 2.0" (2017). Inman & Powell extend Inoue into contract design. Grigoryan supports the audio and video approach. Either works as your additional reading.
+    </div>
+
+  </section>
+
+</main>
+
+<script>
+  function highlight() {
+    const now = new Date();
+    const mins = now.getHours() * 60 + now.getMinutes();
+
+    document.querySelectorAll('.tl-item').forEach(el => {
+      const s = parseInt(el.dataset.start);
+      const e = parseInt(el.dataset.end);
+      el.classList.toggle('active', mins >= s && mins < e);
+    });
+
+    const map = [
+      ['sec-opening',   705, 723],
+      ['sec-summative', 723, 738],
+      ['sec-formative', 738, 753],
+      ['sec-labor',     753, 765],
+      ['sec-synthesis', 765, 780],
+    ];
+    map.forEach(([id, s, e]) => {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('active', mins >= s && mins < e);
+    });
+  }
+  highlight();
+  setInterval(highlight, 30000);
+</script>
+
+</body>
+</html>
