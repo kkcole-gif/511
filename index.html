@@ -1457,6 +1457,7 @@ const WEEKS = [
   },
 
   {
+     {
     num: 9,
     title: "Feminist & Queer Rhetorics in Composition",
     dates: "Oct 13 & 15",
@@ -1468,49 +1469,49 @@ const WEEKS = [
       readings: [
         { author: "Flynn", title: "\"Composing as a Woman\"", year: "1988" },
         { author: "Richie & Boardman", title: "\"Feminism in Composition\"", year: "1999" },
-        { author: "Stenberg", title: "\"Feminist Repurposing\"", year: "2015" },
+        { author: "Stenberg", title: "Repurposing Composition: Feminist Interventions for a Neoliberal Age (excerpt)", year: "2015" },
       ],
       prompts: [
         { label: "Core Question", text: "How do Flynn, Richie & Boardman, and Stenberg differently understand 'feminist pedagogy'?" },
         { label: "Institutional Critique", text: "How does Stenberg's 'feminist repurposing' challenge traditional academic structures?" },
         { label: "Intersectional Analysis", text: "How do feminist approaches account for race, class, sexuality, and other identities?" },
       ],
-      starter: "Flynn asks what it means to 'compose as a woman.' What does it mean to teach as a feminist?",
+      starter: "Discussion starters: Hadia on Flynn, Kayla L. on Stenberg. Flynn asks what it means to 'compose as a woman.' What does it mean to teach as a feminist?",
       reflection: "What values or practices from feminist or queer rhetorics inform your pedagogical vision?",
     },
     thursday: {
       date: "Thursday, October 15",
       type: "Assignment Design Peer Workshop",
       readings: [
-        { author: "Winans", title: "\"Queer Pedagogy\"", year: "2006" },
+        { author: "Winans", title: "\"Queering Pedagogy in the English Classroom: Engaging with the Places Where Thinking Stops\"", year: "2006" },
         { author: "Alexander & Wallace", title: "\"The Queer Turn in Composition\"", year: "2009" },
       ],
       activities: [
-        { title: "Writing Assignment Design Share & Feedback", time: "30 min", desc: "Share your Writing Assignment Design drafts in small groups. Peer feedback structured around feminist/queer frameworks: Whose voices does this assignment center? What bodies and identities does it assume?" },
-        { title: "Inclusion Audit Activity", time: "25 min", desc: "Apply an inclusion audit to an existing assignment using feminist and queer frameworks. What assumptions about student identity, language, and experience are embedded in the language?" },
-        { title: "Embodied Pedagogy Discussion", time: "15 min", desc: "What does 'embodied' pedagogy look like in practice — especially in online environments? How do queer rhetorics (Winans, Alexander & Wallace) expand what's possible in composition instruction?" },
+        { title: "Discussion Starters: Kayla B. & Callie", time: "24 min", desc: "Kayla B. opens on Winans and Callie opens on Alexander & Wallace, about 12 minutes each." },
+        { title: "Draft Workshop & Inclusion Audit", time: "30 min", desc: "Bring your Writing Assignment Design draft, printed or as a Google Doc. In groups of three, audit each draft with feminist and queer frameworks: Whose voices does this assignment center? What bodies and identities does it assume?" },
+        { title: "Bodies in Online Classrooms", time: "13 min", desc: "Revise a sample Week 1 discussion-board prompt. What does embodied pedagogy look like online, and how do Winans and Alexander & Wallace expand it?" },
+        { title: "Exit Reflection", time: "8 min", desc: "Explain queer pedagogy to a skeptical colleague, and name one revision you will make before Sunday, October 25." },
       ],
-      reflection: "How would you explain 'queer pedagogy' to a skeptical colleague — and why would it matter for a writing course?",
+      reflection: "How would you explain 'queer pedagogy' to a skeptical colleague, and why would it matter for a writing course?",
     },
     preview_thu_for_tue: {
-      readings: ["Winans, \"Queer Pedagogy\" (2006)", "Alexander & Wallace, \"The Queer Turn in Composition\" (2009)"],
-      activities: ["Writing Assignment Design peer feedback workshop", "Inclusion audit activity", "Embodied pedagogy discussion"],
-      note: "📝 Writing Assignment Design with OWI Best Practices DUE Thursday, October 15",
+      readings: ["Winans, \"Queering Pedagogy in the English Classroom: Engaging with the Places Where Thinking Stops\" (2006)", "Alexander & Wallace, \"The Queer Turn in Composition\" (2009)"],
+      activities: ["Discussion starters: Kayla B. and Callie", "Draft workshop and inclusion audit (bring your draft)", "Bodies in online classrooms"],
+      note: "📝 Writing Assignment Design with OWI Best Practices DUE Sunday, October 25",
     },
     preview_next_for_thu: {
       week: 10,
       topic: "Fall Break — No Class",
       readings: [],
-      prompts: ["No class Week 10. Rest and recharge before Week 11: Writing Across Contexts & Genre Transfer."],
+      prompts: ["No class Week 10. Writing Assignment Design is due Sunday, October 25. Week 11 resumes with Writing Across Contexts & Genre Transfer."],
       note: null,
     },
     assignment: {
       name: "Writing Assignment Design with OWI Best Practices",
-      due: "Due Thursday, October 15",
+      due: "Due Sunday, October 25",
       desc: "Writing assignment prompt aligned with OWI best practices (1–2 pages) + pedagogical rationale (750–1000 words).",
     },
   },
-
   {
     num: 10,
     title: "Fall Break",
@@ -2025,16 +2026,18 @@ function showWeek(num) {
   const w = WEEKS.find(x => x.num === num);
   if (!w) return;
 
-  const workshopPages = {
+    const workshopPages = {
     2: 'aug27_session.html',
     3: 'sep03_workshop.html',
     6: 'sep24_workshop.html',
     7: 'oct01_workshop.html',
     8: 'oct08_workshop.html',
+    9: 'oct15_workshop.html',
   };
   const tuesdayPages = {
     3: 'sep01_workshop.html',
     6: 'sep22_workshop.html',
+    9: 'oct13_workshop.html',
   };
   setActive(num);
   document.getElementById('breadcrumb').textContent = `Week ${w.num} · ${w.title}`;
