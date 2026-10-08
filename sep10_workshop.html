@@ -187,7 +187,7 @@
     background: var(--time-bg);
     color: var(--time-color);
     padding: 3px 10px;
-    border-radius: 12px;
+    border-radius: var(--radius, 12px);
     white-space: nowrap;
     letter-spacing: var(--label-track, 0.08em);
     text-transform: var(--label-case, uppercase);
@@ -244,7 +244,7 @@
   .phase-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 16px 18px;
     box-shadow: var(--shadow);
   }
@@ -265,7 +265,7 @@
     background: var(--thu);
     color: white;
     padding: 2px 9px;
-    border-radius: 10px;
+    border-radius: var(--radius, 10px);
     white-space: nowrap;
   }
 
@@ -310,7 +310,7 @@
   .component-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     overflow: hidden;
     box-shadow: var(--shadow);
   }
@@ -335,7 +335,7 @@
   .activity-box {
     background: var(--thu-light);
     border: 1px solid var(--h-rule, #E8C4A8);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 16px 18px;
     margin-top: 12px;
   }
@@ -383,7 +383,7 @@
   .sample {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     box-shadow: var(--shadow);
     overflow: hidden;
     margin-top: 14px;
@@ -408,7 +408,7 @@
     font-weight: 500;
     background: rgba(61,31,90,0.1);
     padding: 2px 8px;
-    border-radius: 9px;
+    border-radius: var(--radius, 9px);
   }
 
   .sample-context {
@@ -435,7 +435,7 @@
   .sort-col {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 12px 14px;
   }
 
@@ -458,7 +458,7 @@
   .cz-arts {
     background: var(--pratt-light);
     border: 1px solid var(--h-rule, #C5DDD0);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 12px 16px;
     margin-top: 12px;
     font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
@@ -487,7 +487,7 @@
   .framework-col {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 14px 16px;
   }
 
@@ -533,7 +533,7 @@
   .preview-box {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 18px 20px;
     box-shadow: var(--shadow);
   }

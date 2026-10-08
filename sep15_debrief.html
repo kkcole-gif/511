@@ -166,7 +166,7 @@
     background: var(--badge-bg);
     color: var(--badge-color);
     padding: 3px 10px;
-    border-radius: 12px;
+    border-radius: var(--radius, 12px);
     white-space: nowrap;
     letter-spacing: var(--label-track, 0.08em);
     text-transform: var(--label-case, uppercase);
@@ -218,7 +218,7 @@
   .quote-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     overflow: hidden;
     box-shadow: var(--shadow);
     display: flex;
@@ -256,7 +256,7 @@
   .phase-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 16px 18px;
     box-shadow: var(--shadow);
   }
@@ -277,7 +277,7 @@
     background: var(--tue);
     color: white;
     padding: 2px 9px;
-    border-radius: 10px;
+    border-radius: var(--radius, 10px);
     white-space: nowrap;
   }
 
@@ -321,7 +321,7 @@
   .chip {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: var(--radius, 16px);
     padding: 5px 14px;
     font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
@@ -331,7 +331,7 @@
   .scenario {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     box-shadow: var(--shadow);
     overflow: hidden;
     margin-top: 14px;
@@ -366,7 +366,7 @@
   .answer-col {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 12px 14px;
   }
 
@@ -413,7 +413,7 @@
   .pad-box {
     background: var(--pad-light);
     border: 1px solid var(--pad-border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 16px 18px;
     margin: 14px 0;
     color: var(--pad);
@@ -442,7 +442,7 @@
     color: white;
     background: var(--pad);
     text-decoration: none;
-    border-radius: 16px;
+    border-radius: var(--radius, 16px);
     padding: 7px 16px;
     margin-top: 6px;
     margin-right: 6px;
@@ -501,7 +501,7 @@
     color: var(--tue);
     text-decoration: none;
     border: 1px solid var(--tue);
-    border-radius: 16px;
+    border-radius: var(--radius, 16px);
     padding: 6px 16px;
   }
 
@@ -516,7 +516,7 @@
   .proposal {
     background: var(--quote-bg);
     border: 1px solid var(--h-rule, #D9D0E8);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 14px 18px;
     margin: 14px 0;
     color: var(--quote-color);
@@ -537,7 +537,7 @@
   .decision {
     background: var(--note-bg);
     border: 1px solid var(--h-rule, #E8C4A8);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 14px 18px;
     margin: 14px 0;
     color: var(--note-text);
@@ -559,7 +559,7 @@
     padding: 14px 18px;
     background: var(--surface);
     border: 1px dashed var(--tue-mid);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     color: var(--text-2);
     font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     line-height: 1.6;
@@ -575,7 +575,7 @@
     padding: 12px 16px;
     background: transparent;
     border: 1px dashed var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
   }
 
   .reserve-label { color: var(--text-3); }
@@ -610,7 +610,7 @@
   .map-row {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     box-shadow: var(--shadow);
     overflow: hidden;
   }
@@ -622,7 +622,7 @@
   }
   .map-part {
     font-family: var(--font-label, 'IBM Plex Mono', monospace); font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px))); text-transform: var(--label-case, uppercase); letter-spacing: var(--label-track, 0.1em);
-    background: var(--quote-color); color: white; padding: 2px 9px; border-radius: 10px;
+    background: var(--quote-color); color: white; padding: 2px 9px; border-radius: var(--radius, 10px);
   }
   .map-term { font-family: var(--font-head, 'Spectral', serif); font-size: max(var(--type-min, 0px), calc(16px * var(--type-scale, 1) + var(--type-bump, 0px))); font-weight: 600; color: var(--quote-color); }
   .map-body { display: grid; grid-template-columns: 1fr 1fr; }

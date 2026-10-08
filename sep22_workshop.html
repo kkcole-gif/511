@@ -175,7 +175,7 @@
     background: var(--badge-bg);
     color: var(--badge-color);
     padding: 3px 10px;
-    border-radius: 12px;
+    border-radius: var(--radius, 12px);
     white-space: nowrap;
     letter-spacing: var(--label-track, 0.08em);
     text-transform: var(--label-case, uppercase);
@@ -231,7 +231,7 @@
   .arc-box {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 14px 16px;
     flex: 1;
     box-shadow: var(--shadow);
@@ -281,7 +281,7 @@
   .phase-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 16px 18px;
     box-shadow: var(--shadow);
   }
@@ -302,7 +302,7 @@
     background: var(--tue);
     color: white;
     padding: 2px 9px;
-    border-radius: 10px;
+    border-radius: var(--radius, 10px);
     white-space: nowrap;
   }
 
@@ -339,7 +339,7 @@
   .opener-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     overflow: hidden;
     box-shadow: var(--shadow);
     margin-top: 14px;
@@ -361,7 +361,7 @@
     background: var(--h-pill, rgba(255,255,255,0.2));
     color: white;
     padding: 2px 9px;
-    border-radius: 10px;
+    border-radius: var(--radius, 10px);
     white-space: nowrap;
   }
 
@@ -392,7 +392,7 @@
   .cluster-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     overflow: hidden;
     box-shadow: var(--shadow);
   }
@@ -413,7 +413,7 @@
     background: var(--tue);
     color: white;
     padding: 1px 7px;
-    border-radius: 9px;
+    border-radius: var(--radius, 9px);
     flex-shrink: 0;
   }
 
@@ -450,7 +450,7 @@
     display: inline-block;
     background: var(--badge-bg);
     color: var(--tue-dark);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 1px 7px;
     font-size: max(var(--type-min, 0px), calc(9px * var(--type-scale, 1) + var(--type-bump, 0px)));
     margin-left: 6px;
@@ -461,7 +461,7 @@
   .activity-steps {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 16px 18px;
     box-shadow: var(--shadow);
     margin-bottom: 14px;
@@ -540,7 +540,7 @@
     color: var(--tue);
     text-decoration: none;
     border: 1px solid var(--tue);
-    border-radius: 16px;
+    border-radius: var(--radius, 16px);
     padding: 6px 16px;
   }
   .next-link:hover { background: var(--tue-light); }

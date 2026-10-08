@@ -172,7 +172,7 @@
     background: var(--time-bg);
     color: var(--time-color);
     padding: 3px 10px;
-    border-radius: 12px;
+    border-radius: var(--radius, 12px);
     white-space: nowrap;
   }
 
@@ -211,7 +211,7 @@
   }
 
   .expert-card {
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     border: 1px solid var(--border);
     overflow: hidden;
     box-shadow: var(--shadow);
@@ -313,7 +313,7 @@
     background: var(--tue);
     color: white;
     padding: 2px 8px;
-    border-radius: 10px;
+    border-radius: var(--radius, 10px);
     white-space: nowrap;
     flex-shrink: 0;
     margin-top: 2px;
@@ -398,7 +398,7 @@
   .protocol-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 14px 16px;
     box-shadow: var(--shadow);
   }
@@ -433,7 +433,7 @@
     margin-top: 14px;
     background: var(--tue-light);
     border: 1px solid var(--h-rule, #C8BCE8);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 14px 18px;
     font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--tue);
