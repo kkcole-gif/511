@@ -1533,34 +1533,35 @@ const WEEKS = [
       date: "Tuesday, October 27",
       type: "Student-Led Seminar",
       readings: [
-        { author: "Wardle", title: "\"Mutt Genres and the Goal of FYC\"", year: "2009" },
-        { author: "Reiff & Bawarshi", title: "\"Tracing Discursive Resources\"", year: "2011" },
+        { author: "Wardle", title: "\"'Mutt Genres' and the Goal of FYC: Can We Help Students Write the Genres of the University?\"", year: "2009" },
+        { author: "Reiff & Bawarshi", title: "\"Tracing Discursive Resources: How Students Use Prior Genre Knowledge to Negotiate New Writing Contexts in First-Year Composition\"", year: "2011" },
       ],
       prompts: [
         { label: "Core Question", text: "How do Wardle's 'mutt genres' and Reiff & Bawarshi's 'discursive resources' reframe transfer?" },
         { label: "Pedagogical Implications", text: "What does transfer-conscious pedagogy look like in practice?" },
         { label: "Genre Flexibility", text: "How do we prepare students for genres we can't predict?" },
-        { label: "Method Register", text: "Transfer research is fundamentally a question in the method register: what counts as evidence that writing knowledge has actually moved across contexts? What research methods does each transfer theory presuppose — and what kinds of evidence does each make invisible?" },
+        { label: "Method Register", text: "What counts as evidence that writing knowledge has moved across contexts? What does each reading treat as evidence, and what does each method leave out of view?" },
       ],
-      starter: "Wardle argues FYC should focus on 'mutt genres.' What would this mean for traditional academic writing instruction?",
+      starter: "Discussion starter: Nevaeh on Wardle. Wardle argues FYC should focus on 'mutt genres.' What would this mean for traditional academic writing instruction?",
       reflection: "How can you build curriculum that fosters writing transfer beyond your course?",
     },
     thursday: {
       date: "Thursday, October 29",
       type: "Transfer & Course Design Workshop",
       readings: [
-        { author: "In-class activity & discussion", title: "Genre transfer in your course design (reflection prompt)", year: "" },
+        { author: "Bring your Writing Assignment Design", title: "the version you submitted Sunday, Oct 25", year: "" },
+        { author: "Elon Statement on Writing Transfer", title: "(linked on the workshop page)", year: "2015" },
       ],
       activities: [
-        { title: "Transfer Mapping Activity", time: "25 min", desc: "Map transfer principles onto a course you're designing or teaching. What prior knowledge does your course build on? What are students being prepared to do next?" },
-        { title: "Small Group: Transfer Successes & Failures", time: "25 min", desc: "Share a moment from your educational experience where writing knowledge transferred well — and one where it didn't. What made the difference? What would a teacher have needed to do differently?" },
-        { title: "Scaffolding Design Lab", time: "15 min", desc: "Design two scaffolding moves for an assignment that explicitly teach for transfer. Share with the group for feedback." },
+        { title: "Transfer Successes & Failures", time: "20 min", desc: "Sticky notes and small groups: one moment when writing knowledge traveled for you and one when it stalled. What made the difference, and what would a teacher have needed to do differently?" },
+        { title: "Transfer Map for Your Assignment", time: "23 min", desc: "Map your Writing Assignment Design: what students bring in, where the genre lives outside class, which concepts it names, where students write next, and what would count as evidence of transfer." },
+        { title: "Scaffolding Design Lab", time: "22 min", desc: "Design two scaffolding moves that teach for transfer explicitly, then workshop them in groups of three." },
       ],
       reflection: "What institutional structures support or hinder transfer-conscious teaching in programs you've experienced?",
     },
     preview_thu_for_tue: {
-      readings: ["In-class reflection prompt: Genre transfer in your course design"],
-      activities: ["Transfer principles mapping activity", "Small group: transfer successes and failures", "Scaffolding design lab"],
+      readings: ["Bring your Writing Assignment Design (submitted Oct 25)", "Elon Statement on Writing Transfer (2015)"],
+      activities: ["Transfer successes and failures", "Transfer map for your own assignment", "Scaffolding design lab"],
       note: null,
     },
     preview_next_for_thu: {
@@ -2032,11 +2033,13 @@ function showWeek(num) {
     7: 'oct01_workshop.html',
     8: 'oct08_workshop.html',
     9: 'oct15_workshop.html',
+    11: 'oct29_workshop.html',
   };
   const tuesdayPages = {
     3: 'sep01_workshop.html',
     6: 'sep22_workshop.html',
     9: 'oct13_workshop.html',
+    11: 'oct27_workshop.html',
   };
   setActive(num);
   document.getElementById('breadcrumb').textContent = `Week ${w.num} · ${w.title}`;
