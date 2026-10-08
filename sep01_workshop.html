@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light" data-day="tue">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ENG 511 — Sep 1: Jigsaw Seminar</title>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>ENG 511, Sep 1: Jigsaw Seminar</title>
 <style>
   :root {
     --bg: #F5F4F1;
@@ -30,11 +29,11 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-family: var(--font-body, 'IBM Plex Sans', system-ui, sans-serif);
     background: var(--bg);
     color: var(--text-1);
     line-height: 1.65;
-    font-size: 15px;
+    font-size: max(var(--type-min, 0px), calc(15px * var(--type-scale, 1) + var(--type-bump, 0px)));
     min-height: 100vh;
   }
 
@@ -50,17 +49,17 @@
   }
 
   .course-tag {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    letter-spacing: var(--label-track, 0.14em);
+    text-transform: var(--label-case, uppercase);
+    color: var(--h-on-dark, rgba(255,255,255,0.55));
     margin-bottom: 6px;
   }
 
   .page-title {
-    font-family: 'Spectral', serif;
-    font-size: 28px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(28px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     line-height: 1.2;
     color: white;
@@ -68,28 +67,28 @@
   }
 
   .page-subtitle {
-    font-size: 14px;
-    color: rgba(255,255,255,0.7);
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    color: var(--h-on-dark, rgba(255,255,255,0.7));
     font-style: italic;
   }
 
   .time-display { text-align: right; }
 
   .time-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(9px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    letter-spacing: var(--label-track, 0.12em);
+    text-transform: var(--label-case, uppercase);
+    color: var(--h-on-dark, rgba(255,255,255,0.5));
     margin-bottom: 4px;
   }
 
   .time-clock {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 22px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(22px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: white;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--label-track, 0.05em);
   }
 
   /* ── TIMELINE STRIP ── */
@@ -125,23 +124,23 @@
   }
 
   .tl-time {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: var(--time-color);
     margin-bottom: 3px;
   }
 
   .tl-label {
-    font-size: 11px;
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     text-align: center;
     line-height: 1.3;
   }
 
   .tl-dur {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(9px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-3);
     margin-top: 3px;
   }
@@ -167,8 +166,8 @@
   }
 
   .section-time-badge {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     background: var(--time-bg);
     color: var(--time-color);
@@ -178,16 +177,16 @@
   }
 
   .section-title {
-    font-family: 'Spectral', serif;
-    font-size: 20px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(20px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: var(--text-1);
     flex: 1;
   }
 
   .section-duration {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-3);
   }
 
@@ -197,7 +196,7 @@
 
   /* ── INTRO TEXT ── */
   .intro {
-    font-size: 14px;
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.7;
     margin-bottom: 16px;
@@ -220,18 +219,18 @@
 
   .expert-card-header {
     padding: 12px 16px;
-    font-family: 'Spectral', serif;
-    font-size: 14px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     line-height: 1.3;
   }
 
   .expert-card-header .author {
-    font-size: 10px;
-    font-family: 'IBM Plex Mono', monospace;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.08em);
     opacity: 0.75;
     margin-bottom: 4px;
   }
@@ -251,8 +250,8 @@
     display: flex;
     gap: 10px;
     padding: 8px 0;
-    border-bottom: 1px solid #F2EFE9;
-    font-size: 13px;
+    border-bottom: 1px solid var(--h-tint, #F2EFE9);
+    font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.5;
     align-items: flex-start;
@@ -261,8 +260,8 @@
   .question-item:last-child { border-bottom: none; }
 
   .q-num {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: white;
     width: 18px; height: 18px;
@@ -283,7 +282,7 @@
     padding: 9px 12px;
     background: var(--bg);
     border-radius: 5px;
-    font-size: 12px;
+    font-size: max(var(--type-min, 0px), calc(12px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-3);
     line-height: 1.5;
   }
@@ -299,7 +298,7 @@
     padding: 10px 0;
     border-bottom: 1px solid var(--border);
     align-items: flex-start;
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.5;
   }
@@ -307,10 +306,10 @@
   .teach-step:last-child { border-bottom: none; }
 
   .step-badge {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(9px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.08em);
     background: var(--tue);
     color: white;
     padding: 2px 8px;
@@ -321,10 +320,10 @@
   }
 
   .synthesis-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9.5px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(9.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     color: var(--text-3);
     margin-bottom: 10px;
   }
@@ -336,7 +335,7 @@
     border: 1px solid var(--border);
     border-radius: 6px;
     padding: 12px 16px;
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.55;
     display: flex;
@@ -345,8 +344,8 @@
   }
 
   .synth-q {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--tue-mid);
     font-weight: 500;
     flex-shrink: 0;
@@ -361,7 +360,7 @@
     border: 1px solid var(--border);
     border-radius: 6px;
     padding: 11px 16px;
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     display: flex;
     gap: 12px;
@@ -378,7 +377,7 @@
     border: 1px solid var(--border);
     border-radius: 6px;
     padding: 12px 16px;
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.55;
     display: flex;
@@ -386,7 +385,7 @@
     align-items: flex-start;
   }
 
-  .project-icon { font-size: 15px; flex-shrink: 0; }
+  .project-icon { font-size: max(var(--type-min, 0px), calc(15px * var(--type-scale, 1) + var(--type-bump, 0px))); flex-shrink: 0; }
 
   /* ── LISTENING PROTOCOL ── */
   .protocol-grid {
@@ -405,10 +404,10 @@
   }
 
   .protocol-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(9px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     color: var(--text-3);
     margin-bottom: 10px;
   }
@@ -419,8 +418,8 @@
     display: flex;
     gap: 8px;
     padding: 6px 0;
-    border-bottom: 1px solid #F2EFE9;
-    font-size: 12.5px;
+    border-bottom: 1px solid var(--h-tint, #F2EFE9);
+    font-size: max(var(--type-min, 0px), calc(12.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.45;
     align-items: flex-start;
@@ -428,15 +427,15 @@
 
   .protocol-prompt:last-child { border-bottom: none; }
 
-  .prom-arrow { color: var(--tue-mid); font-size: 11px; flex-shrink: 0; margin-top: 2px; }
+  .prom-arrow { color: var(--tue-mid); font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px))); flex-shrink: 0; margin-top: 2px; }
 
   .exit-task {
     margin-top: 14px;
     background: var(--tue-light);
-    border: 1px solid #C8BCE8;
+    border: 1px solid var(--h-rule, #C8BCE8);
     border-radius: 8px;
     padding: 14px 18px;
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--tue);
     line-height: 1.6;
   }
@@ -450,17 +449,17 @@
     border-radius: 0 8px 8px 0;
     padding: 16px 20px;
     font-style: italic;
-    font-size: 14px;
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--tue);
     line-height: 1.65;
   }
 
   .reflection strong {
     font-style: normal;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(9px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     display: block;
     margin-bottom: 6px;
     color: var(--tue-mid);
@@ -475,6 +474,7 @@
     .timeline-strip { padding: 0 20px; }
   }
 </style>
+<link rel="stylesheet" href="theme.css">
 </head>
 <body>
 
@@ -482,7 +482,7 @@
   <div class="page-header-left">
     <div class="course-tag">ENG 511 · Week 3 · Tuesday, September 1, 2026</div>
     <div class="page-title">Jigsaw Seminar</div>
-    <div class="page-subtitle">Cognitivist & Expressivist Theories — 11:45 AM – 1:00 PM</div>
+    <div class="page-subtitle">Cognitivist & Expressivist Theories · 11:45 AM – 1:00 PM</div>
   </div>
   <div class="time-display">
     <div class="time-label">Current Time</div>
@@ -578,7 +578,7 @@
             </li>
             <li class="question-item">
               <div class="q-num hartwell">2</div>
-              <div>Which grammar do most writing teachers deploy in instruction? Which do student writers actually use when they compose?</div>
+              <div>Which grammar do most writing teachers deploy in instruction? Which do student writers use when they compose?</div>
             </li>
             <li class="question-item">
               <div class="q-num hartwell">3</div>
@@ -602,7 +602,7 @@
             </li>
             <li class="question-item">
               <div class="q-num fh">2</div>
-              <div>What does "task environment" mean, and why does it matter that they included it?</div>
+              <div>What does "task environment" mean, and why does including it in the model matter?</div>
             </li>
             <li class="question-item">
               <div class="q-num fh">3</div>
@@ -623,15 +623,15 @@
       <div class="section-title">Phase 2: Mixed Teaching Groups</div>
       <div class="section-duration">18 min</div>
     </div>
-    <p class="intro">Regroup into trios — one Perl reader, one Hartwell reader, one Flower & Hayes reader.</p>
+    <p class="intro">Regroup into trios: one Perl reader, one Hartwell reader, one Flower & Hayes reader.</p>
 
     <ul class="teach-steps">
       <li class="teach-step">
-        <div class="step-badge">Each teacher — ~4 min</div>
+        <div class="step-badge">Each teacher: ~4 min</div>
         <div>State your article's central claim in one sentence. Offer one implication for teaching or feedback. Pose your group's open question.</div>
       </li>
       <li class="teach-step">
-        <div class="step-badge">Synthesis — 6 min</div>
+        <div class="step-badge">Synthesis: 6 min</div>
         <div>Work through one of the prompts below together, or follow wherever the teaching led you.</div>
       </li>
     </ul>
@@ -644,7 +644,7 @@
       </div>
       <div class="synthesis-prompt">
         <div class="synth-q">B</div>
-        <div>Perl cares about felt sense. Flower & Hayes care about cognitive load. Hartwell cares about grammatical knowledge that already exists. How do these concerns fit together — or do they?</div>
+        <div>Perl cares about felt sense. Flower & Hayes care about cognitive load. Hartwell cares about grammatical knowledge writers already have. How do these concerns fit together, or do they?</div>
       </div>
       <div class="synthesis-prompt">
         <div class="synth-q">C</div>
@@ -676,24 +676,24 @@
   <div class="section" id="sec-4">
     <div class="section-header">
       <div class="section-time-badge">12:28</div>
-      <div class="section-title">Literacy Narrative — Project Discussion</div>
+      <div class="section-title">Literacy Narrative: Project Discussion</div>
       <div class="section-duration">15 min</div>
     </div>
     <div class="project-questions">
       <div class="project-q">
-        <div class="project-icon">📝</div>
-        <div>What does "multimodal" mean for your specific literacy history? Does your story have a visual or sonic dimension that a written essay couldn't carry?</div>
+        <div class="project-icon"></div>
+        <div>What does "multimodal" mean for your specific literacy history? Does your story have a visual or sonic dimension a written essay would leave out?</div>
       </div>
       <div class="project-q">
-        <div class="project-icon">🔍</div>
-        <div>What's the difference between <em>describing</em> your experiences as a writer and <em>analyzing</em> them? Perl, Flower & Hayes, and Hartwell all observe writers from the outside — what would it mean to turn that lens inward?</div>
+        <div class="project-icon"></div>
+        <div>What's the difference between <em>describing</em> your experiences as a writer and <em>analyzing</em> them? Perl, Flower & Hayes, and Hartwell all observe writers from the outside. What would it mean to turn the same lens inward?</div>
       </div>
       <div class="project-q">
-        <div class="project-icon">✏️</div>
+        <div class="project-icon"></div>
         <div>The teaching philosophy draft is described as "initial" intentionally. What does it mean to write something you know will change? What do you commit to now versus hold loosely?</div>
       </div>
       <div class="project-q">
-        <div class="project-icon">🎙️</div>
+        <div class="project-icon"></div>
         <div><strong>Format:</strong> Written essay (1000–1500 words), podcast (5–7 min), or video (5–7 min). Due Thursday, September 3.</div>
       </div>
     </div>
@@ -746,7 +746,7 @@
     </div>
 
     <div class="exit-task">
-      <strong>Before you leave:</strong> Write privately — What 2–3 minutes of your narrative will you share Thursday, and what one question do you want your group to respond to?
+      <strong>Before you leave:</strong> Write privately. What 2–3 minutes of your narrative will you share Thursday, and what one question do you want your group to respond to?
     </div>
   </div>
 
@@ -759,7 +759,7 @@
     </div>
     <div class="reflection">
       <strong>Perusall post or in-class writing</strong>
-      "How do cognitive or expressivist lenses shape the way you give — or receive — feedback? Which framework feels closest to how you currently think about your own writing process?"
+      "How do cognitive or expressivist lenses shape the way you give (or receive) feedback? Which framework feels closest to how you currently think about your own writing process?"
     </div>
   </div>
 

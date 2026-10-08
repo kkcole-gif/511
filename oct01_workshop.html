@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light" data-day="thu">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ENG 511, Oct 1: What Is Feedback For?</title>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #F5F4F1;
@@ -35,11 +34,11 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-family: var(--font-body, 'IBM Plex Sans', system-ui, sans-serif);
     background: var(--bg);
     color: var(--text-1);
     line-height: 1.65;
-    font-size: 15px;
+    font-size: max(var(--type-min, 0px), calc(15px * var(--type-scale, 1) + var(--type-bump, 0px)));
     min-height: 100vh;
   }
 
@@ -49,7 +48,7 @@
   .skip-link {
     position: absolute; left: -999px; top: 8px;
     background: white; color: var(--thu-dark); padding: 8px 12px;
-    border-radius: 6px; z-index: 10; font-size: 13px;
+    border-radius: 6px; z-index: 10; font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
   }
   .skip-link:focus { left: 12px; }
 
@@ -64,16 +63,16 @@
   }
 
   .sub-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: rgba(255,255,255,0.75);
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.12em);
+    color: var(--h-on-dark, rgba(255,255,255,0.75));
   }
 
   .sub-text {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(12px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: white;
   }
@@ -89,17 +88,17 @@
   }
 
   .course-tag {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.85);
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    letter-spacing: var(--label-track, 0.14em);
+    text-transform: var(--label-case, uppercase);
+    color: var(--h-on-dark, rgba(255,255,255,0.85));
     margin-bottom: 6px;
   }
 
   .page-title {
-    font-family: 'Spectral', serif;
-    font-size: 28px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(28px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     line-height: 1.2;
     color: white;
@@ -107,28 +106,28 @@
   }
 
   .page-subtitle {
-    font-size: 14px;
-    color: rgba(255,255,255,0.9);
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    color: var(--h-on-dark, rgba(255,255,255,0.9));
     font-style: italic;
   }
 
   .mode-display { text-align: right; }
 
   .mode-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.85);
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    letter-spacing: var(--label-track, 0.12em);
+    text-transform: var(--label-case, uppercase);
+    color: var(--h-on-dark, rgba(255,255,255,0.85));
     margin-bottom: 4px;
   }
 
   .mode-value {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 16px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(16px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: white;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--label-track, 0.05em);
   }
 
   .timeline-strip {
@@ -165,15 +164,15 @@
   }
 
   .tl-num {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: var(--thu);
     margin-bottom: 3px;
   }
 
   .tl-label {
-    font-size: 11.5px;
+    font-size: max(var(--type-min, 0px), calc(11.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     text-align: center;
     line-height: 1.3;
@@ -197,29 +196,29 @@
   }
 
   .section-num {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     background: var(--badge-bg);
     color: var(--badge-color);
     padding: 3px 10px;
     border-radius: 12px;
     white-space: nowrap;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    letter-spacing: var(--label-track, 0.08em);
+    text-transform: var(--label-case, uppercase);
   }
 
   .section-title {
-    font-family: 'Spectral', serif;
-    font-size: 20px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(20px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: var(--text-1);
     flex: 1;
   }
 
   .section-pace {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-3);
     white-space: nowrap;
   }
@@ -229,7 +228,7 @@
   .section.active .section-title { color: var(--thu); }
 
   .lede {
-    font-size: 14px;
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.65;
     margin-bottom: 14px;
@@ -240,7 +239,7 @@
     border-left: 3px solid var(--note-border);
     border-radius: 0 6px 6px 0;
     padding: 12px 16px;
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--note-text);
     margin-bottom: 14px;
     line-height: 1.55;
@@ -258,18 +257,18 @@
   }
 
   .question-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: rgba(255,255,255,0.75);
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.14em);
+    color: var(--h-on-dark, rgba(255,255,255,0.75));
     display: block;
     margin-bottom: 8px;
   }
 
   .question-text {
-    font-family: 'Spectral', serif;
-    font-size: 30px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(30px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     line-height: 1.15;
     color: white;
@@ -277,8 +276,8 @@
   }
 
   .question-sub {
-    font-size: 13.5px;
-    color: rgba(255,255,255,0.9);
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    color: var(--h-on-dark, rgba(255,255,255,0.9));
     line-height: 1.6;
     max-width: 680px;
   }
@@ -288,16 +287,16 @@
     margin-top: 10px;
     padding-top: 10px;
     border-top: 1px dashed var(--border);
-    font-size: 12.5px;
+    font-size: max(var(--type-min, 0px), calc(12.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-1);
     line-height: 1.5;
   }
 
   .answer-line .answer-tag {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(9px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     color: var(--thu);
     display: block;
     margin-bottom: 2px;
@@ -308,16 +307,16 @@
     border-radius: 6px;
     padding: 10px 14px;
     margin-bottom: 12px;
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--thu-dark);
     line-height: 1.55;
   }
 
   .activity-answer .answer-tag {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(9px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     color: var(--thu);
     display: block;
     margin-bottom: 3px;
@@ -339,17 +338,17 @@
     background: var(--bg);
   }
   .voices-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.12em);
     color: var(--thu);
     display: block;
     margin-bottom: 2px;
   }
   .voices-title {
-    font-family: 'Spectral', serif;
-    font-size: 15px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(15px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: var(--text-1);
   }
@@ -364,8 +363,8 @@
   .voice-col:last-child { border-right: none; }
   .voice-col .reg-pill { margin-bottom: 8px; }
   .voice {
-    font-family: 'Spectral', serif;
-    font-size: 13.5px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-style: italic;
     color: var(--text-1);
     line-height: 1.5;
@@ -373,10 +372,10 @@
   }
   .voice:last-child { margin-bottom: 0; }
   .voice-name {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-style: normal;
-    font-size: 10px;
-    letter-spacing: 0.06em;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    letter-spacing: var(--label-track, 0.06em);
     color: var(--text-3);
     display: block;
     margin-top: 2px;
@@ -384,26 +383,26 @@
   .voices-foot {
     padding: 12px 20px;
     border-top: 1px solid var(--border);
-    font-size: 13px;
+    font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.55;
   }
   .annot-card {
-    border: 1px solid #E8C4A8;
-    background: #FFFCFA;
+    border: 1px solid var(--h-rule, #E8C4A8);
+    background: var(--h-white, #FFFCFA);
     border-radius: 8px;
     padding: 12px 16px;
     margin: 0 0 12px;
   }
   .annot-card .voices-label { margin-bottom: 8px; }
   .annot-q {
-    font-family: 'Spectral', serif;
-    font-size: 14px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-style: italic;
     color: var(--text-1);
     line-height: 1.5;
     padding: 6px 0;
-    border-bottom: 1px solid #F2EFE9;
+    border-bottom: 1px solid var(--h-tint, #F2EFE9);
   }
   .annot-q:last-child { border-bottom: none; }
 
@@ -428,35 +427,35 @@
     border-bottom: 1px solid var(--border);
   }
   .sample-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     color: var(--thu);
   }
   .sample-kind {
-    font-size: 11.5px;
+    font-size: max(var(--type-min, 0px), calc(11.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-style: italic;
     color: var(--text-3);
   }
   .sample-body {
     padding: 14px 16px;
-    font-family: 'Spectral', serif;
-    font-size: 15px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(15px * var(--type-scale, 1) + var(--type-bump, 0px)));
     line-height: 1.7;
     color: var(--text-1);
   }
   .sample-body.comment {
-    font-family: 'IBM Plex Sans', system-ui, sans-serif;
-    font-size: 14px;
+    font-family: var(--font-body, 'IBM Plex Sans', system-ui, sans-serif);
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-1);
-    border-left: 3px solid #C0392B;
+    border-left: 3px solid var(--h-umber, #C0392B);
   }
   .sample-body.comment.formative { border-left-color: var(--reg-ped); }
   .sample-grade {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-weight: 500;
-    color: #C0392B;
+    color: var(--h-umber, #C0392B);
     margin-left: 6px;
   }
   .sample-pair {
@@ -465,7 +464,7 @@
     gap: 10px;
   }
   .sample-note {
-    font-size: 12px;
+    font-size: max(var(--type-min, 0px), calc(12px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-3);
     font-style: italic;
     margin-top: 4px;
@@ -475,19 +474,19 @@
   .portfolio-tag {
     margin-top: 12px;
     background: var(--thu-light);
-    border: 1px solid #E8C4A8;
+    border: 1px solid var(--h-rule, #E8C4A8);
     border-radius: 8px;
     padding: 10px 14px;
-    font-size: 13px;
+    font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--thu-dark);
     line-height: 1.55;
   }
   .portfolio-tag strong {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9.5px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(9.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     color: var(--thu);
     display: block;
     margin-bottom: 2px;
@@ -516,29 +515,29 @@
     align-items: center;
     padding: 0 8px;
     color: var(--text-3);
-    font-size: 18px;
+    font-size: max(var(--type-min, 0px), calc(18px * var(--type-scale, 1) + var(--type-bump, 0px)));
     flex-shrink: 0;
   }
 
   .arc-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(9px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     color: var(--text-3);
     margin-bottom: 4px;
   }
 
   .arc-author {
-    font-family: 'Spectral', serif;
-    font-size: 14.5px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(14.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: var(--text-1);
     margin-bottom: 4px;
   }
 
   .arc-desc {
-    font-size: 12px;
+    font-size: max(var(--type-min, 0px), calc(12px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.5;
     font-style: italic;
@@ -546,10 +545,10 @@
 
   .reg-badge, .reg-pill {
     display: inline-block;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(9px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.09em);
     padding: 2px 8px;
     border-radius: 9px;
     margin-top: 10px;
@@ -580,16 +579,16 @@
   }
 
   .framework-header-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: rgba(255,255,255,0.8);
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.12em);
+    color: var(--h-on-dark, rgba(255,255,255,0.8));
   }
 
   .framework-header-title {
-    font-family: 'Spectral', serif;
-    font-size: 14px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: white;
   }
@@ -607,10 +606,10 @@
   .reg-col:last-child { border-right: none; }
 
   .reg-col-tag {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(9px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.12em);
     margin-bottom: 6px;
     display: block;
   }
@@ -620,8 +619,8 @@
   .reg-col-tag.meth { color: var(--reg-meth); }
 
   .reg-col-name {
-    font-family: 'Spectral', serif;
-    font-size: 15px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(15px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: var(--text-1);
     margin-bottom: 4px;
@@ -629,8 +628,8 @@
   }
 
   .reg-col-q {
-    font-family: 'Spectral', serif;
-    font-size: 14px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-style: italic;
     color: var(--text-1);
     line-height: 1.45;
@@ -638,7 +637,7 @@
   }
 
   .reg-col-def {
-    font-size: 12px;
+    font-size: max(var(--type-min, 0px), calc(12px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.5;
   }
@@ -671,13 +670,13 @@
     flex-wrap: wrap;
   }
 
-  .activity-header.act { background: var(--reg-act-bg); border-bottom-color: #E8D8B8; }
-  .activity-header.ped { background: var(--reg-ped-bg); border-bottom-color: #D0D9EF; }
-  .activity-header.meth { background: var(--reg-meth-bg); border-bottom-color: #D8CCE8; }
+  .activity-header.act { background: var(--reg-act-bg); border-bottom-color: var(--h-rule, #E8D8B8); }
+  .activity-header.ped { background: var(--reg-ped-bg); border-bottom-color: var(--h-rule, #D0D9EF); }
+  .activity-header.meth { background: var(--reg-meth-bg); border-bottom-color: var(--h-rule, #D8CCE8); }
 
   .activity-num {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 22px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(22px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     line-height: 1;
     flex-shrink: 0;
@@ -693,8 +692,8 @@
   .activity-tags { margin-bottom: 4px; }
 
   .activity-title {
-    font-family: 'Spectral', serif;
-    font-size: 17px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(17px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: var(--text-1);
     line-height: 1.3;
@@ -703,7 +702,7 @@
   .activity-body { padding: 16px 20px; }
 
   .activity-framing {
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.6;
     margin-bottom: 12px;
@@ -717,8 +716,8 @@
     display: flex;
     gap: 12px;
     padding: 7px 0;
-    border-bottom: 1px solid #F2EFE9;
-    font-size: 13.5px;
+    border-bottom: 1px solid var(--h-tint, #F2EFE9);
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.55;
     align-items: flex-start;
@@ -727,8 +726,8 @@
   .step-row:last-child { border-bottom: none; }
 
   .step-n {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     background: var(--thu);
     color: white;
@@ -754,18 +753,18 @@
   }
 
   .prompt-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(9px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.12em);
     color: var(--text-3);
     margin-bottom: 6px;
     display: block;
   }
 
   .prompt-text {
-    font-family: 'Spectral', serif;
-    font-size: 14.5px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(14.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-style: italic;
     color: var(--text-1);
     line-height: 1.6;
@@ -790,8 +789,8 @@
   .answer-cell .reg-pill { margin-bottom: 8px; }
 
   .answer-cell p {
-    font-family: 'Spectral', serif;
-    font-size: 14px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-style: italic;
     color: var(--text-1);
     line-height: 1.5;
@@ -805,18 +804,18 @@
   }
 
   .leave-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: rgba(255,255,255,0.7);
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.14em);
+    color: var(--h-on-dark, rgba(255,255,255,0.7));
     margin-bottom: 10px;
     display: block;
   }
 
   .leave-title {
-    font-family: 'Spectral', serif;
-    font-size: 18px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(18px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: white;
     margin-bottom: 12px;
@@ -829,8 +828,8 @@
     gap: 10px;
     padding: 7px 0;
     border-bottom: 1px solid rgba(255,255,255,0.12);
-    font-size: 13.5px;
-    color: rgba(255,255,255,0.9);
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    color: var(--h-on-dark, rgba(255,255,255,0.9));
     line-height: 1.55;
     align-items: flex-start;
   }
@@ -848,8 +847,8 @@
   .next-link {
     display: inline-block;
     margin-top: 16px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(12px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: var(--thu);
     text-decoration: none;
@@ -872,9 +871,10 @@
     .voice-col:last-child { border-bottom: none; }
     .reg-col { border-right: none; border-bottom: 1px solid var(--border); }
     .reg-col:last-child { border-bottom: none; }
-    .question-text { font-size: 24px; }
+    .question-text { font-size: max(var(--type-min, 0px), calc(24px * var(--type-scale, 1) + var(--type-bump, 0px))); }
   }
 </style>
+<link rel="stylesheet" href="theme.css">
 </head>
 <body>
 
@@ -946,7 +946,7 @@
           <p class="voice">What would change if feedback asked whether a writer achieved their own purpose, rather than whether they met the teacher's expectations?</p>
         </div>
       </div>
-      <div class="voices-foot">Most of your annotations answered from Pedagogy, and most did it through memory: the student you were in high school or your first year of college. That is useful evidence. Today asks you to move from that position into the other two registers, where the question becomes what feedback does to a draft in progress, and what it counts as evidence.</div>
+      <div class="voices-foot">Most of your annotations answered from Pedagogy, and most did it through memory: the student you were in high school or your first year of college. This is useful evidence. Today asks you to move from this position into the other two registers, where the question becomes what feedback does to a draft in progress, and what it counts as evidence.</div>
     </div>
 
     <div class="framework-card">
@@ -998,7 +998,7 @@
         <div class="arc-label">Smith, 1997</div>
         <div class="arc-author">The Genre of the End Comment</div>
         <div class="arc-desc">End comments are a genre with conventions, purposes, and audiences of their own.</div>
-        <div class="answer-line"><span class="answer-tag">Feedback is for</span>performing a social action, often justifying a grade, that the genre makes routine.</div>
+        <div class="answer-line"><span class="answer-tag">Feedback is for</span>performing a social action the genre makes routine, often justifying a grade.</div>
         <span class="reg-badge meth">Register 3 · Method</span>
       </div>
     </div>
@@ -1007,7 +1007,7 @@
       <strong>How the opening runs:</strong> one-sentence answers, written solo. Pairs compare and name which register each answer lives in. Full class places Sommers, Inoue, and Smith on the register map and reads their answers against yours. Then the three activities put the question to work.
     </div>
 
-    <a class="next-link" href="#sec-summative">Go to Activity 01 →</a>
+    <a class="next-link" href="#sec-summative">Go to Activity 01</a>
   </section>
 
   <!-- ACTIVITY 01: SUMMATIVE -->
@@ -1032,7 +1032,7 @@
           <p class="annot-q">"Is there a way to make end comments have less pressure attached to them? Or is it because of the genre that it will always feel like a weighted comment?"</p>
           <p class="annot-q">"How do we as teachers make sure our comments are accessible to students of all knowledge bases?"</p>
         </div>
-        <p class="activity-framing">Summative feedback makes a judgment about finished work. Smith argues that when we write end comments, we perform a genre with its own conventions and assumptions about what writing is. Reading the genre as a method claim lets you see what a comment treats as evidence, and so what it thinks feedback is for.</p>
+        <p class="activity-framing">Summative feedback makes a judgment about finished work. When we write end comments, Smith argues, we perform a genre with its own conventions and assumptions about what writing is. Reading the genre as a method claim lets you see what a comment treats as evidence, and so what it thinks feedback is for.</p>
 
         <div class="sample-set">
           <div class="sample-card">
@@ -1063,7 +1063,7 @@
           </li>
           <li class="step-row">
             <div class="step-n meth">3</div>
-            <div><strong>Report (full class):</strong> What did the genre reading reveal about purpose that the question "is this good feedback?" would have missed?</div>
+            <div><strong>Report (full class):</strong> What did the genre reading reveal about purpose, something the question "is this good feedback?" would have missed?</div>
           </li>
         </ul>
 
@@ -1075,7 +1075,7 @@
       </div>
     </div>
 
-    <a class="next-link" href="#sec-formative">Go to Activity 02 →</a>
+    <a class="next-link" href="#sec-formative">Go to Activity 02</a>
   </section>
 
   <!-- ACTIVITY 02: FORMATIVE -->
@@ -1104,7 +1104,7 @@
           <p class="annot-q">"Maybe one answer is not necessarily adding more feedback, but making each round do less."</p>
           <p class="annot-q">"How can we ensure this multistep process of feedback and editing occurs during a limited ENG 101 schedule?"</p>
         </div>
-        <p class="activity-framing">Sommers argues effective feedback addresses the writer's future work rather than the current text's problems. Formative feedback intervenes in the writing process (Register 1) by naming what a writer is doing and what they might try next. That makes it a claim about what writers do and about what instruction should value (Register 2) at the same time.</p>
+        <p class="activity-framing">Sommers argues effective feedback addresses the writer's future work rather than the current text's problems. Formative feedback intervenes in the writing process (Register 1) by naming what a writer is doing and what they might try next. This makes it a claim about what writers do and about what instruction should value (Register 2) at the same time.</p>
 
         <ul class="step-list">
           <li class="step-row">
@@ -1138,13 +1138,13 @@
 
         <div class="prompt-card">
           <span class="prompt-label">What is feedback for, in your response?</span>
-          <p class="prompt-text">What does your response assume this writer needs next? Compare that answer to the ones End Comment A and Formative Comment A give. Where do the two purposes collide?</p>
+          <p class="prompt-text">What does your response assume this writer needs next? Compare your answer to the ones End Comment A and Formative Comment A give. Where do the two purposes collide?</p>
         </div>
-        <div class="portfolio-tag"><strong>For your portfolio</strong>Formative Comments A and B are two more annotated samples, and your own comments on the passage are the third. Your trio's comparison gives you a reflection paragraph that engages Sommers.</div>
+        <div class="portfolio-tag"><strong>For your portfolio</strong>Formative Comments A and B are two more annotated samples, and your own comments on the passage are the third. Your trio's comparison gives you a reflection paragraph engaging Sommers.</div>
       </div>
     </div>
 
-    <a class="next-link" href="#sec-labor">Go to Activity 03 →</a>
+    <a class="next-link" href="#sec-labor">Go to Activity 03</a>
   </section>
 
   <!-- ACTIVITY 03: LABOR-BASED -->
@@ -1173,7 +1173,7 @@
           <p class="annot-q">"I want my students to preserve their voices, but sometimes, those sentences need a little help."</p>
           <p class="annot-q">"If a student has to guess what 'clarify' or 'develop' means, then the revision is almost testing how well they can interpret the teacher."</p>
         </div>
-        <p class="activity-framing">Inoue's argument is a method claim as much as a pedagogical preference. If grading "quality" encodes whose linguistic norms count as evidence of learning, then the question shifts from what feedback is for to whom it serves. This activity turns that question on what you built in Activities 01 and 02.</p>
+        <p class="activity-framing">Inoue's argument is a method claim as much as a pedagogical preference. If grading "quality" encodes whose linguistic norms count as evidence of learning, then the question shifts from what feedback is for to whom it serves. This activity turns the second question on what you built in Activities 01 and 02.</p>
 
         <ul class="step-list">
           <li class="step-row">
@@ -1182,7 +1182,7 @@
           </li>
           <li class="step-row">
             <div class="step-n meth">2</div>
-            <div><strong>Pairs, extending:</strong> One annotation raised a third case: tools like Acrolinx, and now AI checkers, that train every writer toward one house voice. What is that feedback for, and whose standard does it encode?</div>
+            <div><strong>Pairs, extending:</strong> One annotation raised a third case: tools like Acrolinx, and now AI checkers, which train every writer toward one house voice. What is this feedback for, and whose standard does it encode?</div>
           </li>
           <li class="step-row">
             <div class="step-n meth">3</div>
@@ -1192,13 +1192,13 @@
 
         <div class="prompt-card">
           <span class="prompt-label">Synthesis question</span>
-          <p class="prompt-text">Activities 01, 02, and 03 give three answers to what feedback is for, and each answer rests on a different account of what counts as evidence that a student is writing. Which answer can absorb the other two's critiques? Which one can't?</p>
+          <p class="prompt-text">Activities 01, 02, and 03 give three answers to what feedback is for, and each answer rests on a different account of what counts as evidence a student is writing. Which answer is able to absorb the other two's critiques? Which one isn't?</p>
         </div>
         <div class="portfolio-tag"><strong>For your portfolio</strong>Your labor-based rewrite, written or recorded, sits beside your own comments and puts Inoue into practice. Your answer to the synthesis question is the start of your reflection's argument.</div>
       </div>
     </div>
 
-    <a class="next-link" href="#sec-synthesis">Go to Close →</a>
+    <a class="next-link" href="#sec-synthesis">Go to Close</a>
   </section>
 
   <!-- CLOSE -->
@@ -1208,7 +1208,7 @@
       <h2 class="section-title" id="h-synthesis">Your Answer, Revised: Portfolio Part 1</h2>
     </div>
 
-    <p class="lede">Go back to the sentence you wrote at the start of class. Revise it now that you have tested it against all three registers. That revised sentence is the claim your reflection argues. Today you practiced four approaches the portfolio asks about: summative (Activity 01), formative (Activity 02), labor-based and audio or video (Activity 03). Every sample Part 1 asks for is on this page, and your activity notes are draft reflection paragraphs.</p>
+    <p class="lede">Go back to the sentence you wrote at the start of class. Revise it now, having tested it against all three registers. The revised sentence is the claim your reflection argues. Today you practiced four approaches the portfolio asks about: summative (Activity 01), formative (Activity 02), labor-based and audio or video (Activity 03). Every sample Part 1 asks for is on this page, and your activity notes are draft reflection paragraphs.</p>
 
     <div class="answer-grid">
       <div class="answer-cell">
@@ -1217,7 +1217,7 @@
       </div>
       <div class="answer-cell">
         <span class="reg-pill ped">Pedagogy</span>
-        <p>Feedback is for teaching something that outlasts the draft.</p>
+        <p>Feedback is for teaching what outlasts the draft.</p>
       </div>
       <div class="answer-cell">
         <span class="reg-pill meth">Method</span>
@@ -1225,12 +1225,12 @@
       </div>
     </div>
 
-    <div class="prompt-card" style="background:var(--thu-light);border-color:#E8C4A8;">
+    <div class="prompt-card" style="background:var(--thu-light);border-color:var(--h-rule, #E8C4A8);">
       <span class="prompt-label" style="color:var(--thu-dark);">What Portfolio Part 1 asks, and where today fits</span>
       <ul class="step-list" style="margin-top:4px;">
-        <li class="step-row" style="border-bottom-color:#E8C4A8;"><div class="step-n">1</div><div style="color:var(--thu-dark);"><strong>Annotated feedback samples:</strong> End Comments A and B, Formative Comments A and B, and your own comments on the practice passage with your labor-based rewrite. Annotate each one: what it does, which register it works in, and what it assumes feedback is for.</div></li>
-        <li class="step-row" style="border-bottom-color:#E8C4A8;"><div class="step-n">2</div><div style="color:var(--thu-dark);"><strong>Written reflection, 1000 to 1500 words:</strong> argue your answer to "What is feedback for?" using your samples as evidence and the registers as your frame.</div></li>
-        <li class="step-row" style="border-bottom-color:#E8C4A8;"><div class="step-n">3</div><div style="color:var(--thu-dark);"><strong>Sommers, Inoue, and at least one other reading:</strong> Activity 02 gives you Sommers, Activity 03 gives you Inoue, and Activity 01 gives you Smith.</div></li>
+        <li class="step-row" style="border-bottom-color:var(--h-rule, #E8C4A8);"><div class="step-n">1</div><div style="color:var(--thu-dark);"><strong>Annotated feedback samples:</strong> End Comments A and B, Formative Comments A and B, and your own comments on the practice passage with your labor-based rewrite. Annotate each one: what it does, which register it works in, and what it assumes feedback is for.</div></li>
+        <li class="step-row" style="border-bottom-color:var(--h-rule, #E8C4A8);"><div class="step-n">2</div><div style="color:var(--thu-dark);"><strong>Written reflection, 1000 to 1500 words:</strong> argue your answer to "What is feedback for?" using your samples as evidence and the registers as your frame.</div></li>
+        <li class="step-row" style="border-bottom-color:var(--h-rule, #E8C4A8);"><div class="step-n">3</div><div style="color:var(--thu-dark);"><strong>Sommers, Inoue, and at least one other reading:</strong> Activity 02 gives you Sommers, Activity 03 gives you Inoue, and Activity 01 gives you Smith.</div></li>
         <li class="step-row"><div class="step-n">4</div><div style="color:var(--thu-dark);"><strong>What you'd revise with more time or context:</strong> start from the gap between the sentence you wrote at the start of class and your revised one.</div></li>
       </ul>
     </div>

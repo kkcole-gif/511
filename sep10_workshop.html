@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light" data-day="thu">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ENG 511 — Sep 10: Collaborative Writing Design Workshop</title>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>ENG 511, Sep 10: Collaborative Writing Design Workshop</title>
 <style>
   :root {
     --bg: #F5F4F1;
@@ -34,11 +33,11 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-family: var(--font-body, 'IBM Plex Sans', system-ui, sans-serif);
     background: var(--bg);
     color: var(--text-1);
     line-height: 1.65;
-    font-size: 15px;
+    font-size: max(var(--type-min, 0px), calc(15px * var(--type-scale, 1) + var(--type-bump, 0px)));
     min-height: 100vh;
   }
 
@@ -47,7 +46,7 @@
   .skip-link {
     position: absolute; left: -999px; top: 8px;
     background: white; color: var(--thu-dark); padding: 8px 12px;
-    border-radius: 6px; z-index: 10; font-size: 13px;
+    border-radius: 6px; z-index: 10; font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
   }
   .skip-link:focus { left: 12px; }
 
@@ -63,17 +62,17 @@
   }
 
   .course-tag {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.85);
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    letter-spacing: var(--label-track, 0.14em);
+    text-transform: var(--label-case, uppercase);
+    color: var(--h-on-dark, rgba(255,255,255,0.85));
     margin-bottom: 6px;
   }
 
   .page-title {
-    font-family: 'Spectral', serif;
-    font-size: 28px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(28px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     line-height: 1.2;
     color: white;
@@ -81,28 +80,28 @@
   }
 
   .page-subtitle {
-    font-size: 14px;
-    color: rgba(255,255,255,0.9);
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    color: var(--h-on-dark, rgba(255,255,255,0.9));
     font-style: italic;
   }
 
   .time-display { text-align: right; }
 
   .time-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.85);
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    letter-spacing: var(--label-track, 0.12em);
+    text-transform: var(--label-case, uppercase);
+    color: var(--h-on-dark, rgba(255,255,255,0.85));
     margin-bottom: 4px;
   }
 
   .time-clock {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 22px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(22px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: white;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--label-track, 0.05em);
   }
 
   /* ── SEQUENCE STRIP ── */
@@ -142,23 +141,23 @@
   }
 
   .tl-num {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: var(--time-color);
     margin-bottom: 3px;
   }
 
   .tl-label {
-    font-size: 11.5px;
+    font-size: max(var(--type-min, 0px), calc(11.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     text-align: center;
     line-height: 1.3;
   }
 
   .tl-dur {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-3);
     margin-top: 3px;
   }
@@ -182,29 +181,29 @@
   }
 
   .section-num {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     background: var(--time-bg);
     color: var(--time-color);
     padding: 3px 10px;
     border-radius: 12px;
     white-space: nowrap;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    letter-spacing: var(--label-track, 0.08em);
+    text-transform: var(--label-case, uppercase);
   }
 
   .section-title {
-    font-family: 'Spectral', serif;
-    font-size: 20px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(20px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: var(--text-1);
     flex: 1;
   }
 
   .section-duration {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-3);
     white-space: nowrap;
   }
@@ -214,7 +213,7 @@
   .section.active .section-title { color: var(--time-color); }
 
   .lede {
-    font-size: 14px;
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.65;
     margin-bottom: 14px;
@@ -226,7 +225,7 @@
     border-left: 3px solid var(--note-border);
     border-radius: 0 6px 6px 0;
     padding: 12px 16px;
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--note-text);
     margin-bottom: 14px;
     line-height: 1.55;
@@ -259,10 +258,10 @@
   }
 
   .phase-badge {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.09em);
     background: var(--thu);
     color: white;
     padding: 2px 9px;
@@ -271,10 +270,10 @@
   }
 
   .phase-card-title {
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: var(--text-1);
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: var(--font-body, 'IBM Plex Sans', sans-serif);
   }
 
   .phase-steps { list-style: none; }
@@ -283,8 +282,8 @@
     display: flex;
     gap: 8px;
     padding: 6px 0;
-    border-bottom: 1px solid #F2EFE9;
-    font-size: 13px;
+    border-bottom: 1px solid var(--h-tint, #F2EFE9);
+    font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.5;
     align-items: flex-start;
@@ -320,29 +319,29 @@
     background: var(--design-light);
     color: var(--design);
     padding: 9px 12px;
-    font-size: 12.5px;
+    font-size: max(var(--type-min, 0px), calc(12.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
-    font-family: 'Spectral', serif;
-    border-bottom: 1px solid #D0D9EF;
+    font-family: var(--font-head, 'Spectral', serif);
+    border-bottom: 1px solid var(--h-rule, #D0D9EF);
   }
 
   .component-card-body {
     padding: 10px 12px;
-    font-size: 12px;
+    font-size: max(var(--type-min, 0px), calc(12px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.5;
   }
 
   .activity-box {
     background: var(--thu-light);
-    border: 1px solid #E8C4A8;
+    border: 1px solid var(--h-rule, #E8C4A8);
     border-radius: 8px;
     padding: 16px 18px;
     margin-top: 12px;
   }
 
   .activity-box p {
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--thu-dark);
     line-height: 1.6;
     margin-bottom: 10px;
@@ -356,8 +355,8 @@
     display: flex;
     gap: 10px;
     padding: 8px 0;
-    border-bottom: 1px solid #EAC8A8;
-    font-size: 13px;
+    border-bottom: 1px solid var(--h-rule, #EAC8A8);
+    font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--thu-dark);
     line-height: 1.5;
     align-items: flex-start;
@@ -366,8 +365,8 @@
   .num-item:last-child { border-bottom: none; }
 
   .num-badge {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: white;
     background: var(--thu-dark);
@@ -396,15 +395,15 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    border-bottom: 1px solid #D9D0E8;
+    border-bottom: 1px solid var(--h-rule, #D9D0E8);
     flex-wrap: wrap;
   }
 
   .sample-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     color: var(--anson);
     font-weight: 500;
     background: rgba(61,31,90,0.1);
@@ -413,15 +412,15 @@
   }
 
   .sample-context {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--anson);
   }
 
   .sample-body {
     padding: 16px 20px;
-    font-family: 'Spectral', serif;
-    font-size: 15px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(15px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-1);
     line-height: 1.75;
   }
@@ -441,16 +440,16 @@
   }
 
   .sort-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     color: var(--anson);
     margin-bottom: 6px;
   }
 
   .sort-text {
-    font-size: 12.5px;
+    font-size: max(var(--type-min, 0px), calc(12.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.5;
   }
@@ -458,20 +457,20 @@
   /* ── CONTACT ZONE ── */
   .cz-arts {
     background: var(--pratt-light);
-    border: 1px solid #C5DDD0;
+    border: 1px solid var(--h-rule, #C5DDD0);
     border-radius: 8px;
     padding: 12px 16px;
     margin-top: 12px;
-    font-size: 13px;
+    font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--pratt);
     line-height: 1.6;
   }
 
   .cz-arts strong {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     display: block;
     margin-bottom: 4px;
     font-weight: 500;
@@ -493,16 +492,16 @@
   }
 
   .fw-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     color: var(--text-3);
     margin-bottom: 8px;
   }
 
   .fw-text {
-    font-size: 13px;
+    font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.55;
   }
@@ -514,17 +513,17 @@
     border-radius: 0 8px 8px 0;
     padding: 16px 20px;
     font-style: italic;
-    font-size: 14px;
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--thu-dark);
     line-height: 1.65;
   }
 
   .reflection strong {
     font-style: normal;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     display: block;
     margin-bottom: 6px;
     color: var(--thu-dark);
@@ -540,8 +539,8 @@
   }
 
   .preview-heading {
-    font-family: 'Spectral', serif;
-    font-size: 16px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(16px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: var(--text-1);
     margin-bottom: 10px;
@@ -554,7 +553,7 @@
     gap: 8px;
     padding: 5px 0;
     border-bottom: 1px solid var(--border);
-    font-size: 13px;
+    font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     align-items: flex-start;
   }
@@ -575,7 +574,7 @@
     display: flex;
     gap: 8px;
     padding: 5px 0;
-    font-size: 12.5px;
+    font-size: max(var(--type-min, 0px), calc(12.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     font-style: italic;
     line-height: 1.45;
@@ -594,6 +593,7 @@
     .timeline-strip { padding: 0 20px; }
   }
 </style>
+<link rel="stylesheet" href="theme.css">
 </head>
 <body>
 
@@ -604,7 +604,7 @@
   <div class="page-header-left">
     <div class="course-tag">ENG 511 · Week 4 · Thursday, September 10, 2026</div>
     <h1 class="page-title">Collaborative Writing Design Workshop</h1>
-    <div class="page-subtitle">Social Construction &amp; the Social Turn — Anson (2000), Giroux (2006)</div>
+    <div class="page-subtitle">Social Construction &amp; the Social Turn: Anson (2000), Giroux (2006)</div>
   </div>
   <div class="time-display">
     <div class="time-label" id="clock-label">Current Time</div>
@@ -658,9 +658,9 @@
       <h2 class="section-title" id="h-sec-0">Opening</h2>
       <div class="section-duration">3 min</div>
     </div>
-    <p class="lede">Tuesday moved the problem of writing out of the writer and into the social. Today we build with the move. Three design activities, each ending in an artifact or a decision rather than a summary.</p>
+    <p class="lede">Tuesday moved the problem of writing out of the writer and into the social. Today we build with the move. Three design activities, each ending in an artifact or a decision.</p>
     <div class="note">
-      <strong>Giroux's frame for the day:</strong> Public pedagogy names the claim that education happens across institutions and media, not only in classrooms, and that intellectuals hold responsibility for the social relations their teaching produces. The question for each activity: what does it mean to design writing tasks and feedback practices as if this were true?
+      <strong>Giroux's frame for the day:</strong> Public pedagogy names two claims: education happens across institutions and media as well as in classrooms, and intellectuals hold responsibility for the social relations their teaching produces. The question for each activity: what does it mean to design writing tasks and feedback practices as if this were true?
     </div>
   </section>
 
@@ -734,7 +734,7 @@
     </div>
 
     <div class="note" style="margin-top:14px;">
-      <strong>Watch for:</strong> designs where collaboration means dividing a paper into sections. The theory requires knowledge made between people, not assembled from parts.
+      <strong>Watch for:</strong> designs where collaboration means dividing a paper into sections. The theory requires knowledge made between people.
     </div>
   </section>
 
@@ -872,7 +872,7 @@
     </div>
 
     <div class="preview-box">
-      <h3 class="preview-heading">Critical Pedagogy &amp; Language — Freire, Anzaldúa, Wilson Logan</h3>
+      <h3 class="preview-heading">Critical Pedagogy &amp; Language: Freire, Anzaldúa, Wilson Logan</h3>
       <ul class="preview-readings">
         <li class="preview-reading">
           <div class="preview-bullet"></div>

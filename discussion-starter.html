@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Discussion Starter — ENG 511</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,400&family=DM+Mono:wght@400;500&display=swap">
+  <title>Discussion Starter, ENG 511 Fall 2026</title>
   <style>
     /* ── Site tokens — exact match to eng511cole.org ── */
     :root {
@@ -71,8 +68,8 @@
     body {
       background: var(--cream);
       color: var(--ink);
-      font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 1rem;
+      font-family: var(--font-body, 'Source Serif 4', Georgia, serif);
+      font-size: max(var(--type-min, 0px), calc(1rem * var(--type-scale, 1) + var(--type-bump, 0px)));
       line-height: 1.72;
       -webkit-font-smoothing: antialiased;
     }
@@ -95,28 +92,28 @@
     }
 
     .course-id {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
+      font-family: var(--font-label, 'DM Mono', monospace);
+      font-size: max(var(--type-min, 0px), calc(0.68rem * var(--type-scale, 1) + var(--type-bump, 0px)));
       font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      letter-spacing: var(--label-track, 0.1em);
+      text-transform: var(--label-case, uppercase);
       color: var(--sidebar-accent);
     }
 
     .course-title-sm {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
+      font-family: var(--font-head, 'Playfair Display', serif);
+      font-size: max(var(--type-min, 0px), calc(1rem * var(--type-scale, 1) + var(--type-bump, 0px)));
       font-weight: 700;
       color: var(--sidebar-text);
       line-height: 1.2;
     }
 
     .back-link {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
+      font-family: var(--font-label, 'DM Mono', monospace);
+      font-size: max(var(--type-min, 0px), calc(0.7rem * var(--type-scale, 1) + var(--type-bump, 0px)));
       color: var(--sidebar-muted);
       text-decoration: none;
-      letter-spacing: 0.04em;
+      letter-spacing: var(--label-track, 0.04em);
       transition: color 0.15s;
     }
 
@@ -135,17 +132,17 @@
     }
 
     .page-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
+      font-family: var(--font-label, 'DM Mono', monospace);
+      font-size: max(var(--type-min, 0px), calc(0.65rem * var(--type-scale, 1) + var(--type-bump, 0px)));
       font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      letter-spacing: var(--label-track, 0.12em);
+      text-transform: var(--label-case, uppercase);
       color: var(--ink-soft);
       margin-bottom: 0.5rem;
     }
 
     h1 {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-head, 'Playfair Display', serif);
       font-size: clamp(2rem, 5vw, 3rem);
       font-weight: 700;
       line-height: 1.1;
@@ -155,7 +152,7 @@
     }
 
     .page-subhead {
-      font-size: 0.95rem;
+      font-size: max(var(--type-min, 0px), calc(0.95rem * var(--type-scale, 1) + var(--type-bump, 0px)));
       color: var(--ink-soft);
       font-style: italic;
       margin-bottom: 1.1rem;
@@ -174,8 +171,8 @@
       border: 1px solid var(--border);
       border-radius: 20px;
       padding: 0.25rem 0.8rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.67rem;
+      font-family: var(--font-label, 'DM Mono', monospace);
+      font-size: max(var(--type-min, 0px), calc(0.67rem * var(--type-scale, 1) + var(--type-bump, 0px)));
       color: var(--ink-mid);
     }
 
@@ -213,22 +210,22 @@
     }
 
     .session-day-badge {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      font-family: var(--font-label, 'DM Mono', monospace);
+      font-size: max(var(--type-min, 0px), calc(0.6rem * var(--type-scale, 1) + var(--type-bump, 0px)));
+      letter-spacing: var(--label-track, 0.12em);
+      text-transform: var(--label-case, uppercase);
       padding: 0.2rem 0.65rem;
       border-radius: 12px;
       font-weight: 500;
     }
 
     .tue-badge {
-      background: rgba(255,255,255,0.18);
+      background: var(--h-pill, rgba(255,255,255,0.18));
       color: white;
     }
 
     .assign-badge {
-      background: rgba(255,255,255,0.18);
+      background: var(--h-pill, rgba(255,255,255,0.18));
       color: white;
     }
 
@@ -238,8 +235,8 @@
     }
 
     .session-header-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
+      font-family: var(--font-head, 'Playfair Display', serif);
+      font-size: max(var(--type-min, 0px), calc(1.05rem * var(--type-scale, 1) + var(--type-bump, 0px)));
       font-weight: 700;
       line-height: 1.25;
     }
@@ -262,11 +259,11 @@
 
     /* ── Block title (exact match to main site) ── */
     .block-title {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
+      font-family: var(--font-label, 'DM Mono', monospace);
+      font-size: max(var(--type-min, 0px), calc(0.6rem * var(--type-scale, 1) + var(--type-bump, 0px)));
       font-weight: 500;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
+      letter-spacing: var(--label-track, 0.13em);
+      text-transform: var(--label-case, uppercase);
       color: var(--ink-soft);
       margin-bottom: 0.75rem;
       display: flex;
@@ -283,7 +280,7 @@
 
     /* ── Body text ── */
     p {
-      font-size: 0.925rem;
+      font-size: max(var(--type-min, 0px), calc(0.925rem * var(--type-scale, 1) + var(--type-bump, 0px)));
       color: var(--ink-mid);
       line-height: 1.72;
       margin-bottom: 0.6rem;
@@ -305,7 +302,7 @@
       gap: 0.65rem;
       padding: 0.5rem 0;
       border-bottom: 1px solid var(--cream-dark);
-      font-size: 0.9rem;
+      font-size: max(var(--type-min, 0px), calc(0.9rem * var(--type-scale, 1) + var(--type-bump, 0px)));
       color: var(--ink-mid);
       line-height: 1.5;
       align-items: flex-start;
@@ -328,7 +325,7 @@
       border-left: 3px solid var(--tue-mid);
       border-radius: 0 6px 6px 0;
       padding: 0.9rem 1.1rem;
-      font-size: 0.925rem;
+      font-size: max(var(--type-min, 0px), calc(0.925rem * var(--type-scale, 1) + var(--type-bump, 0px)));
       font-style: italic;
       color: var(--tue);
       line-height: 1.6;
@@ -349,17 +346,17 @@
     }
 
     .assignment-box-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.58rem;
+      font-family: var(--font-label, 'DM Mono', monospace);
+      font-size: max(var(--type-min, 0px), calc(0.58rem * var(--type-scale, 1) + var(--type-bump, 0px)));
       font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      letter-spacing: var(--label-track, 0.12em);
+      text-transform: var(--label-case, uppercase);
       color: var(--assign-mid);
       margin-bottom: 0.5rem;
     }
 
     .assignment-box p {
-      font-size: 0.875rem;
+      font-size: max(var(--type-min, 0px), calc(0.875rem * var(--type-scale, 1) + var(--type-bump, 0px)));
       color: var(--ink-mid);
       margin-bottom: 0.35rem;
     }
@@ -377,18 +374,18 @@
     }
 
     .signup-strip-text {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.03em;
+      font-family: var(--font-label, 'DM Mono', monospace);
+      font-size: max(var(--type-min, 0px), calc(0.7rem * var(--type-scale, 1) + var(--type-bump, 0px)));
+      letter-spacing: var(--label-track, 0.03em);
       color: var(--assign-mid);
     }
 
     .signup-btn {
       display: inline-block;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
+      font-family: var(--font-label, 'DM Mono', monospace);
+      font-size: max(var(--type-min, 0px), calc(0.68rem * var(--type-scale, 1) + var(--type-bump, 0px)));
       font-weight: 500;
-      letter-spacing: 0.06em;
+      letter-spacing: var(--label-track, 0.06em);
       color: var(--assign);
       border: 1px solid var(--assign);
       background: var(--surface);
@@ -412,17 +409,17 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 0.875rem;
+      font-family: var(--font-body, 'Source Serif 4', Georgia, serif);
+      font-size: max(var(--type-min, 0px), calc(0.875rem * var(--type-scale, 1) + var(--type-bump, 0px)));
     }
 
     thead th {
       background: var(--cream-dark);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.58rem;
+      font-family: var(--font-label, 'DM Mono', monospace);
+      font-size: max(var(--type-min, 0px), calc(0.58rem * var(--type-scale, 1) + var(--type-bump, 0px)));
       font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      letter-spacing: var(--label-track, 0.1em);
+      text-transform: var(--label-case, uppercase);
       color: var(--ink-soft);
       padding: 0.55rem 1rem;
       text-align: left;
@@ -442,8 +439,8 @@
     }
 
     .td-date {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
+      font-family: var(--font-label, 'DM Mono', monospace);
+      font-size: max(var(--type-min, 0px), calc(0.75rem * var(--type-scale, 1) + var(--type-bump, 0px)));
       color: var(--tue-mid);
       white-space: nowrap;
       width: 6.5rem;
@@ -451,7 +448,7 @@
     }
 
     .td-student {
-      font-size: 0.9rem;
+      font-size: max(var(--type-min, 0px), calc(0.9rem * var(--type-scale, 1) + var(--type-bump, 0px)));
       width: 11rem;
       color: var(--ink);
     }
@@ -459,7 +456,7 @@
     .td-text {
       font-style: italic;
       color: var(--ink-soft);
-      font-size: 0.875rem;
+      font-size: max(var(--type-min, 0px), calc(0.875rem * var(--type-scale, 1) + var(--type-bump, 0px)));
     }
 
     /* ── Resource links ── */
@@ -470,7 +467,7 @@
       padding: 0.6rem 0;
       border-bottom: 1px solid var(--cream-dark);
       text-decoration: none;
-      font-size: 0.875rem;
+      font-size: max(var(--type-min, 0px), calc(0.875rem * var(--type-scale, 1) + var(--type-bump, 0px)));
       color: var(--ink-mid);
       transition: color 0.15s;
     }
@@ -480,20 +477,20 @@
     .resource-link:hover { color: var(--tue); }
 
     .resource-link-name {
-      font-family: 'Source Serif 4', serif;
+      font-family: var(--font-body, 'Source Serif 4', serif);
     }
 
     .resource-link-type {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      font-family: var(--font-label, 'DM Mono', monospace);
+      font-size: max(var(--type-min, 0px), calc(0.6rem * var(--type-scale, 1) + var(--type-bump, 0px)));
+      letter-spacing: var(--label-track, 0.1em);
+      text-transform: var(--label-case, uppercase);
       color: var(--ink-soft);
       margin-left: auto;
     }
 
     .resource-arrow {
-      font-size: 0.8rem;
+      font-size: max(var(--type-min, 0px), calc(0.8rem * var(--type-scale, 1) + var(--type-bump, 0px)));
       color: var(--tue-mid);
       flex-shrink: 0;
     }
@@ -508,9 +505,9 @@
       margin-top: 2rem;
       padding-top: 1.25rem;
       border-top: 1px solid var(--border);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.04em;
+      font-family: var(--font-label, 'DM Mono', monospace);
+      font-size: max(var(--type-min, 0px), calc(0.65rem * var(--type-scale, 1) + var(--type-bump, 0px)));
+      letter-spacing: var(--label-track, 0.04em);
       color: var(--ink-soft);
     }
 
@@ -525,6 +522,7 @@
       * { transition: none !important; }
     }
   </style>
+<link rel="stylesheet" href="theme.css">
 </head>
 <body>
 
@@ -534,7 +532,7 @@
     <span class="course-id">ENG 511 · Fall 2026</span>
     <span class="course-title-sm">Theory &amp; Research in Composition</span>
   </div>
-  <a class="back-link" href="index.html">← Course Overview</a>
+  <a class="back-link" href="index.html">Course Overview</a>
 </header>
 
 <div class="page">
@@ -545,9 +543,9 @@
     <h1>Discussion Starter</h1>
     <p class="page-subhead">One session per student · approximately 20 minutes</p>
     <div class="meta-row">
-      <span class="meta-pill">📅 Sign up by Week 1</span>
-      <span class="meta-pill">⏱ ~20 min per session</span>
-      <span class="meta-pill">💬 Tuesdays, Weeks 2–14</span>
+      <span class="meta-pill">Sign up by Week 1</span>
+      <span class="meta-pill">~20 min per session</span>
+      <span class="meta-pill">Tuesdays, Weeks 2–14</span>
     </div>
   </div>
 
@@ -558,19 +556,19 @@
       <div class="session-header-title">How You Open Is Up to You</div>
     </div>
     <div class="session-body">
-      <p>You are not teaching for the day. You are a reader who has thought more carefully about this text than anyone else in the room, and you are inviting the class into a conversation about it. The goal is genuine engagement — not a presentation, not a summary, not a performance of expertise.</p>
+      <p>You are not teaching for the day. You are a reader who has thought more carefully about this text than anyone else in the room, and you are inviting the class into a conversation about it. The goal is genuine engagement. Skip the presentation, the summary, and the performance of expertise.</p>
 
-      <div class="block-title" style="margin-top:1rem;">Approaches that work well</div>
+      <div class="block-title" style="margin-top:1rem;">These approaches work well</div>
       <ul class="item-list">
-        <li><span class="item-bullet"></span>Draw the class's attention to a particular passage and sit with it</li>
+        <li><span class="item-bullet"></span>Draw the class's attention to a particular passage and spend time on it</li>
         <li><span class="item-bullet"></span>Put ideas from different readings in conversation with each other</li>
         <li><span class="item-bullet"></span>Discuss the rhetorical style of one or more of the texts</li>
         <li><span class="item-bullet"></span>Show a video or connect the reading to a current cultural issue</li>
-        <li><span class="item-bullet"></span>Design an activity or short writing prompt that invites us into the texts</li>
+        <li><span class="item-bullet"></span>Design an activity or short writing prompt inviting us into the texts</li>
       </ul>
 
       <div class="reflection-box" style="margin-top:1rem;">
-        A rhythm that tends to work: spend 2–3 minutes framing the reading — not summarizing it, but orienting us to what you found interesting, surprising, or worth arguing about. Then spend the remaining time in actual discussion. Follow threads as they open up.
+        One rhythm tends to work: spend 2–3 minutes framing the reading by orienting us to what you found interesting, surprising, or worth arguing about. Then spend the remaining time in discussion. Follow threads as they open up.
       </div>
     </div>
   </div>
@@ -582,11 +580,11 @@
       <div class="session-header-title">What to Bring</div>
     </div>
     <div class="session-body">
-      <p>Come prepared with <strong>3–4 questions</strong> you think would be useful for the class to explore. Two or three anchor questions will carry you further than a list of eight — you do not have to get through all of them.</p>
+      <p>Come prepared with <strong>3–4 questions</strong> you think would be useful for the class to explore. Two or three anchor questions will serve you better than a list of eight. You do not have to get through all of them.</p>
 
       <div class="assignment-box">
         <div class="assignment-box-label">Encouraged but not required</div>
-        <p>Develop a <strong>digital component</strong> for your discussion — a slide, a shared document, a visual, whatever fits your approach.</p>
+        <p>Develop a <strong>digital component</strong> for your discussion: a slide, a shared document, a visual, whatever fits your approach.</p>
         <p>Bring a <strong>one-page handout</strong> for your classmates. I am happy to print copies or display it in class.</p>
       </div>
     </div>
@@ -597,12 +595,12 @@
     <div class="session-body two-col">
       <div>
         <div class="block-title">Purpose</div>
-        <p>The goals here are multiple: you gain experience describing complex ideas to your peers; you have the opportunity to explore topics in composition that matter to you; and you practice summarizing and synthesizing scholarship. Choose texts that connect to your literacy narrative and applied pedagogy pathway.</p>
-        <p>You may also partner up. If you work with a colleague, coordinate beforehand and develop a shared strategy for opening discussion together.</p>
+        <p>The goals here are multiple: you gain experience describing complex ideas to your peers, you have the opportunity to explore the topics in composition you care about, and you practice summarizing and synthesizing scholarship. Choose texts connected to your literacy narrative and applied pedagogy pathway.</p>
+        <p>You are also welcome to partner up. If you work with a colleague, coordinate beforehand and develop a shared strategy for opening discussion together.</p>
       </div>
       <div>
         <div class="block-title">On Flexibility</div>
-        <p>If you want to try something not listed above, check in with me beforehand — my default answer is yes. If something does not land the way you intended, we will move through it together. Discussion leading is a practice, not a test.</p>
+        <p>If you want to try something not listed above, check in with me beforehand. My default answer is yes. If something does not go the way you intended, we will work through it together. Discussion leading is a practice.</p>
         <div class="reflection-box" style="margin-top:0.75rem;">
           Read it carefully. Show up with something real to say or ask.
         </div>
@@ -613,8 +611,8 @@
   <!-- Sign-Up Schedule -->
   <div class="session-card">
     <div class="signup-strip">
-      <span class="signup-strip-text">Claim your date and text — first come, first served</span>
-      <a class="signup-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdDexqnNT6YrzMFN_JFU2SUrxLs8bIiMungY17WrngWonEkQw/viewform?usp=header" target="_blank" rel="noopener">Sign-Up Form →</a>
+      <span class="signup-strip-text">Claim your date and text: first come, first served</span>
+      <a class="signup-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdDexqnNT6YrzMFN_JFU2SUrxLs8bIiMungY17WrngWonEkQw/viewform?usp=header" target="_blank" rel="noopener">Sign-Up Form</a>
     </div>
     <div class="session-header neutral-header">
       <div class="session-day-badge neutral-badge">Schedule</div>

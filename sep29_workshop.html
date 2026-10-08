@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light" data-day="tue">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ENG 511, Sep 29: Writing Assessment & Labor-Based Pedagogy</title>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #F5F4F1;
@@ -37,11 +36,11 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-family: var(--font-body, 'IBM Plex Sans', system-ui, sans-serif);
     background: var(--bg);
     color: var(--text-1);
     line-height: 1.65;
-    font-size: 15px;
+    font-size: max(var(--type-min, 0px), calc(15px * var(--type-scale, 1) + var(--type-bump, 0px)));
     min-height: 100vh;
   }
 
@@ -51,7 +50,7 @@
   .skip-link {
     position: absolute; left: -999px; top: 8px;
     background: white; color: var(--tue-dark); padding: 8px 12px;
-    border-radius: 6px; z-index: 10; font-size: 13px;
+    border-radius: 6px; z-index: 10; font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
   }
   .skip-link:focus { left: 12px; }
 
@@ -66,17 +65,17 @@
   }
 
   .course-tag {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.85);
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    letter-spacing: var(--label-track, 0.14em);
+    text-transform: var(--label-case, uppercase);
+    color: var(--h-on-dark, rgba(255,255,255,0.85));
     margin-bottom: 6px;
   }
 
   .page-title {
-    font-family: 'Spectral', serif;
-    font-size: 28px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(28px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     line-height: 1.2;
     color: white;
@@ -84,28 +83,28 @@
   }
 
   .page-subtitle {
-    font-size: 14px;
-    color: rgba(255,255,255,0.9);
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    color: var(--h-on-dark, rgba(255,255,255,0.9));
     font-style: italic;
   }
 
   .mode-display { text-align: right; }
 
   .mode-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.85);
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    letter-spacing: var(--label-track, 0.12em);
+    text-transform: var(--label-case, uppercase);
+    color: var(--h-on-dark, rgba(255,255,255,0.85));
     margin-bottom: 4px;
   }
 
   .mode-value {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 16px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(16px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: white;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--label-track, 0.05em);
   }
 
   .timeline-strip {
@@ -142,15 +141,15 @@
   }
 
   .tl-num {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: var(--tue);
     margin-bottom: 3px;
   }
 
   .tl-label {
-    font-size: 11.5px;
+    font-size: max(var(--type-min, 0px), calc(11.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     text-align: center;
     line-height: 1.3;
@@ -174,29 +173,29 @@
   }
 
   .section-num {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     background: var(--badge-bg);
     color: var(--badge-color);
     padding: 3px 10px;
     border-radius: 12px;
     white-space: nowrap;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    letter-spacing: var(--label-track, 0.08em);
+    text-transform: var(--label-case, uppercase);
   }
 
   .section-title {
-    font-family: 'Spectral', serif;
-    font-size: 20px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(20px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: var(--text-1);
     flex: 1;
   }
 
   .section-pace {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-3);
     white-space: nowrap;
   }
@@ -206,7 +205,7 @@
   .section.active .section-title { color: var(--tue); }
 
   .lede {
-    font-size: 14px;
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.65;
     margin-bottom: 14px;
@@ -217,7 +216,7 @@
     border-left: 3px solid var(--note-border);
     border-radius: 0 6px 6px 0;
     padding: 12px 16px;
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--note-text);
     margin-bottom: 14px;
     line-height: 1.55;
@@ -248,29 +247,29 @@
     align-items: center;
     padding: 0 8px;
     color: var(--text-3);
-    font-size: 18px;
+    font-size: max(var(--type-min, 0px), calc(18px * var(--type-scale, 1) + var(--type-bump, 0px)));
     flex-shrink: 0;
   }
 
   .arc-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(9px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     color: var(--text-3);
     margin-bottom: 4px;
   }
 
   .arc-author {
-    font-family: 'Spectral', serif;
-    font-size: 14.5px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(14.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: var(--text-1);
     margin-bottom: 4px;
   }
 
   .arc-desc {
-    font-size: 12px;
+    font-size: max(var(--type-min, 0px), calc(12px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.5;
     font-style: italic;
@@ -278,10 +277,10 @@
 
   .reg-badge {
     display: inline-block;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(9px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.09em);
     padding: 2px 8px;
     border-radius: 9px;
     margin-top: 10px;
@@ -311,16 +310,16 @@
   }
 
   .framework-header-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: rgba(255,255,255,0.8);
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.12em);
+    color: var(--h-on-dark, rgba(255,255,255,0.8));
   }
 
   .framework-header-title {
-    font-family: 'Spectral', serif;
-    font-size: 14px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: white;
   }
@@ -338,10 +337,10 @@
   .reg-col:last-child { border-right: none; }
 
   .reg-col-tag {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(9px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.12em);
     margin-bottom: 6px;
     display: block;
   }
@@ -351,8 +350,8 @@
   .reg-col-tag.meth { color: var(--reg-meth); }
 
   .reg-col-name {
-    font-family: 'Spectral', serif;
-    font-size: 16px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(16px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: var(--text-1);
     margin-bottom: 6px;
@@ -360,15 +359,15 @@
   }
 
   .reg-col-def {
-    font-size: 12.5px;
+    font-size: max(var(--type-min, 0px), calc(12.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.55;
     margin-bottom: 10px;
   }
 
   .reg-col-text {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-3);
     padding-top: 10px;
     border-top: 1px solid var(--border);
@@ -403,11 +402,11 @@
   }
 
   .opener-badge {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
-    background: rgba(255,255,255,0.2);
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.09em);
+    background: var(--h-pill, rgba(255,255,255,0.2));
     color: white;
     padding: 2px 9px;
     border-radius: 10px;
@@ -415,16 +414,16 @@
   }
 
   .opener-title {
-    font-family: 'Spectral', serif;
-    font-size: 14px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: white;
   }
 
   .opener-body {
     padding: 20px 22px;
-    font-family: 'Spectral', serif;
-    font-size: 17px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(17px * var(--type-scale, 1) + var(--type-bump, 0px)));
     line-height: 1.7;
     color: var(--text-1);
     font-style: italic;
@@ -454,16 +453,16 @@
     border-bottom: 1px solid var(--border);
   }
 
-  .disc-header.act { background: var(--reg-act-bg); border-bottom-color: #E8D8B8; }
-  .disc-header.ped { background: var(--reg-ped-bg); border-bottom-color: #D0D9EF; }
-  .disc-header.meth { background: var(--reg-meth-bg); border-bottom-color: #D8CCE8; }
-  .disc-header.cross { background: #F5F4F1; }
+  .disc-header.act { background: var(--reg-act-bg); border-bottom-color: var(--h-rule, #E8D8B8); }
+  .disc-header.ped { background: var(--reg-ped-bg); border-bottom-color: var(--h-rule, #D0D9EF); }
+  .disc-header.meth { background: var(--reg-meth-bg); border-bottom-color: var(--h-rule, #D8CCE8); }
+  .disc-header.cross { background: var(--h-tint, #F5F4F1); }
 
   .disc-reg-badge {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(9px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     padding: 2px 9px;
     border-radius: 9px;
     flex-shrink: 0;
@@ -476,10 +475,10 @@
   .disc-reg-badge.cross { background: var(--text-3); color: white; }
 
   .disc-header-text {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.08em);
     color: var(--text-2);
   }
 
@@ -491,8 +490,8 @@
 
   .disc-q {
     padding: 8px 0;
-    border-bottom: 1px solid #F2EFE9;
-    font-size: 13.5px;
+    border-bottom: 1px solid var(--h-tint, #F2EFE9);
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-1);
     line-height: 1.6;
   }
@@ -510,10 +509,10 @@
   }
 
   .activity-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     color: var(--text-3);
     margin-bottom: 10px;
     display: block;
@@ -525,8 +524,8 @@
     display: flex;
     gap: 12px;
     padding: 8px 0;
-    border-bottom: 1px solid #F2EFE9;
-    font-size: 13.5px;
+    border-bottom: 1px solid var(--h-tint, #F2EFE9);
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.55;
     align-items: flex-start;
@@ -535,8 +534,8 @@
   .step-row:last-child { border-bottom: none; }
 
   .step-n {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     background: var(--tue);
     color: white;
@@ -556,7 +555,7 @@
     border-radius: 0 8px 8px 0;
     padding: 16px 20px;
     font-style: italic;
-    font-size: 14.5px;
+    font-size: max(var(--type-min, 0px), calc(14.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--tue-dark);
     line-height: 1.65;
     margin-top: 12px;
@@ -564,10 +563,10 @@
 
   .reflection strong {
     font-style: normal;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     display: block;
     margin-bottom: 6px;
     color: var(--tue-dark);
@@ -576,8 +575,8 @@
   .next-link {
     display: inline-block;
     margin-top: 16px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(12px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: var(--tue);
     text-decoration: none;
@@ -599,6 +598,7 @@
     .reg-col:last-child { border-bottom: none; }
   }
 </style>
+<link rel="stylesheet" href="theme.css">
 </head>
 <body>
 
@@ -635,20 +635,20 @@
       <h2 class="section-title" id="h-arc">The Reading Arc</h2>
       <div class="section-pace">~8 min</div>
     </div>
-    <p class="lede">Three texts, one question — <em>What is feedback for?</em> — asked from three different registers. They are not answering the same question. That's the move this week.</p>
+    <p class="lede">Three texts, one question (<em>What is feedback for?</em>) asked from three different registers. They are not answering the same question. This is the move this week.</p>
 
     <div class="arc-row">
       <div class="arc-box">
         <div class="arc-label">Sommers, 1982</div>
         <div class="arc-author">Responding to Student Writing</div>
-        <div class="arc-desc">Teacher comments appropriate student texts: they rewrite rather than teach. Feedback needs to address the writer, not just the page.</div>
+        <div class="arc-desc">Teacher comments appropriate student texts: they rewrite rather than teach. Feedback needs to address the writer as well as the page.</div>
         <span class="reg-badge ped">Register 2 · Pedagogy</span>
       </div>
       <div class="arc-arrow-wrap">→</div>
       <div class="arc-box">
         <div class="arc-label">Inoue, 2019</div>
         <div class="arc-author">Labor-Based Grading Contracts</div>
-        <div class="arc-desc">Measuring "quality" encodes whose language counts. Labor-based grading resets what the course is actually measuring — and why.</div>
+        <div class="arc-desc">Measuring "quality" encodes whose language counts. Labor-based grading resets what the course is measuring, and why.</div>
         <span class="reg-badge ped">Register 2 · Pedagogy</span>
         <span class="reg-badge meth" style="margin-left:4px;">Register 3 · Method</span>
       </div>
@@ -660,7 +660,7 @@
         <span class="reg-badge meth">Register 3 · Method</span>
       </div>
     </div>
-    <a class="next-link" href="#sec-framework">Go to Framework →</a>
+    <a class="next-link" href="#sec-framework">Go to Framework</a>
   </section>
 
   <!-- FRAMEWORK -->
@@ -670,7 +670,7 @@
       <h2 class="section-title" id="h-framework">The Three Registers</h2>
       <div class="section-pace">~7 min</div>
     </div>
-    <p class="lede">This is the frame we've been building since Week 3. Today it goes to work on assessment. Use these three registers as analytical tools: when you read any of the week's texts, ask which register it's operating in — and which registers it's silent about.</p>
+    <p class="lede">This is the frame we've been building since Week 3. Today it goes to work on assessment. Use these three registers as analytical tools: when you read any of the week's texts, ask which register it's operating in, and which registers it's silent about.</p>
 
     <div class="framework-card">
       <div class="framework-header">
@@ -681,16 +681,16 @@
         <div class="reg-col">
           <span class="reg-col-tag act">Register 1</span>
           <div class="reg-col-name">Writing as Activity</div>
-          <div class="reg-col-def">What writers actually do: the cognitive, rhetorical, social, and material practices involved in producing text. Questions of process, revision, audience, constraint.</div>
+          <div class="reg-col-def">What writers do: the cognitive, rhetorical, social, and material practices involved in producing text. Questions of process, revision, audience, constraint.</div>
           <div class="reg-col-text act">
             <strong>This week's silence</strong>
-            None of this week's primary texts work primarily in Register 1 — but Thursday's activities do. What does that gap tell us?
+            None of this week's primary texts work primarily in Register 1, but Thursday's activities do. What does this gap tell us?
           </div>
         </div>
         <div class="reg-col">
           <span class="reg-col-tag ped">Register 2</span>
           <div class="reg-col-name">Writing as Pedagogy</div>
-          <div class="reg-col-def">How we teach: the values, assumptions, and instructional moves that structure a writing course. Questions of response, assignment design, what instruction is for.</div>
+          <div class="reg-col-def">How we teach: the values, assumptions, and instructional moves structuring a writing course. Questions of response, assignment design, what instruction is for.</div>
           <div class="reg-col-text ped">
             <strong>This week</strong>
             Sommers (1982): comments should address future writing, not fix current text. Inoue: labor-based contracts change what pedagogy values.
@@ -699,16 +699,16 @@
         <div class="reg-col">
           <span class="reg-col-tag meth">Register 3</span>
           <div class="reg-col-name">Writing as Method</div>
-          <div class="reg-col-def">Writing as a way of knowing: what counts as evidence, what gets measured, what research in the field can see. Questions of epistemology, not just practice.</div>
+          <div class="reg-col-def">Writing as a way of knowing: what counts as evidence, what gets measured, what research in the field is able to see. Questions of epistemology as well as practice.</div>
           <div class="reg-col-text meth">
             <strong>This week</strong>
-            Inoue: labor-based grading is a method argument — it changes what the course counts as evidence of learning. Smith: end comments as genre reveal the field's epistemological assumptions.
+            Inoue: labor-based grading is a method argument because it changes what the course counts as evidence of learning. Smith: end comments as genre reveal the field's epistemological assumptions.
           </div>
         </div>
       </div>
     </div>
 
-    <a class="next-link" href="#sec-olivia">Go to Part 01 →</a>
+    <a class="next-link" href="#sec-olivia">Go to Part 01</a>
   </section>
 
   <!-- OLIVIA'S DISCUSSION STARTER -->
@@ -718,7 +718,7 @@
       <h2 class="section-title" id="h-olivia">Discussion Starter</h2>
       <div class="section-pace">Olivia · ~12 min</div>
     </div>
-    <p class="lede">Olivia is opening discussion today on Smith. Smith's piece is a Register 3 text: it treats the end comment as a genre and asks what that genre's conventions reveal about the field's assumptions.</p>
+    <p class="lede">Olivia is opening discussion today on Smith. Smith's piece is a Register 3 text: it treats the end comment as a genre and asks what the genre's conventions reveal about the field's assumptions.</p>
 
     <div class="opener-card">
       <div class="opener-header">
@@ -726,11 +726,11 @@
         <span class="opener-title">Smith · "The Genre of the End Comment"</span>
       </div>
       <div class="opener-body">
-        If end comments are a genre, what social action are they performing — and for whom?
+        If end comments are a genre, what social action are they performing, and for whom?
       </div>
     </div>
 
-    <a class="next-link" href="#sec-discussion">Go to Part 02 →</a>
+    <a class="next-link" href="#sec-discussion">Go to Part 02</a>
   </section>
 
   <!-- DISCUSSION ACROSS REGISTERS -->
@@ -740,14 +740,14 @@
       <h2 class="section-title" id="h-discussion">Reading Across the Registers</h2>
       <div class="section-pace">~28 min</div>
     </div>
-    <p class="lede">Choose a register and a set of questions that's pulling at you. Form a group with others who chose the same one. After 12 minutes, we come back together and look for the places where the register arguments conflict.</p>
+    <p class="lede">Choose a register and a set of questions pulling at you. Form a group with others who chose the same one. After 12 minutes, we come back together and look for the places where the register arguments conflict.</p>
 
     <div class="activity-steps">
       <span class="activity-label">How it works</span>
       <ul class="step-list">
         <li class="step-row">
           <div class="step-n">1</div>
-          <div>Pick a register group below — the one where the question feels most unresolved for you. Three or four people per group.</div>
+          <div>Pick a register group below: the one where the question feels most unresolved for you. Three or four people per group.</div>
         </li>
         <li class="step-row">
           <div class="step-n">2</div>
@@ -765,24 +765,24 @@
       <div class="disc-card">
         <div class="disc-header ped">
           <span class="disc-reg-badge ped">Register 2</span>
-          <span class="disc-header-text">Pedagogy — Sommers & Inoue</span>
+          <span class="disc-header-text">Pedagogy: Sommers & Inoue</span>
         </div>
         <div class="disc-body">
-          <div class="disc-q">Sommers found that teacher comments appropriated student texts — rewrote them in the teacher's voice rather than teaching revision. If you were designing a feedback protocol today, what assumption about ownership of the text would you need to make explicit?</div>
-          <div class="disc-q">Sommers is arguing for better pedagogy within a quality-based model. Inoue is arguing that the quality-based model is the problem. Is that a difference in degree, or a difference in register?</div>
-          <div class="disc-q">Inoue's labor-based contracts change what the course values pedagogically. But do they change what students do as writers — what happens in Register 1? Or do they leave the activity of writing untouched?</div>
+          <div class="disc-q">Sommers found teacher comments appropriating student texts, rewriting them in the teacher's voice rather than teaching revision. If you were designing a feedback protocol today, what assumption about ownership of the text would you need to make explicit?</div>
+          <div class="disc-q">Sommers is arguing for better pedagogy within a quality-based model. Inoue is arguing the quality-based model is the problem. Is this a difference in degree, or a difference in register?</div>
+          <div class="disc-q">Inoue's labor-based contracts change what the course values pedagogically. But do they change what students do as writers (what happens in Register 1)? Or do they leave the activity of writing untouched?</div>
         </div>
       </div>
 
       <div class="disc-card">
         <div class="disc-header meth">
           <span class="disc-reg-badge meth">Register 3</span>
-          <span class="disc-header-text">Method — Inoue & Smith</span>
+          <span class="disc-header-text">Method: Inoue & Smith</span>
         </div>
         <div class="disc-body">
-          <div class="disc-q">Smith treats end comments as a genre. What does that analytical move reveal that treating them as "feedback" or "response" hides?</div>
-          <div class="disc-q">Inoue argues that "quality" is not a neutral descriptor — it encodes whose linguistic norms count as evidence of learning. Is that a pedagogical argument, a method argument, or both? What is the difference?</div>
-          <div class="disc-q">If end comments are a genre with predictable conventions, what does that predictability tell us about what teachers believe writing is? What does it tell us about what teachers think students need?</div>
+          <div class="disc-q">Smith treats end comments as a genre. What does this analytical move reveal, and what does treating them as "feedback" or "response" keep hidden?</div>
+          <div class="disc-q">Inoue argues "quality" is not a neutral descriptor: it encodes whose linguistic norms count as evidence of learning. Is this a pedagogical argument, a method argument, or both? What is the difference?</div>
+          <div class="disc-q">If end comments are a genre with predictable conventions, what does this predictability tell us about what teachers believe writing is? What does it tell us about what teachers think students need?</div>
         </div>
       </div>
 
@@ -798,7 +798,7 @@
       </div>
 
     </div>
-    <a class="next-link" href="#sec-bridge">Go to Part 03 →</a>
+    <a class="next-link" href="#sec-bridge">Go to Part 03</a>
   </section>
 
   <!-- BRIDGE TO THURSDAY -->
@@ -808,15 +808,15 @@
       <h2 class="section-title" id="h-bridge">Bridge to Thursday</h2>
       <div class="section-pace">~15 min</div>
     </div>
-    <p class="lede">Thursday's workshop maps each register onto a different feedback practice — and asks you to evaluate each one from the others' vantage point. Come in having thought about where the three registers touch, and where they are genuinely incommensurable.</p>
+    <p class="lede">Thursday's workshop maps each register onto a different feedback practice and asks you to evaluate each one from the others' vantage point. Come in having thought about where the three registers touch, and where they are genuinely incommensurable.</p>
 
     <div class="reflection">
       <strong>Take into Thursday</strong>
-      All three of this week's texts claim to improve writing instruction. Do they agree on what "improvement" means? If Sommers, Inoue, and Smith sat down to design a feedback protocol together, where would they disagree — and in which register would the disagreement live?
+      All three of this week's texts claim to improve writing instruction. Do they agree on what "improvement" means? If Sommers, Inoue, and Smith sat down to design a feedback protocol together, where would they disagree, and in which register would the disagreement live?
     </div>
 
     <div class="note" style="margin-top:16px;">
-      <strong>Feedback Portfolio</strong> — due Sunday, October 4. Thursday's workshop is structured to give you time to draft your register analysis before you leave. Details on the assignment page.
+      <strong>Feedback Portfolio</strong>: due Sunday, October 4. Thursday's workshop is structured to give you time to draft your register analysis before you leave. Details on the assignment page.
     </div>
 
   </section>

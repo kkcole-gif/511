@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light" data-day="thu">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ENG 511, Sep 17: Critical Literacy and OWI, Asynchronous Session</title>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #F5F4F1;
@@ -33,11 +32,11 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-family: var(--font-body, 'IBM Plex Sans', system-ui, sans-serif);
     background: var(--bg);
     color: var(--text-1);
     line-height: 1.65;
-    font-size: 15px;
+    font-size: max(var(--type-min, 0px), calc(15px * var(--type-scale, 1) + var(--type-bump, 0px)));
     min-height: 100vh;
   }
 
@@ -47,7 +46,7 @@
   .skip-link {
     position: absolute; left: -999px; top: 8px;
     background: white; color: var(--thu-dark); padding: 8px 12px;
-    border-radius: 6px; z-index: 10; font-size: 13px;
+    border-radius: 6px; z-index: 10; font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
   }
   .skip-link:focus { left: 12px; }
 
@@ -63,17 +62,17 @@
   }
 
   .course-tag {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.85);
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    letter-spacing: var(--label-track, 0.14em);
+    text-transform: var(--label-case, uppercase);
+    color: var(--h-on-dark, rgba(255,255,255,0.85));
     margin-bottom: 6px;
   }
 
   .page-title {
-    font-family: 'Spectral', serif;
-    font-size: 28px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(28px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     line-height: 1.2;
     color: white;
@@ -81,28 +80,28 @@
   }
 
   .page-subtitle {
-    font-size: 14px;
-    color: rgba(255,255,255,0.9);
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    color: var(--h-on-dark, rgba(255,255,255,0.9));
     font-style: italic;
   }
 
   .mode-display { text-align: right; }
 
   .mode-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.85);
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    letter-spacing: var(--label-track, 0.12em);
+    text-transform: var(--label-case, uppercase);
+    color: var(--h-on-dark, rgba(255,255,255,0.85));
     margin-bottom: 4px;
   }
 
   .mode-value {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 16px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(16px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: white;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--label-track, 0.05em);
   }
 
   /* SEQUENCE STRIP */
@@ -133,15 +132,15 @@
   .tl-item:hover { background: var(--time-bg); }
 
   .tl-num {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: var(--time-color);
     margin-bottom: 3px;
   }
 
   .tl-label {
-    font-size: 11.5px;
+    font-size: max(var(--type-min, 0px), calc(11.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     text-align: center;
     line-height: 1.3;
@@ -166,35 +165,35 @@
   }
 
   .section-num {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     background: var(--time-bg);
     color: var(--time-color);
     padding: 3px 10px;
     border-radius: 12px;
     white-space: nowrap;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    letter-spacing: var(--label-track, 0.08em);
+    text-transform: var(--label-case, uppercase);
   }
 
   .section-title {
-    font-family: 'Spectral', serif;
-    font-size: 20px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(20px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: var(--text-1);
     flex: 1;
   }
 
   .section-pace {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-3);
     white-space: nowrap;
   }
 
   .lede {
-    font-size: 14px;
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.65;
     margin-bottom: 14px;
@@ -206,7 +205,7 @@
     border-left: 3px solid var(--note-border);
     border-radius: 0 6px 6px 0;
     padding: 12px 16px;
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--note-text);
     margin-bottom: 14px;
     line-height: 1.55;
@@ -222,15 +221,15 @@
     padding: 16px 18px;
     margin: 14px 0;
     color: var(--doc);
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     line-height: 1.6;
   }
 
   .doc-box strong.doc-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     display: block;
     margin-bottom: 6px;
     font-weight: 500;
@@ -241,8 +240,8 @@
 
   .doc-link {
     display: inline-block;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(12px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: white;
     background: var(--doc);
@@ -252,7 +251,7 @@
     margin-top: 6px;
   }
 
-  .doc-link:hover { background: #12362A; }
+  .doc-link:hover { background: var(--h-umber, #12362A); }
 
   /* PHASE CARDS */
   .phase-grid {
@@ -279,10 +278,10 @@
   }
 
   .phase-badge {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.09em);
     background: var(--thu);
     color: white;
     padding: 2px 9px;
@@ -291,7 +290,7 @@
   }
 
   .phase-card-title {
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: var(--text-1);
   }
@@ -302,8 +301,8 @@
     display: flex;
     gap: 8px;
     padding: 6px 0;
-    border-bottom: 1px solid #F2EFE9;
-    font-size: 13px;
+    border-bottom: 1px solid var(--h-tint, #F2EFE9);
+    font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.5;
     align-items: flex-start;
@@ -339,29 +338,29 @@
     background: var(--design-light);
     color: var(--design);
     padding: 9px 12px;
-    font-size: 12.5px;
+    font-size: max(var(--type-min, 0px), calc(12.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
-    font-family: 'Spectral', serif;
-    border-bottom: 1px solid #D0D9EF;
+    font-family: var(--font-head, 'Spectral', serif);
+    border-bottom: 1px solid var(--h-rule, #D0D9EF);
   }
 
   .component-card-body {
     padding: 10px 12px;
-    font-size: 12px;
+    font-size: max(var(--type-min, 0px), calc(12px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.5;
   }
 
   .activity-box {
     background: var(--thu-light);
-    border: 1px solid #E8C4A8;
+    border: 1px solid var(--h-rule, #E8C4A8);
     border-radius: 8px;
     padding: 16px 18px;
     margin-top: 12px;
   }
 
   .activity-box p {
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--thu-dark);
     line-height: 1.6;
     margin-bottom: 10px;
@@ -375,8 +374,8 @@
     display: flex;
     gap: 10px;
     padding: 8px 0;
-    border-bottom: 1px solid #EAC8A8;
-    font-size: 13px;
+    border-bottom: 1px solid var(--h-rule, #EAC8A8);
+    font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--thu-dark);
     line-height: 1.5;
     align-items: flex-start;
@@ -385,8 +384,8 @@
   .num-item:last-child { border-bottom: none; }
 
   .num-badge {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: white;
     background: var(--thu-dark);
@@ -415,15 +414,15 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    border-bottom: 1px solid #D0D9EF;
+    border-bottom: 1px solid var(--h-rule, #D0D9EF);
     flex-wrap: wrap;
   }
 
   .sample-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     color: var(--design);
     font-weight: 500;
     background: rgba(42,68,133,0.1);
@@ -432,15 +431,15 @@
   }
 
   .sample-context {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--design);
   }
 
   .sample-body {
     padding: 16px 20px;
-    font-family: 'Spectral', serif;
-    font-size: 15px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(15px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-1);
     line-height: 1.75;
   }
@@ -463,16 +462,16 @@
   }
 
   .sort-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     color: var(--design);
     margin-bottom: 6px;
   }
 
   .sort-text {
-    font-size: 12.5px;
+    font-size: max(var(--type-min, 0px), calc(12.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.5;
   }
@@ -484,17 +483,17 @@
     border-radius: 0 8px 8px 0;
     padding: 16px 20px;
     font-style: italic;
-    font-size: 14px;
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--thu-dark);
     line-height: 1.65;
   }
 
   .reflection strong {
     font-style: normal;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     display: block;
     margin-bottom: 6px;
     color: var(--thu-dark);
@@ -510,8 +509,8 @@
   }
 
   .preview-heading {
-    font-family: 'Spectral', serif;
-    font-size: 16px;
+    font-family: var(--font-head, 'Spectral', serif);
+    font-size: max(var(--type-min, 0px), calc(16px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: var(--text-1);
     margin-bottom: 10px;
@@ -524,7 +523,7 @@
     gap: 8px;
     padding: 5px 0;
     border-bottom: 1px solid var(--border);
-    font-size: 13px;
+    font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     align-items: flex-start;
   }
@@ -545,7 +544,7 @@
     display: flex;
     gap: 8px;
     padding: 5px 0;
-    font-size: 12.5px;
+    font-size: max(var(--type-min, 0px), calc(12.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     font-style: italic;
     line-height: 1.45;
@@ -553,8 +552,8 @@
 
   .deadline {
     display: inline-block;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
     background: var(--time-bg);
     color: var(--time-color);
     padding: 3px 10px;
@@ -574,6 +573,7 @@
     .timeline-strip { padding: 0 20px; }
   }
 </style>
+<link rel="stylesheet" href="theme.css">
 </head>
 <body>
 
@@ -684,7 +684,7 @@
       <h2 class="section-title" id="h-sec-2">Problem-Posing Opening</h2>
       <div class="section-pace">The main work</div>
     </div>
-    <p class="lede">On Tuesday, Freire's distinction between banking and problem-posing education was the theoretical version. This is the practical one. Your microteaching lesson needs an opening, and this step writes it as a problem-posing move rather than a demonstration of a skill students then copy.</p>
+    <p class="lede">On Tuesday, Freire's distinction between banking and problem-posing education was the theoretical version. This is the practical one. Your microteaching lesson needs an opening, and this step writes it as a problem-posing move.</p>
 
     <div class="note">
       <strong>The test.</strong> In a banking opening, the teacher already holds the answer and the activity delivers it. In a problem-posing opening, students confront a situation, a text, or a question where the difficulty is real to them and the teacher does not yet know what they will make of it. Ask of your draft: who defines the problem, and is the students' answer able to surprise you?
@@ -801,7 +801,7 @@
         </div>
         <ul class="phase-steps">
           <li class="phase-step"><div class="step-dot"></div><div>Use the comment field on their post 2, the opening, so your response stays attached to the draft. A few sentences per question is enough.</div></li>
-          <li class="phase-step"><div class="step-dot"></div><div>Write to the person, not about the draft. Remember Anson from last week: your reading is one reader's judgment from one context, and it helps to say what context you read from.</div></li>
+          <li class="phase-step"><div class="step-dot"></div><div>Write directly to the person. Remember Anson from last week: your reading is one reader's judgment from one context, and it helps to say what context you read from.</div></li>
           <li class="phase-step"><div class="step-dot"></div><div>Do not revise your own opening in response before the circle. Bring the comments with you and we will talk about them together.</div></li>
         </ul>
       </div>
@@ -834,7 +834,7 @@
 
     <div class="doc-box">
       <strong class="doc-label">Microteaching circle, Thursday, September 24</strong>
-      <p>We will meet in person, sit in a circle, and talk through each opening informally. No slides, no fifteen-minute performance. Each of you all will read or describe your problem-posing opening, say what your two peers noticed, and name the OWI principle you strained against. Then we talk. We will have the Padlet on the screen and move section by section.</p>
+      <p>We will meet in person, sit in a circle, and talk through each opening informally. No slides, no fifteen-minute performance. Each of you will read or describe your problem-posing opening, say what your two peers noticed, and name the OWI principle you strained against. Then we talk. We will have the Padlet on the screen and move section by section.</p>
       <p>The written Lesson Plan and Microteaching Presentation document is due September 27. Everything you wrote for this session belongs in it. Revise after the circle, not before.</p>
       <span class="deadline">Circle: Sep 24 · Written lesson plan due: Sep 27</span>
     </div>
