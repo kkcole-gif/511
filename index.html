@@ -1584,16 +1584,16 @@ const WEEKS = [
       date: "Tuesday, November 3",
       type: "Student-Led Seminar",
       readings: [
-        { author: "Dolmage", title: "\"Mapping Composition\"", year: "2007" },
-        { author: "Simpkins", title: "\"Accommodation Transfer\"", year: "2018" },
-        { author: "Tomlinson & Newman", title: "\"Valuing Neurodiversity\"", year: "2017" },
+        { author: "Dolmage", title: "\"Mapping Composition: Inviting Disability in the Front Door\"", year: "2007" },
+        { author: "Simpkins", title: "\"Towards an Understanding of Accommodation Transfer\"", year: "2018" },
+        { author: "Tomlinson & Newman", title: "\"Valuing Writers from a Neurodiversity Perspective\"", year: "2017" },
       ],
       prompts: [
         { label: "Core Question", text: "How do Dolmage, Simpkins, and Tomlinson & Newman challenge ableist assumptions in composition?" },
         { label: "Universal Design", text: "What does UDL mean beyond accommodation? How does it reshape pedagogy fundamentally?" },
         { label: "Institutional Critique", text: "How do 'accommodation' models reinforce ableist norms rather than dismantle them?" },
       ],
-      starter: "Dolmage argues for 'mapping composition.' How does this metaphor change our understanding of student difference?",
+      starter: "Discussion starters: Laura on Dolmage; Grace H. and Noah on Tomlinson & Newman. Dolmage argues for 'mapping composition.' How does this metaphor change our understanding of student difference?",
       reflection: "How does UDL reframe your view of effective writing instruction?",
     },
     thursday: {
@@ -1603,22 +1603,22 @@ const WEEKS = [
         { author: "Oswal", title: "\"Physical and Learning Disabilities in OWI\"", year: "2015" },
       ],
       activities: [
-        { title: "Accessibility Audit", time: "30 min", desc: "Evaluate an existing assignment or syllabus through a UDL lens. Identify three elements that assume a particular type of learner and redesign them with UDL principles. Share revisions with a partner." },
-        { title: "OWI & Neurodiversity Discussion", time: "25 min", desc: "What specific affordances does online or hybrid instruction offer for neurodiverse learners? What barriers does it create? Use Oswal's framework to analyze a specific OWI design scenario." },
-        { title: "Design Revision Gallery", time: "15 min", desc: "Share one UDL-informed revision from the audit. What was the original assumption? What principle guided the revision? How does this connect to your teaching philosophy?" },
+        { title: "Accessibility Audit", time: "28 min", desc: "Audit a syllabus or assignment you have taught or designed (or the sample on the workshop page) through a UDL lens. Identify three elements that assume a particular type of learner and redesign them. Share revisions with a partner." },
+        { title: "OWI & Neurodiversity Scenario", time: "22 min", desc: "Analyze a sample online module: what affordances does it offer neurodivergent and disabled writers, and what barriers does it create? Use Oswal's chapter to name one barrier." },
+        { title: "Design Revision Gallery", time: "12 min", desc: "Post one UDL-informed revision: the original assumption, the principle, and the revision. Read and borrow from each other's." },
       ],
-      reflection: "What would truly inclusive writing instruction look like — not as an accommodation, but as a design principle?",
+      reflection: "What would inclusive writing instruction look like as a design principle from day one?",
     },
     preview_thu_for_tue: {
       readings: ["Oswal, \"Physical and Learning Disabilities in OWI\" (2015)"],
-      activities: ["Accessibility audit of assignments/syllabi through UDL lens", "OWI & neurodiversity affordances/barriers analysis", "UDL revision gallery walk"],
+      activities: ["Accessibility audit (bring a syllabus or assignment)", "OWI & neurodiversity scenario analysis", "Design revision gallery"],
       note: null,
     },
     preview_next_for_thu: {
       week: 13,
       topic: "Multimodal Pedagogy & Digital Writing",
       readings: ["Hocks, \"Understanding Visual Rhetoric\" (2003)", "Shipka, \"A Multimodal Task-Based Framework\" (2005)"],
-      prompts: ["How do Hocks, Shipka, Palmeri, and Banks differently understand 'multimodality'?", "How does Banks' queer/trans digital rhetoric expand multimodal possibilities?"],
+      prompts: ["Discussion starters: Emma on Hocks, Olivia on Shipka.", "How do Hocks, Shipka, Palmeri, and Banks differently understand 'multimodality'?"],
       note: "📝 Feedback & Assessment Portfolio Part 2 due this week (Week 13)",
     },
     assignment: null,
@@ -2034,12 +2034,14 @@ function showWeek(num) {
     8: 'oct08_workshop.html',
     9: 'oct15_workshop.html',
     11: 'oct29_workshop.html',
+    12: 'nov05_workshop.html',
   };
   const tuesdayPages = {
     3: 'sep01_workshop.html',
     6: 'sep22_workshop.html',
     9: 'oct13_workshop.html',
     11: 'oct27_workshop.html',
+    12: 'nov03_workshop.html',
   };
   setActive(num);
   document.getElementById('breadcrumb').textContent = `Week ${w.num} · ${w.title}`;
