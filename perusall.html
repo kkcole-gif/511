@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Perusall Annotation Guide — ENG 511 Fall 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --cream: #F9F5EF;
@@ -35,17 +34,17 @@
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { font-size: 16px; scroll-behavior: smooth; }
-  body { font-family: 'Source Serif 4', Georgia, serif; background: var(--cream); color: var(--ink); display: flex; min-height: 100vh; line-height: 1.7; }
+  body { font-family: var(--font-body, 'Source Serif 4', Georgia, serif); background: var(--cream); color: var(--ink); display: flex; min-height: 100vh; line-height: 1.7; }
 
   /* SIDEBAR */
   .sidebar { width: 240px; min-width: 240px; background: var(--sidebar-bg); color: var(--sidebar-text); display: flex; flex-direction: column; position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100; }
   .sidebar::-webkit-scrollbar { width: 4px; }
-  .sidebar::-webkit-scrollbar-thumb { background: #4A3A2E; border-radius: 2px; }
-  .sidebar-header { padding: 28px 20px 20px; border-bottom: 1px solid #2E231C; }
-  .sidebar-course { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sidebar-accent); margin-bottom: 6px; }
-  .sidebar-title { font-family: 'Playfair Display', serif; font-size: 15px; line-height: 1.4; color: var(--sidebar-text); font-weight: 600; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--sidebar-muted, #4A3A2E); border-radius: 2px; }
+  .sidebar-header { padding: 28px 20px 20px; border-bottom: 1px solid var(--h-rule-dark, #2E231C); }
+  .sidebar-course { font-family: var(--font-label, 'DM Mono', monospace); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sidebar-accent); margin-bottom: 6px; }
+  .sidebar-title { font-family: var(--font-head, 'Playfair Display', serif); font-size: 15px; line-height: 1.4; color: var(--sidebar-text); font-weight: 600; }
   .sidebar-sub { font-size: 11px; color: var(--sidebar-muted); margin-top: 4px; }
-  .sidebar-section-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sidebar-muted); padding: 14px 20px 6px; }
+  .sidebar-section-label { font-family: var(--font-label, 'DM Mono', monospace); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sidebar-muted); padding: 14px 20px 6px; }
   .sidebar-link { display: flex; align-items: center; gap: 10px; padding: 9px 20px; cursor: pointer; transition: background 0.15s; border-left: 2px solid transparent; text-decoration: none; color: var(--sidebar-text); font-size: 13px; }
   .sidebar-link:hover { background: var(--sidebar-hover); }
   .sidebar-link.active { background: var(--sidebar-active); border-left-color: var(--sidebar-accent); }
@@ -54,20 +53,20 @@
   /* MAIN */
   .main { margin-left: 240px; flex: 1; display: flex; flex-direction: column; min-height: 100vh; }
   .topbar { background: var(--cream); border-bottom: 1px solid var(--border); padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
-  .topbar-breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ink-soft); letter-spacing: 0.06em; }
-  .topbar-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--tue-mid); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: opacity 0.15s; }
+  .topbar-breadcrumb { font-family: var(--font-label, 'DM Mono', monospace); font-size: 11px; color: var(--ink-soft); letter-spacing: 0.06em; }
+  .topbar-back { font-family: var(--font-label, 'DM Mono', monospace); font-size: 11px; color: var(--tue-mid); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: opacity 0.15s; }
   .topbar-back:hover { opacity: 0.7; }
 
   /* PAGE */
   .page { padding: 48px 40px 80px; max-width: 900px; }
-  .page-tag { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px; }
-  .page-heading { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 12px; }
+  .page-tag { font-family: var(--font-label, 'DM Mono', monospace); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px; }
+  .page-heading { font-family: var(--font-head, 'Playfair Display', serif); font-size: 38px; font-weight: 700; line-height: 1.15; color: var(--ink); margin-bottom: 12px; }
   .page-heading em { font-style: italic; color: var(--ann); }
   .page-intro { font-size: 15px; color: var(--ink-mid); max-width: 680px; line-height: 1.75; margin-bottom: 40px; }
 
   /* SECTION */
   .section-block { margin-bottom: 48px; }
-  .section-heading { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; color: var(--ink); padding-bottom: 12px; border-bottom: 1.5px solid var(--border); margin-bottom: 20px; scroll-margin-top: 80px; }
+  .section-heading { font-family: var(--font-head, 'Playfair Display', serif); font-size: 26px; font-weight: 600; color: var(--ink); padding-bottom: 12px; border-bottom: 1.5px solid var(--border); margin-bottom: 20px; scroll-margin-top: 80px; }
 
   /* QUICK REF STRIP */
   .quick-ref {
@@ -85,8 +84,8 @@
     text-align: center;
   }
   .qr-icon { font-size: 26px; margin-bottom: 8px; }
-  .qr-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--ann); line-height: 1; }
-  .qr-label { font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-soft); margin-top: 4px; }
+  .qr-num { font-family: var(--font-head, 'Playfair Display', serif); font-size: 28px; font-weight: 700; color: var(--ann); line-height: 1; }
+  .qr-label { font-family: var(--font-label, 'DM Mono', monospace); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-soft); margin-top: 4px; }
   .qr-desc { font-size: 12px; color: var(--ink-mid); margin-top: 5px; line-height: 1.4; }
 
   /* TIMELINE */
@@ -110,7 +109,7 @@
     color: white;
   }
   .timeline-when.thu { background: var(--thu); }
-  .timeline-day { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 2px; }
+  .timeline-day { font-family: var(--font-label, 'DM Mono', monospace); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--h-on-dark, rgba(255,255,255,0.6)); margin-bottom: 2px; }
   .timeline-deadline { font-size: 13px; font-weight: 600; color: white; line-height: 1.3; }
   .timeline-body { flex: 1; background: white; padding: 14px 18px; }
   .timeline-title { font-weight: 600; font-size: 14px; color: var(--ink); margin-bottom: 4px; }
@@ -134,16 +133,16 @@
     color: white;
   }
   .anatomy-step {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     font-size: 11px;
     font-weight: 500;
-    background: rgba(255,255,255,0.2);
+    background: var(--h-pill, rgba(255,255,255,0.2));
     border-radius: 4px;
     padding: 3px 10px;
     white-space: nowrap;
   }
-  .anatomy-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; color: white; }
-  .anatomy-req { font-family: 'DM Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.65); margin-left: auto; white-space: nowrap; }
+  .anatomy-title { font-family: var(--font-head, 'Playfair Display', serif); font-size: 17px; font-weight: 600; color: white; }
+  .anatomy-req { font-family: var(--font-label, 'DM Mono', monospace); font-size: 10px; color: var(--h-on-dark, rgba(255,255,255,0.65)); margin-left: auto; white-space: nowrap; }
   .anatomy-body { padding: 18px 22px; }
   .anatomy-desc { font-size: 14px; color: var(--ink-mid); line-height: 1.65; margin-bottom: 14px; }
 
@@ -156,7 +155,7 @@
     margin-bottom: 10px;
   }
   .example-label {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     font-size: 9px;
     text-transform: uppercase;
     letter-spacing: 0.12em;
@@ -167,13 +166,13 @@
   .example-text strong { color: var(--ink); font-style: normal; }
 
   .weak-box {
-    background: #FFF6F4;
-    border-left: 3px solid #C44;
+    background: var(--h-white, #FFF6F4);
+    border-left: 3px solid var(--h-umber, #C44);
     border-radius: 0 6px 6px 0;
     padding: 13px 16px;
     margin-bottom: 10px;
   }
-  .weak-label { font-family: 'DM Mono', monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: #C44; margin-bottom: 5px; }
+  .weak-label { font-family: var(--font-label, 'DM Mono', monospace); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--h-umber, #C44); margin-bottom: 5px; }
   .weak-text { font-size: 13px; color: var(--ink-mid); line-height: 1.55; font-style: italic; }
 
   .tip-box {
@@ -193,11 +192,11 @@
 
   /* GRADING RUBRIC TABLE */
   .rubric-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
-  .rubric-table th { background: var(--ink); color: white; padding: 10px 14px; text-align: left; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 400; }
+  .rubric-table th { background: var(--ink); color: white; padding: 10px 14px; text-align: left; font-family: var(--font-label, 'DM Mono', monospace); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 400; }
   .rubric-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); color: var(--ink-mid); vertical-align: top; line-height: 1.55; }
   .rubric-table tr:last-child td { border-bottom: none; }
   .rubric-table tr:nth-child(even) td { background: var(--cream); }
-  .level-badge { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: var(--ink); }
+  .level-badge { font-family: var(--font-label, 'DM Mono', monospace); font-size: 12px; font-weight: 500; color: var(--ink); }
 
   /* DISCUSSION LEADER SECTION */
   .leader-grid {
@@ -229,7 +228,7 @@
     gap: 20px;
     flex-wrap: wrap;
   }
-  .signup-text { color: rgba(255,255,255,0.9); font-size: 14px; line-height: 1.5; }
+  .signup-text { color: var(--h-on-dark, rgba(255,255,255,0.9)); font-size: 14px; line-height: 1.5; }
   .signup-text strong { color: white; }
   .signup-btn {
     display: inline-flex;
@@ -240,7 +239,7 @@
     border: none;
     border-radius: 24px;
     padding: 10px 20px;
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     font-size: 12px;
     font-weight: 500;
     cursor: pointer;
@@ -267,7 +266,7 @@
   }
   .marginalia-demo::before {
     content: 'Sample Annotation in Perusall';
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     font-size: 9px;
     text-transform: uppercase;
     letter-spacing: 0.12em;
@@ -277,7 +276,7 @@
     right: 16px;
   }
   .source-text { color: var(--ink); font-style: italic; border-left: 3px solid var(--border); padding-left: 14px; margin-bottom: 16px; }
-  .highlight { background: #FFF3C4; padding: 0 2px; border-radius: 2px; }
+  .highlight { background: var(--h-mist, #FFF3C4); padding: 0 2px; border-radius: 2px; }
   .ann-thread {
     background: var(--ann-light);
     border: 1px solid var(--ann-mid);
@@ -286,7 +285,7 @@
     font-size: 13px;
   }
   .ann-thread-header {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     font-size: 10px;
     color: var(--ann-mid);
     margin-bottom: 8px;
@@ -318,6 +317,7 @@
   .faq-a { font-size: 13.5px; color: var(--ink-mid); line-height: 1.65; padding-left: 22px; }
   .faq-a a { color: var(--ann-mid); text-decoration: underline; text-underline-offset: 2px; }
 </style>
+<link rel="stylesheet" href="theme.css">
 </head>
 <body>
 
@@ -426,7 +426,7 @@
         </div>
         <div class="anatomy-body">
           <p class="anatomy-desc">Highlight any passage that makes you stop — because it's insightful, because it troubles you, because it contradicts something you believe, or because you don't fully understand it. Then write a comment explaining what caught your attention. Don't just highlight silently.</p>
-          <div class="example-label" style="font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--assign-mid);margin-bottom:5px;">Strong Example</div>
+          <div class="example-label" style="font-family:var(--font-label, 'DM Mono',monospace);font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--assign-mid);margin-bottom:5px;">Strong Example</div>
           <div class="example-box">
             <div class="example-text">"Berlin writes that <strong>'all rhetorics are in some sense epistemic'</strong> (p. 166) — I keep turning this over. If all rhetoric makes claims about what can be known, does that mean current-traditional pedagogy isn't just pedagogically neutral? It's actually making an epistemological argument about what counts as truth in a student's writing?"</div>
           </div>
@@ -447,7 +447,7 @@
         </div>
         <div class="anatomy-body">
           <p class="anatomy-desc">Somewhere in your annotations, distill the reading's central argument in 3–5 sentences. This can be at the beginning or end of your thread. The key constraint: no direct quotes. This is a comprehension and synthesis exercise — write it as if explaining the reading to a fellow grad student who hasn't read it yet.</p>
-          <div class="example-label" style="font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--assign-mid);margin-bottom:5px;">Strong Example</div>
+          <div class="example-label" style="font-family:var(--font-label, 'DM Mono',monospace);font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--assign-mid);margin-bottom:5px;">Strong Example</div>
           <div class="example-box">
             <div class="example-text">"Fulkerson argues that composition in 2005 has no unified theoretical center — it's been pulled in three directions simultaneously: expressivist, rhetorical, and critical. He's not neutral about this; he clearly prefers a return to rhetorical focus. What I find most useful is his method: instead of arguing for one theory, he maps what everyone else is implicitly assuming."</div>
           </div>
@@ -467,7 +467,7 @@
         </div>
         <div class="anatomy-body">
           <p class="anatomy-desc">These should be questions you actually can't answer — not rhetorical questions, not "I wonder if..." softeners on claims you're actually making. Strong questions open something up rather than closing it down. They're the questions you want the class to work on together.</p>
-          <div class="example-label" style="font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--assign-mid);margin-bottom:5px;">Strong Examples</div>
+          <div class="example-label" style="font-family:var(--font-label, 'DM Mono',monospace);font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--assign-mid);margin-bottom:5px;">Strong Examples</div>
           <div class="example-box">
             <div class="example-text">"Inoue positions labor-based grading as antiracist practice, but I'm wondering whether the labor framework can still reproduce racial inequities if the kinds of labor valued are themselves culturally specific. Does 'showing up' mean different things for different students?"</div>
           </div>
@@ -490,7 +490,7 @@
         </div>
         <div class="anatomy-body">
           <p class="anatomy-desc">Connect the reading to something — your teaching experience, your own education, another course reading, a teaching scenario you're imagining. This is the part where the theory meets your life. It can be brief, but it should be honest. You can disagree with the reading here too.</p>
-          <div class="example-label" style="font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--assign-mid);margin-bottom:5px;">Strong Examples</div>
+          <div class="example-label" style="font-family:var(--font-label, 'DM Mono',monospace);font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--assign-mid);margin-bottom:5px;">Strong Examples</div>
           <div class="example-box">
             <div class="example-text">"Reading Anzaldúa alongside my experience TAing a first-year writing course last spring, I kept thinking about a student who consistently code-switched in her essays — beautiful, precise writing that my supervisor kept marking as 'unclear.' I didn't have the vocabulary to push back then. Now I do."</div>
           </div>

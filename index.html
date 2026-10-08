@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ENG 511: Theory & Research in Composition — Fall 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --cream: #F9F5EF;
@@ -38,7 +37,7 @@
   html { font-size: 16px; }
 
   body {
-    font-family: 'Source Serif 4', Georgia, serif;
+    font-family: var(--font-body, 'Source Serif 4', Georgia, serif);
     background: var(--cream);
     color: var(--ink);
     display: flex;
@@ -63,15 +62,15 @@
 
   .sidebar::-webkit-scrollbar { width: 4px; }
   .sidebar::-webkit-scrollbar-track { background: transparent; }
-  .sidebar::-webkit-scrollbar-thumb { background: #4A3A2E; border-radius: 2px; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--sidebar-muted, #4A3A2E); border-radius: 2px; }
 
   .sidebar-header {
     padding: 28px 20px 20px;
-    border-bottom: 1px solid #2E231C;
+    border-bottom: 1px solid var(--h-rule-dark, #2E231C);
   }
 
   .sidebar-course {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     font-size: 10px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -80,7 +79,7 @@
   }
 
   .sidebar-title {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-head, 'Playfair Display', serif);
     font-size: 15px;
     line-height: 1.4;
     color: var(--sidebar-text);
@@ -94,7 +93,7 @@
   }
 
   .sidebar-section-label {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     font-size: 9px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -126,7 +125,7 @@
   .sidebar-week.cancelled-week { opacity: 0.75; }
 
   .week-num {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     font-size: 10px;
     color: var(--sidebar-muted);
     min-width: 22px;
@@ -178,7 +177,7 @@
   }
 
   .topbar-breadcrumb {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     font-size: 11px;
     color: var(--ink-soft);
     letter-spacing: 0.06em;
@@ -218,7 +217,7 @@
   }
 
   .week-label {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -227,7 +226,7 @@
   }
 
   .week-heading {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-head, 'Playfair Display', serif);
     font-size: 36px;
     font-weight: 700;
     line-height: 1.15;
@@ -285,7 +284,7 @@
   }
 
   .break-heading {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-head, 'Playfair Display', serif);
     font-size: 32px;
     font-weight: 600;
     margin-bottom: 12px;
@@ -330,7 +329,7 @@
   }
 
   .session-day-badge {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     font-size: 9px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -339,13 +338,13 @@
     font-weight: 500;
   }
 
-  .tue-badge { background: rgba(255,255,255,0.18); color: white; }
-  .thu-badge { background: rgba(255,255,255,0.18); color: white; }
+  .tue-badge { background: var(--h-pill, rgba(255,255,255,0.18)); color: white; }
+  .thu-badge { background: var(--h-pill, rgba(255,255,255,0.18)); color: white; }
 
   .session-header-info {}
 
   .session-header-title {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-head, 'Playfair Display', serif);
     font-size: 18px;
     font-weight: 600;
     color: white;
@@ -354,9 +353,9 @@
 
   .session-header-date {
     font-size: 12px;
-    color: rgba(255,255,255,0.7);
+    color: var(--h-on-dark, rgba(255,255,255,0.7));
     margin-top: 2px;
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
   }
 
   .session-body {
@@ -386,7 +385,7 @@
   .cancelled-body { flex: 1; }
 
   .cancelled-title {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-head, 'Playfair Display', serif);
     font-size: 16px;
     font-weight: 600;
     color: var(--ink);
@@ -405,7 +404,7 @@
   }
 
   .block-title {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     font-size: 9.5px;
     letter-spacing: 0.13em;
     text-transform: uppercase;
@@ -457,7 +456,7 @@
   }
 
   .reading-year {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     font-size: 11px;
     color: var(--ink-soft);
     white-space: nowrap;
@@ -481,7 +480,7 @@
   .prompt-item:last-child { border-bottom: none; }
 
   .prompt-num {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     font-size: 10px;
     font-weight: 500;
     color: white;
@@ -499,7 +498,7 @@
 
   .prompt-label {
     font-size: 10px;
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--ink-soft);
@@ -509,7 +508,7 @@
   /* ── WORKSHOP ACTIVITIES ─────────────────────────────────  */
   .activity-block {
     background: var(--thu-light);
-    border: 1px solid #E8C4A8;
+    border: 1px solid var(--h-rule, #E8C4A8);
     border-radius: 6px;
     padding: 14px 16px;
     margin-bottom: 10px;
@@ -528,7 +527,7 @@
   }
 
   .activity-time {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     font-size: 10px;
     background: var(--thu-mid);
     color: white;
@@ -580,7 +579,7 @@
   .assignment-icon { font-size: 18px; }
 
   .assignment-label {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     font-size: 9px;
     text-transform: uppercase;
     letter-spacing: 0.12em;
@@ -588,7 +587,7 @@
   }
 
   .assignment-name {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-head, 'Playfair Display', serif);
     font-size: 16px;
     font-weight: 600;
     color: var(--assign);
@@ -610,7 +609,7 @@
   }
 
   .preview-label {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     font-size: 9.5px;
     text-transform: uppercase;
     letter-spacing: 0.14em;
@@ -641,7 +640,7 @@
   }
 
   .preview-col-label {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     font-size: 9px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -709,7 +708,7 @@
 
   .starter-quote::before {
     content: '"';
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-head, 'Playfair Display', serif);
     font-size: 28px;
     color: var(--ink-soft);
     line-height: 0;
@@ -728,7 +727,7 @@
   }
 
   .overview-tag {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -737,7 +736,7 @@
   }
 
   .overview-heading {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-head, 'Playfair Display', serif);
     font-size: 44px;
     font-weight: 700;
     line-height: 1.1;
@@ -772,7 +771,7 @@
   }
 
   .info-card-label {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     font-size: 9px;
     text-transform: uppercase;
     letter-spacing: 0.13em;
@@ -798,7 +797,7 @@
   }
 
   .overview-section-title {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-head, 'Playfair Display', serif);
     font-size: 22px;
     font-weight: 600;
     color: var(--ink);
@@ -859,7 +858,7 @@
   }
 
   .aoi-week {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     font-size: 10px;
     color: white;
     background: var(--assign);
@@ -895,7 +894,7 @@
     color: white;
     padding: 10px 14px;
     text-align: left;
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     font-size: 10px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -914,25 +913,25 @@
   .grade-table tr:nth-child(even) td { background: var(--cream); }
 
   .grade-badge {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     font-size: 16px;
     font-weight: 500;
     color: var(--ink);
   }
 
   .sidebar-week.past-week .week-title-short { color: var(--sidebar-muted); }
-  .sidebar-week.past-week .week-dates-short { color: #4A3A2E; }
+  .sidebar-week.past-week .week-dates-short { color: var(--sidebar-muted, #4A3A2E); }
   .sidebar-week.current-week {
     background: var(--sidebar-active);
-    border-left-color: #E8A000;
+    border-left-color: var(--h-mist, #E8A000);
   }
   .current-badge {
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-label, 'DM Mono', monospace);
     font-size: 8px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    background: #E8A000;
-    color: #1C1410;
+    background: var(--h-mist, #E8A000);
+    color: var(--h-umber, #1C1410);
     border-radius: 3px;
     padding: 1px 5px;
     font-weight: 600;
@@ -950,6 +949,7 @@
     .goals-list { grid-template-columns: 1fr; }
   }
 </style>
+<link rel="stylesheet" href="theme.css">
 </head>
 <body>
 
@@ -1927,7 +1927,7 @@ function showOverview() {
       <div class="overview-section">
         <h2 class="overview-section-title" style="display:flex;align-items:center;justify-content:space-between;">
           Assignments at a Glance
-          <a href="submissions.html" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--assign-mid);text-decoration:none;font-weight:400;border:1px solid var(--assign-mid);border-radius:16px;padding:4px 13px;letter-spacing:0.05em;">📁 Submissions & Portfolio →</a>
+          <a href="submissions.html" style="font-family:var(--font-label, 'DM Mono',monospace);font-size:11px;color:var(--assign-mid);text-decoration:none;font-weight:400;border:1px solid var(--assign-mid);border-radius:16px;padding:4px 13px;letter-spacing:0.05em;">📁 Submissions & Portfolio →</a>
         </h2>
         <div class="assignments-overview">
           <div class="assignment-overview-item">
@@ -2177,9 +2177,9 @@ function showWeek(num) {
           </div>
         </div>
         ${workshopPages[w.num] ? `
-        <div style="background:var(--thu-light);border-bottom:1px solid #E8C4A8;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;">
-          <span style="font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--thu-mid);">Session Guide</span>
-          <a href="${workshopPages[w.num]}" target="_blank" rel="noopener noreferrer" style="font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:var(--thu);text-decoration:none;background:white;border:1px solid #E8C4A8;border-radius:16px;padding:5px 14px;">Open Today's Workshop Page →</a>
+        <div style="background:var(--thu-light);border-bottom:1px solid var(--h-rule, #E8C4A8);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:var(--font-label, 'DM Mono',monospace);font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--thu-mid);">Session Guide</span>
+          <a href="${workshopPages[w.num]}" target="_blank" rel="noopener noreferrer" style="font-family:var(--font-label, 'DM Mono',monospace);font-size:11px;font-weight:500;color:var(--thu);text-decoration:none;background:white;border:1px solid var(--h-rule, #E8C4A8);border-radius:16px;padding:5px 14px;">Open Today's Workshop Page →</a>
         </div>` : ''}
         <div class="session-body">
           ${thu.readings && thu.readings.length ? `
@@ -2270,9 +2270,9 @@ function showWeek(num) {
           </div>
         </div>
         ${tuesdayPages[w.num] ? `
-        <div style="background:var(--tue-light);border-bottom:1px solid #C8BCE8;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;">
-          <span style="font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--tue-mid);">Session Guide</span>
-          <a href="${tuesdayPages[w.num]}" target="_blank" rel="noopener noreferrer" style="font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:var(--tue);text-decoration:none;background:white;border:1px solid #C8BCE8;border-radius:16px;padding:5px 14px;">Open Today's Session Guide →</a>
+        <div style="background:var(--tue-light);border-bottom:1px solid var(--h-rule, #C8BCE8);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:var(--font-label, 'DM Mono',monospace);font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--tue-mid);">Session Guide</span>
+          <a href="${tuesdayPages[w.num]}" target="_blank" rel="noopener noreferrer" style="font-family:var(--font-label, 'DM Mono',monospace);font-size:11px;font-weight:500;color:var(--tue);text-decoration:none;background:white;border:1px solid var(--h-rule, #C8BCE8);border-radius:16px;padding:5px 14px;">Open Today's Session Guide →</a>
         </div>` : ''}
         ${sessionLayout}
       </div>`;

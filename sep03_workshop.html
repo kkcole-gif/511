@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light" data-day="thu">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ENG 511 — Sep 3: Literacy Narrative & OWI Workshop</title>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #F5F4F1;
@@ -37,7 +36,7 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-family: var(--font-body, 'IBM Plex Sans', system-ui, sans-serif);
     background: var(--bg);
     color: var(--text-1);
     line-height: 1.65;
@@ -57,16 +56,16 @@
   }
 
   .course-tag {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 10px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
+    color: var(--h-on-dark, rgba(255,255,255,0.55));
     margin-bottom: 6px;
   }
 
   .page-title {
-    font-family: 'Spectral', serif;
+    font-family: var(--font-head, 'Spectral', serif);
     font-size: 28px;
     font-weight: 600;
     line-height: 1.2;
@@ -76,23 +75,23 @@
 
   .page-subtitle {
     font-size: 14px;
-    color: rgba(255,255,255,0.7);
+    color: var(--h-on-dark, rgba(255,255,255,0.7));
     font-style: italic;
   }
 
   .time-display { text-align: right; }
 
   .time-label {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 9px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
+    color: var(--h-on-dark, rgba(255,255,255,0.5));
     margin-bottom: 4px;
   }
 
   .time-clock {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 22px;
     font-weight: 500;
     color: white;
@@ -148,7 +147,7 @@
   }
 
   .tl-time {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 10px;
     font-weight: 500;
     color: var(--time-color);
@@ -163,7 +162,7 @@
   }
 
   .tl-dur {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 9px;
     color: var(--text-3);
     margin-top: 3px;
@@ -190,7 +189,7 @@
   }
 
   .section-time-badge {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 10px;
     font-weight: 500;
     background: var(--time-bg);
@@ -201,7 +200,7 @@
   }
 
   .section-title {
-    font-family: 'Spectral', serif;
+    font-family: var(--font-head, 'Spectral', serif);
     font-size: 20px;
     font-weight: 600;
     color: var(--text-1);
@@ -209,7 +208,7 @@
   }
 
   .section-duration {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 10px;
     color: var(--text-3);
     white-space: nowrap;
@@ -258,7 +257,7 @@
   }
 
   .phase-badge {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 9px;
     text-transform: uppercase;
     letter-spacing: 0.09em;
@@ -283,7 +282,7 @@
     display: flex;
     gap: 8px;
     padding: 6px 0;
-    border-bottom: 1px solid #F2EFE9;
+    border-bottom: 1px solid var(--h-tint, #F2EFE9);
     font-size: 13px;
     color: var(--text-2);
     line-height: 1.5;
@@ -322,12 +321,12 @@
     padding: 10px 14px;
     font-size: 12px;
     font-weight: 600;
-    font-family: 'Spectral', serif;
-    border-bottom: 1px solid #D0D9EF;
+    font-family: var(--font-head, 'Spectral', serif);
+    border-bottom: 1px solid var(--h-rule, #D0D9EF);
   }
 
   .model-card-label {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 9px;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -345,7 +344,7 @@
 
   .activity-box {
     background: var(--thu-light);
-    border: 1px solid #E8C4A8;
+    border: 1px solid var(--h-rule, #E8C4A8);
     border-radius: 8px;
     padding: 16px 18px;
     margin-top: 12px;
@@ -369,7 +368,7 @@
     display: flex;
     gap: 10px;
     padding: 8px 0;
-    border-bottom: 1px solid #EAC8A8;
+    border-bottom: 1px solid var(--h-rule, #EAC8A8);
     font-size: 13px;
     color: var(--thu-dark);
     line-height: 1.5;
@@ -379,7 +378,7 @@
   .owi-q:last-child { border-bottom: none; }
 
   .owi-q-num {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 10px;
     font-weight: 500;
     color: white;
@@ -415,11 +414,11 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    border-bottom: 1px solid #D9D0E8;
+    border-bottom: 1px solid var(--h-rule, #D9D0E8);
   }
 
   .scenario-label {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 9px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -444,7 +443,7 @@
   }
 
   .scenario-prompt-label {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 9px;
     text-transform: uppercase;
     letter-spacing: 0.09em;
@@ -484,7 +483,7 @@
   }
 
   .fw-label {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 9px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -512,7 +511,7 @@
 
   .reflection strong {
     font-style: normal;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 9px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -531,7 +530,7 @@
   }
 
   .preview-heading {
-    font-family: 'Spectral', serif;
+    font-family: var(--font-head, 'Spectral', serif);
     font-size: 16px;
     font-weight: 600;
     color: var(--text-1);
@@ -588,6 +587,7 @@
     .timeline-strip, .submit-banner { padding: 0 20px; }
   }
 </style>
+<link rel="stylesheet" href="theme.css">
 </head>
 <body>
 
@@ -787,7 +787,7 @@
       <div class="scenario-card">
         <div class="scenario-header">
           <div class="scenario-label">Scenario A</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--rose);opacity:0.7;">Premature Editing</div>
+          <div style="font-family:var(--font-label, 'IBM Plex Mono',monospace);font-size:11px;color:var(--rose);opacity:0.7;">Premature Editing</div>
         </div>
         <div class="scenario-body">
           A student writes one sentence, reads it, deletes it, writes it again slightly differently, reads it, deletes it again. After 45 minutes, she has a blank document. When asked what's happening, she says: "I just don't think it's good enough yet."
@@ -803,7 +803,7 @@
       <div class="scenario-card">
         <div class="scenario-header">
           <div class="scenario-label">Scenario B</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--rose);opacity:0.7;">Internalized Prohibition</div>
+          <div style="font-family:var(--font-label, 'IBM Plex Mono',monospace);font-size:11px;color:var(--rose);opacity:0.7;">Internalized Prohibition</div>
         </div>
         <div class="scenario-body">
           A student has been told since middle school never to use "I" in formal writing. Now in a first-year college course that asks for personal analysis, he starts every draft with "It is" or "There are" and cannot generate specific claims. His sentences are grammatically correct and informationally empty.
@@ -819,7 +819,7 @@
       <div class="scenario-card">
         <div class="scenario-header">
           <div class="scenario-label">Scenario C</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--rose);opacity:0.7;">Indefinite Research Deferral</div>
+          <div style="font-family:var(--font-label, 'IBM Plex Mono',monospace);font-size:11px;color:var(--rose);opacity:0.7;">Indefinite Research Deferral</div>
         </div>
         <div class="scenario-body">
           A student says she can't start writing until she's finished reading everything. She has been researching her paper for two weeks, taking notes, and adding more sources. The draft due date is tomorrow. She insists the problem is she doesn't know enough yet.
@@ -835,7 +835,7 @@
       <div class="scenario-card">
         <div class="scenario-header">
           <div class="scenario-label">Scenario D</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--rose);opacity:0.7;">Perpetual Redraft</div>
+          <div style="font-family:var(--font-label, 'IBM Plex Mono',monospace);font-size:11px;color:var(--rose);opacity:0.7;">Perpetual Redraft</div>
         </div>
         <div class="scenario-body">
           A student completes a full draft, reads it, and concludes it is "just bad." He will not revise it. He will, however, start an entirely new draft from scratch. He has done this four times. The new drafts are not meaningfully different from the first.

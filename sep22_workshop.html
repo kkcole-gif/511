@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light" data-day="tue">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ENG 511, Sep 22: Genre as Social Action</title>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #F5F4F1;
@@ -33,7 +32,7 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-family: var(--font-body, 'IBM Plex Sans', system-ui, sans-serif);
     background: var(--bg);
     color: var(--text-1);
     line-height: 1.65;
@@ -62,16 +61,16 @@
   }
 
   .course-tag {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.85);
+    color: var(--h-on-dark, rgba(255,255,255,0.85));
     margin-bottom: 6px;
   }
 
   .page-title {
-    font-family: 'Spectral', serif;
+    font-family: var(--font-head, 'Spectral', serif);
     font-size: 28px;
     font-weight: 600;
     line-height: 1.2;
@@ -81,23 +80,23 @@
 
   .page-subtitle {
     font-size: 14px;
-    color: rgba(255,255,255,0.9);
+    color: var(--h-on-dark, rgba(255,255,255,0.9));
     font-style: italic;
   }
 
   .mode-display { text-align: right; }
 
   .mode-label {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 10px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.85);
+    color: var(--h-on-dark, rgba(255,255,255,0.85));
     margin-bottom: 4px;
   }
 
   .mode-value {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 16px;
     font-weight: 500;
     color: white;
@@ -138,7 +137,7 @@
   }
 
   .tl-num {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 10px;
     font-weight: 500;
     color: var(--tue);
@@ -170,7 +169,7 @@
   }
 
   .section-num {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 10px;
     font-weight: 500;
     background: var(--badge-bg);
@@ -183,7 +182,7 @@
   }
 
   .section-title {
-    font-family: 'Spectral', serif;
+    font-family: var(--font-head, 'Spectral', serif);
     font-size: 20px;
     font-weight: 600;
     color: var(--text-1);
@@ -191,7 +190,7 @@
   }
 
   .section-pace {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 11px;
     color: var(--text-3);
     white-space: nowrap;
@@ -248,7 +247,7 @@
   }
 
   .arc-label {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 9px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -257,7 +256,7 @@
   }
 
   .arc-author {
-    font-family: 'Spectral', serif;
+    font-family: var(--font-head, 'Spectral', serif);
     font-size: 14.5px;
     font-weight: 600;
     color: var(--text-1);
@@ -296,7 +295,7 @@
   }
 
   .phase-badge {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 0.09em;
@@ -319,7 +318,7 @@
     display: flex;
     gap: 8px;
     padding: 6px 0;
-    border-bottom: 1px solid #F2EFE9;
+    border-bottom: 1px solid var(--h-tint, #F2EFE9);
     font-size: 13px;
     color: var(--text-2);
     line-height: 1.5;
@@ -355,11 +354,11 @@
   }
 
   .opener-badge {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 0.09em;
-    background: rgba(255,255,255,0.2);
+    background: var(--h-pill, rgba(255,255,255,0.2));
     color: white;
     padding: 2px 9px;
     border-radius: 10px;
@@ -367,7 +366,7 @@
   }
 
   .opener-title {
-    font-family: 'Spectral', serif;
+    font-family: var(--font-head, 'Spectral', serif);
     font-size: 14px;
     font-weight: 600;
     color: white;
@@ -375,7 +374,7 @@
 
   .opener-body {
     padding: 20px 22px;
-    font-family: 'Spectral', serif;
+    font-family: var(--font-head, 'Spectral', serif);
     font-size: 17px;
     line-height: 1.7;
     color: var(--text-1);
@@ -404,11 +403,11 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    border-bottom: 1px solid #D0D9EF;
+    border-bottom: 1px solid var(--h-rule, #D0D9EF);
   }
 
   .cluster-num {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 10px;
     font-weight: 500;
     background: var(--tue);
@@ -419,7 +418,7 @@
   }
 
   .cluster-theme {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -431,7 +430,7 @@
 
   .cluster-q {
     padding: 8px 0;
-    border-bottom: 1px solid #F2EFE9;
+    border-bottom: 1px solid var(--h-tint, #F2EFE9);
     font-size: 13.5px;
     color: var(--text-1);
     line-height: 1.6;
@@ -440,7 +439,7 @@
   .cluster-q:last-child { border-bottom: none; padding-bottom: 0; }
 
   .cluster-attr {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 10px;
     color: var(--text-3);
     display: block;
@@ -469,7 +468,7 @@
   }
 
   .activity-label {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -484,7 +483,7 @@
     display: flex;
     gap: 12px;
     padding: 8px 0;
-    border-bottom: 1px solid #F2EFE9;
+    border-bottom: 1px solid var(--h-tint, #F2EFE9);
     font-size: 13.5px;
     color: var(--text-2);
     line-height: 1.55;
@@ -494,7 +493,7 @@
   .step-row:last-child { border-bottom: none; }
 
   .step-n {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 11px;
     font-weight: 500;
     background: var(--tue);
@@ -523,7 +522,7 @@
 
   .reflection strong {
     font-style: normal;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -535,7 +534,7 @@
   .next-link {
     display: inline-block;
     margin-top: 16px;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace);
     font-size: 12px;
     font-weight: 500;
     color: var(--tue);
@@ -556,6 +555,7 @@
     .arc-arrow-wrap { display: none; }
   }
 </style>
+<link rel="stylesheet" href="theme.css">
 </head>
 <body>
 

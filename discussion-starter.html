@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Discussion Starter — ENG 511</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,400&family=DM+Mono:wght@400;500&display=swap">
   <style>
     /* ── Site tokens — exact match to eng511cole.org ── */
     :root {
@@ -71,7 +68,7 @@
     body {
       background: var(--cream);
       color: var(--ink);
-      font-family: 'Source Serif 4', Georgia, serif;
+      font-family: var(--font-body, 'Source Serif 4', Georgia, serif);
       font-size: 1rem;
       line-height: 1.72;
       -webkit-font-smoothing: antialiased;
@@ -95,7 +92,7 @@
     }
 
     .course-id {
-      font-family: 'DM Mono', monospace;
+      font-family: var(--font-label, 'DM Mono', monospace);
       font-size: 0.68rem;
       font-weight: 500;
       letter-spacing: 0.1em;
@@ -104,7 +101,7 @@
     }
 
     .course-title-sm {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-head, 'Playfair Display', serif);
       font-size: 1rem;
       font-weight: 700;
       color: var(--sidebar-text);
@@ -112,7 +109,7 @@
     }
 
     .back-link {
-      font-family: 'DM Mono', monospace;
+      font-family: var(--font-label, 'DM Mono', monospace);
       font-size: 0.7rem;
       color: var(--sidebar-muted);
       text-decoration: none;
@@ -135,7 +132,7 @@
     }
 
     .page-tag {
-      font-family: 'DM Mono', monospace;
+      font-family: var(--font-label, 'DM Mono', monospace);
       font-size: 0.65rem;
       font-weight: 500;
       letter-spacing: 0.12em;
@@ -145,7 +142,7 @@
     }
 
     h1 {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-head, 'Playfair Display', serif);
       font-size: clamp(2rem, 5vw, 3rem);
       font-weight: 700;
       line-height: 1.1;
@@ -174,7 +171,7 @@
       border: 1px solid var(--border);
       border-radius: 20px;
       padding: 0.25rem 0.8rem;
-      font-family: 'DM Mono', monospace;
+      font-family: var(--font-label, 'DM Mono', monospace);
       font-size: 0.67rem;
       color: var(--ink-mid);
     }
@@ -213,7 +210,7 @@
     }
 
     .session-day-badge {
-      font-family: 'DM Mono', monospace;
+      font-family: var(--font-label, 'DM Mono', monospace);
       font-size: 0.6rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -223,12 +220,12 @@
     }
 
     .tue-badge {
-      background: rgba(255,255,255,0.18);
+      background: var(--h-pill, rgba(255,255,255,0.18));
       color: white;
     }
 
     .assign-badge {
-      background: rgba(255,255,255,0.18);
+      background: var(--h-pill, rgba(255,255,255,0.18));
       color: white;
     }
 
@@ -238,7 +235,7 @@
     }
 
     .session-header-title {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-head, 'Playfair Display', serif);
       font-size: 1.05rem;
       font-weight: 700;
       line-height: 1.25;
@@ -262,7 +259,7 @@
 
     /* ── Block title (exact match to main site) ── */
     .block-title {
-      font-family: 'DM Mono', monospace;
+      font-family: var(--font-label, 'DM Mono', monospace);
       font-size: 0.6rem;
       font-weight: 500;
       letter-spacing: 0.13em;
@@ -349,7 +346,7 @@
     }
 
     .assignment-box-label {
-      font-family: 'DM Mono', monospace;
+      font-family: var(--font-label, 'DM Mono', monospace);
       font-size: 0.58rem;
       font-weight: 500;
       letter-spacing: 0.12em;
@@ -377,7 +374,7 @@
     }
 
     .signup-strip-text {
-      font-family: 'DM Mono', monospace;
+      font-family: var(--font-label, 'DM Mono', monospace);
       font-size: 0.7rem;
       letter-spacing: 0.03em;
       color: var(--assign-mid);
@@ -385,7 +382,7 @@
 
     .signup-btn {
       display: inline-block;
-      font-family: 'DM Mono', monospace;
+      font-family: var(--font-label, 'DM Mono', monospace);
       font-size: 0.68rem;
       font-weight: 500;
       letter-spacing: 0.06em;
@@ -412,13 +409,13 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      font-family: 'Source Serif 4', Georgia, serif;
+      font-family: var(--font-body, 'Source Serif 4', Georgia, serif);
       font-size: 0.875rem;
     }
 
     thead th {
       background: var(--cream-dark);
-      font-family: 'DM Mono', monospace;
+      font-family: var(--font-label, 'DM Mono', monospace);
       font-size: 0.58rem;
       font-weight: 500;
       letter-spacing: 0.1em;
@@ -442,7 +439,7 @@
     }
 
     .td-date {
-      font-family: 'DM Mono', monospace;
+      font-family: var(--font-label, 'DM Mono', monospace);
       font-size: 0.75rem;
       color: var(--tue-mid);
       white-space: nowrap;
@@ -480,11 +477,11 @@
     .resource-link:hover { color: var(--tue); }
 
     .resource-link-name {
-      font-family: 'Source Serif 4', serif;
+      font-family: var(--font-body, 'Source Serif 4', serif);
     }
 
     .resource-link-type {
-      font-family: 'DM Mono', monospace;
+      font-family: var(--font-label, 'DM Mono', monospace);
       font-size: 0.6rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -508,7 +505,7 @@
       margin-top: 2rem;
       padding-top: 1.25rem;
       border-top: 1px solid var(--border);
-      font-family: 'DM Mono', monospace;
+      font-family: var(--font-label, 'DM Mono', monospace);
       font-size: 0.65rem;
       letter-spacing: 0.04em;
       color: var(--ink-soft);
@@ -525,6 +522,7 @@
       * { transition: none !important; }
     }
   </style>
+<link rel="stylesheet" href="theme.css">
 </head>
 <body>
 
