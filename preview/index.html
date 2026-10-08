@@ -302,7 +302,7 @@
   /* ── SESSION CARD ────────────────────────────────────────  */
   .session-card {
     background: white;
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     box-shadow: var(--shadow);
     margin-bottom: 28px;
     overflow: hidden;
@@ -335,7 +335,7 @@
     letter-spacing: var(--label-track, 0.14em);
     text-transform: var(--label-case, uppercase);
     padding: 3px 9px;
-    border-radius: 12px;
+    border-radius: var(--radius, 12px);
     font-weight: 500;
   }
 
@@ -533,7 +533,7 @@
     background: var(--thu-mid);
     color: white;
     padding: 2px 7px;
-    border-radius: 10px;
+    border-radius: var(--radius, 10px);
     font-weight: 400;
   }
 
@@ -565,7 +565,7 @@
   .assignment-box {
     background: var(--assign-light);
     border: 1.5px solid var(--assign-mid);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 16px 18px;
     margin: 0 24px 24px;
   }
@@ -766,7 +766,7 @@
   .info-card {
     background: white;
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 18px 20px;
     box-shadow: var(--shadow);
   }
@@ -852,7 +852,7 @@
     gap: 16px;
     background: white;
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 14px 18px;
     align-items: flex-start;
     box-shadow: var(--shadow);
@@ -864,7 +864,7 @@
     color: white;
     background: var(--assign);
     padding: 3px 9px;
-    border-radius: 12px;
+    border-radius: var(--radius, 12px);
     white-space: nowrap;
     margin-top: 2px;
   }
@@ -952,59 +952,46 @@
 </style>
 <link rel="stylesheet" href="theme.css">
 </head>
-<body>
+<body class="topnav has-rail">
 <a class="skip-link" href="#main">Skip to main content</a>
 
 <!-- ════════════════════════════════════════════════════════
      SIDEBAR
 ════════════════════════════════════════════════════════ -->
-<aside class="sidebar" aria-label="Course navigation">
-  <div class="sidebar-header">
-    <div class="sidebar-course">ENG 511 · Fall 2026</div>
-    <div class="sidebar-title">Theory & Research in Composition</div>
-    <div class="sidebar-sub">Prof. Kirsti Cole · T/Th In-Person</div>
+<header class="site-head">
+  <div class="in">
+    <a class="brand" href="index.html">ENG 511 · Theory and Research in Composition</a>
+    <nav class="site-nav" aria-label="Course">
+      <a href="index.html" aria-current="page">Schedule</a>
+      <a href="perusall.html">Perusall guide</a>
+      <a href="submissions.html">Submissions &amp; Portfolio</a>
+      <a href="exemplars.html">Writing exemplars</a>
+      <a href="writing_framework.html">Instructor’s framework</a>
+    </nav>
   </div>
-
-  <div class="sidebar-section-label">Navigation</div>
+</header>
+<div class="substrip">
+  <div class="in">
+    <nav class="tools" aria-label="Course tools">
+      <span class="lab">Tools</span>
+      <a href="https://app.perusall.com/courses/eng-511-001-fall-2026-theory-and-research-in-composition/_/assignments" target="_blank" rel="noopener">Perusall</a>
+      <a href="https://drive.google.com/drive/folders/1Uig3JajMidSxqVGx6VeY5AYwYoIu1FXu?usp=sharing" target="_blank" rel="noopener">Class folder</a>
+      <a href="https://moodle-courses2527.wolfware.ncsu.edu/course/view.php?id=12455" target="_blank" rel="noopener">Moodle</a>
+      <a href="https://calendar.app.google/bpaYNUBRrE62aKxMA" target="_blank" rel="noopener">Office hours</a>
+    </nav>
+  </div>
+</div>
+<div class="with-rail">
+<nav class="week-rail" aria-label="Weeks">
   <a class="sidebar-week active" onclick="showOverview()" style="cursor:pointer" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showOverview();document.getElementById('main').focus()}">
     <div class="week-num"></div>
     <div class="week-info">
-      <div class="week-title-short">Course Overview</div>
-      <div class="week-dates-short">Syllabus & Assignments</div>
+      <div class="week-title-short">Course overview</div>
+      <div class="week-dates-short">Syllabus and assignments</div>
     </div>
   </a>
-  <a class="sidebar-week" href="perusall.html">
-    <div class="week-num"></div>
-    <div class="week-info">
-      <div class="week-title-short">Perusall Annotation Guide</div>
-      <div class="week-dates-short">Marginalia & annotation tips</div>
-    </div>
-  </a>
-  <a class="sidebar-week" href="submissions.html">
-    <div class="week-num"></div>
-    <div class="week-info">
-      <div class="week-title-short">Submissions & Portfolio</div>
-      <div class="week-dates-short">Google Drive · All Assignments</div>
-    </div>
-  </a>
-  <a class="sidebar-week" href="exemplars.html">
-    <div class="week-num"></div>
-    <div class="week-info">
-      <div class="week-title-short">Writing Exemplars</div>
-      <div class="week-dates-short">Teaching philosophy examples</div>
-    </div>
-  </a>
-  <a class="sidebar-week" href="writing_framework.html" target="_blank" rel="noopener noreferrer">
-    <div class="week-num" style="font-size:max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));"></div>
-    <div class="week-info">
-      <div class="week-title-short">Instructor's Framework</div>
-      <div class="week-dates-short">Activity · Pedagogy · Method</div>
-    </div>
-  </a>
-
-  <div class="sidebar-section-label">Weekly Schedule</div>
   <div id="sidebar-weeks"></div>
-</aside>
+</nav>
 
 <!-- ════════════════════════════════════════════════════════
      MAIN
@@ -1019,6 +1006,7 @@
     </div>
   </div>
   <div id="page-content"></div>
+</div>
 </div>
 
 <script>
@@ -1932,7 +1920,7 @@ function showOverview() {
       <div class="overview-section">
         <h2 class="overview-section-title" style="display:flex;align-items:center;justify-content:space-between;">
           Assignments at a Glance
-          <a href="submissions.html" style="font-family:var(--font-label, 'DM Mono',monospace);font-size:max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));color:var(--assign-mid);text-decoration:none;font-weight:400;border:1px solid var(--assign-mid);border-radius:16px;padding:4px 13px;letter-spacing:var(--label-track, 0.05em);">Submissions & Portfolio</a>
+          <a href="submissions.html" style="font-family:var(--font-label, 'DM Mono',monospace);font-size:max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));color:var(--assign-mid);text-decoration:none;font-weight:400;border:1px solid var(--assign-mid);border-radius:var(--radius, 16px);padding:4px 13px;letter-spacing:var(--label-track, 0.05em);">Submissions & Portfolio</a>
         </h2>
         <div class="assignments-overview">
           <div class="assignment-overview-item">
@@ -2184,7 +2172,7 @@ function showWeek(num) {
         ${workshopPages[w.num] ? `
         <div style="background:var(--thu-light);border-bottom:1px solid var(--h-rule, #E8C4A8);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;">
           <span style="font-family:var(--font-label, 'DM Mono',monospace);font-size:max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));text-transform:var(--label-case, uppercase);letter-spacing:var(--label-track, 0.1em);color:var(--thu-mid);">Session Guide</span>
-          <a href="${workshopPages[w.num]}" target="_blank" rel="noopener noreferrer" style="font-family:var(--font-label, 'DM Mono',monospace);font-size:max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));font-weight:500;color:var(--thu);text-decoration:none;background:white;border:1px solid var(--h-rule, #E8C4A8);border-radius:16px;padding:5px 14px;">Open Today's Workshop Page</a>
+          <a href="${workshopPages[w.num]}" target="_blank" rel="noopener noreferrer" style="font-family:var(--font-label, 'DM Mono',monospace);font-size:max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));font-weight:500;color:var(--thu);text-decoration:none;background:white;border:1px solid var(--h-rule, #E8C4A8);border-radius:var(--radius, 16px);padding:5px 14px;">Open Today's Workshop Page</a>
         </div>` : ''}
         <div class="session-body">
           ${thu.readings && thu.readings.length ? `
@@ -2277,7 +2265,7 @@ function showWeek(num) {
         ${tuesdayPages[w.num] ? `
         <div style="background:var(--tue-light);border-bottom:1px solid var(--h-rule, #C8BCE8);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;">
           <span style="font-family:var(--font-label, 'DM Mono',monospace);font-size:max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));text-transform:var(--label-case, uppercase);letter-spacing:var(--label-track, 0.1em);color:var(--tue-mid);">Session Guide</span>
-          <a href="${tuesdayPages[w.num]}" target="_blank" rel="noopener noreferrer" style="font-family:var(--font-label, 'DM Mono',monospace);font-size:max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));font-weight:500;color:var(--tue);text-decoration:none;background:white;border:1px solid var(--h-rule, #C8BCE8);border-radius:16px;padding:5px 14px;">Open Today's Session Guide</a>
+          <a href="${tuesdayPages[w.num]}" target="_blank" rel="noopener noreferrer" style="font-family:var(--font-label, 'DM Mono',monospace);font-size:max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));font-weight:500;color:var(--tue);text-decoration:none;background:white;border:1px solid var(--h-rule, #C8BCE8);border-radius:var(--radius, 16px);padding:5px 14px;">Open Today's Session Guide</a>
         </div>` : ''}
         ${sessionLayout}
       </div>`;

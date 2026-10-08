@@ -181,7 +181,7 @@
     .session-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: var(--radius, 8px);
       box-shadow: var(--shadow);
       margin-bottom: 1.75rem;
       overflow: hidden;
@@ -216,7 +216,7 @@
       letter-spacing: var(--label-track, 0.12em);
       text-transform: var(--label-case, uppercase);
       padding: 0.2rem 0.65rem;
-      border-radius: 12px;
+      border-radius: var(--radius, 12px);
       font-weight: 500;
     }
 
@@ -390,7 +390,7 @@
       color: var(--assign);
       border: 1px solid var(--assign);
       background: var(--surface);
-      border-radius: 16px;
+      border-radius: var(--radius, 16px);
       padding: 0.4rem 0.95rem;
       text-decoration: none;
       white-space: nowrap;
@@ -525,17 +525,33 @@
   </style>
 <link rel="stylesheet" href="theme.css">
 </head>
-<body>
+<body class="topnav">
 <a class="skip-link" href="#main">Skip to main content</a>
 
 <!-- Site header bar -->
-<header class="site-header">
-  <div class="site-header-left">
-    <span class="course-id">ENG 511 · Fall 2026</span>
-    <span class="course-title-sm">Theory &amp; Research in Composition</span>
+<header class="site-head">
+  <div class="in">
+    <a class="brand" href="index.html">ENG 511 · Theory and Research in Composition</a>
+    <nav class="site-nav" aria-label="Course">
+      <a href="index.html">Schedule</a>
+      <a href="perusall.html">Perusall guide</a>
+      <a href="submissions.html">Submissions &amp; Portfolio</a>
+      <a href="exemplars.html">Writing exemplars</a>
+      <a href="writing_framework.html">Instructor’s framework</a>
+    </nav>
   </div>
-  <a class="back-link" href="index.html">Course Overview</a>
 </header>
+<div class="substrip">
+  <div class="in">
+    <nav class="tools" aria-label="Course tools">
+      <span class="lab">Tools</span>
+      <a href="https://app.perusall.com/courses/eng-511-001-fall-2026-theory-and-research-in-composition/_/assignments" target="_blank" rel="noopener">Perusall</a>
+      <a href="https://drive.google.com/drive/folders/1Uig3JajMidSxqVGx6VeY5AYwYoIu1FXu?usp=sharing" target="_blank" rel="noopener">Class folder</a>
+      <a href="https://moodle-courses2527.wolfware.ncsu.edu/course/view.php?id=12455" target="_blank" rel="noopener">Moodle</a>
+      <a href="https://calendar.app.google/bpaYNUBRrE62aKxMA" target="_blank" rel="noopener">Office hours</a>
+    </nav>
+  </div>
+</div>
 
 <div class="page" id="main" role="main" tabindex="-1">
 

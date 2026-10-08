@@ -79,7 +79,7 @@
   .qr-card {
     background: white;
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 16px 14px;
     box-shadow: var(--shadow);
     text-align: center;
@@ -94,7 +94,7 @@
     display: flex;
     gap: 0;
     margin-bottom: 12px;
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     overflow: hidden;
     box-shadow: var(--shadow);
     border: 1px solid var(--border);
@@ -120,7 +120,7 @@
   .anatomy-card {
     background: white;
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: var(--radius, 10px);
     overflow: hidden;
     box-shadow: var(--shadow);
     margin-bottom: 14px;
@@ -209,7 +209,7 @@
   .leader-card {
     background: white;
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 16px 18px;
     box-shadow: var(--shadow);
   }
@@ -221,7 +221,7 @@
 
   .signup-cta {
     background: var(--tue);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 20px 24px;
     display: flex;
     align-items: center;
@@ -256,7 +256,7 @@
   .marginalia-demo {
     background: white;
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: var(--radius, 10px);
     padding: 24px 28px;
     box-shadow: var(--shadow);
     margin-bottom: 20px;
@@ -281,7 +281,7 @@
   .ann-thread {
     background: var(--ann-light);
     border: 1px solid var(--ann-mid);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 14px 16px;
     font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
   }
@@ -297,7 +297,7 @@
   .ann-tag {
     background: var(--ann-mid);
     color: white;
-    border-radius: 10px;
+    border-radius: var(--radius, 10px);
     padding: 1px 8px;
     font-size: max(var(--type-min, 0px), calc(9px * var(--type-scale, 1) + var(--type-bump, 0px)));
   }
@@ -308,7 +308,7 @@
   .faq-item {
     background: white;
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 16px 20px;
     box-shadow: var(--shadow);
     margin-bottom: 10px;
@@ -320,31 +320,41 @@
 </style>
 <link rel="stylesheet" href="theme.css">
 </head>
-<body>
+<body class="topnav">
 <a class="skip-link" href="#main">Skip to main content</a>
 
-<aside class="sidebar" aria-label="Course navigation">
-  <div class="sidebar-header">
-    <div class="sidebar-course">ENG 511 · Fall 2026</div>
-    <div class="sidebar-title">Theory & Research in Composition</div>
-    <div class="sidebar-sub">Prof. Kirsti Cole</div>
+<header class="site-head">
+  <div class="in">
+    <a class="brand" href="index.html">ENG 511 · Theory and Research in Composition</a>
+    <nav class="site-nav" aria-label="Course">
+      <a href="index.html">Schedule</a>
+      <a href="perusall.html" aria-current="page">Perusall guide</a>
+      <a href="submissions.html">Submissions &amp; Portfolio</a>
+      <a href="exemplars.html">Writing exemplars</a>
+      <a href="writing_framework.html">Instructor’s framework</a>
+    </nav>
   </div>
-  <div class="sidebar-section-label">Pages</div>
-  <a class="sidebar-link" href="index.html"><span class="sidebar-link-icon"></span> Course Website</a>
-  <a class="sidebar-link" href="submissions.html"><span class="sidebar-link-icon"></span> Submissions & Portfolio</a>
-  <a class="sidebar-link active" href="perusall.html"><span class="sidebar-link-icon"></span> Perusall Annotation Guide</a>
-  <div class="sidebar-section-label">Jump To</div>
-  <a class="sidebar-link" href="#when"><span class="sidebar-link-icon">①</span> When & How Often</a>
-  <a class="sidebar-link" href="#anatomy"><span class="sidebar-link-icon">②</span> Anatomy of an Annotation</a>
-  <a class="sidebar-link" href="#example"><span class="sidebar-link-icon">③</span> Full Example</a>
-  <a class="sidebar-link" href="#grading"><span class="sidebar-link-icon">④</span> What Counts as Strong</a>
-  <a class="sidebar-link" href="#leader"><span class="sidebar-link-icon">⑤</span> Discussion Leader Role</a>
-  <a class="sidebar-link" href="#faq"><span class="sidebar-link-icon">⑥</span> FAQ</a>
-  <div class="sidebar-section-label">Quick Links</div>
-  <a class="sidebar-link" href="https://app.perusall.com/courses/eng-511-001-fall-2026-theory-and-research-in-composition/_/assignments" target="_blank"><span class="sidebar-link-icon"></span> Open Perusall</a>
-  <a class="sidebar-link" href="https://drive.google.com/drive/folders/1Uig3JajMidSxqVGx6VeY5AYwYoIu1FXu?usp=sharing" target="_blank"><span class="sidebar-link-icon"></span> Class Folder</a>
-  <a class="sidebar-link" href="https://calendar.app.google/bpaYNUBRrE62aKxMA" target="_blank"><span class="sidebar-link-icon"></span> Office Hours</a>
-</aside>
+</header>
+<div class="substrip">
+  <div class="in">
+    <nav class="jump" aria-label="On this page">
+      <span class="lab">On this page</span>
+      <a href="#when">When &amp; How Often</a>
+      <a href="#anatomy">Anatomy of an Annotation</a>
+      <a href="#example">Full Example</a>
+      <a href="#grading">What Counts as Strong</a>
+      <a href="#leader">Discussion Leader Role</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <nav class="tools" aria-label="Course tools">
+      <span class="lab">Tools</span>
+      <a href="https://app.perusall.com/courses/eng-511-001-fall-2026-theory-and-research-in-composition/_/assignments" target="_blank" rel="noopener">Perusall</a>
+      <a href="https://drive.google.com/drive/folders/1Uig3JajMidSxqVGx6VeY5AYwYoIu1FXu?usp=sharing" target="_blank" rel="noopener">Class folder</a>
+      <a href="https://moodle-courses2527.wolfware.ncsu.edu/course/view.php?id=12455" target="_blank" rel="noopener">Moodle</a>
+      <a href="https://calendar.app.google/bpaYNUBRrE62aKxMA" target="_blank" rel="noopener">Office hours</a>
+    </nav>
+  </div>
+</div>
 
 <div class="main" id="main" role="main" tabindex="-1">
   <div class="topbar">
@@ -409,7 +419,7 @@
           <div class="timeline-desc">Thursday workshop readings follow the same rule. These are often shorter or more applied, but they still require thoughtful annotation before class. The workshop activities are designed to extend what you've already started thinking about in Perusall.</div>
         </div>
       </div>
-      <div style="background:white;border:1px solid var(--border);border-radius:8px;padding:16px 20px;box-shadow:var(--shadow);font-size:max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));color:var(--ink-mid);line-height:1.65;">
+      <div style="background:white;border:1px solid var(--border);border-radius:var(--radius, 8px);padding:16px 20px;box-shadow:var(--shadow);font-size:max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));color:var(--ink-mid);line-height:1.65;">
         <strong style="color:var(--ink);">Weeks with major assignments due:</strong> In weeks where an assignment is due (Weeks 3, 6, 7, 10, 13, 16), select <em>one</em> reading for your full annotation and integrate references to the additional readings into your assignment work. Prof. Cole will indicate this in the Moodle module for the week. You do not need to fully annotate every reading in heavy assignment weeks.
       </div>
     </div>

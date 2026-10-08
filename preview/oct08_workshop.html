@@ -196,7 +196,7 @@
     background: var(--badge-bg);
     color: var(--badge-color);
     padding: 3px 10px;
-    border-radius: 12px;
+    border-radius: var(--radius, 12px);
     white-space: nowrap;
     letter-spacing: var(--label-track, 0.08em);
     text-transform: var(--label-case, uppercase);
@@ -250,7 +250,7 @@
   .reading-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 16px 18px;
     flex: 1;
     box-shadow: var(--shadow);
@@ -288,7 +288,7 @@
     color: white;
     background: var(--thu);
     text-decoration: none;
-    border-radius: 16px;
+    border-radius: var(--radius, 16px);
     padding: 6px 16px;
   }
   .reading-link:hover { background: var(--thu-dark); }
@@ -296,7 +296,7 @@
   .opener-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     overflow: hidden;
     box-shadow: var(--shadow);
     margin-top: 14px;
@@ -318,7 +318,7 @@
     background: var(--h-pill, rgba(255,255,255,0.2));
     color: white;
     padding: 2px 9px;
-    border-radius: 10px;
+    border-radius: var(--radius, 10px);
     white-space: nowrap;
   }
 
@@ -341,7 +341,7 @@
   .activity-block {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: var(--radius, 10px);
     overflow: hidden;
     box-shadow: var(--shadow);
     margin: 14px 0;
@@ -421,7 +421,7 @@
   .prompt-card {
     background: var(--bg);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 14px 16px;
     margin-top: 10px;
   }
@@ -446,7 +446,7 @@
 
   .demand-box {
     background: var(--thu-dark);
-    border-radius: 10px;
+    border-radius: var(--radius, 10px);
     padding: 22px 26px;
     margin-top: 14px;
   }
@@ -472,7 +472,7 @@
   .leave-box {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 16px 18px;
     box-shadow: var(--shadow);
     margin-top: 14px;
@@ -497,7 +497,7 @@
     color: var(--thu);
     text-decoration: none;
     border: 1px solid var(--thu);
-    border-radius: 16px;
+    border-radius: var(--radius, 16px);
     padding: 6px 16px;
   }
   .next-link:hover { background: var(--thu-light); }
@@ -523,7 +523,7 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-top: 3px solid var(--thu);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 16px 18px;
     box-shadow: var(--shadow);
     text-decoration: none;
@@ -554,7 +554,7 @@
 
   .sample-task {
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     overflow: hidden;
     background: var(--surface);
   }
@@ -576,7 +576,7 @@
     background: var(--thu);
     color: white;
     padding: 2px 9px;
-    border-radius: 10px;
+    border-radius: var(--radius, 10px);
   }
   .sample-task-where {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
@@ -617,7 +617,7 @@
   }
   .sample-rubric li span:last-child { font-family: var(--font-label, 'IBM Plex Mono', monospace); color: var(--text-2); }
 
-  .step-n { min-width: 20px; width: auto; padding: 0 5px; border-radius: 10px; }
+  .step-n { min-width: 20px; width: auto; padding: 0 5px; border-radius: var(--radius, 10px); }
 
   @media (max-width: 780px) {
     .group-grid { grid-template-columns: 1fr; }

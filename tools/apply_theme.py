@@ -61,6 +61,8 @@ def restyle_css(css):
                       r'\1max(var(--type-min, 0px), calc(\2 * var(--type-scale, 1)))', line)
         line = re.sub(r'(text-transform\s*:\s*)(uppercase)', r'\1var(--label-case, \2)', line)
         line = re.sub(r'(letter-spacing\s*:\s*)(\d*\.?\d+(?:em|px))', r'\1var(--label-track, \2)', line)
+        # corner radius on boxes is set in theme.css (pills and circles keep their own)
+        line = re.sub(r'(?<![\w-])(border-radius\s*:\s*)((?:[7-9]|1[0-6])px)(?=\s*[;}"]|\s*$)', r'\1var(--radius, \2)', line)
         # text on a dark band is solid white, and a pill on a dark band darkens the band
         line = re.sub(r'(?<![\w-])(color\s*:\s*)(rgba\(255,\s*255,\s*255,\s*0?\.\d+\))',
                       r'\1var(--h-on-dark, \2)', line)

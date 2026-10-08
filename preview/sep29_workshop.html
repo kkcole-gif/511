@@ -180,7 +180,7 @@
     background: var(--badge-bg);
     color: var(--badge-color);
     padding: 3px 10px;
-    border-radius: 12px;
+    border-radius: var(--radius, 12px);
     white-space: nowrap;
     letter-spacing: var(--label-track, 0.08em);
     text-transform: var(--label-case, uppercase);
@@ -236,7 +236,7 @@
   .arc-box {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 14px 16px;
     flex: 1;
     box-shadow: var(--shadow);
@@ -283,7 +283,7 @@
     text-transform: var(--label-case, uppercase);
     letter-spacing: var(--label-track, 0.09em);
     padding: 2px 8px;
-    border-radius: 9px;
+    border-radius: var(--radius, 9px);
     margin-top: 10px;
     white-space: nowrap;
   }
@@ -296,7 +296,7 @@
   .framework-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: var(--radius, 10px);
     overflow: hidden;
     box-shadow: var(--shadow);
     margin: 14px 0;
@@ -388,7 +388,7 @@
   .opener-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     overflow: hidden;
     box-shadow: var(--shadow);
     margin-top: 14px;
@@ -410,7 +410,7 @@
     background: var(--h-pill, rgba(255,255,255,0.2));
     color: white;
     padding: 2px 9px;
-    border-radius: 10px;
+    border-radius: var(--radius, 10px);
     white-space: nowrap;
   }
 
@@ -441,7 +441,7 @@
   .disc-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     overflow: hidden;
     box-shadow: var(--shadow);
   }
@@ -465,7 +465,7 @@
     text-transform: var(--label-case, uppercase);
     letter-spacing: var(--label-track, 0.1em);
     padding: 2px 9px;
-    border-radius: 9px;
+    border-radius: var(--radius, 9px);
     flex-shrink: 0;
     white-space: nowrap;
   }
@@ -503,7 +503,7 @@
   .activity-steps {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 16px 18px;
     box-shadow: var(--shadow);
     margin-bottom: 14px;
@@ -582,7 +582,7 @@
     color: var(--tue);
     text-decoration: none;
     border: 1px solid var(--tue);
-    border-radius: 16px;
+    border-radius: var(--radius, 16px);
     padding: 6px 16px;
   }
   .next-link:hover { background: var(--tue-light); }

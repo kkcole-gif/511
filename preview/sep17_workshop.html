@@ -172,7 +172,7 @@
     background: var(--time-bg);
     color: var(--time-color);
     padding: 3px 10px;
-    border-radius: 12px;
+    border-radius: var(--radius, 12px);
     white-space: nowrap;
     letter-spacing: var(--label-track, 0.08em);
     text-transform: var(--label-case, uppercase);
@@ -218,7 +218,7 @@
   .doc-box {
     background: var(--doc-light);
     border: 1px solid var(--doc-border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 16px 18px;
     margin: 14px 0;
     color: var(--doc);
@@ -247,7 +247,7 @@
     color: white;
     background: var(--doc);
     text-decoration: none;
-    border-radius: 16px;
+    border-radius: var(--radius, 16px);
     padding: 7px 16px;
     margin-top: 6px;
   }
@@ -265,7 +265,7 @@
   .phase-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 16px 18px;
     box-shadow: var(--shadow);
   }
@@ -286,7 +286,7 @@
     background: var(--thu);
     color: white;
     padding: 2px 9px;
-    border-radius: 10px;
+    border-radius: var(--radius, 10px);
     white-space: nowrap;
   }
 
@@ -330,7 +330,7 @@
   .component-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     overflow: hidden;
     box-shadow: var(--shadow);
   }
@@ -355,7 +355,7 @@
   .activity-box {
     background: var(--thu-light);
     border: 1px solid var(--h-rule, #E8C4A8);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 16px 18px;
     margin-top: 12px;
   }
@@ -403,7 +403,7 @@
   .sample {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     box-shadow: var(--shadow);
     overflow: hidden;
     margin-top: 14px;
@@ -428,7 +428,7 @@
     font-weight: 500;
     background: rgba(42,68,133,0.1);
     padding: 2px 8px;
-    border-radius: 9px;
+    border-radius: var(--radius, 9px);
   }
 
   .sample-context {
@@ -458,7 +458,7 @@
   .sort-col {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 12px 14px;
   }
 
@@ -504,7 +504,7 @@
   .preview-box {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius, 8px);
     padding: 18px 20px;
     box-shadow: var(--shadow);
   }
@@ -558,7 +558,7 @@
     background: var(--time-bg);
     color: var(--time-color);
     padding: 3px 10px;
-    border-radius: 12px;
+    border-radius: var(--radius, 12px);
     margin-top: 8px;
   }
 
