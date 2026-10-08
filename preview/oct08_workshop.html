@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ENG 511, Oct 8: Linguistic Justice — Combined Session</title>
+<title>ENG 511, Oct 8: Linguistic Justice, Combined Session</title>
 <style>
   :root {
     --bg: #F5F4F1;
@@ -32,7 +32,7 @@
     background: var(--bg);
     color: var(--text-1);
     line-height: 1.65;
-    font-size: 15px;
+    font-size: max(var(--type-min, 0px), calc(15px * var(--type-scale, 1) + var(--type-bump, 0px)));
     min-height: 100vh;
   }
 
@@ -42,7 +42,7 @@
   .skip-link {
     position: absolute; left: -999px; top: 8px;
     background: white; color: var(--thu-dark); padding: 8px 12px;
-    border-radius: 6px; z-index: 10; font-size: 13px;
+    border-radius: 6px; z-index: 10; font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
   }
   .skip-link:focus { left: 12px; }
 
@@ -58,15 +58,15 @@
 
   .sub-label {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.12em);
     color: var(--h-on-dark, rgba(255,255,255,0.75));
   }
 
   .sub-text {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 12px;
+    font-size: max(var(--type-min, 0px), calc(12px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: white;
   }
@@ -83,16 +83,16 @@
 
   .course-tag {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    letter-spacing: var(--label-track, 0.14em);
+    text-transform: var(--label-case, uppercase);
     color: var(--h-on-dark, rgba(255,255,255,0.85));
     margin-bottom: 6px;
   }
 
   .page-title {
     font-family: var(--font-head, 'Spectral', serif);
-    font-size: 28px;
+    font-size: max(var(--type-min, 0px), calc(28px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     line-height: 1.2;
     color: white;
@@ -100,7 +100,7 @@
   }
 
   .page-subtitle {
-    font-size: 14px;
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--h-on-dark, rgba(255,255,255,0.9));
     font-style: italic;
   }
@@ -109,19 +109,19 @@
 
   .mode-label {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    letter-spacing: var(--label-track, 0.12em);
+    text-transform: var(--label-case, uppercase);
     color: var(--h-on-dark, rgba(255,255,255,0.85));
     margin-bottom: 4px;
   }
 
   .mode-value {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 16px;
+    font-size: max(var(--type-min, 0px), calc(16px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: white;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--label-track, 0.05em);
   }
 
   .timeline-strip {
@@ -159,14 +159,14 @@
 
   .tl-num {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: var(--thu);
     margin-bottom: 3px;
   }
 
   .tl-label {
-    font-size: 11.5px;
+    font-size: max(var(--type-min, 0px), calc(11.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     text-align: center;
     line-height: 1.3;
@@ -191,20 +191,20 @@
 
   .section-num {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     background: var(--badge-bg);
     color: var(--badge-color);
     padding: 3px 10px;
     border-radius: 12px;
     white-space: nowrap;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    letter-spacing: var(--label-track, 0.08em);
+    text-transform: var(--label-case, uppercase);
   }
 
   .section-title {
     font-family: var(--font-head, 'Spectral', serif);
-    font-size: 20px;
+    font-size: max(var(--type-min, 0px), calc(20px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: var(--text-1);
     flex: 1;
@@ -212,7 +212,7 @@
 
   .section-pace {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 11px;
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-3);
     white-space: nowrap;
   }
@@ -222,7 +222,7 @@
   .section.active .section-title { color: var(--thu); }
 
   .lede {
-    font-size: 14px;
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.65;
     margin-bottom: 14px;
@@ -233,7 +233,7 @@
     border-left: 3px solid var(--note-border);
     border-radius: 0 6px 6px 0;
     padding: 12px 16px;
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--note-text);
     margin-bottom: 14px;
     line-height: 1.55;
@@ -258,23 +258,23 @@
 
   .reading-label {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-size: max(var(--type-min, 0px), calc(9px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     color: var(--text-3);
     margin-bottom: 6px;
   }
 
   .reading-author {
     font-family: var(--font-head, 'Spectral', serif);
-    font-size: 15px;
+    font-size: max(var(--type-min, 0px), calc(15px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: var(--text-1);
     margin-bottom: 6px;
   }
 
   .reading-desc {
-    font-size: 12.5px;
+    font-size: max(var(--type-min, 0px), calc(12.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.55;
   }
@@ -283,7 +283,7 @@
     display: inline-block;
     margin-top: 12px;
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 12px;
+    font-size: max(var(--type-min, 0px), calc(12px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: white;
     background: var(--thu);
@@ -312,9 +312,9 @@
 
   .opener-badge {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.09em);
     background: var(--h-pill, rgba(255,255,255,0.2));
     color: white;
     padding: 2px 9px;
@@ -324,7 +324,7 @@
 
   .opener-title {
     font-family: var(--font-head, 'Spectral', serif);
-    font-size: 14px;
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: white;
   }
@@ -332,7 +332,7 @@
   .opener-body {
     padding: 18px 20px;
     font-family: var(--font-head, 'Spectral', serif);
-    font-size: 16px;
+    font-size: max(var(--type-min, 0px), calc(16px * var(--type-scale, 1) + var(--type-bump, 0px)));
     line-height: 1.65;
     color: var(--text-1);
     font-style: italic;
@@ -359,7 +359,7 @@
 
   .activity-num {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 22px;
+    font-size: max(var(--type-min, 0px), calc(22px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: var(--thu);
     line-height: 1;
@@ -371,7 +371,7 @@
 
   .activity-title {
     font-family: var(--font-head, 'Spectral', serif);
-    font-size: 17px;
+    font-size: max(var(--type-min, 0px), calc(17px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: var(--text-1);
     line-height: 1.3;
@@ -380,7 +380,7 @@
   .activity-body { padding: 16px 20px; }
 
   .activity-framing {
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.6;
     margin-bottom: 12px;
@@ -395,7 +395,7 @@
     gap: 12px;
     padding: 7px 0;
     border-bottom: 1px solid var(--h-tint, #F2EFE9);
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.55;
     align-items: flex-start;
@@ -405,7 +405,7 @@
 
   .step-n {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 11px;
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     background: var(--thu);
     color: white;
@@ -428,9 +428,9 @@
 
   .prompt-label {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
+    font-size: max(var(--type-min, 0px), calc(9px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.12em);
     color: var(--text-3);
     margin-bottom: 6px;
     display: block;
@@ -438,7 +438,7 @@
 
   .prompt-text {
     font-family: var(--font-head, 'Spectral', serif);
-    font-size: 14.5px;
+    font-size: max(var(--type-min, 0px), calc(14.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-style: italic;
     color: var(--text-1);
     line-height: 1.6;
@@ -453,9 +453,9 @@
 
   .demand-label {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.14em);
     color: var(--h-on-dark, rgba(255,255,255,0.7));
     margin-bottom: 10px;
     display: block;
@@ -463,7 +463,7 @@
 
   .demand-text {
     font-family: var(--font-head, 'Spectral', serif);
-    font-size: 16px;
+    font-size: max(var(--type-min, 0px), calc(16px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-style: italic;
     color: white;
     line-height: 1.65;
@@ -480,9 +480,9 @@
 
   .leave-label {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     color: var(--text-3);
     margin-bottom: 10px;
     display: block;
@@ -492,7 +492,7 @@
     display: inline-block;
     margin-top: 16px;
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 12px;
+    font-size: max(var(--type-min, 0px), calc(12px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: var(--thu);
     text-decoration: none;
@@ -532,23 +532,23 @@
   .group-tile:hover { background: var(--thu-light); }
   .group-tile-num {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 20px;
+    font-size: max(var(--type-min, 0px), calc(20px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: var(--thu);
     line-height: 1;
   }
   .group-tile-title {
     font-family: var(--font-head, 'Spectral', serif);
-    font-size: 16px;
+    font-size: max(var(--type-min, 0px), calc(16px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: var(--text-1);
   }
-  .group-tile-desc { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+  .group-tile-desc { font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px))); color: var(--text-2); line-height: 1.5; }
   .group-tile-brings {
     margin-top: auto;
     padding-top: 8px;
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 11px;
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--thu-dark);
   }
 
@@ -570,9 +570,9 @@
   }
   .sample-task-badge {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     background: var(--thu);
     color: white;
     padding: 2px 9px;
@@ -580,18 +580,18 @@
   }
   .sample-task-where {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 11px;
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-3);
   }
   .sample-task-body {
     padding: 16px 20px;
-    font-size: 14px;
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-1);
     line-height: 1.6;
   }
   .sample-task-body h3 {
     font-family: var(--font-body, 'IBM Plex Sans', sans-serif);
-    font-size: 17px;
+    font-size: max(var(--type-min, 0px), calc(17px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     margin-bottom: 8px;
   }
@@ -600,9 +600,9 @@
   .sample-task-body ol li { margin-bottom: 4px; }
   .sample-task-head {
     font-weight: 600;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
+    font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.06em);
     color: var(--text-2);
     margin: 14px 0 6px !important;
   }
@@ -613,7 +613,7 @@
     gap: 16px;
     padding: 6px 0;
     border-bottom: 1px solid var(--border);
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
   }
   .sample-rubric li span:last-child { font-family: var(--font-label, 'IBM Plex Mono', monospace); color: var(--text-2); }
 
@@ -631,12 +631,12 @@
 
 <div class="conf-banner">
   <span class="sub-label">Today's plan</span>
-  <span class="sub-text">Tuesday, Oct 6 was cancelled — Prof. Cole was presenting at a conference. This session covers both days.</span>
+  <span class="sub-text">Tuesday, Oct 6 was cancelled because Prof. Cole was presenting at a conference. This session covers both days.</span>
 </div>
 
 <header class="page-header">
   <div>
-    <div class="course-tag">ENG 511 · Week 8 · Thursday, October 8, 2026 — Combined Session</div>
+    <div class="course-tag">ENG 511 · Week 8 · Thursday, October 8, 2026 · Combined Session</div>
     <h1 class="page-title">Linguistic Justice</h1>
     <div class="page-subtitle">Royster, "When the First Voice You Hear Is Not Your Own" · Young, "Your Average N****" · CCCC, "Students' Right to Their Own Language" · Baker-Bell et al., "This Ain't Another Statement"</div>
   </div>
@@ -670,7 +670,7 @@
       <div class="reading-card">
         <div class="reading-label">Royster, 1996</div>
         <div class="reading-author">When the First Voice You Hear Is Not Your Own</div>
-        <div class="reading-desc">Royster asks what it costs a writer, and a listener, when the voice that reaches print is never quite the writer's own, and what changes when we insist on hearing the first voice instead.</div>
+        <div class="reading-desc">Royster asks what it costs a writer, and a listener, when the voice reaching print is never quite the writer's own, and what changes when we insist on hearing the first voice instead.</div>
       </div>
       <div class="reading-card">
         <div class="reading-label">Young, 2004</div>
@@ -685,14 +685,14 @@
         <span class="opener-title">Royster & Young in conversation</span>
       </div>
       <div class="opener-body">
-        Royster asks us to consider "when the first voice you hear is not your own." How does Young's argument against code-switching extend, or complicate, that idea? Where do the two of them agree about what composition owes a writer's home language, and where do they part ways?
+        Royster asks us to consider "when the first voice you hear is not your own." How does Young's argument against code-switching extend, or complicate, her idea? Where do the two of them agree about what composition owes a writer's home language, and where do they part ways?
       </div>
     </div>
 
     <ul class="step-list" style="margin-top:14px;">
       <li class="step-row">
         <div class="step-n">1</div>
-        <div><strong>Full class (10 min):</strong> Work through the opening question together. What would it mean to center linguistic diversity in a course, and is that the same thing Royster and Young are each asking for?</div>
+        <div><strong>Full class (10 min):</strong> Work through the opening question together. What would it mean to center linguistic diversity in a course, and is it the same thing Royster and Young are each asking for?</div>
       </li>
       <li class="step-row">
         <div class="step-n">2</div>
@@ -700,7 +700,7 @@
       </li>
     </ul>
 
-    <a class="next-link" href="#sec-groups">Go to the groups →</a>
+    <a class="next-link" href="#sec-groups">Go to the groups</a>
   </section>
 
   <!-- GROUP CHOOSER -->
@@ -722,7 +722,7 @@
       <a class="group-tile" href="#sec-syllabus">
         <span class="group-tile-num">02</span>
         <span class="group-tile-title">SRTOL to Syllabus Language</span>
-        <span class="group-tile-desc">Read the SRTOL resolution and write syllabus language that acts on it. Short read, about 5 minutes.</span>
+        <span class="group-tile-desc">Read the SRTOL resolution and write syllabus language acting on it. Short read, about 5 minutes.</span>
         <span class="group-tile-brings">Brings back: three sentences of syllabus language</span>
       </a>
       <a class="group-tile" href="#sec-demand">
@@ -799,7 +799,7 @@
       </div>
     </div>
 
-    <a class="next-link" href="#sec-reports">Go to Reports →</a>
+    <a class="next-link" href="#sec-reports">Go to Reports</a>
   </section>
 
   <!-- ACTIVITY 02: SYLLABUS LANGUAGE -->
@@ -814,7 +814,7 @@
       <div class="reading-label">CCCC, 1974 (reaffirmed 2003, 2014)</div>
       <div class="reading-author">Students' Right to Their Own Language</div>
       <div class="reading-desc">The full 1974 statement with its background document. The resolution itself is a single paragraph at the opening. Read it closely, then skim the background sections for the reasoning behind it.</div>
-      <a class="reading-link" href="https://cdn.ncte.org/nctefiles/groups/cccc/newsrtol.pdf" target="_blank" rel="noopener">Open SRTOL (PDF) ↗</a>
+      <a class="reading-link" href="https://cdn.ncte.org/nctefiles/groups/cccc/newsrtol.pdf" target="_blank" rel="noopener">Open SRTOL (PDF)</a>
     </div>
 
     <div class="activity-block">
@@ -834,7 +834,7 @@
           </li>
           <li class="step-row">
             <div class="step-n">2</div>
-            <div><strong>Draft on your own (8 min):</strong> Write three sentences for a course syllabus that commit the course to something. Skip boilerplate. Write language you would want a student to read on day one.</div>
+            <div><strong>Draft on your own (8 min):</strong> Write three sentences for a course syllabus, each committing the course to something. Skip boilerplate. Write language you would want a student to read on day one.</div>
           </li>
           <li class="step-row">
             <div class="step-n">3</div>
@@ -848,7 +848,7 @@
       </div>
     </div>
 
-    <a class="next-link" href="#sec-reports">Go to Reports →</a>
+    <a class="next-link" href="#sec-reports">Go to Reports</a>
   </section>
 
   <!-- ACTIVITY 03: THE DEMAND -->
@@ -863,7 +863,7 @@
       <div class="reading-label">Baker-Bell et al., 2020</div>
       <div class="reading-author">This Ain't Another Statement: This is a DEMAND for Black Linguistic Justice</div>
       <div class="reading-desc">Baker-Bell and co-authors insist on the difference between a statement and a demand. The piece names concrete institutional commitments. Skim the opening framing, then spend most of your reading time on the enumerated demands.</div>
-      <a class="reading-link" href="https://cccc.ncte.org/cccc/demand-for-black-linguistic-justice" target="_blank" rel="noopener">Open the DEMAND (CCCC) ↗</a>
+      <a class="reading-link" href="https://cccc.ncte.org/cccc/demand-for-black-linguistic-justice" target="_blank" rel="noopener">Open the DEMAND (CCCC)</a>
     </div>
 
     <div class="activity-block">
@@ -883,7 +883,7 @@
           </li>
           <li class="step-row">
             <div class="step-n">2</div>
-            <div><strong>Statement vs. demand (8 min):</strong> Find one passage where Baker-Bell et al. make the difference concrete. Then put the difference into two or three criteria the room can use.</div>
+            <div><strong>Statement vs. demand (8 min):</strong> Find one passage where Baker-Bell et al. make the difference concrete. Then put the difference into two or three criteria for the room to use.</div>
           </li>
           <li class="step-row">
             <div class="step-n">3</div>
@@ -897,7 +897,7 @@
       </div>
     </div>
 
-    <a class="next-link" href="#sec-reports">Go to Reports →</a>
+    <a class="next-link" href="#sec-reports">Go to Reports</a>
   </section>
 
   <!-- REPORTS -->
@@ -922,7 +922,7 @@
         <div><strong>Syllabus Language (5 min):</strong> Your three sentences and the SRTOL phrase they carry forward.</div>
       </li>
     </ul>
-    <a class="next-link" href="#sec-frame">Go to Frame →</a>
+    <a class="next-link" href="#sec-frame">Go to Frame</a>
   </section>
 
   <!-- FRAME -->
@@ -950,7 +950,7 @@
 
     <div class="leave-box">
       <span class="leave-label">Optional further reading this week</span>
-      <div style="font-size:13.5px;color:var(--text-2);line-height:1.6;">Shen, "Identity as a Key to Learning English Composition" (1989), and Perryman-Clark, "African American Language and SRTOL" (2013). Both give background on the history behind today's discussion. Not required.</div>
+      <div style="font-size:max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));color:var(--text-2);line-height:1.6;">Shen, "Identity as a Key to Learning English Composition" (1989), and Perryman-Clark, "African American Language and SRTOL" (2013). Both give background on the history behind today's discussion. Not required.</div>
     </div>
   </section>
 

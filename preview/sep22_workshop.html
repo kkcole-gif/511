@@ -37,7 +37,7 @@
     background: var(--bg);
     color: var(--text-1);
     line-height: 1.65;
-    font-size: 15px;
+    font-size: max(var(--type-min, 0px), calc(15px * var(--type-scale, 1) + var(--type-bump, 0px)));
     min-height: 100vh;
   }
 
@@ -47,7 +47,7 @@
   .skip-link {
     position: absolute; left: -999px; top: 8px;
     background: white; color: var(--tue-dark); padding: 8px 12px;
-    border-radius: 6px; z-index: 10; font-size: 13px;
+    border-radius: 6px; z-index: 10; font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
   }
   .skip-link:focus { left: 12px; }
 
@@ -63,16 +63,16 @@
 
   .course-tag {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    letter-spacing: var(--label-track, 0.14em);
+    text-transform: var(--label-case, uppercase);
     color: var(--h-on-dark, rgba(255,255,255,0.85));
     margin-bottom: 6px;
   }
 
   .page-title {
     font-family: var(--font-head, 'Spectral', serif);
-    font-size: 28px;
+    font-size: max(var(--type-min, 0px), calc(28px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     line-height: 1.2;
     color: white;
@@ -80,7 +80,7 @@
   }
 
   .page-subtitle {
-    font-size: 14px;
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--h-on-dark, rgba(255,255,255,0.9));
     font-style: italic;
   }
@@ -89,19 +89,19 @@
 
   .mode-label {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    letter-spacing: var(--label-track, 0.12em);
+    text-transform: var(--label-case, uppercase);
     color: var(--h-on-dark, rgba(255,255,255,0.85));
     margin-bottom: 4px;
   }
 
   .mode-value {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 16px;
+    font-size: max(var(--type-min, 0px), calc(16px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: white;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--label-track, 0.05em);
   }
 
   .timeline-strip {
@@ -139,14 +139,14 @@
 
   .tl-num {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: var(--tue);
     margin-bottom: 3px;
   }
 
   .tl-label {
-    font-size: 11.5px;
+    font-size: max(var(--type-min, 0px), calc(11.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     text-align: center;
     line-height: 1.3;
@@ -171,20 +171,20 @@
 
   .section-num {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     background: var(--badge-bg);
     color: var(--badge-color);
     padding: 3px 10px;
     border-radius: 12px;
     white-space: nowrap;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    letter-spacing: var(--label-track, 0.08em);
+    text-transform: var(--label-case, uppercase);
   }
 
   .section-title {
     font-family: var(--font-head, 'Spectral', serif);
-    font-size: 20px;
+    font-size: max(var(--type-min, 0px), calc(20px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: var(--text-1);
     flex: 1;
@@ -192,7 +192,7 @@
 
   .section-pace {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 11px;
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-3);
     white-space: nowrap;
   }
@@ -202,7 +202,7 @@
   .section.active .section-title { color: var(--tue); }
 
   .lede {
-    font-size: 14px;
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.65;
     margin-bottom: 14px;
@@ -213,7 +213,7 @@
     border-left: 3px solid var(--note-border);
     border-radius: 0 6px 6px 0;
     padding: 12px 16px;
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--note-text);
     margin-bottom: 14px;
     line-height: 1.55;
@@ -243,29 +243,29 @@
     align-items: center;
     padding: 0 8px;
     color: var(--text-3);
-    font-size: 18px;
+    font-size: max(var(--type-min, 0px), calc(18px * var(--type-scale, 1) + var(--type-bump, 0px)));
     flex-shrink: 0;
   }
 
   .arc-label {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-size: max(var(--type-min, 0px), calc(9px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     color: var(--text-3);
     margin-bottom: 4px;
   }
 
   .arc-author {
     font-family: var(--font-head, 'Spectral', serif);
-    font-size: 14.5px;
+    font-size: max(var(--type-min, 0px), calc(14.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: var(--text-1);
     margin-bottom: 4px;
   }
 
   .arc-desc {
-    font-size: 12px;
+    font-size: max(var(--type-min, 0px), calc(12px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.5;
     font-style: italic;
@@ -297,9 +297,9 @@
 
   .phase-badge {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.09em);
     background: var(--tue);
     color: white;
     padding: 2px 9px;
@@ -308,7 +308,7 @@
   }
 
   .phase-card-title {
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: var(--text-1);
   }
@@ -320,7 +320,7 @@
     gap: 8px;
     padding: 6px 0;
     border-bottom: 1px solid var(--h-tint, #F2EFE9);
-    font-size: 13px;
+    font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.5;
     align-items: flex-start;
@@ -356,9 +356,9 @@
 
   .opener-badge {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.09em);
     background: var(--h-pill, rgba(255,255,255,0.2));
     color: white;
     padding: 2px 9px;
@@ -368,7 +368,7 @@
 
   .opener-title {
     font-family: var(--font-head, 'Spectral', serif);
-    font-size: 14px;
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: white;
   }
@@ -376,7 +376,7 @@
   .opener-body {
     padding: 20px 22px;
     font-family: var(--font-head, 'Spectral', serif);
-    font-size: 17px;
+    font-size: max(var(--type-min, 0px), calc(17px * var(--type-scale, 1) + var(--type-bump, 0px)));
     line-height: 1.7;
     color: var(--text-1);
     font-style: italic;
@@ -409,7 +409,7 @@
 
   .cluster-num {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     background: var(--tue);
     color: white;
@@ -420,9 +420,9 @@
 
   .cluster-theme {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.08em);
     color: var(--tue-dark);
     flex: 1;
   }
@@ -432,7 +432,7 @@
   .cluster-q {
     padding: 8px 0;
     border-bottom: 1px solid var(--h-tint, #F2EFE9);
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-1);
     line-height: 1.6;
   }
@@ -441,7 +441,7 @@
 
   .cluster-attr {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-3);
     display: block;
     margin-top: 3px;
@@ -453,7 +453,7 @@
     color: var(--tue-dark);
     border-radius: 8px;
     padding: 1px 7px;
-    font-size: 9px;
+    font-size: max(var(--type-min, 0px), calc(9px * var(--type-scale, 1) + var(--type-bump, 0px)));
     margin-left: 6px;
     vertical-align: middle;
   }
@@ -470,9 +470,9 @@
 
   .activity-label {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     color: var(--text-3);
     margin-bottom: 10px;
     display: block;
@@ -485,7 +485,7 @@
     gap: 12px;
     padding: 8px 0;
     border-bottom: 1px solid var(--h-tint, #F2EFE9);
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.55;
     align-items: flex-start;
@@ -495,7 +495,7 @@
 
   .step-n {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 11px;
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     background: var(--tue);
     color: white;
@@ -515,7 +515,7 @@
     border-radius: 0 8px 8px 0;
     padding: 16px 20px;
     font-style: italic;
-    font-size: 14.5px;
+    font-size: max(var(--type-min, 0px), calc(14.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--tue-dark);
     line-height: 1.65;
     margin-top: 12px;
@@ -524,9 +524,9 @@
   .reflection strong {
     font-style: normal;
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     display: block;
     margin-bottom: 6px;
     color: var(--tue-dark);
@@ -536,7 +536,7 @@
     display: inline-block;
     margin-top: 16px;
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 12px;
+    font-size: max(var(--type-min, 0px), calc(12px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: var(--tue);
     text-decoration: none;
@@ -592,7 +592,7 @@
       <h2 class="section-title" id="h-arc">The Reading Arc</h2>
       <div class="section-pace">~5 min</div>
     </div>
-    <p class="lede">Three texts, one movement: from what genre <em>is</em> to what genre <em>does</em> to what genre <em>makes possible</em>. By Thursday you'll be performing a genre yourself — the lesson plan — and McDonald's question will be live in your own work.</p>
+    <p class="lede">Three texts, one movement: from what genre <em>is</em> to what genre <em>does</em> to what genre <em>makes possible</em>. By Thursday you'll be performing a genre yourself, the lesson plan, and McDonald's question will be live in your own work.</p>
 
     <div class="arc-row">
       <div class="arc-box">
@@ -610,10 +610,10 @@
       <div class="arc-box">
         <div class="arc-label">McDonald, 2008</div>
         <div class="arc-author">Genres as shapes of meaning</div>
-        <div class="arc-desc">Genre doesn't just shape how you write — it shapes what meaning is available to be made at all.</div>
+        <div class="arc-desc">Genre shapes how you write. It also shapes what meaning is available to be made at all.</div>
       </div>
     </div>
-    <a class="next-link" href="#sec-anthony">Go to Part 01 →</a>
+    <a class="next-link" href="#sec-anthony">Go to Part 01</a>
   </section>
 
   <!-- ANTHONY'S DISCUSSION STARTER -->
@@ -635,7 +635,7 @@
       </div>
     </div>
 
-    <a class="next-link" href="#sec-questions">Go to Part 02 →</a>
+    <a class="next-link" href="#sec-questions">Go to Part 02</a>
   </section>
 
   <!-- QUESTION ACTIVITY -->
@@ -645,7 +645,7 @@
       <h2 class="section-title" id="h-questions">Your Questions Drive Discussion</h2>
       <div class="section-pace">~25 min</div>
     </div>
-    <p class="lede">Your Perusall annotations this week produced thirteen questions in five clusters. The second half of class belongs to those questions. Pick the cluster that's pulling at you most — that's your group.</p>
+    <p class="lede">Your Perusall annotations this week produced thirteen questions in five clusters. The second half of class belongs to those questions. Pick the cluster pulling at you most. It's your group.</p>
 
     <div class="activity-steps">
       <span class="activity-label">How it works</span>
@@ -656,11 +656,11 @@
         </li>
         <li class="step-row">
           <div class="step-n">2</div>
-          <div>In your group (8 min): What is this question actually asking? What does it assume about genre, meaning, or pedagogy? What would Miller, Hyland, and McDonald each say — and do they agree? What does this question mean for how you design a FYC course?</div>
+          <div>In your group (8 min): What is this question asking? What does it assume about genre, meaning, or pedagogy? What would Miller, Hyland, and McDonald each say, and do they agree? What does this question mean for how you design a FYC course?</div>
         </li>
         <li class="step-row">
           <div class="step-n">3</div>
-          <div>Report back as a full group. Share your question and one thing that came out of your discussion. We'll look for the threads connecting clusters.</div>
+          <div>Report back as a full group. Share your question and one thing from your discussion. We'll look for the threads connecting clusters.</div>
         </li>
       </ul>
     </div>
@@ -675,11 +675,11 @@
         <div class="cluster-body">
           <div class="cluster-q">
             What happens when the action a genre accomplishes is clear, but the rules governing it are not?
-            <span class="cluster-attr">— Callie</span>
+            <span class="cluster-attr">Callie</span>
           </div>
           <div class="cluster-q">
             Can words mean anything without people involved? At what point does social context become constitutive of meaning rather than just enabling it?
-            <span class="cluster-attr">— Anthony</span>
+            <span class="cluster-attr">Anthony</span>
           </div>
         </div>
       </div>
@@ -692,19 +692,19 @@
         <div class="cluster-body">
           <div class="cluster-q">
             What happens when two groups recognize the same rhetorical situation completely differently? Whose genre prevails?
-            <span class="cluster-attr">— Hadia</span>
+            <span class="cluster-attr">Hadia</span>
           </div>
           <div class="cluster-q">
             Genre rules are like desire paths — invisible until you're an outsider. How do we make them visible for writers who've never had to notice them?
-            <span class="cluster-attr">— Hadia, developed by Laura</span>
+            <span class="cluster-attr">Hadia, developed by Laura</span>
           </div>
           <div class="cluster-q">
             When we teach academic writing to multilingual students, whose genre assumptions are we transmitting? What gets lost in the move from one language to another?
-            <span class="cluster-attr">— Grace H.</span>
+            <span class="cluster-attr">Grace H.</span>
           </div>
           <div class="cluster-q">
             Email to a professor vs. text to a friend: we shift genres instantly and fluently. What does that lived competence tell us about what genre instruction actually needs to teach?
-            <span class="cluster-attr">— Emma</span>
+            <span class="cluster-attr">Emma</span>
           </div>
         </div>
       </div>
@@ -717,11 +717,11 @@
         <div class="cluster-body">
           <div class="cluster-q">
             Freirean pedagogy asks students to examine and challenge the systems around them — but rapid pedagogical change produces anxiety in students who were succeeding in the old system. How do we implement transformative pedagogy without destabilizing the students who need stability most?
-            <span class="cluster-attr">— Kayla L. <span class="upvote-tag">3 upvotes</span></span>
+            <span class="cluster-attr">Kayla L. <span class="upvote-tag">3 upvotes</span></span>
           </div>
           <div class="cluster-q">
             Social knowledge isn't intuitive for everyone — for some students, the implicit codes of genre have to be made explicit as a matter of access, not remediation. How does genre pedagogy account for this?
-            <span class="cluster-attr">— Kayla B. <span class="upvote-tag">3 upvotes</span></span>
+            <span class="cluster-attr">Kayla B. <span class="upvote-tag">3 upvotes</span></span>
           </div>
         </div>
       </div>
@@ -734,7 +734,7 @@
         <div class="cluster-body">
           <div class="cluster-q">
             If McDonald is right that genres shape what meaning is available to be made, does explicit genre instruction expand or constrain what students can say?
-            <span class="cluster-attr">— Callie, Anthony, Grace P.</span>
+            <span class="cluster-attr">Callie, Anthony, Grace P.</span>
           </div>
         </div>
       </div>
@@ -747,17 +747,17 @@
         <div class="cluster-body">
           <div class="cluster-q">
             Understanding rhetorical expectations seems like the transferable skill here — more portable than any individual genre. But how do we teach an abstraction?
-            <span class="cluster-attr">— Nevaeh</span>
+            <span class="cluster-attr">Nevaeh</span>
           </div>
           <div class="cluster-q">
             Miller says genres hold social situations in place. Does teaching genre literacy make students more agile participants — or better at conforming to something they should be questioning?
-            <span class="cluster-attr">— Laura</span>
+            <span class="cluster-attr">Laura</span>
           </div>
         </div>
       </div>
 
     </div>
-    <a class="next-link" href="#sec-bridge">Go to Part 03 →</a>
+    <a class="next-link" href="#sec-bridge">Go to Part 03</a>
   </section>
 
   <!-- BRIDGE TO THURSDAY -->
@@ -767,15 +767,15 @@
       <h2 class="section-title" id="h-bridge">Bridge to Thursday</h2>
       <div class="section-pace">~5 min</div>
     </div>
-    <p class="lede">On Thursday you each teach a five-minute lesson from the plan you've been designing. That lesson plan is a genre. Hold this question going into it:</p>
+    <p class="lede">On Thursday you each teach a five-minute lesson from the plan you've been designing. The lesson plan is a genre. Hold this question going into it:</p>
 
     <div class="reflection">
       <strong>Take into Thursday</strong>
-      What social action does a lesson plan perform? What meaning does the lesson plan genre make available — and what does it foreclose?
+      What social action does a lesson plan perform? What meaning does the lesson plan genre make available, and what does it foreclose?
     </div>
 
     <div class="note" style="margin-top:16px;">
-      <strong>Lesson Plan &amp; Microteaching due Sunday, September 27</strong> — 15-minute lesson plan on a core ENG 101 skill + pedagogical rationale (750–1000 words). Thursday's workshop gives you time to see your plan in action before you submit it.
+      <strong>Lesson Plan &amp; Microteaching due Sunday, September 27</strong>: 15-minute lesson plan on a core ENG 101 skill + pedagogical rationale (750–1000 words). Thursday's workshop gives you time to see your plan in action before you submit it.
     </div>
 
   </section>

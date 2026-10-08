@@ -1,4 +1,4 @@
-<title>ENG 511 · August 27</title>
+<title>ENG 511, Aug 27: Philosophy, Pedagogy, and Practice</title>
 
 
 <style>
@@ -83,7 +83,7 @@
 }
 
 html {
-  font-size: 16px;
+  font-size: max(var(--type-min, 0px), calc(16px * var(--type-scale, 1) + var(--type-bump, 0px)));
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
 }
@@ -119,10 +119,10 @@ body {
 
 .course-num {
   font-family: var(--font-label, 'IBM Plex Mono', 'Courier New', monospace);
-  font-size: 0.68rem;
+  font-size: max(var(--type-min, 0px), calc(0.68rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   font-weight: 500;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
+  letter-spacing: var(--label-track, 0.13em);
+  text-transform: var(--label-case, uppercase);
   color: var(--accent);
 }
 
@@ -135,25 +135,25 @@ body {
 }
 
 .course-name {
-  font-size: 0.68rem;
+  font-size: max(var(--type-min, 0px), calc(0.68rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   font-weight: 500;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
+  letter-spacing: var(--label-track, 0.11em);
+  text-transform: var(--label-case, uppercase);
   color: var(--text-3);
 }
 
 .session-label {
-  font-size: 0.68rem;
+  font-size: max(var(--type-min, 0px), calc(0.68rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   font-weight: 500;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
+  letter-spacing: var(--label-track, 0.11em);
+  text-transform: var(--label-case, uppercase);
   color: var(--text-3);
   margin-bottom: 8px;
 }
 
 .session-title {
   font-family: var(--font-head, 'Spectral', Georgia, serif);
-  font-size: 2rem;
+  font-size: max(var(--type-min, 0px), calc(2rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   font-weight: 600;
   line-height: 1.18;
   letter-spacing: -0.02em;
@@ -163,17 +163,17 @@ body {
 }
 
 .session-meta {
-  font-size: 0.875rem;
+  font-size: max(var(--type-min, 0px), calc(0.875rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   color: var(--text-2);
 }
 
 /* ── Section label ───────────────────────────────────── */
 
 .sec-label {
-  font-size: 0.63rem;
+  font-size: max(var(--type-min, 0px), calc(0.63rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  letter-spacing: var(--label-track, 0.15em);
+  text-transform: var(--label-case, uppercase);
   color: var(--text-3);
   margin-bottom: 10px;
 }
@@ -192,13 +192,13 @@ body {
 .reading-title {
   font-family: var(--font-head, 'Spectral', Georgia, serif);
   font-style: italic;
-  font-size: 1rem;
+  font-size: max(var(--type-min, 0px), calc(1rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   color: var(--text-1);
   line-height: 1.4;
 }
 
 .reading-author {
-  font-size: 0.78rem;
+  font-size: max(var(--type-min, 0px), calc(0.78rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   color: var(--text-2);
   margin-top: 3px;
 }
@@ -218,7 +218,7 @@ body {
 .thread-quote p {
   font-family: var(--font-head, 'Spectral', Georgia, serif);
   font-style: italic;
-  font-size: 0.92rem;
+  font-size: max(var(--type-min, 0px), calc(0.92rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   color: var(--text-2);
   line-height: 1.6;
 }
@@ -261,7 +261,7 @@ body {
 
 .act-title {
   font-family: var(--font-head, 'Spectral', Georgia, serif);
-  font-size: 1.05rem;
+  font-size: max(var(--type-min, 0px), calc(1.05rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   font-weight: 600;
   line-height: 1.3;
   color: var(--text-1);
@@ -274,10 +274,10 @@ body {
 .now-badge {
   display: none;
   font-family: var(--font-label, 'IBM Plex Mono', monospace);
-  font-size: 0.58rem;
+  font-size: max(var(--type-min, 0px), calc(0.58rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: var(--label-track, 0.08em);
+  text-transform: var(--label-case, uppercase);
   background: var(--accent);
   color: var(--accent-text);
   padding: 2px 8px;
@@ -291,7 +291,7 @@ body {
 .time-badge {
   flex-shrink: 0;
   font-family: var(--font-label, 'IBM Plex Mono', 'Courier New', monospace);
-  font-size: 0.65rem;
+  font-size: max(var(--type-min, 0px), calc(0.65rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   font-weight: 500;
   background: var(--time-bg);
   color: var(--time-color);
@@ -302,7 +302,7 @@ body {
 }
 
 .act-body {
-  font-size: 0.9rem;
+  font-size: max(var(--type-min, 0px), calc(0.9rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   color: var(--text-2);
   line-height: 1.6;
 }
@@ -310,7 +310,7 @@ body {
 /* ── Drive note ──────────────────────────────────────── */
 
 .drive-note {
-  font-size: 0.84rem;
+  font-size: max(var(--type-min, 0px), calc(0.84rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   color: var(--text-2);
   background: var(--surface);
   border: 1px solid var(--border);
@@ -325,8 +325,8 @@ body {
   color: var(--text-1);
   display: block;
   margin-bottom: 3px;
-  font-size: 0.78rem;
-  letter-spacing: 0.01em;
+  font-size: max(var(--type-min, 0px), calc(0.78rem * var(--type-scale, 1) + var(--type-bump, 0px)));
+  letter-spacing: var(--label-track, 0.01em);
 }
 
 .drive-note a {
@@ -355,10 +355,10 @@ body {
 }
 
 .ex-label {
-  font-size: 0.65rem;
+  font-size: max(var(--type-min, 0px), calc(0.65rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: var(--label-track, 0.12em);
+  text-transform: var(--label-case, uppercase);
   color: var(--accent);
 }
 
@@ -369,7 +369,7 @@ body {
   background: var(--accent);
   color: var(--accent-text);
   font-family: var(--font-body, 'IBM Plex Sans', system-ui, sans-serif);
-  font-size: 0.78rem;
+  font-size: max(var(--type-min, 0px), calc(0.78rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   font-weight: 500;
   padding: 6px 14px;
   border-radius: 4px;
@@ -405,7 +405,7 @@ body {
 }
 
 .ex-qr-label {
-  font-size: 0.78rem;
+  font-size: max(var(--type-min, 0px), calc(0.78rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   color: var(--text-2);
   line-height: 1.5;
 }
@@ -421,7 +421,7 @@ body {
 .ex-steps li {
   display: flex;
   gap: 10px;
-  font-size: 0.84rem;
+  font-size: max(var(--type-min, 0px), calc(0.84rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   color: var(--text-2);
   line-height: 1.5;
 }
@@ -429,7 +429,7 @@ body {
 .step-n {
   flex-shrink: 0;
   font-family: var(--font-label, 'IBM Plex Mono', monospace);
-  font-size: 0.68rem;
+  font-size: max(var(--type-min, 0px), calc(0.68rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   font-weight: 500;
   color: var(--accent);
   width: 16px;
@@ -459,14 +459,14 @@ body {
 }
 
 .phil-name {
-  font-size: 0.72rem;
+  font-size: max(var(--type-min, 0px), calc(0.72rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   font-weight: 500;
   color: var(--text-1);
   margin-bottom: 1px;
 }
 
 .phil-desc {
-  font-size: 0.76rem;
+  font-size: max(var(--type-min, 0px), calc(0.76rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   color: var(--text-2);
   line-height: 1.35;
 }
@@ -482,17 +482,17 @@ body {
 }
 
 .preview-eyebrow {
-  font-size: 0.63rem;
+  font-size: max(var(--type-min, 0px), calc(0.63rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: var(--label-track, 0.14em);
+  text-transform: var(--label-case, uppercase);
   color: var(--text-3);
   margin-bottom: 6px;
 }
 
 .preview-title {
   font-family: var(--font-head, 'Spectral', Georgia, serif);
-  font-size: 1.15rem;
+  font-size: max(var(--type-min, 0px), calc(1.15rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   font-weight: 600;
   color: var(--text-1);
   margin-bottom: 18px;
@@ -507,7 +507,7 @@ body {
 }
 
 .preview-readings li {
-  font-size: 0.875rem;
+  font-size: max(var(--type-min, 0px), calc(0.875rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   color: var(--text-2);
   padding-left: 14px;
   position: relative;
@@ -538,7 +538,7 @@ body {
 }
 
 .preview-qs li {
-  font-size: 0.875rem;
+  font-size: max(var(--type-min, 0px), calc(0.875rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   color: var(--text-2);
   padding-left: 18px;
   position: relative;
@@ -550,7 +550,7 @@ body {
   position: absolute;
   left: 0;
   color: var(--text-3);
-  font-size: 0.65rem;
+  font-size: max(var(--type-min, 0px), calc(0.65rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   top: 0.38em;
 }
 
@@ -567,14 +567,14 @@ body {
 }
 
 .assign-icon {
-  font-size: 1.1rem;
+  font-size: max(var(--type-min, 0px), calc(1.1rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   flex-shrink: 0;
   line-height: 1.4;
 }
 
 .assign-name {
   font-family: var(--font-head, 'Spectral', Georgia, serif);
-  font-size: 0.975rem;
+  font-size: max(var(--type-min, 0px), calc(0.975rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   font-weight: 600;
   color: var(--assign-text);
   line-height: 1.3;
@@ -582,14 +582,14 @@ body {
 }
 
 .assign-due {
-  font-size: 0.8rem;
+  font-size: max(var(--type-min, 0px), calc(0.8rem * var(--type-scale, 1) + var(--type-bump, 0px)));
   color: var(--assign-text-2);
 }
 
 /* ── Responsive ──────────────────────────────────────── */
 
 @media (max-width: 580px) {
-  .session-title { font-size: 1.6rem; }
+  .session-title { font-size: max(var(--type-min, 0px), calc(1.6rem * var(--type-scale, 1) + var(--type-bump, 0px))); }
   .act-header { flex-direction: column-reverse; align-items: flex-start; gap: 5px; }
   .phil-grid { grid-template-columns: 1fr; }
   .ex-header { flex-direction: column; align-items: flex-start; }
@@ -622,7 +622,7 @@ body {
   <p class="sec-label">Today's Reading</p>
   <div class="reading-card">
     <div class="reading-title">"Composition at the Turn of the 21st Century"</div>
-    <div class="reading-author">Richard Fulkerson &mdash; 2005</div>
+    <div class="reading-author">Richard Fulkerson, 2005</div>
   </div>
 
   <!-- Discussion Threads -->
@@ -659,11 +659,11 @@ body {
         <span class="time-badge">11:45&ndash;12:15</span>
       </div>
       <div class="act-body">
-        <p>On the shared Excalidraw board, place one writing assignment you have seen or taught &mdash; any level, any institution. Map it onto one of Fulkerson's four philosophies or Berlin's categories. Add a one-line rationale. Debrief: Which philosophies appear most? Which are absent, and why?</p>
+        <p>On the shared Excalidraw board, place one writing assignment you have seen or taught (any level, any institution). Map it onto one of Fulkerson's four philosophies or Berlin's categories. Add a one-line rationale. Debrief: Which philosophies appear most? Which are absent, and why?</p>
 
         <div class="drive-note">
           <span class="drive-note-label">Need an assignment to work with?</span>
-          Browse the <a href="https://drive.google.com/drive/folders/1-59Y3BS25aTsblc22F0euMibTB1kv49p?usp=drive_link" target="_blank" rel="noopener noreferrer">shared course drive &#8599;</a> &mdash; dig around freely, or go straight to <strong>ENG 101 Material Share</strong> and open <strong>Assignment Sheets &amp; Rubrics</strong> or <strong>Lesson Plans/Activities</strong>.
+          Browse the <a href="https://drive.google.com/drive/folders/1-59Y3BS25aTsblc22F0euMibTB1kv49p?usp=drive_link" target="_blank" rel="noopener noreferrer">shared course drive &#8599;</a>. Dig around freely, or go straight to <strong>ENG 101 Material Share</strong> and open <strong>Assignment Sheets &amp; Rubrics</strong> or <strong>Lesson Plans/Activities</strong>.
         </div>
 
         <div class="excalidraw-box">
@@ -711,7 +711,7 @@ body {
         <span class="time-badge">12:15&ndash;12:35</span>
       </div>
       <div class="act-body">
-        With a partner, identify one debate from the 1970s&ndash;80s readings that persists in current practice &mdash; in AI discourse, assessment design, or assignment conventions. Prepare a sixty-second report-out. Each pair shares; your instructor will note emerging patterns on the board.
+        With a partner, identify one debate from the 1970s&ndash;80s readings persisting in current practice (in AI discourse, assessment design, or assignment conventions). Prepare a sixty-second report-out. Each pair shares. Your instructor will note emerging patterns on the board.
       </div>
     </div>
 
@@ -724,7 +724,7 @@ body {
         <span class="time-badge">12:35&ndash;12:55</span>
       </div>
       <div class="act-body">
-        As a group, map the intellectual lineage from process pedagogy to genre theory on the shared board. Key pressure question: What problem does genre theory solve that process pedagogy created or left unresolved?
+        As a group, map the intellectual lineage from process pedagogy to genre theory on the shared board. Key pressure question: What problem, created or left unresolved by process pedagogy, does genre theory solve?
       </div>
     </div>
 
@@ -737,7 +737,7 @@ body {
         <span class="time-badge">12:55&ndash;1:00</span>
       </div>
       <div class="act-body">
-        Write one sentence &mdash; not shared aloud, to carry into the week: <em>Where do you see current-traditional assumptions persisting in courses you have taken or taught?</em>
+        Write one sentence to keep to yourself and carry into the week: <em>Where do you see current-traditional assumptions persisting in courses you have taken or taught?</em>
       </div>
     </div>
   </div>
@@ -763,7 +763,7 @@ body {
 
   <!-- Assignment -->
   <div class="assign-card">
-    <div class="assign-icon">&#128221;</div>
+    <div class="assign-icon"></div>
     <div>
       <div class="assign-name">Literacy Narrative &amp; Teaching Philosophy Draft</div>
       <div class="assign-due">Due Sunday, September 6 &middot; Week 3</div>

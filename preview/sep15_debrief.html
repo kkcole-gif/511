@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ENG 511, Sep 15: Debrief, What We Just Did</title>
+<title>ENG 511, Sep 15: Debrief, What We Did Today</title>
 <style>
   :root {
     --bg: #F5F4F1;
@@ -37,7 +37,7 @@
     background: var(--bg);
     color: var(--text-1);
     line-height: 1.65;
-    font-size: 15px;
+    font-size: max(var(--type-min, 0px), calc(15px * var(--type-scale, 1) + var(--type-bump, 0px)));
     min-height: 100vh;
   }
 
@@ -47,7 +47,7 @@
   .skip-link {
     position: absolute; left: -999px; top: 8px;
     background: white; color: var(--tue-dark); padding: 8px 12px;
-    border-radius: 6px; z-index: 10; font-size: 13px;
+    border-radius: 6px; z-index: 10; font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
   }
   .skip-link:focus { left: 12px; }
 
@@ -63,16 +63,16 @@
 
   .course-tag {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    letter-spacing: var(--label-track, 0.14em);
+    text-transform: var(--label-case, uppercase);
     color: var(--h-on-dark, rgba(255,255,255,0.85));
     margin-bottom: 6px;
   }
 
   .page-title {
     font-family: var(--font-head, 'Spectral', serif);
-    font-size: 28px;
+    font-size: max(var(--type-min, 0px), calc(28px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     line-height: 1.2;
     color: white;
@@ -80,7 +80,7 @@
   }
 
   .page-subtitle {
-    font-size: 14px;
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--h-on-dark, rgba(255,255,255,0.9));
     font-style: italic;
   }
@@ -89,19 +89,19 @@
 
   .mode-label {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    letter-spacing: var(--label-track, 0.12em);
+    text-transform: var(--label-case, uppercase);
     color: var(--h-on-dark, rgba(255,255,255,0.85));
     margin-bottom: 4px;
   }
 
   .mode-value {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 16px;
+    font-size: max(var(--type-min, 0px), calc(16px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: white;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--label-track, 0.05em);
   }
 
   .timeline-strip {
@@ -130,14 +130,14 @@
 
   .tl-num {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: var(--tue);
     margin-bottom: 3px;
   }
 
   .tl-label {
-    font-size: 11.5px;
+    font-size: max(var(--type-min, 0px), calc(11.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     text-align: center;
     line-height: 1.3;
@@ -162,20 +162,20 @@
 
   .section-num {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     background: var(--badge-bg);
     color: var(--badge-color);
     padding: 3px 10px;
     border-radius: 12px;
     white-space: nowrap;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    letter-spacing: var(--label-track, 0.08em);
+    text-transform: var(--label-case, uppercase);
   }
 
   .section-title {
     font-family: var(--font-head, 'Spectral', serif);
-    font-size: 20px;
+    font-size: max(var(--type-min, 0px), calc(20px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: var(--text-1);
     flex: 1;
@@ -183,13 +183,13 @@
 
   .section-pace {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 11px;
+    font-size: max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-3);
     white-space: nowrap;
   }
 
   .lede {
-    font-size: 14px;
+    font-size: max(var(--type-min, 0px), calc(14px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.65;
     margin-bottom: 14px;
@@ -200,7 +200,7 @@
     border-left: 3px solid var(--note-border);
     border-radius: 0 6px 6px 0;
     padding: 12px 16px;
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--note-text);
     margin-bottom: 14px;
     line-height: 1.55;
@@ -230,9 +230,9 @@
     background: var(--quote-bg);
     color: var(--quote-color);
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     padding: 8px 14px;
     border-bottom: 1px solid var(--h-rule, #D9D0E8);
   }
@@ -240,7 +240,7 @@
   .quote-body {
     padding: 16px 18px;
     font-family: var(--font-head, 'Spectral', serif);
-    font-size: 16px;
+    font-size: max(var(--type-min, 0px), calc(16px * var(--type-scale, 1) + var(--type-bump, 0px)));
     line-height: 1.6;
     color: var(--text-1);
     flex: 1;
@@ -272,9 +272,9 @@
 
   .phase-badge {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.09em);
     background: var(--tue);
     color: white;
     padding: 2px 9px;
@@ -283,7 +283,7 @@
   }
 
   .phase-card-title {
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 600;
     color: var(--text-1);
   }
@@ -295,7 +295,7 @@
     gap: 8px;
     padding: 6px 0;
     border-bottom: 1px solid var(--h-tint, #F2EFE9);
-    font-size: 13px;
+    font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.5;
     align-items: flex-start;
@@ -324,7 +324,7 @@
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 5px 14px;
-    font-size: 13px;
+    font-size: max(var(--type-min, 0px), calc(13px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
   }
 
@@ -342,9 +342,9 @@
     background: var(--quote-bg);
     padding: 10px 16px;
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     color: var(--quote-color);
     border-bottom: 1px solid var(--h-rule, #D9D0E8);
   }
@@ -352,7 +352,7 @@
   .scenario-body {
     padding: 16px 20px;
     font-family: var(--font-head, 'Spectral', serif);
-    font-size: 15.5px;
+    font-size: max(var(--type-min, 0px), calc(15.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-1);
     line-height: 1.75;
   }
@@ -373,15 +373,15 @@
 
   .answer-label {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     color: var(--tue);
     margin-bottom: 6px;
   }
 
   .answer-text {
-    font-size: 12.5px;
+    font-size: max(var(--type-min, 0px), calc(12.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.5;
   }
@@ -393,7 +393,7 @@
     border-radius: 0 8px 8px 0;
     padding: 16px 20px;
     font-style: italic;
-    font-size: 14.5px;
+    font-size: max(var(--type-min, 0px), calc(14.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--tue-dark);
     line-height: 1.65;
     margin-top: 12px;
@@ -402,9 +402,9 @@
   .reflection strong {
     font-style: normal;
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     display: block;
     margin-bottom: 6px;
     color: var(--tue-dark);
@@ -418,15 +418,15 @@
     padding: 16px 18px;
     margin: 14px 0;
     color: var(--pad);
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     line-height: 1.6;
   }
 
   .pad-box strong.pad-label {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     display: block;
     margin-bottom: 6px;
     font-weight: 500;
@@ -438,7 +438,7 @@
   .pad-link {
     display: inline-block;
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 12px;
+    font-size: max(var(--type-min, 0px), calc(12px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: white;
     background: var(--pad);
@@ -471,9 +471,9 @@
 
   .todo-label {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     color: var(--tue);
     display: block;
     margin-bottom: 8px;
@@ -485,7 +485,7 @@
   .todo-list li {
     padding: 6px 0;
     border-bottom: 1px solid var(--h-tint, #F2EFE9);
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
     line-height: 1.55;
   }
@@ -497,7 +497,7 @@
     display: inline-block;
     margin-top: 16px;
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 12px;
+    font-size: max(var(--type-min, 0px), calc(12px * var(--type-scale, 1) + var(--type-bump, 0px)));
     font-weight: 500;
     color: var(--tue);
     text-decoration: none;
@@ -521,15 +521,15 @@
     padding: 14px 18px;
     margin: 14px 0;
     color: var(--quote-color);
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     line-height: 1.6;
   }
 
   .proposal-label, .decision-label, .fork-label, .reserve-label {
     font-family: var(--font-label, 'IBM Plex Mono', monospace);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    text-transform: var(--label-case, uppercase);
+    letter-spacing: var(--label-track, 0.1em);
     display: block;
     margin-bottom: 6px;
     font-weight: 500;
@@ -542,13 +542,13 @@
     padding: 14px 18px;
     margin: 14px 0;
     color: var(--note-text);
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     line-height: 1.6;
   }
 
   .decision-line {
     font-family: var(--font-head, 'Spectral', serif);
-    font-size: 17px;
+    font-size: max(var(--type-min, 0px), calc(17px * var(--type-scale, 1) + var(--type-bump, 0px)));
     margin-top: 10px;
     padding: 10px 0 4px;
     border-bottom: 1px dashed var(--h-dusk, #B85A2C);
@@ -562,7 +562,7 @@
     border: 1px dashed var(--tue-mid);
     border-radius: 8px;
     color: var(--text-2);
-    font-size: 13.5px;
+    font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     line-height: 1.6;
   }
 
@@ -583,15 +583,15 @@
 
   .reserve-body {
     padding: 4px 0 0;
-    font-size: 14.5px;
+    font-size: max(var(--type-min, 0px), calc(14.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-2);
   }
 
   .slot {
     font-family: var(--font-head, 'Spectral', serif);
-    font-size: 15px;
+    font-size: max(var(--type-min, 0px), calc(15px * var(--type-scale, 1) + var(--type-bump, 0px)));
     color: var(--text-3);
-    letter-spacing: 0.02em;
+    letter-spacing: var(--label-track, 0.02em);
     word-break: break-all;
   }
 
@@ -622,15 +622,15 @@
     border-bottom: 1px solid var(--h-rule, #D9D0E8);
   }
   .map-part {
-    font-family: var(--font-label, 'IBM Plex Mono', monospace); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace); font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px))); text-transform: var(--label-case, uppercase); letter-spacing: var(--label-track, 0.1em);
     background: var(--quote-color); color: white; padding: 2px 9px; border-radius: 10px;
   }
-  .map-term { font-family: var(--font-head, 'Spectral', serif); font-size: 16px; font-weight: 600; color: var(--quote-color); }
+  .map-term { font-family: var(--font-head, 'Spectral', serif); font-size: max(var(--type-min, 0px), calc(16px * var(--type-scale, 1) + var(--type-bump, 0px))); font-weight: 600; color: var(--quote-color); }
   .map-body { display: grid; grid-template-columns: 1fr 1fr; }
-  .map-cell { padding: 14px 16px; font-size: 13.5px; color: var(--text-2); line-height: 1.6; }
+  .map-cell { padding: 14px 16px; font-size: max(var(--type-min, 0px), calc(13.5px * var(--type-scale, 1) + var(--type-bump, 0px))); color: var(--text-2); line-height: 1.6; }
   .map-cell + .map-cell { border-left: 1px solid var(--border); }
   .map-cell strong.cell-label {
-    font-family: var(--font-label, 'IBM Plex Mono', monospace); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;
+    font-family: var(--font-label, 'IBM Plex Mono', monospace); font-size: max(var(--type-min, 0px), calc(10px * var(--type-scale, 1) + var(--type-bump, 0px))); text-transform: var(--label-case, uppercase); letter-spacing: var(--label-track, 0.1em);
     display: block; margin-bottom: 6px; color: var(--text-3); font-weight: 500;
   }
   .map-cell.did strong.cell-label { color: var(--tue); }
@@ -646,7 +646,7 @@
 <header class="page-header">
   <div class="page-header-left">
     <div class="course-tag">ENG 511 · Week 5 · Tuesday, September 15, 2026 · Debrief</div>
-    <h1 class="page-title">What We Just Did</h1>
+    <h1 class="page-title">What We Did Today</h1>
     <div class="page-subtitle">Today's session, re-read through Freire, Pedagogy of the Oppressed, Chapter 2</div>
   </div>
   <div class="mode-display">
@@ -692,7 +692,7 @@
       <div class="map-row">
         <div class="map-head"><span class="map-part">Start</span><span class="map-term">The teacher-student contradiction</span></div>
         <div class="map-body">
-          <div class="map-cell did"><strong class="cell-label">What the page did</strong>The plan was called a proposal. It named what I did not know. It gave you a vote at the end of Part 01 and a line on the screen where your decision was written. Freire's term for this is the resolution of the teacher-student contradiction: the teacher stops being the one who knows and the students the ones who do not, and both become, in his phrase, co-investigators. The authority did not disappear. It was stated, and made changeable.</div>
+          <div class="map-cell did"><strong class="cell-label">What the page did</strong>The plan was called a proposal. It named what I did not know. It gave you a vote at the end of Part 01 and a line on the screen where your decision was written. Freire's term for this is the resolution of the teacher-student contradiction: the teacher stops being the one who knows and the students the ones who do not. Both become, in his phrase, co-investigators. The authority stayed. It was stated, and made changeable.</div>
           <div class="map-cell not"><strong class="cell-label">What it did not do</strong>A schedule with times, activities, and outputs, authored in advance and delivered. This was the version of the page two hours before class. It was clearer. It was also a deposit.</div>
         </div>
       </div>
@@ -716,7 +716,7 @@
       <div class="map-row">
         <div class="map-head"><span class="map-part">Part 03</span><span class="map-term">Problem-posing, and the teacher who learns</span></div>
         <div class="map-body">
-          <div class="map-cell did"><strong class="cell-label">What the page did</strong>Built the scenario from whoever in the room had lived it. Left three empty slots for what each reading lets you say, and asked the class to fill them. I wrote a sentence too and it was heard among yours. Freire describes the teacher as one who is also taught, in dialogue with the students, and the empty slots were the concrete form of that: the page did not hold the readings' answers for you to receive.</div>
+          <div class="map-cell did"><strong class="cell-label">What the page did</strong>Built the scenario from whoever in the room had lived it. Left three empty slots for what each reading lets you say, and asked the class to fill them. I wrote a sentence too and it was heard among yours. Freire describes the teacher as one who is also taught, in dialogue with the students, and the empty slots were the concrete form of this: the page did not hold the readings' answers for you to receive.</div>
           <div class="map-cell not"><strong class="cell-label">What it did not do</strong>Give you the scenario I wrote and three answers I had already labeled Freire, Anzaldúa, and Wilson Logan. I had drafted those. They were deleted an hour before class. You would have been evaluating my readings of the texts instead of producing yours.</div>
         </div>
       </div>
@@ -724,7 +724,7 @@
       <div class="map-row">
         <div class="map-head"><span class="map-part">Part 04</span><span class="map-term">Praxis, and where knowledge goes</span></div>
         <div class="map-body">
-          <div class="map-cell did"><strong class="cell-label">What the page did</strong>Your two sentences went onto the Padlet immediately, public to the group, as the first post in the section you will use Thursday. In banking, what students produce goes to the teacher to be checked. Here it went to each other, and it becomes the starting material for something you will make. Freire's word for reflection tied to action on the world is praxis. The page ended with a question rather than a statement about why the site you named matters, because the answer was yours to give.</div>
+          <div class="map-cell did"><strong class="cell-label">What the page did</strong>Your two sentences went onto the Padlet immediately, public to the group, as the first post in the section you will use Thursday. In banking, what students produce goes to the teacher to be checked. Here it went to each other, and it becomes the starting material for something you will make. Freire's word for reflection tied to action on the world is praxis. The page ended with a question about why the site you named matters, because the answer was yours to give.</div>
           <div class="map-cell not"><strong class="cell-label">What it did not do</strong>Tell you to keep your two sentences in your notes for Thursday, and explain in a box why they matter. This was the earlier draft.</div>
         </div>
       </div>
@@ -738,9 +738,9 @@
       <h2 class="section-title" id="h-d-2">Where It Stayed Banking</h2>
       <div class="section-pace">Honest accounting</div>
     </div>
-    <p class="lede">A page designed on Freire is still a page designed in advance by the teacher. The readings were assigned. The course is graded. You are here for a credential. Freire calls the conditions people cannot yet see past limit-situations, and the point of naming them is not to apologize for them but to make them visible enough to act on.</p>
+    <p class="lede">A page designed on Freire is still a page designed in advance by the teacher. The readings were assigned. The course is graded. You are here for a credential. Freire calls the conditions people cannot yet see past limit-situations, and the point of naming them is to make them visible enough to act on.</p>
     <div class="note">
-      <strong>The limitation from Part 02 is the page's own limitation.</strong> One of you wrote: "Conforming is almost always easier than creating change." I asked what problem-posing means for people who came for the bank. The honest answer is that this page was one attempt at it inside an institution built for banking, and it worked exactly as far as you all decided to let it. The vote at the end of Part 01 was the test. What you chose, and whether the choice felt real, is the evidence.
+      <strong>The limitation from Part 02 is the page's own limitation.</strong> One of you wrote: "Conforming is almost always easier than creating change." I asked what problem-posing means for people who came for the bank. The honest answer: this page was one attempt at it inside an institution built for banking, and it worked exactly as far as you all decided to let it. The vote at the end of Part 01 was the test. What you chose, and whether the choice felt real, is the evidence.
     </div>
     <div class="reflection">
       <strong>The question for the room</strong>
@@ -758,7 +758,7 @@
     <div class="pad-box">
       <strong class="pad-label">Two things to carry out the door</strong>
       <p>Your section on the Padlet exists and has one post in it. The Thursday session page walks you through the rest, on your own time, in about the length of a normal Thursday.</p>
-      <p>If you want to answer the question above in writing rather than aloud, post it under your two sentences. I read the Padlet before I build the next page.</p>
+      <p>If you want to answer the question above in writing, post it under your two sentences. I read the Padlet before I build the next page.</p>
       <a class="pad-link" href="https://padlet.com/kkcole2/september-17th-activity-s023gaz1umverl2pos20" target="_blank" rel="noopener noreferrer">Open the Padlet</a>
       <a class="pad-link secondary" href="sep17_workshop.html" target="_blank" rel="noopener noreferrer">Thursday Session Page</a>
     </div>
