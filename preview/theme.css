@@ -154,13 +154,27 @@
 }
 
 /* 4. Shared behavior. */
-a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
-  outline: 3px solid var(--h-teal);
+/* Keyboard focus shows as a two-tone ring: Umber outside, white inside.
+   One of the two reads against any ground on the site. */
+a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid var(--h-umber);
   outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--h-white);
 }
 .sidebar a:focus-visible, .sidebar [tabindex]:focus-visible {
   outline-color: var(--h-white);
+  box-shadow: 0 0 0 2px var(--h-ink);
 }
+[tabindex="-1"]:focus, [tabindex="-1"]:focus-visible { outline: none; box-shadow: none; }   /* a skip target takes focus silently */
+
+/* The skip link is the first stop for a keyboard and appears when it has focus. */
+.skip-link {
+  position: absolute; left: -999px; top: 8px; z-index: 1000;
+  background: var(--h-white); color: var(--h-umber);
+  padding: 0.5rem 0.875rem; border-radius: 6px;
+  font-family: var(--font-body); font-size: 1rem; text-decoration: underline;
+}
+.skip-link:focus { left: 12px; }
 
 /* Dimmed rows fell below 4.5 to 1. They stay at full strength, and italics mark the optional readings. */
 .sidebar-week.break-week, .sidebar-week.cancelled-week, .reading-item.optional { opacity: 1; }

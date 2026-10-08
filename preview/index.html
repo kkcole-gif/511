@@ -953,11 +953,12 @@
 <link rel="stylesheet" href="theme.css">
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to main content</a>
 
 <!-- ════════════════════════════════════════════════════════
      SIDEBAR
 ════════════════════════════════════════════════════════ -->
-<aside class="sidebar">
+<aside class="sidebar" aria-label="Course navigation">
   <div class="sidebar-header">
     <div class="sidebar-course">ENG 511 · Fall 2026</div>
     <div class="sidebar-title">Theory & Research in Composition</div>
@@ -965,7 +966,7 @@
   </div>
 
   <div class="sidebar-section-label">Navigation</div>
-  <a class="sidebar-week active" onclick="showOverview()" style="cursor:pointer" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showOverview()}">
+  <a class="sidebar-week active" onclick="showOverview()" style="cursor:pointer" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showOverview();document.getElementById('main').focus()}">
     <div class="week-num"></div>
     <div class="week-info">
       <div class="week-title-short">Course Overview</div>
@@ -1008,7 +1009,7 @@
 <!-- ════════════════════════════════════════════════════════
      MAIN
 ════════════════════════════════════════════════════════ -->
-<div class="main">
+<div class="main" id="main" role="main" tabindex="-1">
   <div class="topbar">
     <div class="topbar-breadcrumb" id="breadcrumb">Course Overview</div>
     <div class="topbar-legend">
@@ -1107,7 +1108,7 @@ const WEEKS = [
         { author: "Fulkerson", title: "\"Composition at the Turn of the 21st Century\"", year: "2005" },
       ],
       optional: [
-        { author: "Downs & Wardle", title: "OR Rose, \"Narrowing the Mind and Page\"", year: "" },
+        { author: "Downs & Wardle", title: "or Rose, \"Narrowing the Mind and Page\" (choose one)", year: "" },
       ],
       activities: [
         { title: "Philosophy Mapping Activity", time: "25 min", desc: "Map Fulkerson's and Berlin's frameworks to a writing assignment you've seen or taught. Which philosophy does it assume? What does it value?" },
@@ -1803,7 +1804,7 @@ function buildSidebar() {
     el.onclick = () => showWeek(w.num);
     el.tabIndex = 0;
     el.setAttribute('role', 'button');
-    el.onkeydown = (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showWeek(w.num); } };
+    el.onkeydown = (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showWeek(w.num); document.getElementById('main').focus(); } };
     el.innerHTML = `
       <div class="week-num">W${w.num}</div>
       <div class="week-info">
@@ -2060,7 +2061,7 @@ function showWeek(num) {
       <div class="week-content">
         <div class="week-hero">
           <div class="week-label">Week ${w.num} · ${w.dates}</div>
-          <h2 class="week-heading">${w.title}</h2>
+          <h1 class="week-heading">${w.title}</h1>
           <p class="week-subheading">${w.focus}</p>
         </div>
         <div class="break-page">
@@ -2286,7 +2287,7 @@ function showWeek(num) {
     <div class="week-content">
       <div class="week-hero">
         <div class="week-label">Week ${w.num} · ${w.dates}</div>
-        <h2 class="week-heading">${w.title}</h2>
+        <h1 class="week-heading">${w.title}</h1>
         <p class="week-subheading">${w.focus}</p>
         <div class="week-meta">
           ${w.assignment ? `<div class="meta-pill assignment">${w.assignment.name}</div>` : ''}
