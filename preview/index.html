@@ -1608,7 +1608,7 @@ const WEEKS = [
       week: 13,
       topic: "Multimodal Pedagogy & Digital Writing",
       readings: ["Hocks, \"Understanding Visual Rhetoric\" (2003)", "Shipka, \"A Multimodal Task-Based Framework\" (2005)"],
-      prompts: ["Discussion starters: Emma on Hocks, Olivia on Shipka.", "How do Hocks, Shipka, Palmeri, and Banks differently understand 'multimodality'?"],
+      prompts: ["Discussion starters: Emma on Hocks and Olivia on Shipka on Tuesday, Ross on Palmeri on Thursday.", "How do Hocks, Shipka, Palmeri, and Banks differently understand 'multimodality'?"],
       note: "Feedback & Assessment Portfolio Part 2 due Sunday, November 15",
     },
     assignment: null,
@@ -1637,21 +1637,21 @@ const WEEKS = [
     },
     thursday: {
       date: "Thursday, November 12",
-      type: "Digital Composition Workshop",
+      type: "Composing Before and Beyond the Screen",
       readings: [
         { author: "Palmeri", title: "\"Multimodality Before and Beyond the Computer\"", year: "2018" },
         { author: "Banks", title: "\"Beyond Modality\"", year: "2018" },
       ],
+      starter: "Discussion starter: Ross on Palmeri, up to 20 minutes. Palmeri places multimodal composing in a longer history than the screen. While Ross leads, note one composing practice you would want students to try without a computer.",
       activities: [
-        { title: "Multimodal Composing Demo", time: "20 min", desc: "In pairs, explain one course concept in a single artifact made with paper, Canva, Adobe Express, VoiceThread, or Padlet. What does the tool make possible, what does it make impossible, and who has access to the result?" },
-        { title: "Equitable Assessment of Multimodal Work", time: "25 min", desc: "Draft four rubric criteria for multimodal work, including one on access and one on labor. This feeds your Portfolio Part 2 rubric revision." },
-        { title: "Assignment Revision Lab", time: "15 min", desc: "Add one multimodal component to a traditional written assignment. What does it let a student know or show?" },
+        { title: "Off-Screen Redesign Lab", time: "25 min", desc: "In groups of three, revise one part of your Writing Assignment Design so students compose off the screen (paper, a made object, sound, or performance) and explain their choices. Then check what the task asks of students in materials, money, time, and bodies." },
+        { title: "Equitable Assessment of Multimodal Work", time: "20 min", desc: "In pairs, draft four rubric criteria for one revised task, including one on access and one on labor, then swap with another pair. This feeds your Portfolio Part 2 rubric revision." },
       ],
       reflection: "What happens when traditional assessment practices meet multimodal composition, and whose knowledge is valued?",
     },
     preview_thu_for_tue: {
       readings: ["Palmeri, \"Multimodality Before and Beyond the Computer\" (2018)", "Banks, \"Beyond Modality\" (2018)"],
-      activities: ["Digital composing tool demo & exploration", "Equitable rubric design for multimodal work", "Traditional assignment → multimodal redesign lab"],
+      activities: ["Discussion starter: Ross on Palmeri", "Off-screen redesign lab (bring your Writing Assignment Design)", "Equitable rubric design for multimodal work"],
       note: "Feedback & Assessment Portfolio Part 2 due Sunday, November 15",
     },
     preview_next_for_thu: {
@@ -2130,6 +2130,12 @@ function showWeek(num) {
         </div>`).join('')
       : '';
 
+    let thuStarterHTML = thu.starter ? `
+      <div class="block" style="grid-column:1/-1">
+        <div class="block-title">Discussion Starter</div>
+        <div class="starter-quote">${thu.starter}</div>
+      </div>` : '';
+
     let thuReflectionHTML = `
       <div class="block" style="grid-column:1/-1">
         <div class="block-title">Exit Reflection</div>
@@ -2175,6 +2181,7 @@ function showWeek(num) {
           <a href="${workshopPages[w.num]}" target="_blank" rel="noopener noreferrer" style="font-family:var(--font-label, 'DM Mono',monospace);font-size:max(var(--type-min, 0px), calc(11px * var(--type-scale, 1) + var(--type-bump, 0px)));font-weight:500;color:var(--thu);text-decoration:none;background:white;border:1px solid var(--h-rule, #E8C4A8);border-radius:var(--radius, 16px);padding:5px 14px;">Open Today's Workshop Page</a>
         </div>` : ''}
         <div class="session-body">
+          ${thuStarterHTML}
           ${thu.readings && thu.readings.length ? `
           <div class="block">
             <div class="block-title">Readings</div>
