@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-day="tue">
+<head>
+<meta charset="UTF-8">
+<title>ENG 511, Nov 3: Retrofit or Design? Print Set</title>
+<link rel="stylesheet" href="theme.css">
+<style>
+  @page { size: letter; margin: 0.45in; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --teal: #457877; --umber: #41292B; --mist: #C3D6CE; --tint: #E7EFEB; --grey: #6B635C; }
+  body { font-family: Arial, Helvetica, sans-serif; color: var(--umber); font-size: 10.5pt; line-height: 1.38; }
+  .page { width: 7.6in; height: 10in; overflow: hidden; page-break-after: always; display: flex; flex-direction: column; }
+  .page:last-child { page-break-after: auto; }
+  .run { font-size: 8.5pt; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); border-bottom: 1px solid var(--mist); padding-bottom: 6px; margin-bottom: 14px; display: flex; justify-content: space-between; }
+  h1 { font-size: 20pt; line-height: 1.15; margin-bottom: 4px; }
+  .lede { font-size: 10.5pt; color: var(--umber); margin-bottom: 14px; max-width: 6.6in; }
+  h2 { font-size: 10pt; letter-spacing: 0.06em; text-transform: uppercase; color: var(--teal); border-bottom: 2px solid var(--teal); padding-bottom: 3px; margin: 10px 0 6px; display: flex; gap: 10px; align-items: baseline; }
+  h2 .k { font-size: 14pt; font-weight: 700; letter-spacing: 0; }
+  .inv { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 18px; margin-bottom: 6px; }
+  .inv div { display: flex; gap: 8px; align-items: flex-start; }
+  .n { flex: 0 0 22px; height: 22px; border-radius: 11px; background: var(--teal); color: #fff; font-size: 10pt; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+  .step { display: flex; gap: 10px; padding: 4px 0; border-bottom: 1px solid var(--tint); }
+  .step:last-child { border-bottom: none; }
+  .step .body { flex: 1; }
+  .step ul { margin: 4px 0 0 16px; }
+  .step li { margin-bottom: 2px; }
+  .small { font-size: 9.5pt; color: var(--grey); }
+  .foot { margin-top: auto; font-size: 8.5pt; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); padding-top: 8px; }
+  /* recorder sheet */
+  .rec-block { margin-bottom: 10px; }
+  .line { display: flex; gap: 10px; align-items: flex-end; margin: 0 0 14px; }
+  .line .tag { flex: 0 0 1.5in; font-weight: 700; }
+  .line .rule { flex: 1; border-bottom: 1px solid var(--umber); height: 26px; }
+  /* cards */
+  .sheet { width: 7.6in; height: 10in; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(5, 1fr); page-break-after: always; }
+  .card { border: 1px dashed #9A948D; padding: 0.2in 0.24in; display: flex; flex-direction: column; }
+  .letter { font-size: 26pt; font-weight: 700; color: var(--teal); line-height: 1; margin-bottom: 0.1in; }
+  .text { font-size: 12pt; line-height: 1.35; }
+  .blank .text { color: var(--grey); font-size: 10pt; }
+  .rule-s { border-bottom: 1px solid #C9C3BB; height: 0.28in; }
+  .cfoot { margin-top: auto; font-size: 7.5pt; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); }
+  /* labels */
+  .mats { width: 7.6in; height: 10in; display: grid; grid-template-rows: 1fr 1fr; page-break-after: always; }
+  .mat { border: 1px dashed #9A948D; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0.5in; }
+  .mat h3 { font-size: 40pt; color: var(--teal); margin-bottom: 0.12in; }
+  .mat p { font-size: 13pt; max-width: 5.6in; }
+  /* principle cards */
+  .psheet { width: 7.6in; height: 10in; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 1fr); }
+  .pcard { border: 1px dashed #9A948D; padding: 0.3in 0.32in; display: flex; flex-direction: column; }
+  .pnum { font-size: 8.5pt; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); margin-bottom: 0.08in; }
+  .pname { font-size: 24pt; font-weight: 700; color: var(--teal); line-height: 1.1; margin-bottom: 0.12in; }
+  .ptext { font-size: 11.5pt; line-height: 1.4; }
+  .pask { margin-top: 0.12in; font-size: 10pt; color: var(--grey); line-height: 1.4; }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: group instructions -->
+<div class="page">
+  <div class="run"><span>ENG 511 · Week 12 · Tuesday, November 3</span><span>Group sheet · 30 min</span></div>
+  <h1>Retrofit or Design?</h1>
+  <p class="lede" style="margin-bottom:8px;">Some course practices are added later for one student who asks. Others are built in from the start for everyone. Your group sorts eight of them, prices the ones students have to ask for, and designs two replacements.</p>
+
+  <h2><span class="k">A</span> What is on your table</h2>
+  <div class="inv">
+    <div><span class="n">8</span><span><strong>Practice cards, A to H.</strong> Lay them face up in a row. They stay in the row.</span></div>
+    <div><span class="n">3</span><span><strong>Principle cards.</strong> Engagement, Representation, Action &amp; Expression.</span></div>
+    <div><span class="n">2</span><span><strong>Blank cards,</strong> G&#8242; and H&#8242;, for step 3.</span></div>
+    <div><span class="n">2</span><span><strong>Labels,</strong> Retrofit and Designed in, for reference.</span></div>
+    <div><span class="n">1</span><span><strong>Recorder sheet.</strong> Everything you write goes here.</span></div>
+  </div>
+  <p class="small">Groups of three or four. Pick a reader and a recorder before you start.</p>
+
+  <h2><span class="k">B</span> What you do</h2>
+  <div class="step"><span class="n">1</span><div class="body"><strong>Sort in pairs (8 min).</strong> The cards come in three pairs: A and B, C and D, E and F. Each pair meets one need in two ways.
+    <ul>
+      <li>The reader reads one pair aloud.</li>
+      <li>The group says which card is the retrofit and which is designed in.</li>
+      <li>For the designed-in card, the group picks the principle card it matches.</li>
+      <li>The recorder writes one line per pair, for example: <em>C retrofit. D designed in, Representation.</em></li>
+    </ul>
+    G and H have no partner yet. Skip them until step 3.</div></div>
+  <div class="step"><span class="n">2</span><div class="body"><strong>Price the retrofits (10 min).</strong> Five cards are retrofits: A, C, E, G, H. For each one, answer three questions, and the recorder writes one line per card.
+    <ul>
+      <li>What must a student say or show to get this, and to whom?</li>
+      <li>How many times in a semester, across how many courses?</li>
+      <li>What happens to the student who never discloses?</li>
+    </ul></div></div>
+  <div class="step"><span class="n">3</span><div class="body"><strong>Design the missing pair (8 min).</strong> On card G&#8242;, write a designed-in version of G. On card H&#8242;, write a designed-in version of H. Under each, write the principle it uses.
+    <ul>
+      <li>Model, done for A: <em>Every in-class writing session ends with a 24-hour window to revise and resubmit online.</em> Same need as A, no request needed, principle Action &amp; Expression.</li>
+    </ul></div></div>
+  <div class="step"><span class="n">4</span><div class="body"><strong>Report (4 min).</strong> Two groups read one new card aloud and name its principle. The room answers one question: what does the designed-in version lose, if anything?</div></div>
+
+  <h2><span class="k">C</span> Reference</h2>
+  <p><strong>Retrofit:</strong> added later, for one student, on request. Dolmage: "adding ramps at the sides of buildings and making accommodations to the standard curriculum." <strong>Designed in:</strong> built into the course from the start, for everyone, with no request needed.</p>
+  <p class="small" style="margin-top:4px;">Principle cards: CAST UDL Guidelines 3.0 (2024). Quotations and page numbers are on the session page.</p>
+  <div class="foot">ENG 511 · Nov 3 · Retrofit or Design? · Group sheet</div>
+</div>
+
+<!-- PAGE 2: recorder sheet -->
+<div class="page">
+  <div class="run"><span>ENG 511 · Week 12 · Tuesday, November 3</span><span>Recorder sheet</span></div>
+  <h1>Recorder Sheet</h1>
+  <p class="lede">One person writes. Group members: <span style="display:inline-block;border-bottom:1px solid var(--umber);width:4in;"></span></p>
+
+  <h2><span class="k">1</span> Sort in pairs</h2>
+  <p class="small" style="margin-bottom:8px;">One line per pair: which is the retrofit, which is designed in, and the principle the designed-in card matches.</p>
+  <div class="rec-block">
+    <div class="line"><span class="tag">A and B</span><span class="rule"></span></div>
+    <div class="line"><span class="tag">C and D</span><span class="rule"></span></div>
+    <div class="line"><span class="tag">E and F</span><span class="rule"></span></div>
+  </div>
+
+  <h2><span class="k">2</span> Price the retrofits</h2>
+  <p class="small" style="margin-bottom:8px;">One line per card: what the student must say or show, to whom, how often, and what happens to the student who never discloses.</p>
+  <div class="rec-block">
+    <div class="line"><span class="tag">A</span><span class="rule"></span></div>
+    <div class="line"><span class="tag">C</span><span class="rule"></span></div>
+    <div class="line"><span class="tag">E</span><span class="rule"></span></div>
+    <div class="line"><span class="tag">G</span><span class="rule"></span></div>
+    <div class="line"><span class="tag">H</span><span class="rule"></span></div>
+  </div>
+
+  <h2><span class="k">3</span> Design the missing pair</h2>
+  <p class="small" style="margin-bottom:8px;">Write the new practices on cards G&#8242; and H&#8242;. Note the principle here.</p>
+  <div class="rec-block">
+    <div class="line"><span class="tag">G&#8242; principle</span><span class="rule"></span></div>
+    <div class="line"><span class="tag">H&#8242; principle</span><span class="rule"></span></div>
+  </div>
+
+  <h2><span class="k">4</span> Report</h2>
+  <p class="small">If your group reads aloud: which card, and what does the designed-in version lose, if anything?</p>
+  <div class="rec-block" style="margin-top:8px;">
+    <div class="line"><span class="tag">Loses</span><span class="rule"></span></div>
+  </div>
+  <div class="foot">ENG 511 · Nov 3 · Retrofit or Design? · Recorder sheet</div>
+</div>
+
+<!-- PAGE 3: practice cards -->
+<div class="sheet">
+  <div class="card"><div class="letter">A</div><div class="text">Extended time on in-class writing for students with a Disability Resource Office letter.</div><div class="cfoot">ENG 511 · Nov 3 · Retrofit or Design?</div></div>
+  <div class="card"><div class="letter">B</div><div class="text">Every deadline carries a 48-hour grace window, no request needed.</div><div class="cfoot">ENG 511 · Nov 3 · Retrofit or Design?</div></div>
+  <div class="card"><div class="letter">C</div><div class="text">Slides shared after class with students who have a note-taking accommodation.</div><div class="cfoot">ENG 511 · Nov 3 · Retrofit or Design?</div></div>
+  <div class="card"><div class="letter">D</div><div class="text">Slides and a one-page outline posted before every class for everyone.</div><div class="cfoot">ENG 511 · Nov 3 · Retrofit or Design?</div></div>
+  <div class="card"><div class="letter">E</div><div class="text">Captions added to course videos once a Deaf student enrolls.</div><div class="cfoot">ENG 511 · Nov 3 · Retrofit or Design?</div></div>
+  <div class="card"><div class="letter">F</div><div class="text">Every video captioned and transcribed before the term begins.</div><div class="cfoot">ENG 511 · Nov 3 · Retrofit or Design?</div></div>
+  <div class="card"><div class="letter">G</div><div class="text">A separate quiet room for the one timed in-class essay, for students with documented need.</div><div class="cfoot">ENG 511 · Nov 3 · Retrofit or Design?</div></div>
+  <div class="card"><div class="letter">H</div><div class="text">Students who apply through the DRO receive an alternative to the required oral presentation.</div><div class="cfoot">ENG 511 · Nov 3 · Retrofit or Design?</div></div>
+  <div class="card blank"><div class="letter">G&#8242;</div><div class="text">Designed-in version of G. Principle beneath.</div><div class="rule-s"></div><div class="rule-s"></div><div class="rule-s"></div><div class="cfoot">ENG 511 · Nov 3 · Step 3</div></div>
+  <div class="card blank"><div class="letter">H&#8242;</div><div class="text">Designed-in version of H. Principle beneath.</div><div class="rule-s"></div><div class="rule-s"></div><div class="rule-s"></div><div class="cfoot">ENG 511 · Nov 3 · Step 3</div></div>
+</div>
+
+<!-- PAGE 4: labels -->
+<div class="mats">
+  <div class="mat">
+    <h3>Retrofit</h3>
+    <p>Added later, for one student, on request. "Adding ramps at the sides of buildings and making accommodations to the standard curriculum" (Dolmage).</p>
+    <div class="cfoot" style="margin-top:0.25in;">ENG 511 · Nov 3 · Reference label</div>
+  </div>
+  <div class="mat">
+    <h3>Designed In</h3>
+    <p>Built into the course from the start, for everyone, with no request needed.</p>
+    <div class="cfoot" style="margin-top:0.25in;">ENG 511 · Nov 3 · Reference label</div>
+  </div>
+</div>
+
+<!-- PAGE 5: principle cards, two sets -->
+<div class="psheet">
+  <div class="pcard"><div class="pnum">UDL Principle 1</div><div class="pname">Engagement</div><div class="ptext">The why of learning: interest, sustained effort, fewer threats and distractions.</div><div class="pask">Ask of a practice: does it lower the cost of staying with the work, for everyone, without a request?</div><div class="cfoot">ENG 511 · Nov 3 · CAST UDL Guidelines</div></div>
+  <div class="pcard"><div class="pnum">UDL Principle 1</div><div class="pname">Engagement</div><div class="ptext">The why of learning: interest, sustained effort, fewer threats and distractions.</div><div class="pask">Ask of a practice: does it lower the cost of staying with the work, for everyone, without a request?</div><div class="cfoot">ENG 511 · Nov 3 · CAST UDL Guidelines</div></div>
+  <div class="pcard"><div class="pnum">UDL Principle 2</div><div class="pname">Representation</div><div class="ptext">The what of learning: information in more than one form, such as text, audio, visual, or an outline.</div><div class="pask">Ask of a practice: does the same content reach students by more than one route, before anyone asks?</div><div class="cfoot">ENG 511 · Nov 3 · CAST UDL Guidelines</div></div>
+  <div class="pcard"><div class="pnum">UDL Principle 2</div><div class="pname">Representation</div><div class="ptext">The what of learning: information in more than one form, such as text, audio, visual, or an outline.</div><div class="pask">Ask of a practice: does the same content reach students by more than one route, before anyone asks?</div><div class="cfoot">ENG 511 · Nov 3 · CAST UDL Guidelines</div></div>
+  <div class="pcard"><div class="pnum">UDL Principle 3</div><div class="pname">Action &amp; Expression</div><div class="ptext">The how of learning: more than one way to respond and show learning, with support for planning and pacing.</div><div class="pask">Ask of a practice: does it give every student a choice of form or pace, with scaffolding built in?</div><div class="cfoot">ENG 511 · Nov 3 · CAST UDL Guidelines</div></div>
+  <div class="pcard"><div class="pnum">UDL Principle 3</div><div class="pname">Action &amp; Expression</div><div class="ptext">The how of learning: more than one way to respond and show learning, with support for planning and pacing.</div><div class="pask">Ask of a practice: does it give every student a choice of form or pace, with scaffolding built in?</div><div class="cfoot">ENG 511 · Nov 3 · CAST UDL Guidelines</div></div>
+</div>
+
+</body>
+</html>
