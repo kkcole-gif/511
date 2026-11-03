@@ -946,5 +946,9 @@
   highlight();
   setInterval(highlight, 30000);
 </script>
+<script>
+  (function(){function mark(){document.querySelectorAll('.tl-item').forEach(function(el){if(el.classList.contains('active'))el.setAttribute('aria-current','step');else el.removeAttribute('aria-current');});}
+  setTimeout(mark,200);setInterval(mark,30000);})();
+</script>
 </body>
 </html>
