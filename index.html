@@ -298,6 +298,21 @@
     line-height: 1.7;
   }
 
+  .break-detail {
+    text-align: left;
+    max-width: 560px;
+    width: 100%;
+    margin-top: 32px;
+    font-size: max(var(--type-min, 0px), calc(14.5px * var(--type-scale, 1) + var(--type-bump, 0px)));
+    color: var(--ink-mid);
+    line-height: 1.65;
+  }
+  .break-detail h4 { margin-top: 24px; font-weight: 500; }
+  .break-detail ol, .break-detail ul { padding-left: 22px; margin-bottom: 8px; }
+  .break-detail li { margin-bottom: 8px; }
+  .break-detail p { margin-top: 14px; }
+  .break-detail a { color: var(--ink); }
+
   /* ── SESSION CARD ────────────────────────────────────────  */
   .session-card {
     background: white;
@@ -1159,7 +1174,7 @@ const WEEKS = [
     preview_thu_for_tue: {
       readings: ["Rose, \"A Cognitive Analysis of Writer's Block\" (1980)", "Elbow, excerpt from Writing Without Teachers", "Warnock, Foundational Practices in OWI (Part 2.4)"],
       activities: ["Literacy Narrative share-out in small groups", "Cognitive models applied to OWI design", "Writer's block diagnosis scenarios"],
-      note: "Literacy Narrative & Teaching Philosophy Draft due this Thursday",
+      note: "Literacy Narrative & Teaching Philosophy Draft due Sunday, September 6",
     },
     preview_next_for_thu: {
       week: 4,
@@ -1170,7 +1185,7 @@ const WEEKS = [
     },
     assignment: {
       name: "Literacy Narrative & Teaching Philosophy Draft",
-      due: "Due Thursday, September 3",
+      due: "Due Sunday, September 6",
       desc: "Multimodal literacy narrative (1000–1500 words or 5–7 min podcast/video) + initial teaching philosophy statement.",
     },
   },
@@ -1386,7 +1401,7 @@ const WEEKS = [
     assignment: {
       name: "Feedback & Assessment Portfolio, Part 1",
       due: "Due Sunday, October 4, midnight, in Tab 5",
-      desc: "Annotated feedback samples on 2 to 3 ENG 101 student papers, a written reflection (1000 to 1500 words) engaging Sommers, Inoue, and at least one other course reading, and a note on what you'd revise with more time or context.",
+      desc: "Annotated feedback samples (the four sample comments from the October 1 workshop page plus your own comments on the practice passage), a written reflection (1000 to 1500 words) engaging Sommers, Inoue, and at least one other course reading, and a note on what you'd revise with more time or context.",
     },
   },
 
@@ -1662,7 +1677,7 @@ const WEEKS = [
     assignment: {
       name: "Feedback & Assessment Portfolio, Part 2",
       due: "Due Sunday, November 15",
-      desc: "Reflect on assessment challenges and revise a grading rubric using anti-racist and inclusive strategies. Revised rubric + written reflection (1000–1500 words).",
+      desc: "Reflect on assessment challenges and revise a grading rubric using anti-racist and inclusive strategies. Revised rubric + annotated feedback on 2 to 3 ENG 101 sample papers + written reflection (1000–1500 words).",
     },
   },
 
@@ -1726,6 +1741,19 @@ const WEEKS = [
     isBreak: true,
     breakMessage: "No class this week. Prepare your 5-minute lightning talk for Tuesday, December 1, and keep revising your Digital Portfolio and Pedagogy Statement, due Sunday, December 6.",
     breakIcon: "",
+    breakPrep: [
+      "<strong>Choose one thread.</strong> Pick the shift in your thinking about teaching writing you will talk about, and the one portfolio artifact where it shows.",
+      "<strong>Outline four parts.</strong> One shift (1 min), one artifact (2 min), one theorist quoted in their own words (1 min), one open question (1 min).",
+      "<strong>Time it once out loud.</strong> Five minutes, then 1 minute of questions. Slides, a shared screen of your portfolio, or no visuals at all are all welcome.",
+      "<strong>Have the artifact ready to show.</strong> Open the tab or file before class starts on Tuesday, December 1.",
+    ],
+    breakPortfolio: [
+      "Revised teaching philosophy and Composition Pedagogy Statement (Tab 2)",
+      "Revised lesson plan (Tab 3)",
+      "Revised writing assignment and rubric (Tabs 4 and 5)",
+      "Feedback and assessment reflection, Parts 1 and 2 (Tab 5)",
+      "Annotated bibliography of 10 to 15 course sources (Tab 6)",
+    ],
     assignment: null,
   },
 
@@ -2055,6 +2083,14 @@ function showWeek(num) {
           <h3 class="break-heading">${w.title}</h3>
           <p class="break-text">${w.breakMessage}</p>
           ${w.num === 15 ? `<div class="preview-assign-note" style="margin-top:24px">Lightning talks Tuesday, December 1 · Final Portfolio & Pedagogy Statement due Sunday, December 6</div>` : ''}
+          ${w.breakPrep ? `
+          <div class="break-detail">
+            <h4 class="block-title">Getting ready for your lightning talk</h4>
+            <ol>${w.breakPrep.map(x => `<li>${x}</li>`).join('')}</ol>
+            <h4 class="block-title">What your final portfolio includes</h4>
+            <ul>${w.breakPortfolio.map(x => `<li>${x}</li>`).join('')}</ul>
+            <p>Every tab is revised and polished, old and new. Due Sunday, December 6, at midnight. <a href="submissions.html">Full details on the Submissions page</a>.</p>
+          </div>` : ''}
         </div>
       </div>
     `;
